@@ -308,8 +308,12 @@ def vowel_agreement(typed: str, reading: str) -> tuple[int, int] | None:
         return None
     agreed = doubled = 0
     before: set = set()
-    for at, ((letter, said), (_, read)) in enumerate(zip(mine, theirs)):
+    for at, ((letter, said), (seat, read)) in enumerate(zip(mine, theirs)):
         said_v, read_v = {_MARK[m] for m in said if m in _MARK}, {_MARK[m] for m in read if m in _MARK}
+        if letter in "أإ" and seat == "ا" and not read and said & {FATHA, DAMMA, KASRA}:
+            # an alif is never voweled (Sibawayh: الألف لا تكون إلا ساكنة), so a hamza typed voweled
+            # is a letter of its own, not the ا a reading has there: فَأَجِرْهُ is no فاجِرُهُ
+            return None
         # أَبُوهُ: a و typed bare after a damma, with only an attached pronoun after it, is that damma drawn long, the
         # six nouns' sign of raf' (Ajrumiyya: الواو علامة للرفع في الأسماء الخمسة), so CAMeL's nasb or jarr written on
         # it (أَبُوَهُ) does not fit; its raf' it writes as a damma (أَبُوُهُ). A و inside the stem may be a consonant

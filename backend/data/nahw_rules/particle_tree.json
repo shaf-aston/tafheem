@@ -1,5 +1,5 @@
 {
-  "_comment": "Which reading a small word with more than one takes, decided once from what stands round it (services/nahw/syntax/particles.py walks it; the card, the picture and the case rules all read the answer). A branch splits on one particle axis: `word` the word itself, `again` the same word stood earlier in the sentence (the second إمّا joins, the first sets out the choice), `doubled` the reader typed a shadda on it (إِنَّا is إنّ, never the إنْ of a condition), `next` what follows it (an indefinite noun: no ال, no name, no pronoun on it; a tool: a particle, or a word only a condition opens with, إذا), `negated` a negation before it, `joins` the noun after it in the case of a noun before it, `opens` the noun after it with a khabar of its own after it. `tool_next` the word after it is خلا، عدا or حاشا; `timed` ما before لم or دام, not opening the sentence (ما المصدرية الظرفية: البيعان بالخيار ما لم يتفرقا); `answered` a tying ف of its condition later on a word that could not be a condition (ما أصابك من حسنة فمن الله: no negation); `raf` the noun after it typed in raf' (the noun of لا of the genus never is), `told` what stands after that noun: a noun, its khabar (لا رجلٌ أفضلُ منك: لا المشبهة بليس), or anything else (لا خوفٌ عليهم: the noun is a مبتدأ). `wonder` ما before a verb of the wonder shape (closed_words.json wonder). `asks` ما or من asks (Tasheel 2.4.7 p47): a noun, pronoun or pointer follows as its مبتدأ and no verb, ظرف, preposition or إلا comes after it (ما اسمك، من أنت), or a verb of informing with its pronoun is followed by a second question word (وما أدراك ما يوم الدين); ما عندكم ينفد and من في البيت are not it. `restricted` an إلا comes after it in the clause (ما أنت إلا بشر). `one_clause_restricted` an إلا comes after it with no second verb between, so no condition has room for its answer (إن أردنا إلا الحسنى). `differing_lam` a ناسخ verb after it and a لام of emphasis later in its clause (وإن وجدنا أكثرهم لفاسقين: إن المخففة), asked before `one_clause_restricted`, since a لام of that kind rules the negating إن out (وَإِنْ كَانَتْ لَكَبِيرَةً إِلَّا عَلَى الَّذِينَ هَدَى اللَّهُ). `merged_in_la` إلّا before a verb in jazm, typed with its hamza below: إنْ merged into لا (إلّا تنصروه). `negates_a_verb` a particle (the negation, لم، لا) after it with a present verb after that (فإن لم تفعلوا). A leaf's `role` is the closed_words.json family it works as; `named` its name where the family card's own does not fit, `kind` when it is no حرف (إذا before a verb is a ظرف), `retag` the word class the parser's tag is written over with before the other words are read (ما قبل إلا is a particle, so إلا after it restricts). `sense` the dictionary's (CAMeL's) word class whose English is the job's, for the sentence's word-by-word: إنّ is verb_pseudo \"indeed\", the condition's إن conj_sub \"if\", لمّا before a past verb conj \"when\"; a leaf with a `retag` reads in that class, and one with neither keeps the dictionary's own pick. `starts` only a و or ف stands before it (إذن opens the answer); `shows` the mood the present verb after it shows (nasb, raf', other) or none where no present verb follows it directly (closed_words.json nasb_mudari `idhan_*`). إِذًا with a tanween is the lemma إذن (nasb_mudari `tanween_spells`), never the time word. A word with no branch here is read by its lists as before.",
+  "_comment": "Which reading a small word with more than one takes, decided once from what stands round it (services/nahw/syntax/particles.py walks it; the card, the picture and the case rules all read the answer). A branch splits on one particle axis: `word` the word itself, `again` the same word stood earlier in the sentence (the second إمّا joins, the first sets out the choice), `doubled` the reader typed a shadda on it (إِنَّا is إنّ, never the إنْ of a condition), `next` what follows it (an indefinite noun: no ال, no name, no pronoun on it; a tool: a particle, or a word only a condition opens with, إذا), `negated` a negation before it, `joins` the noun after it in the case of a noun before it, `opens` the noun after it with a khabar of its own after it. `tool_next` the word after it is خلا، عدا or حاشا; `timed` ما before لم or دام, not opening the sentence (ما المصدرية الظرفية: البيعان بالخيار ما لم يتفرقا); `answered` a tying ف of its condition later on a word that could not be a condition (ما أصابك من حسنة فمن الله: no negation); `raf` the noun after it typed in raf' (the noun of لا of the genus never is), `told` what stands after that noun: a noun, its khabar (لا رجلٌ أفضلُ منك: لا المشبهة بليس), or anything else (لا خوفٌ عليهم: the noun is a مبتدأ). `wonder` ما before a verb of the wonder shape (closed_words.json wonder). `asks` ما or من asks (Tasheel 2.4.7 p47): a noun, pronoun or pointer follows as its مبتدأ and no verb, ظرف, preposition or إلا comes after it (ما اسمك، من أنت), or a verb of informing with its pronoun is followed by a second question word (وما أدراك ما يوم الدين); ما عندكم ينفد and من في البيت are not it. `restricted` an إلا comes after it in the clause (ما أنت إلا بشر). `one_clause_restricted` an إلا comes after it with no second verb between, so no condition has room for its answer (إن أردنا إلا الحسنى). `differing_lam` a ناسخ verb after it and a لام of emphasis later in its clause (وإن وجدنا أكثرهم لفاسقين: إن المخففة), asked before `one_clause_restricted`, since a لام of that kind rules the negating إن out (وَإِنْ كَانَتْ لَكَبِيرَةً إِلَّا عَلَى الَّذِينَ هَدَى اللَّهُ). `before_noun` what an إنْ typed light (a sukun or kasra on its nun) is before a noun: `idle` or `working` with a لام on the خبر (إن هذان لساحران), `working` with the noun typed in nasb alone (إِنْ زَيْدًا قَائِمٌ), `condition` with a verb after the noun explaining a dropped one and an answer, or with كان dropped (وإن أحد من المشركين استجارك فأجره), `negation` with none of these (إن عندكم من سلطان بهذا), `other` typed with no such mark, so it may be إنّ written without its shadda. `merged_in_la` إلّا before a verb in jazm, typed with its hamza below: إنْ merged into لا (إلّا تنصروه). `negates_a_verb` a particle (the negation, لم، لا) after it with a present verb after that (فإن لم تفعلوا). A leaf's `role` is the closed_words.json family it works as; `named` its name where the family card's own does not fit, `kind` when it is no حرف (إذا before a verb is a ظرف), `retag` the word class the parser's tag is written over with before the other words are read (ما قبل إلا is a particle, so إلا after it restricts). `sense` the dictionary's (CAMeL's) word class whose English is the job's, for the sentence's word-by-word: إنّ is verb_pseudo \"indeed\", the condition's إن conj_sub \"if\", لمّا before a past verb conj \"when\"; a leaf with a `retag` reads in that class, and one with neither keeps the dictionary's own pick. `starts` only a و or ف stands before it (إذن opens the answer); `shows` the mood the present verb after it shows (nasb, raf', other) or none where no present verb follows it directly (closed_words.json nasb_mudari `idhan_*`). إِذًا with a tanween is the lemma إذن (nasb_mudari `tanween_spells`), never the time word. A word with no branch here is read by its lists as before.",
   "tree": {
     "branch": "الحروف ذات الوجوه",
     "book": "1.2 p3",
@@ -499,8 +499,49 @@
                             "branch": "إن قبل الاسم",
                             "book": "1.8 p20",
                             "is": "no",
-                            "role": "inna",
-                            "sense": "verb_pseudo"
+                            "split": "before_noun",
+                            "children": [
+                              {
+                                "branch": "إن المخففة من الثقيلة قبل اسم ولام فارقة",
+                                "book": "1.8 p20",
+                                "is": "idle",
+                                "role": "ghair_amila_other",
+                                "named": "إن المخففة من الثقيلة، مهملة",
+                                "sense": "verb_pseudo"
+                              },
+                              {
+                                "branch": "إن المخففة من الثقيلة قبل اسم منصوب",
+                                "book": "1.8 p20",
+                                "is": "working",
+                                "role": "inna",
+                                "named": "إن المخففة من الثقيلة، عاملة",
+                                "sense": "verb_pseudo"
+                              },
+                              {
+                                "branch": "إن الشرطية قبل اسم يفسر فعله ما بعده",
+                                "book": "4.1.2 p102",
+                                "is": "condition",
+                                "role": "jazm",
+                                "sense": "conj_sub"
+                              },
+                              {
+                                "branch": "إن النافية قبل الاسم",
+                                "book": "1.8 p20",
+                                "is": "negation",
+                                "role": "negation",
+                                "retag": {
+                                  "pos": "PRT",
+                                  "pos_camel": "part_neg"
+                                }
+                              },
+                              {
+                                "branch": "إن غير المشكولة قبل الاسم",
+                                "book": "1.8 p20",
+                                "is": "other",
+                                "role": "inna",
+                                "sense": "verb_pseudo"
+                              }
+                            ]
                           }
                         ]
                       }

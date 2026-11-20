@@ -19,7 +19,7 @@ from __future__ import annotations
 
 from backend.services.text.arabic_text import strip_diacritics
 from backend.services.text.harakat import has_tanween
-from backend.services.nahw.book import book_spelling, condition_of, frames, is_one, kaffa_sister, named_roles, says
+from backend.services.nahw.book import condition_of, frames, is_one, kaffa_sister, named_roles, says
 from backend.services.nahw.syntax.facts import reading, spelled
 
 NAMED = named_roles()
@@ -135,10 +135,11 @@ def find(bases: list[dict], named: list[str | None], cases: list[str | None],
         asks is never a condition's clause, nor its answer unless a ف ties it (Ibn Aqil V4, page unchecked: وأقرن بفا حتما جوابا لو جعل
         شرطا), so that لا negates. One before a said verb asks inside what is said (قِيلَ لَهُمْ لَا تُفْسِدُوا). Only a
         condition that puts its verbs in jazm leaves the jazm to it: after إذا or لو none but the لا gives it, so that one forbids
-        (إِذَا جَاءَ زَيْدٌ لَا تُكَلِّمْهُ)."""
+        (إِذَا جَاءَ زَيْدٌ لَا تُكَلِّمْهُ). A word read as putting in jazm there is that لا: an إن or إلّا would open a condition
+        of its own, and لمّا never follows a conditional word (Mughni, لمّا, page unchecked)."""
         if frame["family"] != "jazm":
             return []
-        return [k for k in range(opener + 1, end) if book_spelling(bases[k]["lemma"]) == "لا" and reading(bases[k]) == "jazm"
+        return [k for k in range(opener + 1, end) if reading(bases[k]) == "jazm"
                 and k + 1 < len(bases) and not said(k + 1, opener) and (k + 1 in (verb, answer) or joined(k + 1))]
 
     def clause_head(k: int) -> int:

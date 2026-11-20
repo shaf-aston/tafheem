@@ -506,6 +506,22 @@ def ma_kind(token: dict, s: Sentence) -> str | None:
     return "relative"
 
 
+def is_sworn_relative(word: dict) -> bool:
+    """A relative an oath swears by (وَالَّذِي نَفْسِي بِيَدِهِ), not the noun of a condition."""
+    return is_one(word["lemma"], "mawsul") and not is_one(word["lemma"], "jazm", "conditional_nouns")
+
+
+def sworn_by(s: Sentence) -> dict | None:
+    """What the sentence swears by when it opens on an oath, a ف before it at most (Ibn Aqil vol 4 p42): the word after
+    a و or ت of an oath (closed_words jarr `oath_only`), a relative or a noun in jarr (وَاللَّهِ، فَوَالَّذِي نَفْسِي بِيَدِهِ)."""
+    tokens = s.tokens
+    lead = int(bool(tokens) and tokens[0]["pos"] == "PRT" and tokens[0]["lemma"].strip("+") == "ف")
+    first, word = (tokens + [None, None, None])[lead:lead + 2]
+    if not (first and word and first["pos"] == "PRT" and is_one(first["lemma"], "jarr", "oath_only")):
+        return None
+    return word if is_sworn_relative(word) or noun_tagged(word) and typed_case_of(word) == "i" else None
+
+
 def jarr_takes(token: dict, s: Sentence) -> bool:
     """A preposition works only on the noun straight after it (Tasheel 1.7 p18): a second
     noun the parser hung on it (لله الحمدُ) is not its majrur."""

@@ -10,11 +10,12 @@ stamped on the token as `reading`; facts, naming, the picture and the card all r
 from __future__ import annotations
 
 from functools import lru_cache
-from typing import Callable
+from itertools import takewhile
+from typing import Callable, Iterator
 
 from backend.services.text.arabic_text import strip_diacritics
 from backend.services.text.harakat import (
-    DAMMA, PRESENT_PREFIX, SHADDA, SUKUN, doubled_last, fits_shape, five_verb_nun, letters, own_letters, stilled, typed_case)
+    DAMMA, FATHA, KASRA, PRESENT_PREFIX, SHADDA, SUKUN, doubled_last, fits_shape, five_verb_nun, letters, own_letters, stilled, typed_case)
 from backend.services.sarf.morphology import has_comparative
 from backend.services.nahw.book import (
     book_file, book_map, book_spelling, book_words, condition_of, family_cards, in_family, is_mabni, is_one, is_subject_pronoun, says)
@@ -340,20 +341,212 @@ def _differing_lam(token: dict, s: facts.Sentence) -> str:
     وَإِنْ وَجَدْنَا أَكْثَرَهُمْ لَفَاسِقِينَ، وَإِنْ كَادُوا لَيَفْتِنُونَكَ. The لام sits on that خبر itself, never after a و
     (وَلَقَدْ وَعَدْتُكَ opens another sentence). The clause ends at a ف, at إنّ or a sister of it, or at a خبر the verb
     already holds (`_holds_khabar`): a لام after that opens another clause, as the answer of an oath left unsaid does (وَاللَّهِ إِنْ
-    كَانَ زَيْدٌ صَادِقًا لَقَدْ ظَلَمْنَاهُ), so the condition stands. A لام with no fatha typed on it is told only on a
-    جار (`is_emphasis_lam`), so unvowelled text may read the condition."""
+    كَانَ زَيْدٌ صَادِقًا لَقَدْ ظَلَمْنَاهُ), so the condition stands; so does one on قد or a frozen verb after a جار or
+    ظرف that may be that خبر, when an oath opens the sentence (`_answers_oath`). A لام with no fatha typed on it is told
+    only on a جار (`is_emphasis_lam`), so unvowelled text may read the condition."""
     verb = facts.next_word(token, s)
     if not (verb and any(in_family(verb["lemma"], kin) for kin in ("kana", "kaada", "zanna"))):
         return "no"
     if _what_follows(token, s) == "verb_jazm":
         return "no"  # إِنْ تَكُنْ لَصَادِقًا، إِنْ تَكُونُوا لَصَادِقِينَ: the lightened إنّ governs nothing, so a present verb after it is in raf' (وَإِنْ يَكَادُ)
     tokens = s.tokens
-    for i in range(tokens.index(verb) + 1, len(tokens)):
-        if _holds_khabar(verb, tokens[i], s) or tokens[i]["form"] == "ف+" or is_one(tokens[i]["lemma"], "inna"):
+    for i in _clause(tokens.index(verb) + 1, s):
+        if _holds_khabar(verb, tokens[i], s):
             return "no"
         if facts.is_emphasis_lam(tokens, i):
-            return "yes" if tokens[i - 1]["form"] != "و+" and _lam_tells(tokens[i], tokens[i + 1], s) else "no"
+            return "yes" if _lam_tells(i, s, khabar_in_nasb=True) and not _answers_oath(verb, i, s) else "no"
     return "no"
+
+
+def _before_noun(token: dict, s: facts.Sentence) -> str:
+    """What an إنْ the reader typed light (a sukun or a kasra on its nun) is before a noun, no ناسخ verb and no إلا after
+    it. A conditional word opens only on a verb, so a noun after it belongs to one left out: a past verb after the noun
+    that explains it (_explained_at), or كان with only its خبر kept before the answer's ف (_kana_dropped), makes it the
+    إنْ of a condition. Else it is the lightened إنّ (Alfiyya, إنّ وأخواتها: وخففت إنّ فقل العمل وتلزم اللام إذا ما تهمل):
+    idle, the noun a مبتدأ, where a لام of emphasis comes on the خبر (إِنْ هَذَانِ لَسَاحِرَانِ), and working where the
+    reader typed its noun in nasb, which tells it from the negation with no لام needed (إِنْ زَيْدًا قَائِمٌ). A خبر put
+    first, a جار or a ظرف, leaves that noun after it (إِنْ فِي ذَلِكَ لَعِبْرَةً). A لام after the explaining verb is the خبر's
+    only where that verb is a صفة on the noun, which still wants its خبر (إِنْ رَجُلٌ صَدَقَ لَنَاجٍ), and no oath opens the
+    sentence, whose answer it then is (وَاللَّهِ إِنْ أَحَدٌ زَارَكَ لَزَيْدٌ خَيْرٌ مِنْهُ); else it is inside that verb's
+    words (إِنْ أَحَدٌ قَالَ لَزَيْدٌ أَفْضَلُ مِنْكَ فَكَذِّبْهُ). With none of these it negates (إِنْ عِنْدَكُمْ مِنْ سُلْطَانٍ بِهَذَا). An إن typed
+    with no such mark may be إنّ written without its shadda, so it reads as that ("other")."""
+    if not facts.is_light(token):
+        return "other"
+    tokens = s.tokens
+    clause = list(_clause(tokens.index(token) + 1, s))
+    first = next((tokens[i] for i in clause if not facts.is_suffix(tokens[i])), None)
+    if first is None:
+        return "negation"
+    fronted = _jar_or_zarf(first, s)
+    noun = _put_after(first, clause, s) if fronted else first
+    explained = None if fronted else _explained_at(first, clause, s)
+    nasb = noun is not None and _shows_nasb(noun)
+    if any(facts.is_emphasis_lam(tokens, i) and _lam_tells(i, s, khabar_in_nasb=False)
+           and (explained is None or i < explained or _khabar_past_sifa(i, explained, first, clause, s)) for i in clause):
+        return "working" if nasb else "idle"
+    if explained is not None and _has_answer(explained, token, s) or _kana_dropped(first, clause, s):
+        return "condition"
+    return "working" if nasb else "negation"
+
+
+def _jar_or_zarf(token: dict, s: facts.Sentence) -> bool:
+    return facts.is_preposition(token) or facts.is_zarf(token, s)
+
+
+def _khabar_past_sifa(i: int, explained: int, noun: dict, clause: list[int], s: facts.Sentence) -> bool:
+    """The لام at `i`, after the verb at `explained`, is on the خبر: that verb is a صفة on the noun, which still wants
+    its خبر (إِنْ رَجُلٌ صَدَقَ لَنَاجٍ). Where an oath opens the sentence the لام answers it, the condition before it
+    whole (وَاللَّهِ إِنْ أَحَدٌ زَارَكَ لَزَيْدٌ خَيْرٌ مِنْهُ), unless the لام's word stands alone, all after it its own
+    words: an oath's answer is a whole sentence, never one noun (وَاللَّهِ إِنْ رَجُلٌ صَدَقَ لَنَاجٍ)."""
+    tokens = s.tokens
+    heads = [t["head"] for t in tokens]
+    word = tokens[i + 1]
+    return tokens[explained]["head"] == noun["id"] and (facts.sworn_by(s) is None or all(
+        above(heads, tokens[j]["id"], word["id"]) for j in clause if j > i + 1))
+
+
+def _has_answer(at: int, token: dict, s: facts.Sentence) -> bool:
+    """A condition is never the whole sentence (Mughni, إنْ النافية, page unchecked). After its verb at `at` the answer is
+    opened by what only an answer takes there: a فاء (Ibn Aqil V4 p37: إن جاء زيد فاضربه), the لام of an oath's answer
+    (لَزَيْدٌ خَيْرٌ مِنْهُ), or a verb standing bare, not joined on or put under a particle, that is an answer and no حال or
+    صفة (`_answers_bare`); the verb's own object or جار is none (إِنْ أَحَدٌ رَأَى زَيْدًا، إِنْ أَحَدٌ خَرَجَ مِنَ الدَّارِ: no
+    one saw Zayd, came out of the house). The answer may also be put first, before the إنْ, where no oath opens the
+    sentence, whose answer comes after it, and the last verb before it is no verb of saying, which opens it as its speech
+    (أُكْرِمُكَ إِنْ أَحَدٌ زَارَنِي; not قُلْتُ لَكَ إِنْ أَحَدٌ جَاءَنِي، قَالَ زَيْدٌ إِنْ أَحَدٌ جَاءَنِي). With neither the إنْ negates
+    (إِنْ أَحَدٌ جَاءَنِي)."""
+    tokens = s.tokens
+    if any(tokens[j]["form"] == "ف+" or facts.is_emphasis_lam(tokens, j)
+           or _answers_bare(tokens[j]) and tokens[j - 1]["pos"] != "PRT" and not _inside(j, at, tokens)
+           for j in range(at + 1, len(tokens))):
+        return True
+    before = [t for t in tokens[:tokens.index(token)] if not facts.is_prefix(t)]
+    verbs = [t for t in before if facts.is_verb(t)]
+    if verbs and says(verbs[-1]["lemma"]) or facts.sworn_by(s) is not None:
+        return False
+    return bool(verbs) or _nominal(before)
+
+
+def _inside(j: int, at: int, tokens: list[dict]) -> bool:
+    """The verb at `j` is inside the condition verb's own sentence, no answer: under it through another word, a صلة of its
+    object or what it governs (إِنْ أَحَدٌ رَأَى الَّذِي سَرَقَ، إِنْ أَحَدٌ قَالَ إِنَّ زَيْدًا خَرَجَ: no one saw the one who stole),
+    or straight under a verb of saying, its speech (إِنْ أَحَدٌ قَالَ اذْهَبْ). The parser hangs a bare answer straight on the
+    condition verb (إِنْ أَحَدٌ زَارَنِي أَكْرَمْتُهُ)."""
+    word = next(t for t in tokens[j:] if not facts.is_prefix(t))
+    verb = tokens[at]
+    return above([t["head"] for t in tokens], word["id"], verb["id"]) and (word["head"] != verb["id"] or says(verb["lemma"]))
+
+
+def _nominal(words: list[dict]) -> bool:
+    """Words before the إنْ that may be its answer put first, a whole sentence: two words beyond a particle, with no call
+    among them (أَنْتَ ظَالِمٌ إِنْ أَحَدٌ ظَلَمْتَهُ); a called noun or a bare particle is none (يَا زَيْدُ إِنْ أَحَدٌ جَاءَنِي، بَلْ
+    إِنْ أَحَدٌ جَاءَنِي)."""
+    return sum(t["pos"] != "PRT" for t in words) > 1 and not any(is_one(t["lemma"], "nida") for t in words)
+
+
+def _answers_bare(word: dict) -> bool:
+    """A verb that is a condition's answer with no فاء: a past (إِنْ أَحَدٌ زَارَنِي أَكْرَمْتُهُ) or a present typed in jazm,
+    stilled or its nun of the five dropped (إِنْ أَحَدٌ يَزُرْكَ تَجِدُوهُ). A present in raf' a past condition's answer may
+    take, but a حال or صفة always does, and one typed bare may be either, so neither tells (إِنْ أَحَدٌ جَاءَنَا يَسْأَلُ عَنْكَ:
+    no one came asking about you); and a command, which is never a حال or صفة (Ibn Aqil V3 p198: وامنع هنا إيقاع ذات
+    الطلب), its فاء written onto it (فَأَجِرْهُ)."""
+    if not facts.is_verb(word):
+        return False
+    typed, stuck_on = word.get("typed") or "", word.get("stuck_on", 0)
+    return word.get("asp") in ("p", "c") or facts.typed_mood(typed, word) == "jazm" or facts.five_verbs(word) and five_verb_nun(
+        typed, stuck_on, word.get("weak_last")) == "dropped"
+
+
+def _put_after(fronted: dict, clause: list[int], s: facts.Sentence) -> dict | None:
+    """The noun a خبر put first leaves after it: the first word of the clause that does not hang under that جار or ظرف
+    (إِنْ فِي الدَّارِ رَجُلًا)."""
+    heads = [t["head"] for t in s.tokens]
+    return next((s.tokens[i] for i in clause
+                 if not facts.is_prefix(s.tokens[i]) and not above(heads, s.tokens[i]["id"], fronted["id"])), None)
+
+
+def _explained_at(noun: dict, clause: list[int], s: facts.Sentence) -> int | None:
+    """The place of the verb that explains the one an إنْ of a condition leaves out before `noun` (Ibn Aqil, الفاعل,
+    page unchecked: وَإِنْ أَحَدٌ مِنَ الْمُشْرِكِينَ اسْتَجَارَكَ). It is the first verb after the noun that is not inside
+    the noun's own words, a صلة (إِنِ الَّذِينَ كَفَرُوا فِي غُرُورٍ، إِنْ أَحَدٌ مِمَّنْ ظَلَمَكَ) or a صفة that is no
+    condition's verb (إِنْ رَجُلٌ لَيْسَ لَهُ مَالٌ جَاءَكَ); a noun joined to it by و is still the noun's (إِنْ زَيْدٌ وَعَمْرٌو
+    جَاءَا), a و hung on it, while any other و opens another sentence (إِنْ أَحَدٌ فِي الدَّارِ وَالنَّاسُ نَامُوا). See
+    `_explains`."""
+    tokens = s.tokens
+    heads = [t["head"] for t in tokens]
+    cut_at_waw = [0 if t["form"] == "و+" else t["head"] for t in tokens]
+    sentence = takewhile(lambda i: tokens[i]["form"] != "و+" or above(heads, tokens[i]["id"], noun["id"]), clause)
+    for i in sentence:
+        verb = tokens[i]
+        if not facts.is_verb(verb) or verb["head"] != noun["id"] and above(cut_at_waw, verb["head"], noun["id"]) \
+                or verb["head"] == noun["id"] and facts.listed(noun, "mawsul"):
+            continue
+        if _explains(i, noun, s):
+            return i
+        if verb["head"] != noun["id"]:
+            return None
+    return None
+
+
+def _explains(at: int, noun: dict, s: facts.Sentence) -> bool:
+    """The verb can explain a condition's verb left out before `noun`. It is past, or present after لم or لمّا, which
+    turn it past (closed_words jazm `before_a_present_verb`: إِنْ هُوَ لَمْ يَحْمِلْ عَلَى النَّفْسِ ضَيْمَهَا), a present one
+    alone being a noun sentence's خبر (إِنْ أَحَدٌ يَعْلَمُ الْغَيْبَ); and one a condition may take (jazm `frozen_verbs`,
+    `not_before_its_verb`: not إِنْ زَيْدٌ لَيْسَ بِقَائِمٍ، إِنْ زَيْدٌ قَدْ قَامَ). It holds the noun: as its hidden doer, of
+    the noun's person, no doer of its own after it, in raf' or built (هذا), a doer never coming before its verb
+    (إِنِ امْرُؤٌ هَلَكَ، إِنْ أَنْتَ قُمْتَ، إِنْ رَجُلٌ وَامْرَأَةٌ جَاءَا; not إِنْ زَيْدٌ ضَرَبْتُهُ، إِنْ زَيْدٌ ضَرَبَهُ الْمُعَلِّمُونَ)
+    nor after a لام of emphasis, which opens a sentence of its own (إِنْ أَحَدٌ قَالَ لَزَيْدٌ أَفْضَلُ مِنْكَ فَكَذِّبْهُ), or, the
+    noun typed in nasb, as the pronoun the verb is busied with (`facts.busied`, الاشتغال: إِنْ زَيْدًا لَقِيتَهُ، مَرَرْتَ بِهِ،
+    أَكْرَمْتَ أَخَاهُ; not إِنْ زَيْدًا قَامَ أَبُوهُ، إِنْ زَيْدًا رَآنِي)."""
+    tokens = s.tokens
+    verb, before = tokens[at], tokens[at - 1]["lemma"]
+    if not (verb.get("asp") == "p" or is_one(before, "jazm", "before_a_present_verb")) \
+            or is_one(verb["lemma"], "jazm", "frozen_verbs") or is_one(before, "jazm", "not_before_its_verb"):
+        return False
+    if _shows_nasb(noun):
+        return facts.busied(verb, s)
+    person = noun["per"] if is_subject_pronoun(noun) else "3"
+    return verb.get("per") == person and not any(
+        kid["id"] > verb["id"] and facts.subject_link(kid)
+        and (facts.typed_or_parsed_case(kid) == "u" or facts.is_built(kid))
+        and not any(facts.is_emphasis_lam(tokens, j) for j in range(at + 1, tokens.index(kid))) for kid in s.kids(verb))
+
+
+def _kana_dropped(kept: dict, clause: list[int], s: facts.Sentence) -> bool:
+    """كان left out after إنْ, one part of its sentence kept alone before the answer's ف (Alfiyya, كان وأخواتها:
+    ويحذفونها ويبقون الخبر وبعد إن ولو كثيرًا ذا اشتهر; Ibn Aqil, page unchecked: النَّاسُ مَجْزِيُّونَ بِأَعْمَالِهِمْ إِنْ خَيْرًا
+    فَخَيْرٌ): `kept`, a noun or a جار or ظرف put first, with only its own words after it (إِنْ عَمَلًا صَالِحًا فَجَزَاءٌ
+    حَسَنٌ). A جار or ظرف after a noun in raf' may be its خبر, which makes a noun sentence (إِنْ أَحَدٌ فِي الدَّارِ فَخَرَجَ);
+    after one typed in nasb it is only that noun's (إِنْ خَيْرًا مِنْ ذَلِكَ فَخُذْهُ)."""
+    tokens = s.tokens
+    heads = [t["head"] for t in tokens]
+    end = clause[-1] + 1
+    return end < len(tokens) and tokens[end]["form"] == "ف+" and all(
+        above(heads, tokens[i]["id"], kept["id"]) and not (_jar_or_zarf(tokens[i], s) and not _shows_nasb(kept))
+        for i in clause[1:])
+
+
+def _shows_nasb(noun: dict) -> bool:
+    """The reader typed the noun in nasb: a fatha, a feminine plural's kasra, or a word ending in ين with a vowel typed
+    on its nun, which nothing after إنْ puts in jarr: a fatha is a plural's nun (إِنِ الْمُسْلِمِينَ صَادِقُونَ) or a broken
+    plural's case, both nasb, and a kasra the nun of two (إِنِ الزَّيْدَيْنِ قَائِمَانِ). With no vowel there the letters
+    do not tell a plural's ين from a broken plural's own (إِنِ السَّلَاطِين لَظَالِمُونَ) or a single noun's (إِنِ
+    الْمِسْكِين). Not a built word's fatha (هُوَ), nor a broken plural's ين with its damma typed (إِنِ الشَّيَاطِينُ)."""
+    if facts.is_built(noun):
+        return False
+    typed = noun.get("typed") or ""
+    pair = strip_diacritics(typed).endswith("ين") and bool({FATHA, KASRA} & letters(typed)[-1][1])
+    return facts.typed_case_of(noun) == "a" or facts.shows_nasb_by_kasra(noun) or pair
+
+
+def _clause(start: int, s: facts.Sentence) -> Iterator[int]:
+    """The places of the words from `start` to the end of their clause: a ف, or إنّ or a sister of it, opens another.
+    A sister of إنّ never stands straight before a verb, so أنْ there is the مصدرية, inside the clause (إِنْ رَجُلٌ
+    يُرِيدُ أَنْ يَذْهَبَ جَاءَكَ); one with a pronoun written on it is that sister (لَكِنَّهُ خَرَجَ)."""
+    for i, token in enumerate(s.tokens[start:], start):
+        after = s.tokens[i + 1:i + 2]
+        if token["form"] == "ف+" or is_one(token["lemma"], "inna") and not (after and facts.is_verb(after[0])):
+            return
+        yield i
 
 
 def _holds_khabar(verb: dict, word: dict, s: facts.Sentence) -> bool:
@@ -374,22 +567,49 @@ def _holds_khabar(verb: dict, word: dict, s: facts.Sentence) -> bool:
         facts.is_zarf(word, s) or facts.same_root(word, verb))
 
 
-def _lam_tells(lam: dict, word: dict, s: facts.Sentence) -> bool:
-    """The differing لام sits on the ناسخ's own خبر: a noun, a جار, or a present verb (Mughni V1 p37), in the case the
-    ناسخ gives that خبر. So a noun typed in raf' is not it, nor a detached pronoun of raf' (لَأَنْتَ أَكْرَمُ النَّاسِ),
+def _lam_tells(i: int, s: facts.Sentence, *, khabar_in_nasb: bool) -> bool:
+    """The لام at `i` is the differing one: it sits on the خبر itself, never after a و (وَلَقَدْ وَعَدْتُكَ opens another
+    sentence): a noun, a جار, or a present verb (Mughni V1 p37), in the case that خبر takes. Where the ناسخ puts it in
+    nasb (`khabar_in_nasb`), a noun typed in raf' is not it, nor a detached pronoun of raf' (لَأَنْتَ أَكْرَمُ النَّاسِ),
     since a pronoun in كان's خبر is كُنْتُهُ or كان إيّاه (Alfiyya, النكرة والمعرفة: في كنته الخلف انتمى); nor a جار
     with a مبتدأ of its own, which opens a new nominal clause (وَاللَّهِ إِنْ رَأَيْتَهُ لَفِي ذَلِكَ عِبْرَةٌ); nor a
     present verb whose last letter is still or doubled without a damma, so not in raf': the nun of emphasis, heavy or
     light (لَيَنْدَمَنَّ، لَيَفْعَلَانِّ، لَيَخْرُجَنْ), while a root's own doubled letter in raf' takes a damma (لَيَظُنُّ).
-    On that nun, on قد or on a past verb (لَقَدْ ظَلَمْنَاهُ، لَنِعْمَ) it is the لام that answers an oath (وَإِنْ كَانَ
-    ذَلِكَ لَأَضْرِبَنَّهُ: كان complete, no خبر)."""
+    On that nun it is the لام that answers an oath (وَإِنْ كَانَ ذَلِكَ لَأَضْرِبَنَّهُ: كان complete, no خبر). Of past
+    verbs it takes only one that does not conjugate (jazm `frozen_verbs`, Ibn Aqil, page unchecked: إِنْ زَيْدٌ لَنِعْمَ
+    الرَّجُلُ) or one behind قد (Alfiyya, إنّ وأخواتها: وقد يليها مع قد كإن ذا لقد سما على العدا مستحوذا), never another
+    (ولا من الأفعال ما كرضيا)."""
+    tokens = s.tokens
+    lam, word = tokens[i], tokens[i + 1]
+    if tokens[i - 1]["form"] == "و+":
+        return False
+    if _past_taking_lam(word):
+        return True
     if facts.is_verb(word):
         last = letters(own_letters(word.get("typed") or "", 0, word.get("stuck_on", 0)))
         marks = last[-1][1] if last else set()
         return facts.present_verb_tagged(word) and not (SUKUN in marks or (SHADDA in marks and DAMMA not in marks))
     if facts.is_preposition(word):
         return not any(kid["rel"] == "SBJ" for kid in s.kids(lam))  # the parser hangs that مبتدأ on the لام
-    return facts.noun_tagged(word) and facts.typed_case_of(word) != "u" and not is_subject_pronoun(word)
+    return facts.noun_tagged(word) and not (khabar_in_nasb and (facts.typed_case_of(word) == "u" or is_subject_pronoun(word)))
+
+
+def _past_taking_lam(word: dict) -> bool:
+    """A past verb a لام of emphasis may sit on: one that does not conjugate (jazm `frozen_verbs`) other than ليس, a
+    negation (Alfiyya, إنّ وأخواتها: ولا يلي ذي اللام ما قد نفيا), or قد before one (ghair_amila_other `before_past`)."""
+    lemma = word["lemma"]
+    return is_one(lemma, "jazm", "frozen_verbs") and not is_one(lemma, "negation") \
+        or book_spelling(lemma) in book_map("ghair_amila_other", "before_past")
+
+
+def _answers_oath(verb: dict, i: int, s: facts.Sentence) -> bool:
+    """The لام at `i`, on قد or a frozen verb, answers the oath the sentence opens with, the condition before it whole
+    (Alfiyya, الجوازم: واحذف لدى اجتماع شرط وقسم جواب ما أخرت): a جار or ظرف after the ناسخ `verb` may be its خبر
+    (وَاللَّهِ إِنْ كَانَ زَيْدٌ فِي الدَّارِ لَقَدْ ظَلَمْنَاهُ). With nothing there the لام's word is that خبر, and the إنْ the
+    lightened one (وَاللَّهِ إِنْ كُنْتَ لَنِعْمَ الصَّاحِبُ)."""
+    tokens = s.tokens
+    return facts.sworn_by(s) is not None and _past_taking_lam(tokens[i + 1]) and any(
+        _jar_or_zarf(t, s) for t in tokens[tokens.index(verb) + 1:i])
 
 
 def _merged_in_la(token: dict, s: facts.Sentence) -> str:
@@ -489,6 +709,7 @@ AXES: dict[str, tuple[tuple[str, ...], Callable[[dict, facts.Sentence], str]]] =
     "one_clause_restricted": (("yes", "no"), _one_clause_restricted),
     "negates_a_verb": (("yes", "no"), _negates_a_verb),
     "differing_lam": (("yes", "no"), _differing_lam),
+    "before_noun": (("idle", "working", "condition", "negation", "other"), _before_noun),
     "merged_in_la": (("yes", "no"), _merged_in_la),
     "starts": (("yes", "no"), _starts),
     "shows": (("nasb", "raf", "other", "none"), _shows),

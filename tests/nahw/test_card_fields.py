@@ -186,7 +186,7 @@ CARDS = [
     ("إِنْ لَمْ تَدْرُسْ تَرْسُبْ", 2, "name", "فعل الشرط"),
     ("إِنْ لَمْ تَدْرُسْ تَرْسُبْ", 3, "name", "جواب الشرط"),
     ("إِنْ لَا تَفْعَلُوهُ تَكُنْ فِتْنَةٌ", 3, "name", "جواب الشرط"),
-    ("إِنْ زَيْدًا قَائِمٌ", 0, "name", "حرف ناسخ مشبه بالفعل"),  # nearest case: a noun after it, the إنّ lightened
+    ("إِنْ زَيْدًا قَائِمٌ", 0, "name", "إن المخففة من الثقيلة، عاملة"),  # the nasb tells it from the negation, no لام needed
     # a ناسخ verb after إنْ and a لام of emphasis later in its clause: the lightened إنّ, idle (7:102, 17:73)
     ("وَإِنْ وَجَدْنَا أَكْثَرَهُمْ لَفَاسِقِينَ", 0, "name", "إن المخففة من الثقيلة، مهملة"),
     ("وَإِنْ كَادُوا لَيَفْتِنُونَكَ", 0, "name", "إن المخففة من الثقيلة، مهملة"),
@@ -205,7 +205,12 @@ CARDS = [
     ("وَاللَّهِ إِنْ كَانَ زَيْدٌ فِي الدَّارِ لَقَدْ ظَلَمْنَاهُ", 1, "name", "حرف شرط جازم"),  # a لام on قد answers an oath
     ("وَاللَّهِ إِنْ كَانَ زَيْدٌ يَصْدُقُ لَقَدْ ظَلَمْنَاهُ", 1, "name", "حرف شرط جازم"),  # قد, after a verb خبر
     ("وَاللَّهِ إِنْ كَانَ زَيْدٌ لَصَدَقَ", 1, "name", "حرف شرط جازم"),  # a لام on a past verb answers an oath
-    ("وَاللَّهِ إِنْ كُنْتَ لَنِعْمَ الصَّاحِبُ", 1, "name", "حرف شرط جازم"),
+    ("وَاللَّهِ إِنْ كُنْتَ لَنِعْمَ الصَّاحِبُ", 1, "name", "إن المخففة من الثقيلة، مهملة"),  # nothing after كان to be its خبر but the لام's word
+    ("وَاللَّهِ إِنْ زَيْدٌ لَقَدْ قَامَ", 1, "name", "إن المخففة من الثقيلة، مهملة"),  # an oath does not take the لام on قد before a noun
+    ("وَاللَّهِ إِنْ زَيْدٌ لَنِعْمَ الرَّجُلُ", 1, "name", "إن المخففة من الثقيلة، مهملة"),  # nor on a frozen verb
+    ("وَاللَّهِ إِنْ كَانَ زَيْدٌ قَبْلَ الْيَوْمِ لَقَدْ ظَلَمْنَاهُ", 1, "name", "حرف شرط جازم"),  # a ظرف may be كان's خبر: the لام answers the oath
+    ("وَاللَّهِ إِنْ كَانُوا مِنْ قَبْلُ لَفِي ضَلَالٍ مُبِينٍ", 1, "name", "إن المخففة من الثقيلة، مهملة"),  # a bare جار with no مبتدأ answers no oath (3:164)
+    ("إِنْ كُنْتُ قَبْلَ الْيَوْمِ لَقَدْ نَصَحْتُكَ", 0, "name", "إن المخففة من الثقيلة، مهملة"),  # no oath: لقد answers no condition without ف
     ("وَإِنْ كَانَ ذَلِكَ لَيَنْدَمَنَّ", 0, "name", "حرف شرط جازم"),  # the nun of emphasis: an oath's answer
     ("وَاللَّهِ إِنْ كَانَ زَيْدٌ صَادِقًا لَأَنْتَ أَكْذَبُ النَّاسِ", 1, "name", "حرف شرط جازم"),  # after a noun خبر told
     ("وَاللَّهِ إِنْ كَانَ زَيْدٌ يَصْدُقُ لَأَنْتَ أَكْذَبُ النَّاسِ", 1, "name", "حرف شرط جازم"),  # after a verb خبر told
@@ -243,6 +248,148 @@ CARDS = [
     ("وَاللَّهِ إِنْ رَأَيْتَهُ لَفِي ذَلِكَ عِبْرَةٌ", 1, "name", "حرف شرط جازم"),  # the جار opens a nominal clause
     ("وَاللَّهِ إِنْ كَانَ زَيْدٌ صَادِقًا لَفِي الْجَنَّةِ يَسْكُنُ", 1, "name", "حرف شرط جازم"),  # كان holds its noun خبر, so the لام answers the oath (3:158)
     ("وَاللَّهِ إِنْ كَادَ زَيْدٌ يَمُوتُ لَفِي الْجَنَّةِ يَسْكُنُ", 1, "name", "حرف شرط جازم"),  # كاد holds its verb خبر
+    ("إِنْ هَذَانِ لَسَاحِرَانِ", 0, "name", "إن المخففة من الثقيلة، مهملة"),  # 20:63: the لام on the خبر of a noun
+    ("إِنْ زَيْدٌ لَقَائِمٌ", 0, "name", "إن المخففة من الثقيلة، مهملة"),  # the خبر in raf'
+    ("إِنْ زَيْدٌ لَفِي الدَّارِ", 0, "name", "إن المخففة من الثقيلة، مهملة"),  # a جار خبر
+    ("إِنْ زَيْدٌ لَيَقُومُ", 0, "name", "إن المخففة من الثقيلة، مهملة"),  # a present verb خبر
+    ("إِنْ هُوَ لَصَادِقٌ", 0, "name", "إن المخففة من الثقيلة، مهملة"),  # هُوَ's fatha is its build, no nasb
+    ("إِنْ زَيْدًا لَقَائِمٌ", 0, "name", "إن المخففة من الثقيلة، عاملة"),  # the noun typed in nasb
+    ("إِنْ عِنْدَكُمْ مِنْ سُلْطَانٍ بِهَذَا", 0, "name", "إن النافية"),  # 10:68: no لام, no verb
+    ("إِنْ زَيْدٌ قَائِمٌ", 0, "name", "إن النافية"),  # no لام tells it from the negation
+    ("إِنْ زَيْدٌ بَخِيلٌ فَلِمَ تَلُومُهُ", 0, "name", "إن النافية"),  # a verb after the ف is another clause's, no condition
+    ("وَإِنْ أَحَدٌ مِنَ الْمُشْرِكِينَ اسْتَجَارَكَ فَأَجِرْهُ", 0, "name", "حرف شرط جازم"),  # 9:6: a verb explains the one left out
+    ("إِنِ امْرُؤٌ هَلَكَ لَيْسَ لَهُ وَلَدٌ", 0, "name", "حرف شرط جازم"),  # 4:176
+    ("إِنْ أَحَدٌ جَاءَكَ لَأُكْرِمَنَّهُ", 0, "name", "حرف شرط جازم"),  # the لام on the nun of emphasis answers an oath
+    ("إِنْ زَيْدًا لَقِيتَهُ فَأَكْرِمْهُ", 0, "name", "حرف شرط جازم"),  # a verb after the nasb noun: the condition (الاشتغال)
+    ("إِنْ زَيْدًا مَرَرْتَ بِهِ فَسَلِّمْ عَلَيْهِ", 0, "name", "حرف شرط جازم"),  # the pronoun on the verb's جار holds the noun
+    ("إِنْ زَيْدًا قَامَ أَبُوهُ", 0, "name", "إن المخففة من الثقيلة، عاملة"),  # the verb has its own doer: a خبر, no condition
+    ("فَإِنِ امْرُؤٌ قَاتَلَهُ أَوْ شَاتَمَهُ فَلْيَقُلْ إِنِّي صَائِمٌ", 0, "name", "حرف شرط جازم"),  # the hadith of fasting
+    ("وَاللَّهِ إِنْ أَحَدٌ زَارَكَ لَزَيْدٌ خَيْرٌ مِنْهُ", 1, "name", "حرف شرط جازم"),  # a لام after the verb answers the oath
+    ("إِنْ أَحَدٌ يَعْلَمُ الْغَيْبَ", 0, "name", "إن النافية"),  # a present verb is the خبر, not a condition
+    ("إِنِ الَّذِينَ كَفَرُوا فِي غُرُورٍ", 0, "name", "إن النافية"),  # the verb is the relative's صلة
+    ("إِنْ عِنْدَكُمْ مِنْ سُلْطَانٍ بِهَذَا أَتَقُولُونَ عَلَى اللَّهِ مَا لَا تَعْلَمُونَ", 0, "name", "إن النافية"),  # 10:68 in full
+    ("إِنِ الَّذِي قَامَ لَصَادِقٌ", 0, "name", "إن المخففة من الثقيلة، مهملة"),  # the صلة's verb is not the condition's
+    ("إِنِ الْمُسْلِمَاتِ صَادِقَاتٌ", 0, "name", "إن المخففة من الثقيلة، عاملة"),  # a feminine plural's kasra is its nasb
+    ("إِنِ الْمُسْلِمِينَ صَادِقُونَ", 0, "name", "إن المخففة من الثقيلة، عاملة"),  # the ين of a sound plural is its nasb
+    ("إِنِ الزَّيْدَيْنِ قَائِمَانِ", 0, "name", "إن المخففة من الثقيلة، عاملة"),  # fatha before ي, kasra on ن: two, whatever the tag
+    ("إِنْ عَيْن جَارِيَةٌ", 0, "name", "إن النافية"),  # no kasra typed on the ن: a single noun may end so
+    ("إِنْ فِي ذَلِكَ لَعِبْرَةً", 0, "name", "إن المخففة من الثقيلة، عاملة"),  # a خبر put first: the لام goes on the nasb noun
+    ("إِنْ عِنْدَكَ لَخَيْرًا كَثِيرًا", 0, "name", "إن المخففة من الثقيلة، عاملة"),  # a ظرف put first: the لام goes on the nasb noun
+    ("إِنْ مِسْكِينٌ لَصَادِقٌ", 0, "name", "إن المخففة من الثقيلة، مهملة"),  # a single noun's own ين is no pair's nasb
+    ("إِنِ الَّذِي ظَلَمَكَ جَاءَكَ فَأَكْرِمْهُ", 0, "name", "حرف شرط جازم"),  # past the صلة, the verb that explains
+    ("إِنْ زَيْدًا قَامَ إِلَى عَمْرٍو", 0, "name", "إن المخففة من الثقيلة، عاملة"),  # no pronoun on the جار: no الاشتغال
+    ("إِنْ زَيْدٌ قَامَ أَبُوهُ", 0, "name", "إن النافية"),  # the verb has its own doer
+    ("إِنْ أَحَدٌ فِي الدَّارِ وَلَقَدْ بَحَثْتُ", 0, "name", "إن النافية"),  # a لام after a و opens another sentence; I am no hidden أحد
+    ("إِنْ زَيْدٌ بَخِيلٌ فَقَدْ أَعْطَاكَ", 0, "name", "إن النافية"),  # a verb after the ف is another clause's
+    ("إِنْ أَحَدٌ فِي الدَّارِ فَخَرَجَ", 0, "name", "إن النافية"),  # with no قد too
+    ("النَّاسُ مَجْزِيُّونَ بِأَعْمَالِهِمْ إِنْ خَيْرًا فَخَيْرٌ وَإِنْ شَرًّا فَشَرٌّ", 3, "name", "حرف شرط جازم"),  # كان left out, its خبر kept before the ف
+    ("إِنْ خَيْرٌ فَخَيْرٌ", 0, "name", "حرف شرط جازم"),  # كان left out, its اسم kept
+    ("إِنِ الشَّيَاطِينُ لَكَاذِبُونَ", 0, "name", "إن المخففة من الثقيلة، مهملة"),  # a broken plural's ين with its damma typed is no nasb
+    ("إِنْ مَسَاكِينُ جَاءُوا فَأَعْطِهِمْ", 0, "name", "حرف شرط جازم"),  # nor here
+    ("إِنْ عِنْدِي مِنْ مَالٍ وَقَدْ ذَهَبَ", 0, "name", "إن النافية"),  # a ظرف is no doer; the verb after و is another sentence's
+    ("إِنْ أَحَدٌ فِي الدَّارِ وَقَدْ خَرَجَ", 0, "name", "إن النافية"),  # a verb after و opens another sentence
+    ("إِنْ أَحَدٌ فِي الدَّارِ وَخَرَجَ", 0, "name", "إن النافية"),  # with no قد too
+    ("إِنْ فِي الدَّارِ رَجُلٌ قَامَ", 0, "name", "إن النافية"),  # a جار put first is no doer; the verb is the noun's صفة
+    ("إِنْ أَحَدٌ مِمَّنْ ظَلَمَكَ فِي الدَّارِ", 0, "name", "إن النافية"),  # a صلة inside the noun's words explains no dropped verb
+    ("إِنْ زَيْدٌ ضَرَبْتُهُ", 0, "name", "إن النافية"),  # a verb of another person holds no hidden doer for the noun
+    ("إِنْ أَنْتَ قُمْتَ فَقُمْ", 0, "name", "حرف شرط جازم"),  # a verb of the noun's own person does
+    ("إِنِ الْمِسْكِين لَصَادِقٌ", 0, "name", "إن المخففة من الثقيلة، مهملة"),  # a single noun's ين is no nasb
+    ("إِنْ زَيْدٌ لَيْسَ بِقَائِمٍ", 0, "name", "إن النافية"),  # a frozen verb is no condition's
+    ("إِنْ زَيْدٌ قَدْ قَامَ", 0, "name", "إن النافية"),  # nor one behind قد
+    ("إِنْ زَيْدٌ مَا قَامَ", 0, "name", "إن النافية"),  # nor one behind ما
+    ("إِنْ أَحَدٌ مِمَّنْ ظَلَمَكَ لَنَادِمٌ", 0, "name", "إن المخففة من الثقيلة، مهملة"),  # a صلة inside the noun's words, no oath: the لام is the خبر's
+    ("إِنْ رَجُلٌ صَدَقَ لَنَاجٍ", 0, "name", "إن المخففة من الثقيلة، مهملة"),  # no oath: the verb a صفة, the لام the خبر's
+    ("إِنْ أَحَدٌ قَالَ لَزَيْدٌ أَفْضَلُ مِنْكَ فَكَذِّبْهُ", 0, "name", "حرف شرط جازم"),  # the لام inside what the verb says
+    ("إِنْ زَيْدٌ لَرَجُلٌ صَدَقَ", 0, "name", "إن المخففة من الثقيلة، مهملة"),  # the لام before the verb is the خبر's
+    ("وَاللَّهِ إِنْ زَيْدٌ قَامَ أَبُوهُ لَكَرِيمٌ", 1, "name", "إن المخففة من الثقيلة، مهملة"),  # the doer stands before the لام: the verb explains nothing
+    ("إِنْ زَيْدًا رَآنِي", 0, "name", "إن المخففة من الثقيلة، عاملة"),  # a pronoun of the first person goes back to no noun
+    ("إِنْ فِي الدَّارِ رَجُلًا", 0, "name", "إن المخففة من الثقيلة، عاملة"),  # the noun a fronted جار leaves after it
+    ("إِنْ رَجُلٌ يَعْرِفُ الْحَقَّ جَاءَكَ فَأَكْرِمْهُ", 0, "name", "حرف شرط جازم"),  # a present صفة on the noun is passed
+    ("إِنْ رَجُلٌ لَيْسَ لَهُ مَالٌ جَاءَكَ فَأَعْطِهِ", 0, "name", "حرف شرط جازم"),  # and a frozen one
+    ("إِنْ رَجُلٌ يُرِيدُ أَنْ يَذْهَبَ جَاءَكَ فَأَعْطِهِ", 0, "name", "حرف شرط جازم"),  # أنْ before its verb opens no clause
+    ("إِنْ ذُو مَالٍ جَاءَكَ فَأَكْرِمْهُ", 0, "name", "حرف شرط جازم"),  # ذو is third person, whatever the tag
+    ("إِنْ زَيْدٌ وَعَمْرٌو جَاءَا فَأَكْرِمْهُمَا", 0, "name", "حرف شرط جازم"),  # a noun joined by و is the noun's
+    ("إِنْ رَجُلٌ مِنْ قَوْمِكَ وَامْرَأَةٌ جَاءَاكَ فَأَكْرِمْهُمَا", 0, "name", "حرف شرط جازم"),  # no doer before its verb
+    ("إِنْ زَيْدًا أَكْرَمْتَ أَخَاهُ فَأَكْرِمْهُ", 0, "name", "حرف شرط جازم"),  # الاشتغال through what the verb works on
+    ("إِنْ زَيْدًا مَرَرْتَ بِهِ فَسَلِّمْ عَلَيْهِ", 0, "name", "حرف شرط جازم"),  # and through its جار
+    ("إِنْ زَيْدًا قَامَ أَبُوهُ فَأَكْرِمْهُ", 0, "name", "إن المخففة من الثقيلة، عاملة"),  # never through its doer, nor the answer's pronoun
+    ("إِنْ هُوَ لَمْ يَحْمِلْ عَلَى النَّفْسِ ضَيْمَهَا فَلَيْسَ إِلَى حُسْنِ الثَّنَاءِ سَبِيلُ", 0, "name", "حرف شرط جازم"),  # لم turns it past
+    ("إِنْ عَمَلًا صَالِحًا فَجَزَاءٌ حَسَنٌ", 0, "name", "حرف شرط جازم"),  # كان left out, its خبر kept with its صفة
+    ("إِنْ عِنْدَكَ فَخُذْ", 0, "name", "حرف شرط جازم"),  # or a ظرف kept alone
+    ("إِنْ زَيْدًا إِنَّهُ صَادِقٌ", 0, "name", "إن المخففة من الثقيلة، عاملة"),  # no ف, no answer: an إنّ sentence is the خبر (22:17)
+    ("إِنْ أَحَدٌ مَعَكَ فَيُعِينَكَ", 0, "name", "إن النافية"),  # كان keeps no اسم and خبر both; the ف after a negation
+    ("إِنْ أَحَدٌ يَعْرِفُ رَجُلًا سَافَرَ", 0, "name", "إن النافية"),  # the first verb is the خبر; one inside its words explains nothing
+    ("إِنْ أَنَا قُمْتُ فَقُمْ مَعِي", 0, "name", "حرف شرط جازم"),  # the verb is of the pronoun's person
+    ("إِنْ أَنَا مِمَّنْ ظَلَمَكَ", 0, "name", "إن النافية"),  # a verb of another person is not the pronoun's
+    ("إِنْ زَيْدٌ لَنِعْمَ الرَّجُلُ", 0, "name", "إن المخففة من الثقيلة، مهملة"),  # the لام on a frozen verb
+    ("إِنْ زَيْدٌ لَنِعْمَ الرَّجُلُ", 2, "name", "فعل جامد لإنشاء المدح"),
+    ("إِنْ زَيْدٌ لَعَسَى أَنْ يَقُومَ", 0, "name", "إن المخففة من الثقيلة، مهملة"),
+    ("إِنْ زَيْدٌ لَقَدْ قَامَ", 0, "name", "إن المخففة من الثقيلة، مهملة"),  # and on قد with its verb
+    ("إن زيدا قائم", 0, "name", "حرف ناسخ مشبه بالفعل"),  # typed with no sukun: إنّ without its shadda
+    ("مَا قَامَ زَيْدٌ لَكِنْ إِنَّ عَمْرًا قَائِمٌ", 4, "name", "حرف ناسخ مشبه بالفعل"),  # لكنْ, light, is no إنْ: every axis safe on it
+    ("إِنْ فَزَيْدٌ قَائِمٌ", 0, "name", "إن النافية"),  # a ف ends the clause before any noun
+    ("إِنْ زَيْدٌ فِي الدَّارِ لَكِنَّهُ خَرَجَ", 0, "name", "إن النافية"),  # a sister of إنّ opens another sentence
+    ("إِنْ أَحَدٌ فِي الدَّارِ وَالنَّاسُ نَامُوا", 0, "name", "إن النافية"),  # a و not hung on the noun opens another sentence
+    ("إِنْ زَيْدٌ ضَرَبَهُ الْمُعَلِّمُونَ", 0, "name", "إن النافية"),  # the verb has its own doer after it
+    ("إِنْ زَيْدٌ قَامَ هَذَا", 0, "name", "إن النافية"),  # a built doer too
+    ("وَاللَّهِ إِنْ رَجُلٌ صَدَقَ لَنَاجٍ", 1, "name", "إن المخففة من الثقيلة، مهملة"),  # one noun is no oath's answer: the لام is the خبر's
+    ("إِنْ خَيْرًا مِنْ ذَلِكَ فَخُذْهُ", 0, "name", "حرف شرط جازم"),  # a جار after a nasb noun is that noun's: كان left out
+    ("إِنْ زَيْدٌ لَلَيْسَ قَائِمًا", 0, "name", "إن النافية"),  # no لام on ليس: «ولا يلي ذي اللام ما قد نفيا»
+    ("إِنْ أَحَدٌ جَاءَنِي", 0, "name", "إن النافية"),  # nothing after the verb, nothing before: no answer
+    ("وَاللَّهِ إِنْ أَحَدٌ جَاءَنِي", 1, "name", "إن النافية"),  # an oath before it is no answer
+    ("قَالَ إِنْ أَحَدٌ جَاءَنِي", 1, "name", "إن النافية"),  # nor a verb of saying
+    ("أُكْرِمُكَ إِنْ أَحَدٌ زَارَنِي", 1, "name", "حرف شرط جازم"),  # the answer put before it
+    ("إِنِ السَّلَاطِين لَظَالِمُونَ", 0, "name", "إن المخففة من الثقيلة، مهملة"),  # no vowel on the ن: unknown, no nasb
+    ("إِنِ امْرُؤٌ هَلَكَ لَيْسَ لَهُ وَلَدٌ وَلَهُ أُخْتٌ فَلَهَا نِصْفُ مَا تَرَكَ", 0, "name", "حرف شرط جازم"),  # 4:176 in full
+    ("إِنْ رَجُلٌ وَامْرَأَةٌ جَاءَا فَأَكْرِمْهُمَا", 0, "name", "حرف شرط جازم"),  # a و hung on the noun joins it
+    # after the explaining verb only a فاء, an oath's لام or a verb standing bare opens the answer
+    ("إِنْ أَحَدٌ خَرَجَ مِنَ الدَّارِ", 0, "name", "إن النافية"),  # the verb's own جار is no answer
+    ("إِنْ أَحَدٌ رَأَى زَيْدًا", 0, "name", "إن النافية"),  # nor its object
+    ("إِنْ أَحَدٌ رَأَى زَيْدًا أَخْبَرَنِي", 0, "name", "حرف شرط جازم"),  # a past verb standing bare is the answer
+    ("إِنْ أَحَدٌ زَارَنِي أُكْرِمْهُ", 0, "name", "حرف شرط جازم"),  # so is a jussive one
+    ("إِنْ أَحَدٌ جَاءَنَا يَسْأَلُ عَنْكَ", 0, "name", "إن النافية"),  # one in raf' is a حال
+    ("إِنْ أَحَدٌ أَرَادَ أَنْ يَخْرُجَ", 0, "name", "إن النافية"),  # a verb under a particle is no answer
+    ("إِنْ أَحَدٌ جَاءَ وَجَلَسَ", 0, "name", "إن النافية"),  # nor one joined on
+    ("وَإِنْ أَحَدٌ مِنَ الْمُشْرِكِينَ اسْتَجَارَكَ فَأَجِرْهُ", 5, "name", "فعل أمر"),  # 9:6: a command, not the noun فاجر
+    ("إِنْ أَحَدٌ قَدْ جَاءَ فَسَأَلَ عَنْكَ", 0, "name", "إن النافية"),  # a verb after قد is no condition's
+    ("إِنْ أَحَدٌ مَا جَاءَ فَسَأَلَ عَنْكَ", 0, "name", "إن النافية"),  # nor one after ما
+    ("إِنْ عِنْدَنَا أَحَدٌ خَرَجَ فَعَادَ", 0, "name", "إن النافية"),  # a خبر put first makes a noun sentence
+    ("إِنْ رَجُلٌ صَدَقَ لَنَاجٍ وَالْكَاذِبُ هَالِكٌ", 0, "name", "إن المخففة من الثقيلة، مهملة"),  # no oath: the لام is the خبر's
+    ("وَإِنْ أَحَدٌ جَاءَنِي", 0, "name", "إن النافية"),  # a joined و is no answer put first
+    ("أَقُومُ إِنْ أَحَدٌ جَاءَ", 1, "name", "حرف شرط جازم"),  # a verb not of saying before it is the answer
+    ("قُلْتُ لَكَ إِنْ أَحَدٌ جَاءَنِي", 2, "name", "إن النافية"),  # a verb of saying with its own words after it
+    ("قَالَ زَيْدٌ إِنْ أَحَدٌ جَاءَنِي", 2, "name", "إن النافية"),
+    ("قَالَ زَيْدٌ أُكْرِمُكَ إِنْ أَحَدٌ زَارَنِي", 3, "name", "حرف شرط جازم"),  # the speech holds the answer put first
+    ("إِنْ أَحَدٌ فِي الدَّارِ وَالنَّاسُ نَامُوا عَنْهُ", 0, "name", "إن النافية"),  # a verb past a new sentence's و
+    ("إِنْ أَحَدٌ عِنْدَنَا وَالْقَوْمُ رَحَلُوا فَبَقِينَا وَحْدَنَا", 0, "name", "إن النافية"),  # with a ف after it too
+    ("إِنْ رَجُلٌ صَدَقَ لَهُوَ النَّاجِي", 0, "name", "إن المخففة من الثقيلة، مهملة"),  # no oath: the لام is the خبر's, not alone
+    ("إِنْ أَحَدٌ زَارَنِي أَكْرَمْتُهُ", 0, "name", "حرف شرط جازم"),  # a past answer, its تُ's damma no raf'
+    ("إِنْ زَيْدٌ لَيْسَ بِقَائِمٍ فَقَدْ كَذَبْتَ", 0, "name", "إن النافية"),  # ليس, frozen, is no condition's verb
+    ("إِنْ أَحَدٌ ظَلَمَهُ هَؤُلَاءِ فَانْصُرْهُ", 0, "name", "إن النافية"),  # a built doer of its own: أحد is not its doer
+    ("إِنْ فِي الدَّارِ رَجُلٌ قَامَ فَأَكْرِمْهُ", 0, "name", "إن النافية"),  # a خبر put first: no verb explains a جار
+    ("إِنْ أَنْتَ أَكْرَمْتَنِي أَكْرَمْتُكَ", 0, "name", "حرف شرط جازم"),  # a pronoun's own person on its verb
+    ("إِنْ زَيْدٌ ضَرَبْتُهُ فَقَدْ أَدَّبْتُهُ", 0, "name", "إن النافية"),  # another person's verb, though an answer follows
+    ("إِنِ الَّذِي ظَلَمَكَ ضَرَبَهُ زَيْدٌ", 0, "name", "إن النافية"),  # a صلة's verb explains nothing
+    ("إِنْ زَيْدٌ ضَرَبْتُهُ بَكَى فَاعْتَذَرْتُ", 0, "name", "إن النافية"),  # only the first verb past the noun's words may
+    ("اُطْلُبْهُ إِنْ فِي السُّوقِ فَفِي السُّوقِ", 1, "name", "حرف شرط جازم"),  # كان left out, a جار its خبر
+    ("إِنْ أَحَدٌ رَأَى الَّذِي سَرَقَ", 0, "name", "إن النافية"),  # a صلة's verb under the condition verb's object is no answer
+    ("إِنْ أَحَدٌ قَالَ إِنَّ زَيْدًا خَرَجَ", 0, "name", "إن النافية"),  # nor a verb inside its said sentence
+    ("إِنْ أَحَدٌ قَالَ اذْهَبْ", 0, "name", "إن النافية"),  # nor its speech, straight on a verb of saying
+    ("إِنْ أَحَدٌ زَارَنِي أَكْرَمْتُهُ", 0, "name", "حرف شرط جازم"),  # nearest case: a bare answer, hung straight on the verb
+    ("يَا زَيْدُ إِنْ أَحَدٌ جَاءَنِي", 2, "name", "إن النافية"),  # a called noun is no answer put first
+    ("بَلْ إِنْ أَحَدٌ جَاءَنِي", 1, "name", "إن النافية"),  # nor a bare particle
+    ("أَنْتَ ظَالِمٌ إِنْ أَحَدٌ ظَلَمَكَ", 2, "name", "حرف شرط جازم"),  # a nominal sentence is
+    ("يَا زَيْدُ أُكْرِمُكَ إِنْ أَحَدٌ زَارَنِي", 3, "name", "حرف شرط جازم"),  # and a verb after the call
+    ("إِنْ أَحَدٌ جَاءَنَا يَسْأَل عَنْكَ", 0, "name", "إن النافية"),  # a present typed bare may be a حال: no answer
+    ("إِنْ أَحَدٌ جَاءَكَ يَسْأَلْكَ", 0, "name", "حرف شرط جازم"),  # one stilled in jazm is
+    ("إِنْ أَحَدٌ زَارَكُمْ تَجِدُوهُ كَرِيمًا", 0, "name", "حرف شرط جازم"),  # and one of the five with its nun dropped
+    ("إِنْ أَحَدٌ زَارَكُمْ تَجِدُونَهُ كَرِيمًا", 0, "name", "إن النافية"),  # its nun kept, raf': a حال may be
+    ("فَأَمْسِكُوهُنَّ فِي الْبُيُوتِ", 0, "name", "فعل أمر"),  # 4:15: the plural's alif, gone before a pronoun, off a joined ف
+    ("إِنْ جَاءَكُمْ أَحَدٌ فَأَجِيرُوهُ", 3, "name", "فعل أمر"),
+    ("فُتِحَ الْبَابُ", 0, "name", "فعل مجهول"),  # a ف with a damma is the root's: no تِحْ joined by a فَ, built on a fatha
+    ("وُعِدَ زَيْدٌ", 0, "name", "فعل مجهول"),  # nearest case, the و
+    ("فَأَجِيرُوهُ", 0, "name", "فعل أمر"),  # the cut أَجِيرُوهُ is أَجِيرُوا with its object, as the uncut word is
+    ("وَأَجِيرُوهُ", 0, "name", "فعل أمر"),  # nearest case, the و
     # إلّا before a jussive present verb is إنْ merged into لا: a condition, never the exception (9:40, 9:39)
     ("إِلَّا تَنْصُرُوهُ فَقَدْ نَصَرَهُ اللَّهُ", 0, "name", "حرف شرط جازم مدغم في لا النافية"),
     ("إِلَّا تَنْصُرُوهُ فَقَدْ نَصَرَهُ اللَّهُ", 1, "name", "فعل الشرط"),
@@ -355,6 +502,9 @@ CARDS = [
     ("الا تعبدوا الا الله", 0, "name", "شرط"),
     # a كان sister holding its خبر already takes no second one from its إلا (11:118)
     ("وَلَا يَزَالُونَ مُخْتَلِفِينَ إِلَّا مَنْ رَحِمَ رَبُّكَ", 4, "role", "خبر"),
+    # a past read with its typed vowels keeps its first و or ف: no command ضَعُوا، رِحُوا joined on
+    ("الرِّجَالُ وَضَعُوا الْكِتَابَ", 1, "name", "أمر"),
+    ("الْقَوْمُ فَرِحُوا", 1, "name", "أمر"),
 ])
 def test_card_field_is_not(sentence: str, index: int, field: str, wrong: str):
     assert wrong not in (_read(sentence)["words"][index][field] or "")
@@ -1136,3 +1286,11 @@ def test_a_nasb_noun_after_a_doer_name_is_the_verbs_object(sentence, at, role):
 def test_a_fatha_with_nothing_to_set_it_in_nasb_is_the_past_verbs(sentence, at, role):
     """morphology.pick leaves the verb read where its elative rule finds no عامل of nasb before the word."""
     assert _role(sentence, at) == role
+
+
+def test_a_command_ending_in_a_damma_still_answers_a_condition():
+    """اُدْعُ ends on its ع's damma, its و dropped for the command, which is never a حال or صفة (Ibn Aqil V3 p198:
+    وامنع هنا إيقاع ذات الطلب): the damma is no raf' that would make it one, as it is on a present verb."""
+    from backend.services.nahw.syntax.particles import _answers_bare
+    command = {"pos": "VRB", "asp": "c", "typed": "فَادْعُ", "lemma": "دَعا", "base": "ادع", "form": "ادع", "stuck_on": 0}
+    assert _answers_bare(command) and not _answers_bare(dict(command, asp="i"))
