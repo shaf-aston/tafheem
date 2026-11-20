@@ -15,6 +15,7 @@ from backend.services.nahw.syntax.facts import (
     listed,
     noun_tagged,
     shown_cases,
+    sworn_by,
     typed_or_parsed_case,
 )
 from backend.services.nahw.syntax.condition import subject_id
@@ -69,7 +70,9 @@ def add_unwritten_khabars(c: Picture) -> None:
               if found.get("extra_ba") and token["head"] in by_id and is_preposition(by_id[token["head"]])}
     def stand(word: dict) -> dict:
         return by_id[behind[word["id"]]] if word["id"] in behind else word
-    for held in [t for t in drawn if role_of[t["id"]] in kept["slot"] and t["id"] not in behind.values()]:
+    # وَالْعَصْرِ إِنَّ الْإِنْسَانَ لَفِي خُسْرٍ: an oath's jar hangs on the verb of swearing, left unsaid (picture.oath), never in a khabar slot
+    oath = (sworn := sworn_by(sentence)) and sworn["id"] - 1
+    for held in [t for t in drawn if role_of[t["id"]] in kept["slot"] and t["id"] not in behind.values() and t["id"] != oath]:
         # فَهِجْرَتُهُ إِلَى مَا: the word hung on the unit as its subject is its subject before any hung beside it (فَمَنْ)
         noun = next((s for s in sorted(drawn, key=lambda s: not (s["head"] == held["id"] and s["rel"] == "SBJ"))
                      if role_of[s["id"]] in kept["khabar_of"] and s is not held

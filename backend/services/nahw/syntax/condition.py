@@ -19,7 +19,7 @@ from __future__ import annotations
 
 from backend.services.text.arabic_text import strip_diacritics
 from backend.services.text.harakat import has_tanween
-from backend.services.nahw.book import condition_of, frames, is_one, kaffa_sister, named_roles, says
+from backend.services.nahw.book import book_map, condition_of, frames, is_one, kaffa_sister, named_roles, says
 from backend.services.nahw.syntax.facts import reading, spelled
 
 NAMED = named_roles()
@@ -182,7 +182,15 @@ def find(bases: list[dict], named: list[str | None], cases: list[str | None],
         # a present verb in jazm right after مَنْ is never a relative's: it opens a condition
         if answer is None and frame["shared"] and not (cases[verb] == "jazm" and span):
             continue  # مَنْ جاءَ؟ : no answer, so the relative or the question word
+        # لَئِنْ شَكَرْتُمْ لَأَزِيدَنَّكُمْ: the لام on إنْ announces an oath left unsaid (closed_words ghair_amila_other `oath_lam`).
+        # Of an oath and a condition the answer is the first one's, the other's left out (Alfiyya, فصل الشرط: واحذف لدى اجتماع
+        # شرط وقسم جواب ما أخرت; page unchecked), so what follows answers the oath (`sworn`) and the condition has none
+        # (the oath's answer, its verb built on the nun of emphasis, shows no jazm: the first verb its clause has)
+        primer, sworn = book_map("ghair_amila_other", "oath_lam"), None
+        if primer["lam"] in before[i] and spelled(bases[i]) in primer["onto"]:
+            sworn = answer if answer is not None else next((k for k in verbs if not joined(k)), None)
+            answer, tie, tie_at = None, None, None
         end = tie_at if tie else verb + 1 if answer is None else answer
-        found.append({"opener": i, "verb": verb, "answer": answer, "tie": tie, "tie_at": tie_at, "frame": frame,
+        found.append({"opener": i, "verb": verb, "answer": answer, "tie": tie, "tie_at": tie_at, "frame": frame, "sworn": sworn,
                       "masdar": verb != i and masdar(verb), "negations": negations(frame, i, verb, answer, end)})
     return found

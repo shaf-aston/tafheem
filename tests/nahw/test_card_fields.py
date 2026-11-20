@@ -702,7 +702,7 @@ def test_a_doubled_nun_before_ni_merges_two_only_after_a_long_vowel(word: str, m
     # the pair's nun goes before the nun of emphasis (توالي الأمثال), so after a لا of prohibition the verb is in jazm by its loss
     ("وَلَا تَتَّبِعَانِّ سَبِيلَ الَّذِينَ لَا يَعْلَمُونَ", 1, "jazm", "حذف النون"),  # 10:89
     ("هُمَا يَتَّبِعَانِ السَّبِيلَ", 1, "raf'", "ثبوت النون"),  # nearest case: no nun of emphasis, the pair's own kept
-    ("وَاللَّهِ لَتَذْهَبَانِّ", 1, "raf'", "ثبوت النون"),  # nearest case: in raf' too it goes, so three nuns do not meet
+    ("وَاللَّهِ لَتَذْهَبَانِّ", 1, "raf'", "ثبوت النون المحذوفة لتوالي الأمثال"),  # nearest case: in raf' too it goes, so three nuns do not meet
 ])
 def test_the_pairs_nun_goes_before_the_nun_of_emphasis(sentence: str, at: int, case: str, sign: str):
     word = _read(sentence)["words"][at]

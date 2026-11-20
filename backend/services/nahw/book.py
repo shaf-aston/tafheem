@@ -127,6 +127,15 @@ def book_spelling(lemma: str) -> str:
     return strip_diacritics(lemma).strip("+").replace("ٱ", "ا")
 
 
+def reseated(form: str, lemma: str) -> str:
+    """A word whose hamza a joined letter moved onto ئ, back on its alif as the book lists it (لَئِنْ: the ل onto إنْ,
+    morphology._oath_lam, its stem ئن), else the form as it is. Only when the lemma is that word: a stem that
+    starts with ئ in its own right (ئِذَا is no word; يَئِسَ's ئ is mid-word) keeps it."""
+    if form.startswith("ئ") and strip_diacritics(lemma) == "إ" + strip_diacritics(form)[1:]:
+        return "إ" + form[1:]
+    return form
+
+
 def is_one(lemma: str, family: str, part: str = "words") -> bool:
     """True when the parser's lemma is on that list."""
     return book_spelling(lemma) in book_words(family, part)
@@ -245,6 +254,12 @@ def is_built_word(lemma: str) -> bool:
     opened = condition_of(word)
     return any(word in book_words(f, "built") for f in ADVERB_FAMILIES) or bool(
         opened and opened["adverb"] and opened["built"])
+
+
+def five_verbs(person: str | None, number: str | None, gender: str | None) -> bool:
+    """One of the five verbs (يَفْعَلَانِ، تَفْعَلُونَ، تَفْعَلِينَ: Ibn Aqil, الأمثلة الخمسة; page unchecked), by its doer:
+    two or more, spoken to or of, or one woman spoken to."""
+    return person in ("2", "3") and number in ("d", "p") or (person, gender) == ("2", "f")
 
 
 def six_noun_case(base: str, lemma: str) -> str | None:

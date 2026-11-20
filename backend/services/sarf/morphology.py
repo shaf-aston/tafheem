@@ -23,7 +23,7 @@ from backend.services.sarf import engine, expects, noun_reader
 from backend.services.sarf import verb_reader
 from backend.services.quran import corpus as quran_corpus
 from backend.services.nahw.book import book_map, book_words, condition_of, elative_shape, is_built_word, is_mabni, is_one, participle_shape, sakt_off, six_noun_case
-from backend.services.text.harakat import CAMEL_CASE, CASE_NAME, NO_ANALYSIS, SHADDA, SUKUN, TANWEEN, base_of, best_reading, has_tanween, nearest_reading, own_letters, past_passive_shape, weak_last, moved_for_wasl, no_vowels_typed, paused, stuck_letters, typed_case, unread, vowel_agreement, letters
+from backend.services.text.harakat import CAMEL_CASE, CASE_NAME, NO_ANALYSIS, SHADDA, SUKUN, TANWEEN, base_of, best_reading, build_nun, has_tanween, nearest_reading, own_letters, past_passive_shape, weak_last, moved_for_wasl, no_vowels_typed, paused, stuck_letters, typed_case, unread, vowel_agreement, letters
 
 logger = logging.getLogger(__name__)
 
@@ -673,9 +673,9 @@ def pick(tokens: list[str], disambiguator=None) -> list[dict[str, Any]]:
             ranked = [name]
         if read.get("pos") == "verb" and (name := _quran_name(evidence, _widened(token, ranked))):
             ranked = [name]
-        if lam := _emphasis_lam(evidence, disambiguator, _after_fronted_khabar(tokens[:i])):
+        if lam := _emphasis_nun(evidence, ranked) or _emphasis_lam(evidence, disambiguator, _after_fronted_khabar(tokens[:i])):
             ranked = [lam]
-        if oath := _fa_before_oath(evidence, ranked, disambiguator):
+        if oath := _fa_before_oath(evidence, ranked, disambiguator) or _oath_ta(evidence, ranked, disambiguator) or _oath_lam(evidence):
             ranked = [oath]
         if jarred := _jarred_ma(evidence):
             ranked = [jarred]
@@ -1075,7 +1075,9 @@ def _emphasis_lam(typed: str, disambiguator=None, fronted_khabar: bool = False) 
     elif [r for r in whole if r.get("pos") != "verb" and not unread([r])] if fronted_khabar and no_vowels_typed([typed]) else whole:
         return None
     ranked = _rest_readings(rest, disambiguator)
-    return _joined_onto(said, _reading(rest, ranked), "EMPHATIC_PART", prc1="la_emph") if _agreeing(rest, ranked) else None
+    # لَصَادِقُونَ: a noun the dictionary lacks is read by sarf's shapes, as pick reads it standing alone
+    found = _reading(rest, ranked) if _agreeing(rest, ranked) else noun_reader.reading_of(rest)
+    return _joined_onto(said, found, "EMPHATIC_PART", prc1="la_emph") if found else None
 
 
 def _fa_before_oath(typed: str, ranked: list[dict], disambiguator=None) -> dict | None:
@@ -1090,6 +1092,101 @@ def _fa_before_oath(typed: str, ranked: list[dict], disambiguator=None) -> dict 
     said = typed[:len(marked[0][0]) + len("".join(marked[0][1]))]
     rest = _rest_readings(typed[len(said):], disambiguator)
     return _joined_onto(said, _reading(typed[len(said):], rest), "CONJ", prc2="fa_conj")         if rest and str(rest[0].get("prc2", "")).startswith("wa_") else None
+
+
+def _emphasis_nun(typed: str, ranked: list[dict]) -> dict | None:
+    """لَأَكِيدَنَّ، لَنُخْرِجَنَّكَ، لَيَقُولُنَّ: the doubled nun of emphasis, with a fatha, comes only onto a verb (Ibn Aqil
+    V1 p23: ومما يميز الفعل نون أقبلن ... لنخرجنك يا شعيب). The dictionary has no verb with it, so it reads the word as one
+    guessed name, ل and pronoun and all. The word is the present those letters spell with the nun gone and its raf' back
+    (_RAF_UNDER_NUN), written as typed; a لام typed with a fatha before it is the لام of emphasis (that answers an oath:
+    closed_words ghair_amila_other `_fatha_lam`), and a و or ف before that joins."""
+    if _agreeing(typed, ranked):
+        return None
+    joined = next(((split, name) for letter, name in _JOINING if (split := _one_letter_off(typed, letter))), None)
+    said, rest = joined[0] if joined else ("", typed)
+    lam, verb = _one_letter_off(rest, "ل") or ("", rest)
+    marked = letters(verb)
+    if not marked or marked[0][0] not in "أنيت":  # a present opens on one of أنيت: لِيَكْتُبَنَّ is the لام of command's
+        return None
+    for after in range(4):  # the letters of a pronoun after the nun
+        # before ني the nun of emphasis and the pronoun's nun are one doubled letter (harakat.build_nun): the pronoun is نِي
+        merged = build_nun(verb, after) == "emphasis" and after == 2 and SHADDA in marked[-2][1]
+        at = len(marked) - after - (0 if merged else 1)
+        if at < 2 or marked[at][0] != "ن" or SHADDA not in marked[at][1] or not (merged or "َ" in marked[at][1]):
+            continue
+        last, marks = marked[at - 1]
+        if not (vowel := next((v for v in _RAF_UNDER_NUN if v in marks), None)):
+            continue
+        pronoun = "نِي" if merged else own_letters(verb, at + 1, 0)
+        spelt = own_letters(verb, 0, len(marked) - at + 1) + last
+        # تَرَوُنَّ، اخْشَيِنَّ: after a fatha the five verbs' و or ي stays, with its own vowel (تَرَوْنَ، تَخْشَيْنَ)
+        kept = (spelt + SUKUN + "نَ" + pronoun,) if (last, vowel) in (("و", "ُ"), ("ي", "ِ")) and "َ" in marked[at - 2][1] else ()
+        # the dictionary lacks most passives (يُسْجَنُ): its verb adding no shadda is kept, and the vowels read the voice
+        ending, number = _RAF_UNDER_NUN[vowel]
+        found = next((best for plain in (*kept, spelt + ending + pronoun, spelt + pronoun)
+                      if (verbs := [r for r in _analyses(plain) if r.get("pos") == "verb" and r.get("asp") == "i"
+                                    and number in (None, r.get("num"))
+                                    and ("_+" in r.get("atbtok", "")) == bool(after)])
+                      and (best := best_reading(plain, verbs) or nearest_reading(plain, verbs)
+                           or min(verbs, key=lambda r: _added(r, plain)))), None)
+        if not found:
+            continue
+        tail = found["atbtok"][found["atbtok"].index("_+"):] if after else ""
+        # the merged ن is written once and opens the pronoun's نِي, so the verb's own letters stop before it
+        reading = {**found, "diac": verb, "atbtok": own_letters(verb, 0, len(marked) - at - (0 if merged else 1)) + tail}
+        reading = _joined_onto(lam, reading, "EMPHATIC_PART", prc1="la_emph") if lam else reading
+        return _joined_onto(said, reading, "CONJ", prc2=f"{joined[1]}_conj") if joined else reading
+    return None
+
+
+# The raf' a present loses to the nun of emphasis, by the vowel left on the letter before it, and whose verb that is:
+# one verb's damma (يَقُولَنَّ is يَقُولُ, built on the fatha), or the five verbs' و or ي with their nun, gone so that two sukuns
+# and three nuns do not meet: the men's (يَقُولُنَّ is يَقُولُونَ) or the one woman's (تَقُولِنَّ is تَقُولِينَ: the women's keep
+# their nun and take انِّ after it; Alfiyya, نونا التوكيد: واشكله قبل مضمر لين بما جانس,
+# page unchecked), unless a fatha before keeps them (تَرَوُنَّ). A weak last letter shows no damma (أَقْضِيَنَّ is أَقْضِي),
+# so the letters alone are read too.
+_RAF_UNDER_NUN = {"َ": ("ُ", None), "ُ": ("ُونَ", "p"), "ِ": ("ِينَ", "s")}
+
+
+def _one_letter_off(typed: str, letter: str) -> tuple[str, str] | None:
+    """The word's first letter with its marks, and the rest, where that letter is `letter` with a fatha or none."""
+    marked = letters(typed)
+    if not (len(marked) > 1 and marked[0][0] == letter and not marked[0][1] - {"َ"}):
+        return None
+    said = typed[:len(marked[0][0]) + len("".join(marked[0][1]))]
+    return said, typed[len(said):]
+
+
+def _oath_ta(typed: str, ranked: list[dict], disambiguator=None) -> dict | None:
+    """تَاللَّهِ لَأَكِيدَنَّ أَصْنَامَكُمْ: the ت of an oath (closed_words jarr `oath_only`) swears by الله alone and is written
+    onto it (`ta_swears_by`). The dictionary has no reading of the two but a guessed name; the word is the ت put back on
+    what the name reads as alone, as CAMeL writes the و of وَاللَّهِ."""
+    if not (split := _one_letter_off(typed, "ت")) or bare_letters(split[1]) not in book_words("jarr", "ta_swears_by") \
+            or _agreeing(typed, ranked):
+        return None
+    said, rest = split
+    found = _rest_readings(rest, disambiguator)
+    return _joined_onto(said, _reading(rest, found), "PREP", prc1="ta_prep") if _agreeing(rest, found) else None
+
+
+def _oath_lam(typed: str) -> dict | None:
+    """لَئِنْ شَكَرْتُمْ، وَلَئِنْ سَأَلْتَهُمْ: the لام that announces an oath onto إنْ of a condition (closed_words
+    ghair_amila_other `oath_lam`), a و or ف joining it on. A hamza opening a word is written in its middle once a
+    letter is joined on, on the seat its kasra asks (ئ). The dictionary reads لَ+إِنَّ, which the لام never comes onto,
+    so the word is the لام on the dictionary's إِنْ, spelled on the typed seat."""
+    joined = next(((split, name) for letter, name in _JOINING if (split := _one_letter_off(typed, letter))), None)
+    said, rest = joined[0] if joined else ("", typed)
+    lam = book_map("ghair_amila_other", "oath_lam")
+    if not ((split := _one_letter_off(rest, lam["lam"])) and split[1].startswith("ئ")
+            and (particle := strip_diacritics("إ" + split[1][1:])) in lam["onto"]):
+        return None
+    particle = next((r for r in _analyses(particle) if r.get("pos") == "conj_sub" and SHADDA not in r.get("atbtok", "")
+                     and strip_diacritics(r.get("atbtok", "")) == particle), None)
+    if not particle:
+        return None
+    seated = {**particle, "diac": _reseated(particle["diac"], 0, "ئ"), "atbtok": _reseated(particle["atbtok"], 0, "ئ")}
+    found = _joined_onto(split[0], seated, "EMPHATIC_PART", prc1="la_emph")
+    return _joined_onto(said, found, "CONJ", prc2=f"{joined[1]}_conj") if joined else found
 
 
 def _jarred_ma(typed: str) -> dict | None:

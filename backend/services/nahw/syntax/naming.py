@@ -351,7 +351,7 @@ def _conditioned(found: list[dict], c: dict, bases: list[dict], s: facts.Sentenc
         opener.update(role=_noun_place(frame, c["verb"], found, bases[c["verb"]], s, bases[c["opener"]]), book=None)
     if frame["built"]:
         opener["case"] = "mabni"  # أينما: built, whatever vowel it ends on
-    opener["condition"] = {"part": "opener", "verb": c["verb"], "answer": c["answer"], "tie_at": c["tie_at"],
+    opener["condition"] = {"part": "opener", "verb": c["verb"], "answer": c["answer"], "tie_at": c["tie_at"], "sworn": c["sworn"],
                            "kind": frame["opener"] if frame["noun"] else None, "masdar": c["masdar"]}
     # لولا زيدٌ: the noun after it is the مبتدأ, its khabar left out; the answer still answers. A pronoun written
     # on لولا is named so already (لَوْلَاكَ), and أنّ keeps its own name, its masdar the مبتدأ (لَوْلَا أَنَّكَ صَدِيقِي)
@@ -562,8 +562,10 @@ def _mood(typed: str, token: dict, before: dict | None, lam: str | None = None, 
                 or (read == family and named in {m["named"] for m in book_merges(family).values()}):
             return case
     # لَمْ يَرُدَّ: a doubled verb's jussive takes the fatha its nasb does (harakat.doubled_last), so that fatha shows neither
-    doubled = doubled_last(typed, stuck_on, fatha=True)
-    if (dropped_nun or doubled) and front and front[-1] == "ف":
+    # the nun of emphasis on one of the five verbs is neither (facts.five_emphasised): no فاء السببية's nasb takes it
+    emphasised = facts.five_emphasised(typed, token)
+    doubled = doubled_last(typed, stuck_on, fatha=True) and not emphasised
+    if (dropped_nun or doubled) and front and front[-1] == "ف" and not emphasised:
         return "nasb"
     typed_mood = facts.typed_mood(typed, token)
     if typed_mood == "jazm":

@@ -17,6 +17,7 @@ from backend.services.nahw.syntax.naming import base_tokens
 from backend.services.nahw.syntax.picture.condition import draw_conditions
 from backend.services.nahw.syntax.picture.jobs import give_jobs, give_names, name_sisters
 from backend.services.nahw.syntax.picture.layout import lay_out
+from backend.services.nahw.syntax.picture.oath import draw_oaths
 from backend.services.nahw.syntax.picture.places import place_clauses
 from backend.services.nahw.syntax.picture.rehang import rehang
 from backend.services.nahw.syntax.picture.render import draw, find_doers
@@ -35,7 +36,7 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
         return {"words": words, "tree": {"gap": True}, "coverage": 0.0}
     picture = Picture(words, tokens, named, bases)
     for phase in (lay_out, rehang, add_unwritten_khabars, add_unwritten_verbs, give_jobs, give_names, place_clauses, name_sisters,
-                  group_into_units, draw_conditions, find_doers):
+                  group_into_units, draw_conditions, draw_oaths, find_doers):
         phase(picture)
     return draw(picture)
 
