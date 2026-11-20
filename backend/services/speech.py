@@ -157,7 +157,9 @@ class FastPitchVoice(Voice):
 
                 self._model = get_model("fastpitch", "hifigan", cuda=None)
             settings = get_settings()
-            audio = self._model.infer(long_aa_spelt_out(name_spelt_out(text)).translate(self.PAUSES),
+            # ى doubled (بُنَىّ) is a ي the engine has no sound for: it raised KeyError 'aaaa' and rested the voice.
+            spelt = long_aa_spelt_out(name_spelt_out(text)).replace("ىّ", "يّ")
+            audio = self._model.infer(spelt.translate(self.PAUSES),
                                       speaker=settings.speech_fastpitch_speaker,
                                       pace=PACE * speed)
         return wav(shaped(audio))
