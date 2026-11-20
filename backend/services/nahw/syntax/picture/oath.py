@@ -19,10 +19,13 @@ def draw_oaths(c: Picture) -> None:
     c.sworn = set()
     holder = {kid["id"]: kids for kids in (roots, *children_of.values()) for kid in kids}
 
-    def answers(token: dict) -> bool:
-        """The sentence opens as an oath's answer does: on the particle itself or on one before its head."""
-        return token["pos"] == "PRT" and is_one(token["lemma"], "jarr", "oath_answer") or any(
-            kid["pos"] == "PRT" and kid["id"] < token["id"] and is_one(kid["lemma"], "jarr", "oath_answer") for kid in children_of[token["id"]])
+    def answers(token: dict, after: int = -1) -> bool:
+        """The sentence opens as an oath's answer does: on the particle itself or on the first one before its head
+        (وَاللَّهِ إِنْ قَامَ زَيْدٌ لَأَقُومَنَّ opens on a condition's إنْ, which no answer of an oath opens on)."""
+        first = next((kid for kid in sorted(children_of[token["id"]], key=lambda k: k["id"])
+                      if kid["pos"] == "PRT" and after < kid["id"] < token["id"]), None)
+        return token["pos"] == "PRT" and is_one(token["lemma"], "jarr", "oath_answer") or bool(
+            first and is_one(first["lemma"], "jarr", "oath_answer"))
 
     def to_top(token: dict) -> None:
         if token not in roots:
@@ -33,13 +36,14 @@ def draw_oaths(c: Picture) -> None:
         c.job_of[answer["id"]], c.place_of[answer["id"]] = oath["answer"], c.said["no_place"]
         c.clauses.add(answer["id"])
         c.framed.add(answer["id"])
-        lam = next((t for t in c.drawn if after < t["id"] < answer["id"] and t["pos"] == "PRT"), None)
-        if lam and strip_diacritics(lam["lemma"]).strip("+") == oath["lam"]["letter"]:
+        # past any particle before it: وَاللَّهِ إِنْ قَامَ زَيْدٌ لَأَقُومَنَّ has a condition's إنْ first
+        if lam := next((t for t in c.drawn if after < t["id"] < answer["id"] and t["pos"] == "PRT"
+                        and strip_diacritics(t["lemma"]).strip("+") == oath["lam"]["letter"]), None):
             c.name_of[lam["id"]] = oath["lam"]["name"]
 
     noun = sworn_by(c.sentence)
     letter = noun and by_id.get(noun["id"] - 1)
-    if letter and (up := by_id.get(letter["head"])) and up in roots and up["id"] > noun["id"] and answers(up):
+    if letter and (up := by_id.get(letter["head"])) and up in roots and up["id"] > noun["id"] and answers(up, noun["id"]):
         # و، ت: the oath's jar beside its answer, both at the top; a particle typed before the oath (فَوَاللَّهِ) before both
         c.name_of[letter["id"]] = oath["letter"]
         c.sworn.add(letter["id"])
@@ -51,7 +55,7 @@ def draw_oaths(c: Picture) -> None:
         # a verb the picture adds itself (شكرًا's) is no written oath
         kids = children_of[roots[0]["id"]]
         after = next((kid for kid in kids if kid["id"] > roots[0]["id"] and is_preposition(kid)), roots[0])["id"]
-        if answer := next((kid for kid in kids if kid["id"] > after and answers(kid)), None):
+        if answer := next((kid for kid in kids if kid["id"] > after and answers(kid, after)), None):
             answered(answer, after)
     for i, found in enumerate(c.named):
         opens = found.get("condition", {})

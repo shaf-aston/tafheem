@@ -53,6 +53,7 @@ def test_the_oath_letter_hangs_on_the_verb_left_out_and_the_sentence_sworn_is_it
 
 def test_the_lam_opening_the_answer_is_the_oaths_but_a_lam_inside_inna_stays_emphasis():
     assert "اللام الواقعة في جواب القسم" in roles(top("وَاللَّهِ لَقَدْ قَامَ زَيْدٌ"))
+    assert "اللام الواقعة في جواب القسم" in roles(top("وَاللَّهِ إِنْ قَامَ زَيْدٌ لَأَقُومَنَّ"))  # the لام, not the إنْ before it
     sworn = roles(top("وَاللَّهِ إِنَّ زَيْدًا لَقَائِمٌ"))
     assert "جواب القسم" in sworn and "لام التوكيد" in sworn and "اللام الواقعة في جواب القسم" not in sworn
     assert "اللام الواقعة في جواب القسم" not in roles(top("فَوَاللَّهِ مَا الْفَقْرَ أَخْشَى عَلَيْكُمْ"))  # a ما is no لام
