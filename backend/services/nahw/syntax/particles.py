@@ -13,7 +13,7 @@ from functools import lru_cache
 from itertools import takewhile
 from typing import Callable, Iterator
 
-from backend.services.text.arabic_text import strip_diacritics
+from backend.services.text.arabic_text import has_al, strip_diacritics
 from backend.services.text.harakat import (
     DAMMA, FATHA, KASRA, PRESENT_PREFIX, SHADDA, SUKUN, doubled_last, fits_shape, five_verb_nun, letters, own_letters, stilled, typed_case)
 from backend.services.sarf.morphology import has_comparative
@@ -94,7 +94,7 @@ def _moved_still(verb: dict, s: facts.Sentence) -> bool:
     own = letters(verb.get("typed") or "")[:len(letters(verb.get("typed") or "")) - verb.get("stuck_on", 0)]
     after = facts.next_word(verb, s)
     return bool(own) and not verb.get("stuck_on") and "\u0650" in own[-1][1] and SHADDA not in own[-1][1] \
-        and bool(after) and strip_diacritics(after.get("typed") or after["form"]).startswith("ال")
+        and bool(after) and has_al(after.get("typed") or after["form"])
 
 
 def _negated(token: dict, s: facts.Sentence) -> str:

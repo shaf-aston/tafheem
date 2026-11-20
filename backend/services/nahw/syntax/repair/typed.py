@@ -5,7 +5,7 @@ from itertools import pairwise, takewhile
 
 from backend.services.sarf import verb_reader
 from backend.services.sarf.morphology import is_listed_verb
-from backend.services.text.arabic_text import strip_diacritics
+from backend.services.text.arabic_text import has_al, strip_diacritics
 from backend.services.text.harakat import FATHA, has_tanween, letters, merged_prefix, own_letters, paused, plural_alef, stuck_letters, typed_case, vowel_agreement
 from backend.services.nahw.book import book_words, condition_of, is_built_word, is_one, only_adverb
 from backend.services.nahw.syntax.mask import above
@@ -42,7 +42,7 @@ def typed_words(bases: list[dict], tokens: list[dict]) -> None:
         # the word straight before a noun with ال is that verb, whose doer is such a noun (Ibn Aqil V2, باب نعم وبئس)
         bare = strip_diacritics(word) == word
         if is_one(token["lemma"], "praise_blame") and not has_tanween(word) and (typed_case(word, token["stuck_on"]) == "a" or (
-                bare and i + 1 < len(bases) and strip_diacritics(bases[i + 1]["typed"]).startswith("ال"))):
+                bare and i + 1 < len(bases) and has_al(bases[i + 1]["typed"]))):
             token.update(pos="VRB", asp="p")
         # اُكْتُبْ، أَكْرِمْ: the typed command is the tense, whatever the reading. A verb is also tried on its own
         # letters (فَاقْبَلْهَا); a noun never, or the يَدِ of وَيَدِهِ would be a command, except a name the list only

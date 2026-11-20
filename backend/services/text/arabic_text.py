@@ -60,6 +60,11 @@ def strip_diacritics(text: str) -> str:
     return DIACRITICS_RE.sub("", text if _strip_fn is None else _strip_fn(text))
 
 
+def has_al(text: str) -> bool:
+    """True when `text`, vowels set aside, opens with the definite article ال."""
+    return strip_diacritics(text).startswith("ال")
+
+
 # Folds spelling variants that mean the same word (Qur'anic alef wasla vs plain alef) to shared letters.
 _QURANIC_MARKS_RE = re.compile("[ـۖ-ۭ࣓-ࣿ]")
 _LETTER_FOLD = str.maketrans({"ٱ": "ا", "أ": "ا", "إ": "ا", "آ": "ا",
