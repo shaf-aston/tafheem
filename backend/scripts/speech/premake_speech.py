@@ -81,6 +81,9 @@ def main() -> None:
     args = parser.parse_args()
     todo = said()
     todo = todo[:args.limit] if args.limit > 0 else todo
+    # Dialect lines (online voices, in parallel) first; this machine's own voice takes one line
+    # at a time, so its lines mixed in left every worker waiting on it (2026-11-20: 60 lines/min, not 420).
+    todo.sort(key=lambda pair: pair[1] is None)
     for text, _voice in todo:
         if any(letter in text for letter in args.again):
             speech.forget(text)
