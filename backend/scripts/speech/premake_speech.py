@@ -93,17 +93,31 @@ def main() -> None:
     already = sum(any(speech.stored(v, text).exists() for v in speech.order(voice)) for text, voice in todo)
     print(f"{already}/{len(todo)} lines already stored", flush=True)
 
-    def make(pair: tuple[str, str | None]) -> None:
+    def make(pair: tuple[str, str | None]) -> tuple[str, str | None] | None:
+        """The pair back when no voice could say it right now, else None."""
         try:
             speech.say(pair[0], pressed=False, first=pair[1])
-        except RuntimeError:  # no voice right now: a tap makes it later, the run goes on
-            print(f"skipped {pair[0]!r}: no voice could say it", flush=True)
+        except RuntimeError:
+            return pair
+        return None
 
+    missed = []
     with ThreadPoolExecutor(args.workers) as pool:
-        for done, _ in enumerate(pool.map(make, todo), 1):
+        for done, miss in enumerate(pool.map(make, todo), 1):
+            if miss:
+                missed.append(miss)
             if done % 100 == 0 or done == len(todo):
                 spent = time.monotonic() - start
                 print(f"{done}/{len(todo)} lines, {spent / 60:.0f} min, ~{spent / done * (len(todo) - done) / 3600:.1f} h left", flush=True)
+
+    # A word a voice fails on rests it (speech_rest_s), and every line asked meanwhile
+    # misses (2026-11-20: one word cost 10,282 lines). Each missed line once more, in turn,
+    # waiting out the rest a failure starts, so only the words that truly fail stay unsaid.
+    print(f"{len(missed)} lines missed, trying each again", flush=True)
+    for pair in missed:
+        if make(pair):
+            print(f"skipped {pair[0]!r}: no voice could say it", flush=True)
+            time.sleep(get_settings().speech_rest_s)
 
 if __name__ == "__main__":
     main()
