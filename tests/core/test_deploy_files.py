@@ -8,6 +8,7 @@ sync copies.
 import re
 from pathlib import Path
 
+import backend.scripts.speech.premake_speech as premake
 from backend.services.learner import sentence_check
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -19,13 +20,16 @@ PATH = re.compile(r'"frontend"((?:\s*/\s*"[^"]+")+)')
 def frontend_paths_read():
     found = set()
     for source in (ROOT / "backend").rglob("*.py"):
-        # One-off build scripts run on a laptop, not by the server.
+        # One-off build scripts run on a laptop, not by the server (premake_speech is added below).
         if "scripts" in source.parts:
             continue
         for parts in PATH.findall(source.read_text("utf-8")):
             found.add("/".join(["frontend", *re.findall(r'"([^"]+)"', parts)]))
     # Built from WORDS rather than spelled out, so the pattern above misses it.
     found.add(sentence_check.COVERAGE.relative_to(ROOT).as_posix())
+    # premake_speech runs on the server and reads WORDS / <name> for each quiz file.
+    for name in re.findall(r'WORDS / "([^"]+)"', Path(premake.__file__).read_text("utf-8")):
+        found.add((premake.WORDS / name).relative_to(ROOT).as_posix())
     return found
 
 
