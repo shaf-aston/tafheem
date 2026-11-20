@@ -194,7 +194,10 @@ function Board({ board, step = 'test', toolbar = null }) {
             tabIndex: s.key === stop ? 0 : -1,
             onFocus: () => setFocusKey(s.key),
             onKeyDown: (e) => {
+              // Alt+Left is Back, Ctrl/Cmd+arrows and Ctrl+Home are the browser's: they are not ours to take
+              if (e.altKey || e.ctrlKey || e.metaKey) return
               if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); answer(s.key) }
+              else if (e.shiftKey) return
               else if (e.key in MOVES) { e.preventDefault(); move(s.key, MOVES[e.key]) }
               else if (e.key === 'Home' || e.key === 'End') { e.preventDefault(); move(e.key === 'Home' ? order[0] : order.at(-1), 0) }
             },
