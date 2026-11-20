@@ -289,8 +289,48 @@ def test_every_dialect_voice_named_in_the_data_is_a_voice():
     from backend.services.colloquial import loader
 
     for dialect in loader.catalogue()["dialects"]:
-        name = loader.voice_of(dialect["key"])
-        assert name is None or speech.voice_named(name).name
+        for cast in ("man-0", "man-1", "woman-0", "woman-1"):
+            name = loader.voice_of(dialect["key"], cast)
+            assert name is None or speech.voice_named(name).name
+
+
+def test_a_line_is_said_by_the_voice_of_its_speakers_sex_and_seat(monkeypatch, tmp_path):
+    app, calls = client(monkeypatch, tmp_path)
+    heard = []
+    monkeypatch.setattr(speech.EdgeVoice, "say", lambda self, text, speed=1.0: heard.append(self.speaker) or b"ID3-fake")
+    for voice, text in (("woman-0", "كيفك"), ("woman-1", "كيفك"), ("man-1", "كيفك"), ("woman-2", "شو")):
+        assert app.get("/api/speak", params={"text": text, "accent": "damascene", "cast": voice, "voice": "fastpitch-9"}).status_code == 200
+    # `voice` is the page's cache version, never a cast. Damascus has two of each; a third woman in one scene wraps round to the first.
+    assert heard == ["ar-SY-AmanyNeural", "ar-JO-SanaNeural", "ar-JO-TaimNeural", "ar-SY-AmanyNeural"]
+    assert app.get("/api/speak", params={"text": "كيفك", "accent": "fusha", "cast": "woman-0"}).status_code == 200
+    assert heard[-1] == "ar-SA-ZariyahNeural" and calls == []
+    assert app.get("/api/speak", params={"text": "كيفك", "accent": "fusha", "cast": "man-0"}).status_code == 200
+    assert calls == ["كيفك"]  # Fusha has no man of its own: the usual voice
+    for wrong in ("girl-0", "woman-10", "../x"):
+        assert app.get("/api/speak", params={"text": "كيفك", "accent": "damascene", "cast": wrong}).status_code == 422
+
+
+def test_each_speaker_of_a_scene_keeps_one_voice_of_their_own_sex():
+    import json
+
+    from backend.config import data_path
+    from backend.services.colloquial import loader
+
+    women = set(json.loads((data_path("colloquial_dir") / "speakers.json").read_text(encoding="utf-8"))["women"])
+    app, scenes, spoke = TestClient(create_app()), 0, set()
+    for dialect in loader.catalogue()["dialects"]:
+        for card in (c for c in dialect["units"] if c["written"]):
+            unit = app.get(f"/api/colloquial/{dialect['key']}/{card['unit']}").json()  # through the route's model
+            for lesson in unit["lessons"]:
+                cast: dict[str, str] = {}
+                for line in lesson.get("dialogue") or []:
+                    spoke.add(line["speaker"])
+                    assert cast.setdefault(line["speaker"], line["cast"]) == line["cast"]
+                assert all(seat.startswith("woman" if who in women else "man") for who, seat in cast.items())
+                assert len(set(cast.values())) == len(cast)  # nobody shares a voice in one scene
+                scenes += bool(cast)
+    assert scenes > 1000
+    assert women <= spoke, sorted(women - spoke)  # a name no line uses is a typo
 
 
 def test_a_made_word_is_evened_out_and_soft_at_both_ends():

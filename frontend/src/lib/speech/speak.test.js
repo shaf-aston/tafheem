@@ -65,7 +65,7 @@ describe('which voice says a word', () => {
   it('remembers what was last heard and by which voice, for a "sounded wrong" report', async () => {
     expect(lastHeard()).toBe(null)
     await speak('قِطَار')
-    expect(lastHeard()).toEqual({ text: 'قِطَار', voice: 'server', speed: 'normal', accent: null })
+    expect(lastHeard()).toEqual({ text: 'قِطَار', voice: 'server', speed: 'normal', accent: null, cast: null })
   })
 
   it('falls through to the next voice when a file will not load', async () => {
@@ -147,6 +147,15 @@ describe('readying a voice before the press', () => {
     await prepare('كِيفَك', { accent: 'lebanese' })
     const asked = globalThis.fetch.mock.calls.map(([url]) => url).filter((url) => url.startsWith('/api/speak'))
     expect(asked.map((url) => new URL(url, 'http://x').searchParams.get('accent'))).toEqual(['damascene', 'lebanese'])
+  })
+
+  it('readies and says a dialogue line in its own speaker\'s voice, so two people never share one', async () => {
+    await prepare('شو', { accent: 'damascene', cast: 'woman-0' })
+    await prepare('شو', { accent: 'damascene', cast: 'man-0' })
+    await speak('شو', { accent: 'damascene', cast: 'woman-1' })
+    const asked = globalThis.fetch.mock.calls.map(([url]) => url).filter((url) => url.startsWith('/api/speak'))
+    expect([...asked, ...played].map((url) => new URL(url, 'http://x').searchParams.get('cast'))).toEqual(['woman-0', 'man-0', 'woman-1'])
+    expect(lastHeard().cast).toBe('woman-1')
   })
 
   it('marks the ask as ahead, so a word pressed on the server goes first', async () => {

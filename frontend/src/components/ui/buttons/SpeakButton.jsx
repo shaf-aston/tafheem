@@ -13,9 +13,10 @@ import { prepare, speak, stop } from '../../../lib/speech/speak'
 // `label` and `glyph` make it another way of hearing, the letter-by-letter
 // button say, with the same states, voices and stopping. `onFail` hears when no
 // voice could say it, so a question that needs the sound can offer another way.
+// `cast` is a dialogue line's speaker seat (backend loader._cast), so each person keeps a voice.
 // `hear` is a count: each time it rises the word is said, so a tap elsewhere (a dot
 // on a drawing) is heard through this button and shows its busy and failed states.
-export default function SpeakButton({ text, ref, shortcut, early, hear = 0, onFail, label = 'Say it aloud', glyph = <SpeakerGlyph />, className = '' }) {
+export default function SpeakButton({ text, cast, ref, shortcut, early, hear = 0, onFail, label = 'Say it aloud', glyph = <SpeakerGlyph />, className = '' }) {
   // idle | busy (finding a voice) | speaking | failed
   const [state, setState] = useState('idle')
   const accent = useAccent()
@@ -26,7 +27,7 @@ export default function SpeakButton({ text, ref, shortcut, early, hear = 0, onFa
   // Which ask the button is answering, so an older one that falls quiet cannot reset a newer one's state.
   const asked = useRef(0)
 
-  useEffect(() => { if (early) prepare(text, { accent }) }, [early, text, accent])
+  useEffect(() => { if (early) prepare(text, { accent, cast }) }, [early, text, accent, cast])
 
   // Leaving (a new word) silences this button's word, never another's or an ayah.
   useEffect(() => {
@@ -42,7 +43,7 @@ export default function SpeakButton({ text, ref, shortcut, early, hear = 0, onFa
     setState('busy')
     mine.current = true
     try {
-      const voice = await speak(text, { accent })
+      const voice = await speak(text, { accent, cast })
       if (!alive.current) return stop()
       if (turn !== asked.current) return   // a newer ask owns the button now
       setState('speaking')
@@ -80,7 +81,7 @@ export default function SpeakButton({ text, ref, shortcut, early, hear = 0, onFa
       ref={ref}
       type="button"
       onClick={press}
-      {...ahead(() => prepare(text, { accent }))}
+      {...ahead(() => prepare(text, { accent, cast }))}
       aria-label={state === 'speaking' ? 'Stop' : state === 'failed' ? FAILED : label}
       title={state === 'failed' ? FAILED : shortcut ? `${label} (${shortcut})` : label}
       aria-busy={state === 'busy'}

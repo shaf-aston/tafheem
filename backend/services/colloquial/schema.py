@@ -42,6 +42,8 @@ class Sentence(Word):
 
 class DialogueLine(Phrase):
     speaker: str
+    # Whose voice says it: loader._cast's seat, handed back to /api/speak as `cast`.
+    cast: str
 
 
 class Drill(BaseModel):
