@@ -28,7 +28,7 @@ export const hasDiacritics = (text) => DIACRITICS.test(text ?? '')
 export const isArabic = (text) => /[؀-ۿ]/.test(text ?? '')
 
 /** True when the text holds a word of Arabic: two letters together, not a lone ص. or a page number. */
-export const hasArabicWord = (text) => /[ء-يٱ]{2}/.test(unvowelled(text ?? ''))
+export const hasArabicWord = (text) => /[\u0621-\u063A\u0641-\u064A\u0671]{2}/.test(unvowelled(text ?? '')) // not tatweel U+0640
 
 /** True when a mushaf word is spoken: it has a letter, so a lone pause sign (ۖ ۚ) is not. */
 export const isSpoken = (word) => /[ء-يٱ]/.test(word ?? '')

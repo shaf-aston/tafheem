@@ -84,15 +84,17 @@ def _surest(page: picture.Prepared) -> tesseract.Reading | None:
     """Tesseract's reading (a small picture enlarged first: its type is small), read again turned upright when unsure."""
     scale = 2 if page.small() else 1
     first = tesseract.read(page.grey(scale=scale))
-    if first and first.confidence >= get_settings().read_sure_confidence:
+    if first is None:  # it failed or ran out of time: a second read would only do the same, holding the slot
+        return None
+    if first.confidence >= get_settings().read_sure_confidence:
         return first
     turn = tesseract.upright(page.grey())
     again = tesseract.read(page.grey(scale=scale, turn=turn)) if turn else None
-    return max((one for one in (first, again) if one), key=lambda one: one.confidence, default=None)
+    return max((one for one in (first, again) if one), key=lambda one: one.confidence)
 
 
-# A word of Arabic: two of its letters together. A lone comma, tatweel or digit is not one.
-_ARABIC_WORD = re.compile(r"[\u0621-\u064A]{2}")
+# A word of Arabic: two of its letters together. A lone comma, tatweel (U+0640) or digit is not one.
+_ARABIC_WORD = re.compile(r"[\u0621-\u063A\u0641-\u064A]{2}")
 
 
 def _answer(text: str, source: str, unsure: bool = False) -> dict:

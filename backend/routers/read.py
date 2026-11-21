@@ -29,9 +29,9 @@ _waiting = 0
 async def _a_slot():
     global _slots, _waiting
     settings = get_settings()
-    if _waiting >= settings.read_queue_max:
-        raise HTTPException(503, "Reading pictures is busy right now; try again in a moment")
     _slots = _slots or asyncio.Semaphore(settings.read_at_once)
+    if _slots.locked() and _waiting >= settings.read_queue_max:  # every slot taken and the queue full
+        raise HTTPException(503, "Reading pictures is busy right now; try again in a moment")
     _waiting += 1
     try:
         await _slots.acquire()

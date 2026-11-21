@@ -1,11 +1,12 @@
 """The page reader's first step: a picture in, its Arabic out, the cheap reader first."""
+import asyncio
 import io
 import shutil
 from pathlib import Path
 
 import pytest
 from fastapi.testclient import TestClient
-from PIL import Image, ImageStat
+from PIL import Image, ImageOps, ImageStat
 
 from backend.config import get_settings
 from backend.main import create_app
@@ -266,8 +267,29 @@ def test_past_the_queue_a_picture_is_refused_busy_at_once(monkeypatch):
 
     monkeypatch.setattr(get_settings(), "read_queue_max", 0)
     monkeypatch.setattr(route, "_waiting", 0)
+    monkeypatch.setattr(route, "_slots", asyncio.Semaphore(0))  # every slot taken
     answer = client().post("/api/read/image", files={"image": ("a.png", png(), "image/png")})
     assert answer.status_code == 503 and "busy" in answer.json()["detail"]
+
+
+def test_no_queue_still_reads_when_a_slot_is_free(readers, monkeypatch):
+    from backend.routers import read as route
+
+    monkeypatch.setattr(get_settings(), "read_queue_max", 0)
+    monkeypatch.setattr(route, "_waiting", 0)
+    monkeypatch.setattr(route, "_slots", asyncio.Semaphore(1))
+    answer = client().post("/api/read/image", files={"image": ("a.png", png(), "image/png")})
+    assert answer.status_code == 200 and answer.json()["text"] == "قال الشيخ"
+
+
+def test_a_tesseract_timeout_is_not_tried_again(readers, monkeypatch):
+    state, asked = readers
+    state["tesseract"] = None
+    turned = []
+    monkeypatch.setattr(tesseract, "upright", lambda _: turned.append(1) or 90)
+    monkeypatch.setattr(vision, "available", lambda: False)
+    reading.read(png())
+    assert asked == ["tesseract"] and turned == []
 
 
 def test_a_vision_only_server_whose_model_fails_says_try_again_not_unset(readers, monkeypatch):
@@ -300,5 +322,29 @@ def test_a_small_picture_is_read_enlarged_and_a_big_one_at_its_size(readers, mon
 
 
 def test_a_reading_with_no_arabic_word_is_no_text():
-    assert reading._answer("Hello, world. 12 ـ ،", "tesseract") == {
+    assert reading._answer("Hello, world. 12 ـــ ، قـ", "tesseract") == {
         "text": "", "source": reading.provenance.of("tesseract"), "unsure": True}
+
+
+@pytest.mark.parametrize("tilt", [-12, -4, 6, 15])
+def test_a_page_photographed_at_a_slant_is_found_leaning(tilt):
+    page = Image.open(HERE / "dark-chat.png").convert("L")
+    page = ImageOps.invert(page).rotate(tilt, Image.Resampling.BICUBIC, expand=True, fillcolor=255)
+    assert abs(picture.lean_of(page) + tilt) <= 0.5
+
+
+@pytest.mark.parametrize("page", ["level", "blank"])
+def test_a_level_or_empty_page_is_left_as_it_is(page):
+    grey = ImageOps.invert(Image.open(HERE / "dark-chat.png").convert("L")) if page == "level" else Image.new("L", (600, 400), 255)
+    assert picture.lean_of(grey) == 0.0
+
+
+@pytest.mark.skipif(not (shutil.which("tesseract") and tesseract.available()), reason="Tesseract with Arabic not installed")
+def test_tesseract_reads_a_slanted_page(monkeypatch):
+    monkeypatch.setattr(vision, "available", lambda: False)
+    page = ImageOps.invert(Image.open(HERE / "dark-chat.png").convert("L"))
+    ground = int(ImageStat.Stat(page).median[0])  # a page on a desk of about its own shade
+    page = page.rotate(15, Image.Resampling.BICUBIC, expand=True, fillcolor=ground)
+    out = io.BytesIO()
+    page.save(out, "PNG")
+    assert "هل وصلت إلى المسجد" in reading.read(out.getvalue())["text"]
