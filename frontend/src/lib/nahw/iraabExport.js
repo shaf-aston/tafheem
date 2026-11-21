@@ -3,7 +3,7 @@
  * Terms print in Arabic, as on the page: مرفوع, not "raf'".
  */
 import { reading } from './grammarTerms'
-import { GAP, kids, pieces } from './tarkeebLayout'
+import { GAP, kids, pieces, textOf } from './tarkeebLayout'
 
 // The columns a node covers, in reading order (children come sorted). A word no one
 // wrote (the ثابت a jar-majroor hangs on) stays out of the typed text around it.
@@ -21,7 +21,8 @@ const said = (node) =>
     pieces of one written word print joined (فَسَوَّىٰهُنَّ), as it is written. */
 function structureLines({ words, written }, node, depth = 0) {
   const cols = node.hidden ? [node.word] : span(node)
-  const typed = cols.map((i, k) => (k && written && written[i] === written[cols[k - 1]] ? '' : ' ') + words[i]).join('').trim()
+  // the words as the chart writes them (tarkeebLayout.textOf), so the copy and the picture read alike
+  const typed = textOf({ words, written }, cols)
   const text = node.hidden ? `(${typed} محذوف)` : typed
   const name = said(node)
   return [`${'  '.repeat(depth)}${text}${name && ` = ${name}`}`, ...(kids(node) ?? []).flatMap((kid) => structureLines({ words, written }, kid, depth + 1))]

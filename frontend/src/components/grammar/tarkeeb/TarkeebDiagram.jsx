@@ -13,7 +13,7 @@ import { Fragment, useCallback, useEffect, useLayoutEffect, useMemo, useRef, use
 
 import { isQuranic, joinedOn, joinsOn, seatSmallAlef } from '../../../lib/text/arabicText'
 import { roleVar } from '../../../lib/nahw/roleColors'
-import { GAP, cells, fold, foldRows, groupThreads, hiddenWords, rows, runs, threadSpans, tones } from '../../../lib/nahw/tarkeebLayout'
+import { GAP, cells, layout } from '../../../lib/nahw/tarkeebLayout'
 import { useRail } from '../../../lib/motion/useRail'
 import { glide } from '../../../lib/motion/motion'
 import theme from '../../../config/theme.json'
@@ -125,7 +125,11 @@ export default function TarkeebDiagram({ tarkeeb, mode = 'split', whole = false,
   const { strip, ends, measure, page } = useRail(`${words.join(' ')}|${mode}`)
   const grid = useRef(null)
   const [unfolded, setUnfolded] = useState(whole)
-  const merged = useMemo(() => (tree ? fold({ words, written, tree }) : null), [words, written, tree])
+  // everything drawn below, worked out in one place (tarkeebLayout.layout); this file only draws it
+  const drawn = useMemo(
+    () => (tree && words.length ? layout({ words, written, tree }, { mode, keep: unfolded ? Infinity : ROWS_SHOWN }) : null),
+    [words, written, tree, mode, unfolded],
+  )
   const settle = useCallback(() => {
     measure()
     if (strip.current) setDots(placeDots(strip.current))
@@ -157,14 +161,9 @@ export default function TarkeebDiagram({ tarkeeb, mode = 'split', whole = false,
     watch.observe(view)
     return () => watch.disconnect()
   }, [strip, refit])
-  if (!tree || !words.length) return null
+  if (!drawn) return null
 
-  const shown = mode === 'merged' ? merged : tarkeeb
-  const { shown: levels, more } = foldRows(rows(shown.tree, shown.words.length), unfolded ? Infinity : ROWS_SHOWN)
-  const spans = runs(shown.words, shown.written)
-  const hidden = hiddenWords(shown.tree)
-  // each word's underline in its own name's colour, so the eye pairs them
-  const tone = tones(shown.tree)
+  const { words: columns, written: spans, levels, more, threads, unitThreads } = drawn
   const goTo = (index) => {
     const view = strip.current
     const middle = along(view, view.querySelectorAll('.tk-word')[index])
@@ -197,26 +196,19 @@ export default function TarkeebDiagram({ tarkeeb, mode = 'split', whole = false,
       <button type="button" className="rail-arrow rail-arrow-l" aria-label="Further into the sentence" disabled={ends.start} onClick={() => page(-1)}>
         &#8249;
       </button>
-      <div ref={strip} onScroll={settle} className="tk-scroller" data-script={isQuranic(shown.words.join(' ')) ? 'quran' : undefined} tabIndex={0} role="region" aria-label={`Tarkeeb of ${shown.words.join(' ')}, scroll sideways to see the rest`}>
+      <div ref={strip} onScroll={settle} className="tk-scroller" data-script={isQuranic(columns.join(' ')) ? 'quran' : undefined} tabIndex={0} role="region" aria-label={`Tarkeeb of ${columns.join(' ')}, scroll sideways to see the rest`}>
         <div
           ref={grid}
           className="tk-grid"
           style={{
             // every word takes only the width it needs, so a long sentence pages less
-            gridTemplateColumns: `repeat(${shown.words.length}, max-content)`,
+            gridTemplateColumns: `repeat(${columns.length}, max-content)`,
           }}
         >
-          {spans.map(({ from, to }, n) => {
-            const word = shown.words[from]
+          {spans.map(({ from, to, pieces, text, tone, hidden: missing, nth }, n) => {
             // The tree marks the leaves not written, so no text stands for "not written" here.
-            const missing = hidden.has(from)
-            // فَـ لْـ يَصُمْهُ: one written word drawn across its pieces' columns, each piece
-            // over its own name, the joining written as the tatweel in the text
-            const pieces = shown.words.slice(from, to + 1)
-            // a written word opens its answer where it was tapped; `nth` counts only
-            // the words on the page, the order the analysis lists them in
-            const nth = spans.slice(0, n).filter((span) => !hidden.has(span.from)).length
-            const text = pieces.join('').replaceAll('ـ', '')
+            // A written word opens its answer where it was tapped; `nth` counts only
+            // the words on the page, the order the analysis lists them in.
             const open = (e) => onWord(text, nth, e.currentTarget)
             const gloss = !missing && glossOf?.(nth, text)
             // on hover: its English alone (the word is right under it); before the English
@@ -226,7 +218,8 @@ export default function TarkeebDiagram({ tarkeeb, mode = 'split', whole = false,
               <div
                 className={`tk-word rise-in${missing ? ' tk-unwritten' : ''}${to > from ? ' tk-written' : ''}`}
                 key={`word-${from}`}
-                style={{ gridColumn: `${from + 1} / ${to + 2}`, '--tone': roleVar(tone[from]), '--i': n }}
+                // each word's underline in its own name's colour, so the eye pairs them
+                style={{ gridColumn: `${from + 1} / ${to + 2}`, '--tone': roleVar(tone), '--i': n }}
                 data-gloss={hover || undefined}
                 // the first and last word's English opens inward, so the box's edge cuts none of it
                 data-edge={n === 0 ? 'start' : n === spans.length - 1 ? 'end' : undefined}
@@ -244,19 +237,20 @@ export default function TarkeebDiagram({ tarkeeb, mode = 'split', whole = false,
                 })}
               >
                 {to > from ? (
+                  // فَـ لْـ يَصُمْهُ: one written word drawn across its pieces' columns, each piece
+                  // over its own name and underlined in its colour; وَ joins nothing after it,
+                  // so it stands apart, فَـ and لْـ end in the tatweel that joins them to the next piece.
                   pieces.map((piece, k) => {
-                    // each piece underlined in its own name's colour; وَ joins nothing after it,
-                    // so it stands apart, فَـ and لْـ end in the tatweel that joins them to the next piece.
-                    const joins = k < pieces.length - 1 && joinsOn(piece)
+                    const joins = k < pieces.length - 1 && joinsOn(piece.text)
                     return (
-                      <span key={k} className="tk-cut" style={{ gridColumn: k + 1, '--tone': roleVar(tone[from + k]) }}>
-                        <span className="tk-text">{seatSmallAlef(joins ? joinedOn(piece) : piece)}</span>
+                      <span key={k} className="tk-cut" style={{ gridColumn: k + 1, '--tone': roleVar(piece.tone) }}>
+                        <span className="tk-text">{seatSmallAlef(joins ? joinedOn(piece.text) : piece.text)}</span>
                       </span>
                     )
                   })
                 ) : (
                   <Tooltip text={missing ? unwritten?.note : undefined}>
-                    <span className="tk-text">{seatSmallAlef(word)}</span>
+                    <span className="tk-text">{seatSmallAlef(pieces[0].text)}</span>
                   </Tooltip>
                 )}
               </div>
@@ -276,7 +270,7 @@ export default function TarkeebDiagram({ tarkeeb, mode = 'split', whole = false,
             </Fragment>
           ))}
           {/* a word named further down than the row under it has a line running down to its name */}
-          {threadSpans(levels).map(({ word, from, to }) => (
+          {threads.map(({ word, from, to }) => (
             <div
               className="tk-thread fade-in"
               key={`thread-${word}-${from}`}
@@ -285,7 +279,7 @@ export default function TarkeebDiagram({ tarkeeb, mode = 'split', whole = false,
             />
           ))}
           {/* and so has a unit whose job is written rows below its own name (رَبَّكُمْ: مفعول به) */}
-          {groupThreads(levels).map(({ from, to, rowFrom, rowTo }) => (
+          {unitThreads.map(({ from, to, rowFrom, rowTo }) => (
             <div
               className="tk-thread fade-in"
               key={`unit-thread-${from}-${rowFrom}`}
