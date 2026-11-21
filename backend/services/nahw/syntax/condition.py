@@ -77,7 +77,10 @@ def find(bases: list[dict], named: list[str | None], cases: list[str | None],
         # the one conditional word declined, is no built opener and may take one)
         if frame and frame["built"] and has_tanween(bases[i].get("typed") or ""):
             return None
-        if not frame or v >= len(bases) or (i and not joined(i) and not tells(i) and frame.get("before") != "noun"
+        # وَاللَّهِ لَئِنْ قَامَ زَيْدٌ لَأَقُومَنَّ: the لام that announces an oath comes onto a condition's إنْ only (`oath_lam`), so it
+        # opens one after the oath too
+        primed = primer_lam(i)
+        if not frame or v >= len(bases) or (i and not joined(i) and not tells(i) and not primed and frame.get("before") != "noun"
                                              and (frame["shared"] or not frame["noun"])):
             return None
         # إنما: the lemma is the pair, a ما الكافة cut off the إنّ sister it stops, so no إنْ of a condition
@@ -101,6 +104,10 @@ def find(bases: list[dict], named: list[str | None], cases: list[str | None],
         # مَا تَزْرَعْ تَحْصُدْ: ما النافية puts no verb in jazm, so a jussive verb after it shows the
         # conditional noun, whatever the parser tagged it
         return None if frame["noun"] and kind == "harf" and cases[v] != "jazm" else frame
+
+    def primer_lam(i: int) -> bool:
+        primer = book_map("ghair_amila_other", "oath_lam")
+        return primer["lam"] in before[i] and spelled(bases[i]) in primer["onto"]
 
     def masdar(k: int) -> bool:
         return strip_diacritics(bases[k]["form"]) in frames()["masdar"]["words"]
@@ -186,8 +193,8 @@ def find(bases: list[dict], named: list[str | None], cases: list[str | None],
         # Of an oath and a condition the answer is the first one's, the other's left out (Alfiyya, فصل الشرط: واحذف لدى اجتماع
         # شرط وقسم جواب ما أخرت; page unchecked), so what follows answers the oath (`sworn`) and the condition has none
         # (the oath's answer, its verb built on the nun of emphasis, shows no jazm: the first verb its clause has)
-        primer, sworn = book_map("ghair_amila_other", "oath_lam"), None
-        if primer["lam"] in before[i] and spelled(bases[i]) in primer["onto"]:
+        sworn = None
+        if primer_lam(i):
             sworn = answer if answer is not None else next((k for k in verbs if not joined(k)), None)
             answer, tie, tie_at = None, None, None
         end = tie_at if tie else verb + 1 if answer is None else answer

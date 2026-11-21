@@ -182,6 +182,31 @@ def test_ba_swears_with_its_verb_left_out_only_where_the_answer_shows_it():
         assert "جواب القسم" not in roles(top(plain)) and "حرف قسم وجر" not in roles(top(plain))
 
 
-@pytest.mark.parametrize("sentence", ["بِاللَّهِ لِنَسْتَعِنْ", "بِاللَّهِ لِيَكُنْ"])
+@pytest.mark.parametrize("sentence", ["بِاللَّهِ لِنَسْتَعِنْ", "بِاللَّهِ لِيَكُنْ", "بِاللَّهِ لِيَقُومَنَّ"])
 def test_a_lam_of_command_after_ba_swears_nothing(sentence):
     assert "حرف قسم وجر" not in roles(top(sentence))
+
+
+@pytest.mark.parametrize("sentence", ["بِاللَّهِ لَأَزِيدَنَّكُمْ", "بِرَبِّي لَأَفْعَلَنَّ", "وَرَبِّي لَأَفْعَلَنَّ", "بِاللَّهِ لَأَكُونَنَّ"])
+def test_a_pronoun_on_the_verb_or_on_the_sworn_noun_keeps_the_oath(sentence):
+    assert {"حرف قسم وجر", "جواب القسم"} <= set(roles(top(sentence)))
+
+
+@pytest.mark.parametrize("sentence", ["بِاللَّهِ لَيَمُنُّ عَلَيْنَا", "وَرَبِّي يَعْلَمُ"])
+def test_a_root_nun_or_no_answer_swears_nothing(sentence):
+    assert "حرف قسم وجر" not in roles(top(sentence))
+
+
+@pytest.mark.parametrize("sentence", ["وَاللَّهِ مَا زَيْدٌ قَائِمًا", "وَاللَّهِ مَا زَيْدٌ بِقَائِمٍ", "وَرَبِّ الْكَعْبَةِ مَا زَيْدٌ قَائِمًا"])
+def test_ma_after_the_oath_works_inside_its_answer(sentence):
+    answer = next(n for n in nodes(top(sentence)) if n.get("role") == "جواب القسم")
+    assert {"ما الحجازية", "اسم ما", "خبر ما"} <= set(roles(answer))
+
+
+def test_an_oath_before_lain_answers_itself_and_leaves_the_conditions_answer_out():
+    picture = top("وَاللَّهِ لَئِنْ قَامَ زَيْدٌ لَأَقُومَنَّ")
+    assert picture["children"][0]["label"] == ATTACHED
+    found = roles(picture)
+    assert {"اللام الموطئة للقسم", "فعل الشرط", "اللام الواقعة في جواب القسم"} <= set(found) and "حال" not in found
+    answer = next(n for n in nodes(picture) if n.get("role") == "جواب القسم")
+    assert "جواب الشرط محذوف" in answer["detail"]
