@@ -163,3 +163,25 @@ def test_a_lam_answering_ta_is_the_oaths_and_its_verb_is_not_split_off():
 ])
 def test_an_emphasised_five_verb_keeps_its_case_and_its_doer(sentence, word, said):
     assert said in card(sentence, word)["reason"]
+
+
+def test_a_nominal_answer_holds_its_mubtada_and_its_lam_is_the_oaths():
+    picture = top("وَاللَّهِ لَزَيْدٌ قَائِمٌ")
+    assert picture["children"][0]["label"] == ATTACHED
+    answer = picture["children"][1]
+    assert answer["role"] == "جواب القسم" and answer["detail"] == NO_PLACE and answer["label"] == "جُمْلَةٌ اِسْمِيَّةٌ"
+    assert {"مبتدأ", "خبر", "اللام الواقعة في جواب القسم"} <= set(roles(answer))
+    assert "جواب القسم" not in roles(top("وَلَزَيْدٌ قَائِمٌ"))  # no noun sworn by: a joining و
+
+
+def test_ba_swears_with_its_verb_left_out_only_where_the_answer_shows_it():
+    picture = top("بِاللَّهِ لَأَفْعَلَنَّ")
+    assert picture["children"][0]["label"] == ATTACHED and picture["children"][0]["children"][0]["role"] == "حرف قسم وجر"
+    assert picture["children"][1]["role"] == "جواب القسم"
+    for plain in ("بِاللَّهِ لَنَسْتَعِينُ", "بِاللَّهِ نَسْتَعِينُ"):  # no nun of emphasis: the jar is the verb's
+        assert "جواب القسم" not in roles(top(plain)) and "حرف قسم وجر" not in roles(top(plain))
+
+
+@pytest.mark.parametrize("sentence", ["بِاللَّهِ لِنَسْتَعِنْ", "بِاللَّهِ لِيَكُنْ"])
+def test_a_lam_of_command_after_ba_swears_nothing(sentence):
+    assert "حرف قسم وجر" not in roles(top(sentence))

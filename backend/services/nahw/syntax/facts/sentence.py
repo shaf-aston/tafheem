@@ -511,15 +511,42 @@ def is_sworn_relative(word: dict) -> bool:
     return is_one(word["lemma"], "mawsul") and not is_one(word["lemma"], "jazm", "conditional_nouns")
 
 
+def _ba_swears(first: dict, lam: dict | None, verb: dict | None) -> bool:
+    """بِاللَّهِ لَأَفْعَلَنَّ: the ب is the first of the oath's letters, its verb said or left out (Ibn Aqil, bab al-qasam,
+    vol 4; page unchecked); left out, it swears only where the answer shows it: a لَ (not the لِ of command) on a verb with the nun of emphasis."""
+    typed = (verb or {}).get("typed") or ""
+    return first["lemma"].strip("+") == "ب" and bool(lam and verb) and lam["form"] == "ل+" and is_verb(verb) \
+        and typed[1:2] == "َ" and strip_diacritics(typed).endswith("ن") \
+        and ("ّ" in typed[typed.rfind("ن"):] or typed.endswith("نْ"))
+
+
 def sworn_by(s: Sentence) -> dict | None:
     """What the sentence swears by when it opens on an oath, a ف before it at most (Ibn Aqil vol 4 p42): the word after
     a و or ت of an oath (closed_words jarr `oath_only`), a relative or a noun in jarr (وَاللَّهِ، فَوَالَّذِي نَفْسِي بِيَدِهِ)."""
     tokens = s.tokens
     lead = int(bool(tokens) and tokens[0]["pos"] == "PRT" and tokens[0]["lemma"].strip("+") == "ف")
-    first, word = (tokens + [None, None, None])[lead:lead + 2]
-    if not (first and word and first["pos"] == "PRT" and is_one(first["lemma"], "jarr", "oath_only")):
+    first, word, lam, verb = (tokens + [None] * 4)[lead:lead + 4]
+    if not (first and word and first["pos"] == "PRT" and (is_one(first["lemma"], "jarr", "oath_only")
+                                                          or _ba_swears(first, lam, verb))):
         return None
     return word if is_sworn_relative(word) or noun_tagged(word) and typed_case_of(word) == "i" else None
+
+
+def opens_answer_inside(root: dict, s: Sentence, after: int) -> bool:
+    """وَاللَّهِ لَزَيْدٌ قَائِمٌ: the answer's first word, past the sworn noun and its مضاف إليه, is a particle only an answer
+    opens on (closed_words jarr `oath_answer`) written onto a word of the clause, not onto its head (the لام on the مبتدأ)."""
+    opener = s.by_id.get(after + 1)
+    while opener and opener["rel"] == "IDF" and opener["head"] == opener["id"] - 1:
+        opener = s.by_id.get(opener["id"] + 1)
+    if not (opener and opener["pos"] == "PRT" and opener["form"] == "ل+" and is_one(opener["lemma"], "jarr", "oath_answer")):
+        return False  # a condition's إنْ or a ما opens no answer from inside it
+    seen, walk = set(), s.head(opener)
+    while walk and walk["id"] not in seen and walk["id"] > after:
+        if walk is root:
+            return True
+        seen.add(walk["id"])
+        walk = s.head(walk)
+    return False
 
 
 def jarr_takes(token: dict, s: Sentence) -> bool:
