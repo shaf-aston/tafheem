@@ -68,4 +68,15 @@ describe('matched', () => {
     expect(out.map((one) => Boolean(one.word))).toEqual([true, false, true])
     expect(out[0].before).toBe('«')
   })
+  it("pairs the Qur'an's own spelling with plain print (ٱ, the dagger alef)", () => {
+    const words = [{ arabic: 'ٱلْحَمْدُ' }, { arabic: 'لِلَّهِ' }, { arabic: 'ٱلرَّحْمَٰنِ' }]
+    expect(matched('الحمد لله الرحمن', words).every((one) => one.word)).toBe(true)
+  })
+})
+
+describe('pageLines and its marks', () => {
+  it('reads a Latin question mark as an end, and a number as no end', () => {
+    expect(texts(pageLines('هل أنت هنا? نعم'))).toEqual(['هل أنت هنا?', 'نعم'])
+    expect(texts(pageLines('سعره 3.5\nدينار'))).toEqual(['سعره 3.5', 'دينار'])
+  })
 })

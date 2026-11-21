@@ -46,8 +46,12 @@ export function entryLines(body) {
 const LETTERS = config.entry['paragraph-letters']
 
 // After a full stop or question mark, never inside the "..." between the two
-// halves of a verse.
-const SENTENCE_END = /(?<=(?<!\.)[.؟!])\s+/
+// halves of a verse, and never inside a number (3.5): the mark must have space
+// or the end after it.
+const SENTENCE_END = /(?<=(?<!\.)[.؟!?])\s+/
+
+/** Whether a paragraph has a full stop anywhere in it: prose, cut into sentences, not a list of lines. */
+export const hasSentenceEnd = (part) => /(?<!\.)[.؟!?](?=\s|$)/.test(part)
 
 /** The sentences of one paragraph: its printed lines joined, then cut after each full stop. */
 export const sentencesOf = (part) => part.replace(/\s*\n\s*/g, ' ').trim().split(SENTENCE_END).filter(Boolean)

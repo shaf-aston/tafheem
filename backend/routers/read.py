@@ -54,6 +54,8 @@ async def read_image(image: UploadFile = File(...)) -> PictureText:
             found = await run_in_threadpool(reading.read, body)
     except reading.NotAPicture as exc:
         raise HTTPException(415, "That file is not a picture this can open (PNG, JPEG or WebP)") from exc
+    except reading.NotRead as exc:
+        raise HTTPException(502, "The picture could not be read just now; try again in a moment") from exc
     except reading.NoReader as exc:
         raise HTTPException(503, "Reading pictures is not set up on this server") from exc
     return PictureText(**found)

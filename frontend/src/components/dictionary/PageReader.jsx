@@ -13,8 +13,8 @@
  * only for the lines it changed. A word looked up leaves this mounted (the
  * panel hides it), so coming back finds the page as it was left.
  */
-import { useEffect, useMemo, useState } from 'react'
-import { useMutation } from '@tanstack/react-query'
+import { useMemo, useState } from 'react'
+import { useQuery } from '@tanstack/react-query'
 
 import { readPicture } from '../../api'
 import { pageLines } from '../../lib/dictionary/pageLines'
@@ -28,22 +28,26 @@ import SmallButton from '../ui/buttons/SmallButton'
 import PageLine from './PageLine'
 
 export default function PageReader({ picture, shown, accent, onPicked, onClose, onLookup, onGo }) {
-  const [draft, setDraft] = useState('')
-  const [text, setText] = useState('')
-  const reading = useMutation({
-    mutationFn: async (file) => readPicture(await shrinkPicture(file)),
-    onSuccess: (read) => { setDraft(read.text); setText(read.text) },
+  // One picture for this reader's life (the panel keys it by the picture), read once: a query keyed by
+  // the picture's own address, so React's second mount in development does not send it twice.
+  const reading = useQuery({
+    queryKey: ['picture', shown],
+    queryFn: async () => readPicture(await shrinkPicture(picture)),
+    staleTime: Infinity,
+    gcTime: 0,
+    retry: false,
   })
-  const { mutate } = reading
-
-  // One picture for this reader's life: the panel keys it by the picture, so a new one starts afresh.
-  useEffect(() => { mutate(picture) }, [picture, mutate])
+  const read = reading.data
+  // What the reader typed over the reading, and the text confirmed for translating; until either, the reading.
+  const [draft, setDraft] = useState(null)
+  const [confirmed, setConfirmed] = useState(null)
+  const text = confirmed ?? read?.text ?? ''
+  const typed = draft ?? text
 
   const lines = useMemo(() => pageLines(text).map((line, i, all) => (
     { ...line, opensParagraph: i > 0 && line.paragraph !== all[i - 1].paragraph })), [text])
   const found = useLineTranslations(lines)
   const done = lines.filter((line) => found[line.text]?.state === 'done').length
-  const read = reading.data
 
   return (
     <section aria-labelledby="page-reader-h" className="flex flex-col gap-4">
@@ -77,7 +81,7 @@ export default function PageReader({ picture, shown, accent, onPicked, onClose, 
                 </p>
               )}
               <textarea
-                value={draft}
+                value={typed}
                 onChange={(event) => setDraft(event.target.value)}
                 dir="rtl"
                 lang="ar"
@@ -88,15 +92,15 @@ export default function PageReader({ picture, shown, accent, onPicked, onClose, 
                 className="mt-2 w-full arabic p-3 rounded-[var(--radius-md)] bg-[var(--surface)] border border-[var(--border-hi)]
                   text-[var(--text)] focus:border-[var(--c)] focus:outline-none resize-y"
               />
-              {draft.trim() !== text.trim() && (
-                <SmallButton onClick={() => setText(draft)} className="mt-2 self-start">Translate the corrected text</SmallButton>
+              {typed.trim() !== text.trim() && (
+                <SmallButton onClick={() => setConfirmed(typed)} className="mt-2 self-start">Translate the corrected text</SmallButton>
               )}
             </details>
           )}
         </aside>
 
         <div className="flex flex-col gap-3 min-w-0">
-          {reading.isPending && (
+          {reading.isFetching && !read && (
             <>
               <p className="type-small text-[var(--text-dim)]" aria-live="polite">Reading the picture…</p>
               <Skeleton className="h-20" />
@@ -105,7 +109,7 @@ export default function PageReader({ picture, shown, accent, onPicked, onClose, 
           )}
           {reading.isError && (
             <ErrorAlert title="The picture could not be read" error={reading.error}
-              fallback="Try a sharper photo, straight on, in good light." onRetry={() => mutate(picture)} />
+              fallback="Try a sharper photo, straight on, in good light." onRetry={() => reading.refetch()} />
           )}
           {read && lines.length === 0 && (
             <p className="type-body text-[var(--text-dim)]">

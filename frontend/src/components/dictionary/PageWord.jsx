@@ -19,6 +19,8 @@ const EDGE = 12
 export default function PageWord({ word, onLookup }) {
   const [open, setOpen] = useState(false)
   const touch = useRef(false)
+  // Whether the note was open when the finger came down: a tap's focus opens it before its click lands.
+  const wasOpen = useRef(false)
   const note = useRef(null)
   const [shift, setShift] = useState(0)
 
@@ -43,8 +45,8 @@ export default function PageWord({ word, onLookup }) {
         tabIndex={0}
         aria-expanded={open}
         aria-label={`${word.arabic}: ${word.english || 'look it up'}`}
-        onPointerDown={(event) => { touch.current = event.pointerType === 'touch' }}
-        onClick={() => (touch.current && !open ? setOpen(true) : lookUp())}
+        onPointerDown={(event) => { touch.current = event.pointerType === 'touch'; wasOpen.current = open }}
+        onClick={() => (touch.current && !wasOpen.current ? setOpen(true) : lookUp())}
         onKeyDown={(event) => { if (event.key === 'Enter') lookUp(); if (event.key === 'Escape') setOpen(false) }}
         onFocus={() => setOpen(true)}
         onBlur={() => setOpen(false)}

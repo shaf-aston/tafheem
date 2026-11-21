@@ -4,9 +4,10 @@
  * A phone photo is three to twelve megabytes, most of it detail no reader
  * needs: at send-longest pixels on its long side Tesseract reads print as well
  * as at full size, and the upload is about half a megabyte. Drawn the way up
- * the camera meant (imageOrientation). Anything the browser cannot draw (an
- * old browser, a format it does not know) goes as it came, and the server
- * says whether it can read it.
+ * the camera meant (imageOrientation). A PNG, JPEG or WebP the browser cannot
+ * draw goes as it came, for the server to try; any other kind (an iPhone's
+ * HEIC on a desktop browser) is refused here, since the server opens only those
+ * three: a NotAPicture error saying what to send instead.
  */
 import config from '../../config/dictionary.json'
 
@@ -32,7 +33,15 @@ export async function shrinkPicture(file) {
     const blob = await new Promise((done) => canvas.toBlob(done, 'image/jpeg', QUALITY))
     return blob ? new File([blob], 'page.jpg', { type: 'image/jpeg' }) : file
   } catch {
-    return file
+    if (AS_IS.has(file.type)) return file
+    throw new NotAPicture()
+  }
+}
+
+export class NotAPicture extends Error {
+  constructor() {
+    super('This browser cannot open that kind of picture. Send a screenshot, or a PNG or JPEG.')
+    this.name = 'NotAPicture'
   }
 }
 

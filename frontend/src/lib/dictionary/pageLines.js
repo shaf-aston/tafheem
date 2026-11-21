@@ -12,12 +12,11 @@
  * joining words are dictionary.json's page block.
  */
 import config from '../../config/dictionary.json'
-import { blocksOf, sentencesOf } from './entryLines'
+import { blocksOf, hasSentenceEnd, sentencesOf } from './entryLines'
 import { unvowelled } from '../text/arabicText'
 
 const MOST = config.page['line-words']
 const JOINS = new Set(config.page.joins)
-const FULL_STOP = /[.؟!?]/
 // After a comma, semicolon or colon, Arabic or Latin; the mark stays with the words before it.
 const PAUSE = /(?<=[،؛,;:])\s+/
 
@@ -30,7 +29,7 @@ const wordsOf = (text) => text.split(/\s+/).filter(Boolean)
  */
 export function pageLines(text, most = MOST) {
   return blocksOf(text).flatMap((part, paragraph) => {
-    const pieces = FULL_STOP.test(part) ? sentencesOf(part) : part.split('\n').map((line) => line.trim()).filter(Boolean)
+    const pieces = hasSentenceEnd(part) ? sentencesOf(part) : part.split('\n').map((line) => line.trim()).filter(Boolean)
     return pieces.flatMap((piece) => shorter(piece, most)).map((line) => ({ text: line, paragraph }))
   })
 }
@@ -72,6 +71,10 @@ function even(piece, most) {
   return Array.from({ length: count }, (_, i) => words.slice(cut(i), cut(i + 1)).join(' '))
 }
 
+// Two spellings of one word agree: the Qur'an's own (ٱلْحَمْدُ, ٱلرَّحْمَٰنِ, its dagger alef) and plain print's
+// (الحمد، الرحمن), any hamza on an alef, and a stretched letter (ـ). Only to pair a word with its reading.
+const folded = (word) => unvowelled(word.replace(/\u0670/g, '')).replace(/[اٱأإآ]/g, '').replace(/ـ/g, '')
+
 // A word's own letters, with the marks around it (quotes, brackets, commas) apart.
 const SPLIT = /^([^\p{L}\p{M}\p{N}]*)(.*?)([^\p{L}\p{M}\p{N}]*)$/u
 
@@ -80,7 +83,7 @@ export function matched(text, words) {
   let next = 0
   return text.split(/\s+/).filter(Boolean).map((token) => {
     const [, before, core, after] = token.match(SPLIT)
-    const same = (word) => unvowelled(word.arabic) === unvowelled(core)
+    const same = (word) => folded(word.arabic) === folded(core)
     const at = words.slice(next, next + 3).findIndex(same)
     if (at < 0) return { before, core, after }
     next += at + 1

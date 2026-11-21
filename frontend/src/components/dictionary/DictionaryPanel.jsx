@@ -8,6 +8,7 @@ import { classicalBooks, MAQAYEES, useLexicons } from '../../lib/dictionary/clas
 import { pickRoots } from '../../lib/dictionary/rootKey'
 import { scrollToEl } from '../../lib/motion/scrollToEl'
 import { useHealth } from '../../lib/api/useHealth'
+import { useArrivalEffect } from '../../lib/nav/useArrival'
 import { useRemembered } from '../../lib/store/useRemembered'
 import { useSearch } from '../../lib/hooks/useSearch'
 
@@ -75,11 +76,13 @@ export default function DictionaryPanel({ accent, incoming, arrival, onGo, onVis
   // No dictionary installed: the alert above already says so; a request would
   // only come back as a misleading "No entries". Following a synonym is a new
   // search too, put in the box so the reader can see where they have got to.
-  const submit = (given) => { if (!missing) lookUp(given) }
+  // A search, from the box, Recent or a page's word, is an answer to show: it closes the page (kept, see below).
+  const submit = (given) => { if (!missing) { setPageOpen(false); lookUp(given) } }
 
   // A picture of a page: picked, pasted or dropped. The reader stays mounted
   // while a word from it is looked up, so "Back to the page" finds it as left.
-  const canRead = pageReader !== 'none'
+  // Not until the server has said it can: while health loads, or when it failed, a picture would only 404.
+  const canRead = Boolean(pageReader) && pageReader !== 'none'
   // The picture's address is made here, when it is picked, and let go when the next one or Close
   // replaces it: made inside the reader, React's second mount in development let it go too early.
   const [page, setPage] = useState(null)
@@ -94,15 +97,23 @@ export default function DictionaryPanel({ accent, incoming, arrival, onGo, onVis
   const closePage = () => swapPage(null)
   // A new page, or the way back to one, brings the reader into sight: on a phone it opens below the fold.
   useEffect(() => { if (pageOpen) scrollToEl(reader.current, 'top') }, [pageOpen, page?.id])
-  const lookUpFromPage = (word) => { setPageOpen(false); submit(word) }
   const takePicture = (event) => {
     const file = pictureIn(event.clipboardData ?? event.dataTransfer)
     if (file && canRead) { event.preventDefault(); openPage(file) }
   }
+  // Any file dropped here is ours, picture or not: left to the browser, a PDF would replace the whole app.
+  const holdsFiles = (event) => canRead && [...(event.dataTransfer?.types ?? [])].includes('Files')
+  const dropped = (event) => { if (holdsFiles(event)) event.preventDefault(); takePicture(event) }
+  // Arriving from another tab with a word is a search: the page steps aside for it.
+  useArrivalEffect(arrival, () => setPageOpen(false))
+  // The picture's address is let go when the panel goes, as when a new picture replaces it.
+  const lastPage = useRef(null)
+  useEffect(() => { lastPage.current = page }, [page])
+  useEffect(() => () => { if (lastPage.current) URL.revokeObjectURL(lastPage.current.shown) }, [])
 
   return (
-    <div className="panel panel-search" onPaste={takePicture} onDrop={takePicture}
-      onDragOver={(event) => { if (canRead && [...(event.dataTransfer?.types ?? [])].includes('Files')) event.preventDefault() }}>
+    <div className="panel panel-search" onPaste={takePicture} onDrop={dropped}
+      onDragOver={(event) => { if (holdsFiles(event)) event.preventDefault() }}>
       <SectionHeader tab="dict" answered={Boolean(shown) || pageOpen}
         subtitle={`Search an Arabic word, a root or an English meaning, or translate a whole Arabic sentence${canRead ? '; or read a picture of a page.' : '.'}`}
       />
@@ -173,7 +184,7 @@ export default function DictionaryPanel({ accent, incoming, arrival, onGo, onVis
 
       {page && (
         <div hidden={!pageOpen} ref={reader} className="scroll-mt-[calc(var(--app-header-h,0px)+1rem)]">
-          <PageReader key={page.id} picture={page.picture} shown={page.shown} accent={accent} onPicked={openPage} onClose={closePage} onLookup={lookUpFromPage} onGo={onGo} />
+          <PageReader key={page.id} picture={page.picture} shown={page.shown} accent={accent} onPicked={openPage} onClose={closePage} onLookup={submit} onGo={onGo} />
         </div>
       )}
       {page && !pageOpen && (

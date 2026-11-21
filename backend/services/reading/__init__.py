@@ -24,13 +24,17 @@ from backend.services.core.ratelimit import OverBudget
 from backend.services.reading import picture, tesseract, vision
 from backend.services.reading.picture import NotAPicture
 
-__all__ = ["NoReader", "NotAPicture", "health", "read"]
+__all__ = ["NoReader", "NotAPicture", "NotRead", "health", "read"]
 
 logger = logging.getLogger(__name__)
 
 
 class NoReader(RuntimeError):
     """Neither reader can be used on this server: no Tesseract with Arabic, and no vision model."""
+
+
+class NotRead(RuntimeError):
+    """The only reader here (the vision model) failed on this picture: worth trying again."""
 
 
 # Tesseract writes the Latin marks for the Arabic ones. Not a comma between digits (1,000).
@@ -66,7 +70,9 @@ def read(body: bytes) -> dict:
                 raise
         except Exception as exc:  # noqa: BLE001, Tesseract's reading still stands
             logger.warning("page reader  the vision model failed, keeping Tesseract's reading: %s", exc)
-    if not here and first is None:
+    if not here:
+        if vision.available():  # it was asked above and failed
+            raise NotRead("the vision model could not read this picture just now")
         raise NoReader("No reader on this server: install tesseract-ocr-ara, or set GROQ_API_KEY")
     return _answer(first.text if first else "", "tesseract", unsure=True)
 

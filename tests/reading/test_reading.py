@@ -259,3 +259,11 @@ def test_past_the_queue_a_picture_is_refused_busy_at_once(monkeypatch):
     monkeypatch.setattr(route, "_waiting", 0)
     answer = client().post("/api/read/image", files={"image": ("a.png", png(), "image/png")})
     assert answer.status_code == 503 and "busy" in answer.json()["detail"]
+
+
+def test_a_vision_only_server_whose_model_fails_says_try_again_not_unset(readers, monkeypatch):
+    state, _ = readers
+    monkeypatch.setattr(tesseract, "available", lambda: False)
+    state["vision"] = RuntimeError("timed out")
+    with pytest.raises(reading.NotRead):
+        reading.read(png())

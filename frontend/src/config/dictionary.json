@@ -6,11 +6,12 @@
   "page": {
     "_comment": "The page reader (components/dictionary/PageReader.jsx): a picture's text cut into lines to translate one at a time. A paragraph's printed lines are joined and cut at full stops; one with no full stop at all (a poem, a chat, headings) keeps its printed lines. A line over line-words words is cut at its commas, then before one of joins standing as a word of its own, then into even pieces. lib/dictionary/pageLines.js is the only reader.",
     "line-words": 24,
-    "_send_comment": "A picture is made at most send-longest pixels on its long side, as a JPEG at send-quality, before it is sent (lib/dictionary/shrinkPicture.js): a phone photo goes from megabytes to about half of one, and Tesseract reads print at that size. together: lines translated at once. paused-ms: the wait before asking again when the server says too many at once.",
+    "_send_comment": "A picture is made at most send-longest pixels on its long side, as a JPEG at send-quality, before it is sent (lib/dictionary/shrinkPicture.js): a phone photo goes from megabytes to about half of one, and Tesseract reads print at that size. together: lines translated at once. paused-ms: how long every line waits when the server says too many at once (429), and busy-tries: how often a line is asked before it is called failed; 8 tries 20s apart outlast the server's per-minute AI budget (backend config ai_per_minute) about twice over, so a long page finishes, slowly, rather than failing from its twentieth line on.",
     "send-longest": 2400,
     "send-quality": 0.9,
     "together": 3,
-    "paused-ms": 15000,
+    "paused-ms": 20000,
+    "busy-tries": 8,
     "joins": ["ثم", "أو", "بل", "لكن", "حتى", "إذا", "لأن", "فإن", "وإن", "فإذا", "وإذا", "كما", "بينما"]
   },
   "examples": [
