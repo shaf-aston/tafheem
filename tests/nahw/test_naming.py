@@ -924,3 +924,13 @@ def test_a_follower_of_the_called_ayyuha_follows_it_though_it_is_tagged_a_partic
 def test_a_list_of_the_words_round_a_family_makes_no_member_of_it(lemma: str, family: str, member: bool):
     from backend.services.nahw.book import in_family
     assert in_family(lemma, family) is member
+
+
+def test_a_moved_link_moves_the_asked_pair_with_it():
+    """مَنِ الَّذِي يَضْمَنُ: a verb in the relative's صلة leaves the clause asked; hung on the question word, it does not."""
+    toks = [token(1, "مَنِ", "مَن", "NOM", 0, "---"), token(2, "الَّذِي", "الَّذِي", "NOM", 1, "MOD"),
+            token(3, "يَضْمَنُ", "ضَمِن", "VRB", 2, "MOD")]
+    s = facts.Sentence(toks)
+    assert s.asked_pair == (toks[0], toks[1])
+    s.relink(toks[2], 1, "MOD")
+    assert s.asked_pair is None
