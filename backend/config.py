@@ -657,6 +657,10 @@ class Reading(BaseSettings):
     # The longest Tesseract may take over one picture before the reader gives up on it.
     read_seconds: float = Field(default=20.0, gt=0)
     # Pictures a minute per visitor, and for everyone together (services/core/ratelimit.PICTURE).
+    # Pictures read at the same moment, and how many more may wait for a turn (routers/read.py); one past
+    # that is refused 503 at once. Each read is a core's worth of Tesseract for up to read_seconds.
+    read_at_once: int = Field(default=2, gt=0)
+    read_queue_max: int = Field(default=6, ge=0)
     read_per_minute: int = Field(default=12, gt=0)
     read_all_per_minute: int = Field(default=120, gt=0)
 

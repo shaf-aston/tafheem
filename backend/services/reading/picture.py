@@ -13,8 +13,11 @@ from dataclasses import dataclass
 from PIL import Image, ImageOps, ImageStat, UnidentifiedImageError
 
 # A phone photo is about 12 million pixels; a picture of more is no page of text, and Pillow
-# would hold all of it in memory to find out.
-_MOST_PIXELS = 40_000_000
+# would hold all of it in memory to find out (four bytes a pixel, before any copy is made).
+_MOST_PIXELS = 24_000_000
+# What a page is sent as (the browser makes anything else a JPEG first). Pillow can open many
+# more, each a parser this upload would reach: TIFF, PSD, EPS through Ghostscript.
+_FORMATS = ("PNG", "JPEG", "WEBP")
 # Tesseract's copy: under _SMALL on its long side is enlarged twice over, and no copy is over _LARGE.
 _SMALL, _LARGE = 1800, 4000
 # The model's copy: the long side it sees, and the JPEG quality it is sent at.
@@ -33,11 +36,12 @@ class Prepared:
 
 def prepare(body: bytes) -> Prepared:
     try:
-        image = Image.open(io.BytesIO(body))
+        image = Image.open(io.BytesIO(body), formats=_FORMATS)
         if image.width * image.height > _MOST_PIXELS:
             raise NotAPicture("too many pixels for a page")
+        image.draft("RGB", (_LARGE, _LARGE))  # a big JPEG decoded at a half or a quarter: less memory, no loss here
         image = ImageOps.exif_transpose(image)  # a phone photo held sideways is stored sideways
-        image.load()
+        image.thumbnail((_LARGE, _LARGE), Image.Resampling.LANCZOS)  # no copy below is ever larger than this
     except (UnidentifiedImageError, OSError, Image.DecompressionBombError, SyntaxError) as exc:
         raise NotAPicture(str(exc)) from exc
     colour = _on_white(image)

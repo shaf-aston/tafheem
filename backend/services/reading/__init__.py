@@ -7,7 +7,9 @@
 
 Cheapest first. Tesseract's own confidence tells the two kinds of page apart (86-91 on a clean read,
 35-55 on a vowelled one, `read_sure_confidence` between them), so a plain page never waits on a model
-and a vowelled one is not left as Tesseract's guess when a model can do better. What comes back is
+and a vowelled one is not left as Tesseract's guess when a model can do better. A picture in which
+Tesseract found no words at all (a blank, a photo of a cat) is not sent to the model either: it
+would spend the AI budget every visitor shares on nothing. What comes back is
 always shown to the reader to check against the picture and correct before it is translated: the
 text is the start of the page reader, never its last word.
 """
@@ -52,10 +54,11 @@ def read(body: bytes) -> dict:
     was needed, Tesseract had nothing, and this visitor's model calls are spent for the minute.
     """
     page = picture.prepare(body)
-    first = tesseract.read(page.grey) if tesseract.available() else None
+    here = tesseract.available()
+    first = tesseract.read(page.grey) if here else None  # None too when it failed on this picture
     if first and first.confidence >= get_settings().read_sure_confidence:
         return _answer(first.text, "tesseract")
-    if vision.available():
+    if vision.available() and (first is None or first.text.strip()):
         try:
             return _answer(vision.read(page.colour), "vision")
         except OverBudget:
@@ -63,9 +66,9 @@ def read(body: bytes) -> dict:
                 raise
         except Exception as exc:  # noqa: BLE001, Tesseract's reading still stands
             logger.warning("page reader  the vision model failed, keeping Tesseract's reading: %s", exc)
-    if first is None:
+    if not here and first is None:
         raise NoReader("No reader on this server: install tesseract-ocr-ara, or set GROQ_API_KEY")
-    return _answer(first.text, "tesseract", unsure=True)
+    return _answer(first.text if first else "", "tesseract", unsure=True)
 
 
 def _answer(text: str, source: str, unsure: bool = False) -> dict:
@@ -73,6 +76,7 @@ def _answer(text: str, source: str, unsure: bool = False) -> dict:
 
 
 def health() -> str:
-    """Which readers this server has, for /api/health: "tesseract", "tesseract + <model>", or "none"."""
-    found = [name for name, there in (("tesseract", tesseract.available()), (vision.name(), vision.available())) if there]
+    """Which readers this server has, for /api/health: "tesseract", "tesseract + vision", or "none".
+    Never the model's name: which model reads is this server's business."""
+    found = [name for name, there in (("tesseract", tesseract.available()), ("vision", vision.available())) if there]
     return " + ".join(found) or "none"

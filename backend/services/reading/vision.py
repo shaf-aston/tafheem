@@ -23,6 +23,10 @@ _engine = Retirable()
 # A page of text in characters, with room to spare; past it the model is not copying a page.
 _LONGEST = 20_000
 _LINKISH = re.compile(r"https?:|www\.|</?[A-Za-z]")
+# A page of Arabic may quote a little English; an answer mostly in Latin letters is the model
+# following words written in the picture, not copying it.
+_LATIN, _ARABIC = re.compile(r"[A-Za-z]"), re.compile(r"[\u0600-\u06FF]")
+_MOST_LATIN = 0.3
 
 
 def name() -> str:
@@ -54,4 +58,7 @@ def checked(text: object) -> str:
         raise ValueError("the model's text has no Arabic in it")
     if len(text) > _LONGEST or _LINKISH.search(text):
         raise ValueError("the model's text is not a copy of a page")
+    latin, arabic = len(_LATIN.findall(text)), len(_ARABIC.findall(text))
+    if latin > _MOST_LATIN * (latin + arabic):
+        raise ValueError("the model's text is mostly not Arabic")
     return text

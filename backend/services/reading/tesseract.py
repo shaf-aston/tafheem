@@ -42,11 +42,17 @@ def available() -> bool:
     return "ara" in listed.stdout.split()
 
 
-def read(png: bytes) -> Reading:
-    done = subprocess.run(
-        ["tesseract", "stdin", "stdout", "-l", "ara", "tsv"],
-        input=png, capture_output=True, timeout=get_settings().read_seconds, env=_ENV, check=True,
-    )
+def read(png: bytes) -> Reading | None:
+    """Its reading of the picture, or None when Tesseract failed or ran out of time (logged): the
+    vision model may still read it, so a failure here is not the request's."""
+    try:
+        done = subprocess.run(
+            ["tesseract", "stdin", "stdout", "-l", "ara", "tsv"],
+            input=png, capture_output=True, timeout=get_settings().read_seconds, env=_ENV, check=True,
+        )
+    except (OSError, subprocess.SubprocessError) as exc:
+        logger.warning("page reader  tesseract failed on a picture: %s", exc)
+        return None
     return from_tsv(done.stdout.decode("utf-8", "replace"))
 
 
