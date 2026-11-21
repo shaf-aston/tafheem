@@ -52,10 +52,10 @@ def is_available(key: str) -> bool:
     return get_settings().listening_hosted and bool(key)
 
 
-def transcribe(audio: bytes, key: str, language: str | None = None, hint: str = "") -> str:
+def transcribe(audio: bytes, key: str, language: str | None = None, hint: str = "", languages: list[str] | None = None) -> str:
     """Words said, heard on `key`'s account. Raises rather than guessing.
 
-    `language`: hear it in that one; none lets Groq pick, held to whisper.dictation_languages().
+    `language`: hear it in that one; none lets Groq pick, held to `languages` or else whisper.dictation_languages().
     `hint`: text Whisper reads first, sets register. Empty sends none.
     """
     said = []
@@ -63,19 +63,19 @@ def transcribe(audio: bytes, key: str, language: str | None = None, hint: str = 
         # Later pieces keep the first piece's language and read the words before them, as Whisper does
         # across its own 30s windows: guessed afresh, one Qur'an piece came back translated into English,
         # and with no words before it another began with an invented "Surah Al-Fatihah".
-        heard, language = _hear(piece, key, language, said[-1] if said else hint)
+        heard, language = _hear(piece, key, language, said[-1] if said else hint, languages)
         said.append(heard)
     return " ".join(filter(None, said))
 
 
-def _hear(audio: bytes, key: str, language: str | None, hint: str) -> tuple[str, str | None]:
+def _hear(audio: bytes, key: str, language: str | None, hint: str, languages: list[str] | None) -> tuple[str, str | None]:
     """One piece heard and its language. Unnamed, the answer is always in an allowed language and its alphabet."""
     from backend.services.recitation import whisper
 
     heard, spoken, _ = _ask(audio, key, language, hint)
     if language:
         return heard, language
-    allowed = whisper.dictation_languages()
+    allowed = languages or whisper.dictation_languages()
     if spoken in allowed and _written_in(heard, spoken):
         return heard, spoken
     if not any(c.isalpha() for c in heard):
