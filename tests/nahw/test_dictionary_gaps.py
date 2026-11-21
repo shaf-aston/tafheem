@@ -70,3 +70,19 @@ def test_a_hollow_present_is_no_intensive():
     for word in ("أَعُوذُ", "تَكُونَ", "يَقُولُ", "نَقُومُ"):
         assert noun_reader.reading_of(word) is None, word
     assert noun_reader.reading_of("الأَكُولُ")["pattern"] == "ال1َ2ُو3"  # ال: no verb, so its letters are the shape's
+
+
+def test_the_light_nun_written_as_tanween_builds_a_verb_only():
+    from backend.services.text.harakat import tanween_nun
+    assert build_nun("لَنَسْفَعًا") == build_nun("وَلَيَكُونًا") == "emphasis"
+    assert not tanween_nun("وَلَدًا") and not tanween_nun("يَوْمًا") and not tanween_nun("لَأَفْعَلَنْ")
+    assert not tanween_nun("عَيْنًا")  # a present letter second, but no لام of emphasis before it
+
+
+@needs_parser
+def test_lanasfaan_and_walayakunan_are_built_verbs():
+    # 96:15, 12:32: the light nun written as ـًا; لَنَصْرًا shares the shape and stays a noun
+    assert card("كَلَّا لَئِنْ لَمْ يَنْتَهِ لَنَسْفَعًا بِالنَّاصِيَةِ", "لَنَسْفَعًا")["case"] == "mabni"
+    found = card("لَيُسْجَنَنَّ وَلَيَكُونًا مِنَ الصَّاغِرِينَ", "وَلَيَكُونًا")
+    assert found["role"] == "فعل" and found["case"] == "mabni"
+    assert card("إِنَّ لَنَصْرًا قَرِيبًا", "لَنَصْرًا")["type"] == "ism"
