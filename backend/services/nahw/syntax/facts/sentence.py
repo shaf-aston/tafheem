@@ -5,6 +5,7 @@ from __future__ import annotations
 from backend.services.text.arabic_text import bare_letters
 from backend.services.nahw.book import ADVERB_FAMILIES, doer_written_in, extra_ba_on, frames, is_built_word, is_definite_kind, is_extra_ba, is_mabni, is_one, is_subject_pronoun, only_adverb, says, takes_object
 from backend.services.text.arabic_text import strip_diacritics
+from backend.services.text.harakat import letters
 from backend.services.nahw.syntax.facts.word import SUBJECTS, case_unseen, is_passive, listed, NOUN_LINKS, is_prefix, is_suffix, is_called_noun, is_light, is_preposition, is_verb, read_as, same_case, typed_or_parsed_case, noun_tagged, is_participle, describes, is_built, works_as_verb, typed_bare, typed_case_of, indefinite_nasb, purpose, is_name, present_verb_tagged, subject_link, attached_pronoun, holds_doer, may_be_nasb
 
 
@@ -162,6 +163,11 @@ class Sentence:
         words = [t for t in self.tokens if not is_suffix(t)]
         while words and is_prefix(words[0]):
             words.pop(0)  # وَما زيدٌ قائمًا: a وَ or فَ written onto it opens nothing else
+        if (sworn := sworn_by(self)) and sworn in words:
+            # وَاللَّهِ مَا زَيْدٌ قَائِمًا: the oath stands beside the sentence it swears, which opens after its noun
+            words = words[words.index(sworn) + 1:]
+            while words and words[0]["rel"] == "IDF" and words[0]["head"] == sworn["id"]:
+                words.pop(0)
         # its ism is marfu': ما أحسنَ زيدًا is the ما of wonder; the fatha of a built أنتَ is no nasb
         if not (self.verbless and len(words) >= 3 and words[0]["lemma"] == "ما" and noun_tagged(words[1])
                 and (is_mabni(words[1].get("pos_camel", "")) or typed_or_parsed_case(words[1]) != "a")):
@@ -514,10 +520,15 @@ def is_sworn_relative(word: dict) -> bool:
 def _ba_swears(first: dict, lam: dict | None, verb: dict | None) -> bool:
     """بِاللَّهِ لَأَفْعَلَنَّ: the ب is the first of the oath's letters, its verb said or left out (Ibn Aqil, bab al-qasam,
     vol 4; page unchecked); left out, it swears only where the answer shows it: a لَ (not the لِ of command) on a verb with the nun of emphasis."""
-    typed = (verb or {}).get("typed") or ""
-    return first["lemma"].strip("+") == "ب" and bool(lam and verb) and lam["form"] == "ل+" and is_verb(verb) \
-        and typed[1:2] == "َ" and strip_diacritics(typed).endswith("ن") \
-        and ("ّ" in typed[typed.rfind("ن"):] or typed.endswith("نْ"))
+    if not (first["lemma"].strip("+") == "ب" and lam and verb and lam["form"] == "ل+" and is_verb(verb)):
+        return False
+    marked = letters(verb.get("typed") or "")
+    # the verb's own last letter, a pronoun after it aside (لَأَزِيدَنَّكُمْ): the parser's form has no pronoun
+    end = len(verb["form"])  # the لام typed first, so the verb's last letter sits one on
+    # لَيَمُنُّ: a ن of the verb's own root is no nun of emphasis (لَأَكُونَنَّ: كان's own ن, then the nun's)
+    own_nun = strip_diacritics(verb["lemma"]).endswith("ن") and not verb["form"].endswith("نن")
+    return len(marked) > end and "َ" in marked[0][1] and marked[end][0] == "ن" and bool(marked[end][1] & {"ّ", "ْ"}) \
+        and not own_nun
 
 
 def sworn_by(s: Sentence) -> dict | None:
@@ -525,11 +536,16 @@ def sworn_by(s: Sentence) -> dict | None:
     a و or ت of an oath (closed_words jarr `oath_only`), a relative or a noun in jarr (وَاللَّهِ، فَوَالَّذِي نَفْسِي بِيَدِهِ)."""
     tokens = s.tokens
     lead = int(bool(tokens) and tokens[0]["pos"] == "PRT" and tokens[0]["lemma"].strip("+") == "ف")
-    first, word, lam, verb = (tokens + [None] * 4)[lead:lead + 4]
+    # بِرَبِّي: a pronoun on the sworn noun is a word of the parser's own
+    rest = [t for t in tokens[lead:] if not (t["rel"] == "IDF" and is_suffix(t))]
+    first, word, lam, verb = (rest + [None] * 4)[:4]
     if not (first and word and first["pos"] == "PRT" and (is_one(first["lemma"], "jarr", "oath_only")
                                                           or _ba_swears(first, lam, verb))):
         return None
-    return word if is_sworn_relative(word) or noun_tagged(word) and typed_case_of(word) == "i" else None
+    # وَرَبِّي: the ي of the speaker hides the noun's kasra
+    my_ya = any(t["head"] == word["id"] and t["rel"] == "IDF" and t["form"] == "+ي" for t in tokens)
+    return word if is_sworn_relative(word) or noun_tagged(word) and (
+        typed_case_of(word) == "i" or my_ya and typed_case_of(word) is None) else None
 
 
 def opens_answer_inside(root: dict, s: Sentence, after: int) -> bool:
