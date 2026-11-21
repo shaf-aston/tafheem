@@ -805,6 +805,17 @@ def pick(tokens: list[str], disambiguator=None) -> list[dict[str, Any]]:
                                                        and not (out[i - 1].get("enc0") or "").startswith(("2d", "3d")))) \
                 and (elative := _elative_reading(tokens[i], steps[i])):
             out[i] = elative
+    # إِنِّي أَعْلَمُ مَا لَا تَعْلَمُونَ (2:30): the elative never takes an object (Ashmuni V2 p312: لا ينصب المفعول به), so a word of
+    # its shape, said by the speaker (إِنِّي، أَنَا before it) with a relative or a word typed in nasb straight after it, is the
+    # speaker's present verb "I know" and that word its object; with a preposition after it (أَعْلَمُ بِمَا) it stays the elative
+    for i in range(1, len(out) - 1):
+        if out[i].get("pos") in NOUNISH and elative_shape(out[i].get("pattern", ""), out[i].get("lex", "")) \
+                and out[i].get("enc0") in ("0", "na", None) and _speaker(tokens[i - 1]) \
+                and all(out[i + 1].get(prc, "0") in ("0", "na") for prc in ("prc1", "prc2", "prc3")) \
+                and (out[i + 1].get("pos") == "pron_rel" or typed_case(tokens[i + 1]) == "a" and out[i + 1].get("pos", "").startswith("noun")) \
+                and (verb := best_reading(tokens[i], [r for r in _widened(tokens[i], steps[i][1])
+                                                      if r.get("pos") == "verb" and r.get("asp") == "i" and r.get("per") == "1"])):
+            out[i] = verb
     # نصر زيد بكرا، زيد نصر بكرا: every منصوب has its عامل (Ibn Aqil on the Alfiyya, المفعول به).
     # A noun read in nasb (بكرا's alif of tanween is written, typed vowels or none), in a line of
     # nouns alone, has none but a verb before it, or is that verb when the fatha is typed (زَيْدٌ أَكْرَمَ
@@ -1437,6 +1448,15 @@ def _min_phrase_follows(after: list[dict]) -> bool:
         if reading.get("pos") == "prep" and reading.get("lex") == "مِن":
             return True
     return False
+
+
+def _speaker(typed: str) -> bool:
+    """أَنَا, or a sister of إنّ with "me" on it (إِنِّي، إِنَّنِي، لَعَلِّي), a joining وَ or فَ on it or not (وَإِنِّي): the one
+    speaking stands before what follows."""
+    bare = strip_diacritics(typed)  # its hamza kept: the book lists إنّ with it
+    if bare[:1] in "وف" and len(bare) > 3:
+        bare = bare[1:]
+    return bare in ("أنا", "انا") or any(bare.endswith(me) and is_one(bare[:-len(me)], "inna") for me in ("ني", "ي"))
 
 
 def _elative_reading(token: str, step: tuple) -> dict | None:

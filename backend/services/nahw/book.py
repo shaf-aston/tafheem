@@ -275,8 +275,10 @@ def six_noun_case(base: str, lemma: str) -> str | None:
     return by_letter.get(base[-1:])
 
 
-def verb_aspect(aspect: str, base: str) -> str:  # a "present" verb with no present prefix is a command (اِتَّقِ)
-    return "c" if aspect == "i" and base[:1] not in PRESENT_PREFIX else aspect
+def verb_aspect(aspect: str, base: str) -> str:
+    """A "present" verb with no present prefix is a command (اِتَّقِ). آ is the speaker's أ written with the hamza after
+    it (أَأْمُرُ → آمُرُ, أَأْكُلُ → آكُلُ: the أ of أنيت, Ibn Aqil V1, page unchecked), so آمُرُ is "I command", not a command."""
+    return "c" if aspect == "i" and base[:1] not in PRESENT_PREFIX | {"آ"} else aspect
 
 
 def is_mabni(pos: str, aspect: str | None = None, base: str = "") -> bool:
