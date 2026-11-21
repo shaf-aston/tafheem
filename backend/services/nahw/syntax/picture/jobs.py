@@ -41,7 +41,10 @@ def give_jobs(c: Picture) -> None:
         # وَأَنْ تَصُومُوا خَيْرٌ لَكُمْ، لَكَ مَا تُرِيدُ: a doer is a verb's or a participle's (Tasheel 2.4.1), so a unit
         # hung as the subject of a noun or a jar is its مبتدأ, and that word its khabar; إِنَّمَا الْعَدْلُ أَنْ يُسْمَعَ:
         # unless that noun is the مبتدأ said before it (of two known words the first is the مبتدأ), when it is the خبر
-        if rel == "SBJ" and not (governor and (is_verb(governor) or is_participle(governor))):
+        # فَأَمَّا مَا يَنْفَعُ النَّاسَ فَيَمْكُثُ: a doer never comes before its verb (الفاعل لا يتقدم; page unchecked), so one
+        # hung before it opens the sentence, its مبتدأ, as facts.slot reads a fronted subject
+        fronted = governor and is_verb(governor) and governor["id"] > token["id"]
+        if rel == "SBJ" and (fronted or not (governor and (is_verb(governor) or is_participle(governor)))):
             said_first = governor and governor["id"] < token["id"] and role_of.get(governor["id"]) == NAMED.mubtada
             job = NAMED.khabar if said_first else NAMED.mubtada
             return job, case_of(job)

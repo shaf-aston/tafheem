@@ -766,6 +766,18 @@ def _qad_names_its_sense(tokens: list[dict], s: facts.Sentence) -> None:
             token["reading"] = {"family": "ghair_amila_other", "named": name, "kind": "harf", "book": None}
 
 
+def _amma_names_its_fa(tokens: list[dict], s: facts.Sentence) -> None:
+    """فَأَمَّا الْيَتِيمَ فَلَا تَقْهَرْ: أمّا, its mim doubled, and the first فاء after the word it sets out, which ties its
+    answer (data: ghair_amila_other `detail_named`). أَمَا with its mim light opens speech and asks no فاء."""
+    named = book_map("ghair_amila_other", "detail_named")
+    for amma in tokens:
+        if not (is_one(amma["lemma"], "ghair_amila_other", "detail") and SHADDA in (amma.get("typed") or "")):
+            continue
+        if fa := next((t for t in tokens if t["id"] > amma["id"] and t["form"] == "ف+"), None):
+            amma["reading"] = {"family": "ghair_amila_other", "named": named["أما"], "kind": "harf", "book": None}
+            fa["reading"] = {"family": "ghair_amila_other", "named": named["ف"], "kind": "harf", "book": None}
+
+
 def _emphasis_lam_frees_its_word(tokens: list[dict]) -> None:
     """إِنَّ هَذَا لَسِحْرٌ، إِنَّ اللَّهَ لَغَفُورٌ: the لام of emphasis (_emphasis_lam) governs nothing, so
     a place the parser gave it (here خبر إنّ) is the place of the word it is written onto, and the لام
@@ -942,6 +954,7 @@ def stamp(tokens: list[dict]) -> None:
     _merged(tokens, s)
     _emphasis_lam(tokens, s)
     _qad_names_its_sense(tokens, s)
+    _amma_names_its_fa(tokens, s)
     _emphasis_lam_frees_its_word(tokens)
     _hasr_frees_its_words(tokens)
     _negation_settles_its_words(tokens)

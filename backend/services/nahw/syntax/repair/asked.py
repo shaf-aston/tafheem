@@ -7,6 +7,7 @@ from __future__ import annotations
 
 from backend.services.text.arabic_text import strip_diacritics
 from backend.services.nahw.book import book_map, frames, is_one, takes_object
+from backend.services.nahw.syntax.facts.sentence import set_out_by_amma
 from backend.services.nahw.syntax.facts import Sentence, holds_doer, is_passive, is_verb, subject_link, typed_case_of
 
 
@@ -100,6 +101,8 @@ def asked_of_kana(s: Sentence) -> None:
         asks = book_map("istifham", "before_verb").get(strip_diacritics(token["form"])) is not None
         verb = _verb_beside(token, s)
         if not (asks or _man(token)) or not verb or verb["id"] != token["id"] + 1 or s.family(verb) != "kana":
+            continue
+        if set_out_by_amma(token, s):  # وَأَمَّا مَنْ كَانَ مِنْ أَهْلِ الشَّقَاءِ: after أمّا مَنْ is the relative, كان its صلة
             continue
         kids = [k for k in s.kids(verb) if k is not token]
         if asks and not any(k["rel"] == "PRD" for k in kids):

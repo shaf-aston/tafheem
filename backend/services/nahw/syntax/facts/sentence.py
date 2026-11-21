@@ -548,6 +548,14 @@ def sworn_by(s: Sentence) -> dict | None:
         typed_case_of(word) == "i" or my_ya and typed_case_of(word) is None) else None
 
 
+def set_out_by_amma(token: dict, s: "Sentence") -> bool:
+    """فَأَمَّا مَا يَنْفَعُ النَّاسَ فَيَمْكُثُ: the one word after أمّا is the mubtada its فاء's answer tells of (closed_words
+    ghair_amila_other `detail`; Awdah al-Masalik vol 4 p231-232), so a word a question shares its letters with is no question
+    there."""
+    before = s.by_id.get(token["id"] - 1)
+    return bool(before and is_one(before["lemma"], "ghair_amila_other", "detail"))
+
+
 def opens_answer_inside(root: dict, s: Sentence, after: int) -> bool:
     """وَاللَّهِ لَزَيْدٌ قَائِمٌ: the answer's first word, past the sworn noun and its مضاف إليه, is a particle only an answer
     opens on (closed_words jarr `oath_answer`) written onto a word of the clause, not onto its head (the لام on the مبتدأ)."""
