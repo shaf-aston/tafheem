@@ -87,6 +87,10 @@ def draw_conditions(c: Picture) -> None:
     for answer_id, (opener, *_) in opened.items():
         for kid in [k for k in children_of[answer_id] + children_of[opener["id"]] if k["pos"] == "PRT" and at[k["id"]] < at[opener["id"]]]:
             opened[answer_id] += (take_from(holder, kid),)
+    # فَإِمَّا يَأْتِيَنَّكُمْ ... فَمَنْ ...: so too for a condition standing around another, which the parser may hang on its verb
+    for inner, ((opener, verb, *rest), job) in list(wraps.items()):
+        front = [k for k in children_of[opener["id"]] + children_of[verb["id"]] if k["pos"] == "PRT" and at[k["id"]] < at[opener["id"]]]
+        wraps[inner] = ((opener, verb, *rest, *(take_from(holder, kid) for kid in front)), job)
     # a مبتدأ drawn beside its khabar unit heads no sentence, nor does that khabar: each keeps its
     # job under the sentence, a مبتدأ with words of its own too (كِتَابُ الطَّالِبِ جَدِيدٌ، لَزَيْدٌ أَفْضَلُ); so is
     # any half of a sentence drawn in several halves side by side (رَجُلٌ كَرِيمٌ فِي الدَّارِ: the مبتدأ unit beside
