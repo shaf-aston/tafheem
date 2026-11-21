@@ -2,14 +2,13 @@
 
 From the code review of the page reader (Dictionary tab). The three important findings were fixed
 (a timed-out read is not tried again, `read_queue_max=0` no longer refuses everything, tatweel is not
-a letter). These six minor ones wait for the next pass; tick one off when it is done.
+a letter). These six minor ones were left for the next pass (one has since been fixed); tick one off when it is done.
 
 - [ ] **Orientation check on every unsure page.** `tesseract.upright` (about a second) runs whenever
       the first read is unsure, even on an upright vowelled page. Run it only when the reading looks
       sideways (very low confidence, or few Arabic words), or skip it for screenshots.
-- [ ] **A paused line can ask before the shared pause ends.** `useLineTranslations` checks the 429
-      gate once per try; a worker that wakes while another 429 moved the gate later still asks. Loop
-      the wait until `resume` is in the past.
+- [x] **A paused line can ask before the shared pause ends.** Fixed with batch translation: the
+      wait now loops until the shared gate is past.
 - [ ] **Two identical lines share the chosen word.** The chosen key is `${line.text}#${i}`, so a
       word chosen on one copy of a repeated line lights up on both. Key by line index too.
 - [ ] **Word spans ignore Space.** `PageWord` is `role=button` but only Enter looks up; Space should too.

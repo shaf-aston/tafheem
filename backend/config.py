@@ -201,6 +201,10 @@ class Dictionary(BaseSettings):
     sentence_fact_senses: int = Field(default=4, gt=0)
     # One English sentence back, plus a reasoning model's thinking.
     sentence_max_tokens: int = Field(default=1200, gt=0)
+    # The page reader's lines, put to the model together (POST /api/dictionary/sentences): at most this
+    # many in one call, one call charged to the AI budget, and this many tokens back for all of them.
+    sentence_batch_max: int = Field(default=8, gt=0)
+    sentence_batch_max_tokens: int = Field(default=3000, gt=0)
 
     # Ibn Faris's Maqayees as {"ك ت ب": {"core_meaning", "sarf_pattern", "variances": [...]}}.
     # Not shipped; panel says so until the file exists. Relative paths resolve inside backend/.

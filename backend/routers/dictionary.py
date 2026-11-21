@@ -22,6 +22,8 @@ from backend.models.dictionary import (
     RootMeaning,
     RootMeaningResponse,
     SentenceResponse,
+    SentencesRequest,
+    SentencesResponse,
     SentenceWord,
 )
 from backend.models.morphology import VerbVerdict
@@ -120,6 +122,27 @@ async def translate_sentence(
     else:
         text = arabic_sentence(q, "Sentence")
         found = await asyncio.to_thread(sentence_meaning.translate, text)
+    return _sentence(q, text, found)
+
+
+@router.post("/sentences", response_model=SentencesResponse, dependencies=[Depends(READ)])
+async def translate_sentences(body: SentencesRequest) -> SentencesResponse:
+    """A page's Arabic lines, each as /sentence answers it, with the ones the model must answer put to
+    it in one call (the page reader). At most sentence_batch_max lines, each held to a sentence's rules."""
+    settings = get_settings()
+    if not body.lines or len(body.lines) > settings.sentence_batch_max:
+        raise HTTPException(status_code=422, detail=f"Send 1 to {settings.sentence_batch_max} lines at a time.")
+    texts = []
+    for line in body.lines:
+        if len(line) > settings.max_sentence_chars or not has_arabic(line):
+            raise HTTPException(status_code=422, detail="Each line must be Arabic, and no longer than a sentence may be.")
+        texts.append(arabic_sentence(line, "Sentence"))
+    found = await asyncio.to_thread(sentence_meaning.translate_many, texts)
+    return SentencesResponse(results=[_sentence(line, text, one) for line, text, one in zip(body.lines, texts, found)])
+
+
+def _sentence(q: str, text: str, found: dict) -> SentenceResponse:
+    """What /sentence and /sentences answer for one text: `q` as sent, `text` as cleaned, `found` the service's."""
     return SentenceResponse(
         query=text,
         kind=found["kind"],

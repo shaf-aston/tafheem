@@ -184,3 +184,70 @@ def test_a_word_camel_has_no_english_for_takes_the_dictionarys(monkeypatch, glos
     monkeypatch.setattr(dictionary_service, "meaning_of", lambda lemma: "fast, quick, rapid" if lemma == "مسرع" else "")
     assert sentence_meaning.english({"lemma": "مسرع", "pos": "adj", "gloss": gloss}) == english
     assert sentence_meaning.english({"lemma": "مسرعا", "pos": "noun_prop", "gloss": ""}) == ""  # no near spelling
+
+
+def _many(calls, reply):
+    """A stand-in for ai.translate_sentences: records each call's lines, answers `reply(lines)`."""
+    return lambda lines: calls.append([text for text, _ in lines]) or {"english": reply(lines)}
+
+
+def test_a_pages_lines_go_to_the_model_in_one_call_and_are_filed_for_one_line_asks(typed, monkeypatch) -> None:
+    calls = []
+    monkeypatch.setattr(ai, "translate_sentences", _many(calls, lambda lines: [f"Line {n}." for n in range(1, len(lines) + 1)]))
+    found = sentence_meaning.translate_many(["البيت كبير", "البيت جميل", "الولد كبير"])
+    assert calls == [["البيت كبير", "البيت جميل", "الولد كبير"]]
+    assert [f["meaning"] for f in found] == ["Line 1.", "Line 2.", "Line 3."] and {f["source"] for f in found} == {"ai"}
+    assert found[0]["words"][0]["english"] == "the house" and found[0]["kind"] == "sentence"
+    monkeypatch.setattr(ai, "translate_sentence", _model(typed, {"english": "never asked"}))
+    assert sentence_meaning.translate("البيت جميل")["meaning"] == "Line 2." and typed == []
+
+
+def test_a_line_on_file_is_not_sent_again(typed, monkeypatch) -> None:
+    monkeypatch.setattr(ai, "translate_sentence", _model(typed, {"english": "The house is big."}))
+    sentence_meaning.translate("البيت كبير")
+    calls = []
+    monkeypatch.setattr(ai, "translate_sentences", _many(calls, lambda lines: ["The boy is big."]))
+    found = sentence_meaning.translate_many(["البيت كبير", "الولد كبير"])
+    assert calls == [["الولد كبير"]] and [f["meaning"] for f in found] == ["The house is big.", "The boy is big."]
+    calls.clear()
+    sentence_meaning.translate_many(["البيت كبير", "الولد كبير"])
+    assert calls == []
+
+
+def test_answers_that_do_not_match_the_lines_are_all_dropped_and_not_filed(typed, monkeypatch) -> None:
+    calls = []
+    monkeypatch.setattr(ai, "translate_sentences", _many(calls, lambda lines: ["only one"]))
+    found = sentence_meaning.translate_many(["البيت كبير", "الولد كبير"])
+    assert [f["meaning"] for f in found] == [None, None] and found[1]["words"]
+    sentence_meaning.translate_many(["البيت كبير", "الولد كبير"])
+    assert len(calls) == 2
+
+
+def test_one_answer_that_is_no_rendering_is_dropped_alone(typed, monkeypatch) -> None:
+    monkeypatch.setattr(ai, "translate_sentences", _many([], lambda lines: ["The house is big.", "see https://x.y"]))
+    assert [f["meaning"] for f in sentence_meaning.translate_many(["البيت كبير", "الولد كبير"])] == ["The house is big.", None]
+
+
+def test_a_spent_budget_is_the_pages_answer(typed, monkeypatch) -> None:
+    def spent(lines):
+        raise sentence_meaning.OverBudget("Too many explanations at once")
+
+    monkeypatch.setattr(ai, "translate_sentences", spent)
+    with pytest.raises(sentence_meaning.OverBudget):
+        sentence_meaning.translate_many(["البيت كبير"])
+
+
+def test_the_lines_route_answers_each_line_and_refuses_too_many_or_no_arabic(typed, monkeypatch) -> None:
+    from fastapi.testclient import TestClient
+
+    from backend.config import get_settings
+    from backend.main import create_app
+
+    monkeypatch.setattr(ai, "translate_sentences", _many([], lambda lines: ["A.", "B."]))
+    client = TestClient(create_app())
+    answer = client.post("/api/dictionary/sentences", json={"lines": ["البيت كبير", "الولد كبير"]})
+    assert answer.status_code == 200 and [r["meaning"] for r in answer.json()["results"]] == ["A.", "B."]
+    many = ["البيت كبير"] * (get_settings().sentence_batch_max + 1)
+    assert client.post("/api/dictionary/sentences", json={"lines": many}).status_code == 422
+    assert client.post("/api/dictionary/sentences", json={"lines": ["hello there"]}).status_code == 422
+    assert client.post("/api/dictionary/sentences", json={"lines": []}).status_code == 422

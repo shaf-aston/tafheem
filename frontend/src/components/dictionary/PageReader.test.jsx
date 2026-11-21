@@ -9,10 +9,10 @@ vi.mock('../../api', () => ({
     source: { key: 'tesseract', label: 'Read by Tesseract', confidence: 'guessed' },
     unsure: false,
   })),
-  translateSentence: vi.fn(async (text) => ({
+  translateSentences: vi.fn(async (texts) => texts.map((text) => ({
     meaning: text.startsWith('ذهب') ? 'The boy went to school.' : 'He read the book.',
     words: text.replace('.', '').split(' ').map((arabic) => ({ arabic, english: `en:${arabic}`, base: arabic })),
-  })),
+  }))),
 }))
 vi.mock('../../lib/dictionary/shrinkPicture', () => {
   class NotAPicture extends Error {}

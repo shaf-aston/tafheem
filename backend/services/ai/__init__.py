@@ -177,6 +177,18 @@ def translate_sentence(text: str, facts: str) -> dict:
     )
 
 
+def translate_sentences(lines: list[tuple[str, str]]) -> dict:
+    """Several Arabic lines of one page, each with its grammar facts, as English ({"english": [...]}):
+    one model call, one charge to the AI budget, however many lines. Same caveats as above; the
+    caller checks the count and each answer."""
+    numbered = "\n\n".join(f"Line {n}. {text}\n{facts}" for n, (text, facts) in enumerate(lines, 1))
+    return _ask(
+        prompts.SENTENCES_USER.format(lines=numbered, count=len(lines)),
+        max_tokens=get_settings().sentence_batch_max_tokens,
+        system=prompts.SENTENCE_SYSTEM,
+    )
+
+
 def render_in_arabic(text: str) -> dict:
     """A reader's English phrase or sentence as Arabic ({"arabic": ...}); same caveats as above."""
     return _ask(

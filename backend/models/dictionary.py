@@ -87,6 +87,18 @@ class SentenceResponse(BaseModel):
     left_out: list[str] = []
 
 
+class SentencesRequest(BaseModel):
+    """A page's Arabic lines, translated together (the page reader)."""
+
+    lines: list[str]
+
+
+class SentencesResponse(BaseModel):
+    """One SentenceResponse a line, in the order the lines were sent."""
+
+    results: list[SentenceResponse]
+
+
 class RootMeaning(BaseModel):
     core_meaning: str
     sarf_pattern: str = ""
