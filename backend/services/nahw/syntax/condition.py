@@ -155,9 +155,10 @@ def find(bases: list[dict], named: list[str | None], cases: list[str | None],
 
     def clause_head(k: int) -> int:
         """The word an answer begun at k is the sentence of: a particle in front of its
-        clause (فَلَا تُكْرِمْهُ، فَقَدْ فَازَ) answers through the word it hangs on."""
+        clause (فَلَا تُكْرِمْهُ، فَقَدْ فَازَ) answers through the word it hangs on; one opening a condition of its own
+        (فَإِنْ قُمْتَ قُمْتُ) is that condition, the answer."""
         up = index.get(bases[k]["head"])
-        return up if bases[k]["pos"] == "PRT" and up is not None and up > k else k
+        return up if bases[k]["pos"] == "PRT" and up is not None and up > k and not opens(k) else k
 
     found = []
     for i in range(len(bases)):
