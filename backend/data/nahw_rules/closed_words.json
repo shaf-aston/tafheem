@@ -245,8 +245,8 @@
    "ar": "إن وأخواتها",
    "card": {"named": "حرف ناسخ مشبه بالفعل", "does": "ينصب الاسم ويرفع الخبر", "governs": "inna"},
    "effect": "nasb the ism and raf' the khabar; attached ما cancels the effect (إنما)",
-   "_kaffa_comment": "إنما، كأنما، لكنما: a ما written onto a member stops its work, and the books name the pair, not the bare حرف (Tasheel 1.10).",
-   "kaffa": {"ma": "ما", "named": "كافة ومكفوفة", "said": "{word} كافة ومكفوفة: {bare} حرف ناسخ مكفوف عن العمل، وما كافة، مبني لا محل له من الإعراب"},
+   "_kaffa_comment": "إنما، كأنما، لكنما: a ما written onto a member stops its work, and the books name the pair, not the bare حرف (Tasheel 1.10). In the chart the pair is cut in two: the sister a حرف ناسخ مكفوف, the ما always ما الكافة.",
+   "kaffa": {"ma": "ما", "named": "كافة ومكفوفة", "said": "{word} كافة ومكفوفة: {bare} حرف ناسخ مكفوف عن العمل، وما كافة، مبني لا محل له من الإعراب", "chart": {"sister": "حرف ناسخ مكفوف", "ma": "ما الكافة"}},
    "words": [
     "إن",
     "أن",

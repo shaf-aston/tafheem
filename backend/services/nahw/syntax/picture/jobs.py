@@ -1,12 +1,13 @@
 """What each unit does for the word above it, and which words open a clause."""
 from __future__ import annotations
 
-from backend.services.nahw.book import book_spelling, case_of, condition_of, is_one, teacher_rules
+from backend.services.nahw.book import book_spelling, case_of, condition_of, is_one, kaffa_chart, teacher_rules
 from backend.services.nahw.syntax.doer import written_on
 from backend.services.nahw.syntax.facts import is_participle, is_passive, is_preposition, is_verb, listed, ma_kind
 from backend.services.nahw.syntax.naming import NAMED
 from backend.services.nahw.syntax.picture.names import FRAMES, SISTERS, command_name, finer_name
 from backend.services.nahw.syntax.picture.state import Picture
+from backend.services.text.arabic_text import strip_diacritics
 
 
 def give_jobs(c: Picture) -> None:
@@ -108,6 +109,13 @@ def give_names(c: Picture) -> None:
         name_of[key] = pair.get(role_of[key], name_of[key])
         if job_of.get(key) == role_of[key]:
             job_of[key] = name_of[key]  # لا طالبَ علمٍ: the unit the اسم heads is called اسم لا too
+    # إِنَّمَا، كَأَنَّمَا: the sister a ما is written onto works on nothing, and that ما is always ما الكافة, not a bare حرف
+    sister_name, ma_name = kaffa_chart()
+    for token, found in zip(bases, named):
+        if found.get("kaffa") and token["id"] in name_of:
+            name_of[token["id"]] = sister_name
+            if (ma := c.by_id.get(token["id"] + 1)) and ma["id"] in name_of and strip_diacritics(ma["form"]).strip("+") == "ما":
+                name_of[ma["id"]] = ma_name
     name_of.update(dict.fromkeys(replies, said_verb["word"]))
     name_of.update(fronted)  # the question's verb, said no more than it is: unwritten
     # في البيت رجلٌ كريمٌ: a مبتدأ مؤخر heading its own unit is one as a whole, as on its own

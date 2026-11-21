@@ -34,7 +34,7 @@ def role(sentence: str, word: str) -> str:
 
 @needs_parser
 def test_the_ma_on_inna_is_a_particle_in_the_tree():
-    """إِنَّمَا يَشْفِي اللَّهُ: the ما is a حرف (كافة), shown as one in the tree, never a word with no job."""
+    """إِنَّمَا يَشْفِي اللَّهُ: the ما is ما الكافة, named so in the tree, never a word with no job; إنّ is stopped."""
     found = {}
     def walk(node):
         if node.get("word") is not None:
@@ -42,7 +42,7 @@ def test_the_ma_on_inna_is_a_particle_in_the_tree():
         for child in node.get("children", []):
             walk(child)
     walk(analyze("إِنَّمَا يَشْفِي اللَّهُ")["tree"]["tree"])
-    assert found[1] == "حرف"
+    assert (found[0], found[1]) == ("حرف ناسخ مكفوف", "ما الكافة")
 
 
 @needs_parser
