@@ -235,7 +235,7 @@ def _built_on(card: dict, aspect: str) -> str | None:
         alone = card["camel"].get("person") == "3" and card["camel"].get("number") == "s"
         alef = alone and (bare.endswith("ى") or (bare.endswith("ا") and card["camel"].get("weak_last")))
         return said["past_on_alef"] if alef else _past_ending(verb)  # رَوَاهُ: one doer, so its وا is no plural's
-    nun = build_nun(word, _pronoun_letters(word) if _has_pronoun(card["camel"]) else 0)
+    nun = build_nun(word, _pronoun_letters(word) if _has_pronoun(card["camel"]) else 0, card["camel"].get("lemma", ""))
     if aspect == "c":
         # a command is built on what its jazm would show
         verb = _without_object(word) if _has_object(card["camel"]) else word

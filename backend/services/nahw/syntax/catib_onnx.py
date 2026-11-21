@@ -413,7 +413,9 @@ def parse(words: list[str], picks: list[dict]) -> list[dict]:
         pieces = _split_word(word, pick)
         # the vowel of an attached pronoun is the pronoun's: عِلْمَهُ is in nasb, not raf'
         stuck_on = stuck_letters(pieces, word)
-        subtokens.extend({**t, "case": typed_case(word, stuck_on)} for t in pieces)
+        # وَأَنْ: a letter written on a particle is no جار, so each piece keeps the tag of the word it is written on
+        on = next((t["pos"] for t in pieces if t.get("token_type") == "baseword"), None)
+        subtokens.extend({**t, "case": typed_case(word, stuck_on), "on": on} for t in pieces)
 
     heads, rels = _parse_forms(subtokens)
 

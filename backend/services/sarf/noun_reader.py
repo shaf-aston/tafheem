@@ -32,10 +32,13 @@ _SOUND_ENDINGS = {("ُ", "و", "َ"): ("p", "n"), ("ِ", "ي", "َ"): ("p", "u")
 
 @lru_cache(maxsize=1)
 def _shapes() -> list[tuple[str, str, str]]:
-    """(shape in فعل letters, the analyser's digit pattern, part of speech), the elative first, then the masdars and
+    """(shape in فعل letters, the analyser's digit pattern, part of speech), the elative first, the intensive, then the masdars and
     the doer's and done-to's participles (الصَّادِقُ الْمَصْدُوقُ: a مَفْعُول the dictionary lacks is no guessed name)."""
     elative = [(shape.replace("1", "ف").replace("2", "ع") + "ل", shape + "3", "adj")
                for shape in book_words("elative_patterns")]
+    # كَفُور، غَفَّار، مِقْدَام: صيغ المبالغة, standing in for فاعل (closed_words `intensive_patterns`)
+    intensive = [(shape.replace("1", "ف").replace("2", "ع") + "ل", shape + "3", "adj")
+                 for shape in book_words("intensive_patterns")]
     masdars, participles = [], []
     for form in json.loads(_PATTERNS.read_text(encoding="utf-8"))["forms"].values():
         for key, kept, pos in (("masdar", masdars, "noun"), ("fail", participles, "adj"), ("maful", participles, "adj")):
@@ -48,8 +51,10 @@ def _shapes() -> list[tuple[str, str, str]]:
                 if "{4}" not in each and (each.format("", *_ROOT), each.format("", 1, 2, 3), pos) not in kept:  # fits_shape holds a root of three
                     kept.append((each.format("", *_ROOT), each.format("", 1, 2, 3), pos))
     # حَاقّ، ضَالّ: a doubled root's فَاعِل merges its last two letters (الإدغام), the kasra between them dropped
-    merged = [("فَاعّ", "1َا2ّ", "adj")]
-    return elative + masdars + participles + merged
+    # مَنّ، رَدّ: a doubled root's فَعْل, the masdar of the transitive triliteral (Ibn Aqil V2 p121: فَعْلٌ قياسُ مصدرِ
+    # المعدّى من ذي ثلاثة; page unchecked), merges its last two letters too: two letters typed, the last doubled
+    merged = [("فَاعّ", "1َا2ّ", "adj"), ("فَعّ", "1َ2ّ", "noun")]
+    return elative + intensive + masdars + participles + merged
 
 
 @lru_cache(maxsize=1)
@@ -90,7 +95,8 @@ def _sound_ending(stem: list[tuple[str, set]]) -> tuple[int, str, str | None]:
         for (vowel, said, n_vowel), (number, case) in _SOUND_ENDINGS.items():
             if letter == said and vowel in before and not last - {n_vowel}:
                 return 2, number, case
-    if len(stem) > 3 and stem[-1][0] == "ا" and "ً" in stem[-2][1] | stem[-1][1]:
+    # مَنًّا: three letters are enough, the two left a doubled root's (reading_of keeps only those)
+    if len(stem) > 2 and stem[-1][0] == "ا" and "ً" in stem[-2][1] | stem[-1][1]:
         return 1, "s", "a"
     return 0, "s", None
 
@@ -114,7 +120,8 @@ def reading_of(word: str) -> dict | None:
     stem = stem[:len(stem) - peeled]
     # a long letter (the ا of تَعَاوُن) carries no vowel of its own; a bare ا opening the word is
     # hamzat al-wasl, a command's (افْعَلِي), never the hamza of أَفْعَل
-    if len(stem) < 3 or not all(marks or (letter in "اوي" and i) for i, (letter, marks) in enumerate(stem[:-1])):
+    doubled = len(stem) == 2  # مَنّ: only the doubled shape (فَعّ) fits two letters
+    if len(stem) < 3 and not doubled or not all(marks or (letter in "اوي" and i) for i, (letter, marks) in enumerate(stem[:-1])):
         return None
     case = next((VOWEL[m] for m in stem[-1][1] if m in VOWEL), None)
     # the shape is the word less its case: the last letter's vowel is the case, not the shape's
@@ -123,13 +130,18 @@ def reading_of(word: str) -> dict | None:
     for shape, pattern, pos in _shapes() + (_sound_shapes() if peeled else []):
         if not fits_shape(shaped, shape):
             continue
+        # أَعُوذُ، تَكُونَ، يَقُولُ: a hollow verb's present is يَفْعُلُ, its middle و long, so a فَعُول opening on a letter of
+        # the present (أنيت) is read as that verb, not as an intensive (morphology `_emphasis_nun` reads أنيت so too)
+        if pattern == "1َ2ُو3" and not definite and stem[0][0] in "أنيت":
+            continue
         # the stem as the dictionary writes it: an ال kept on the word, the sun letter its shadda (الْمُضَمَّرَ: المُضَمَّرَ),
         # and a ة with the case on it (الْمُنْفِقَةُ: المُنْفِقَةُ, as الكَبِيرَةُ)
         own = letters(word)[2:] if definite else letters(word)
         typed_stem = ("ال" if definite else "") + "".join(letter + "".join(sorted(marks))
                                                          for letter, marks in own[:len(stem) + feminine])
         rest = "".join(letter + "".join(sorted(marks)) for letter, marks in marked[len(stem):])  # its pronoun, or its peeled ending
-        return {"pos": pos, "diac": word, "lex": "".join(letter for letter, _ in stem), "pattern": ("ال" if definite else "") + pattern + ("ة" if feminine else ""),
+        # مَنّ's lemma is its root منن, both letters written, never the particle مَنْ its two letters spell
+        return {"pos": pos, "diac": word, "lex": "".join(letter for letter, _ in stem) + (stem[-1][0] if doubled else ""), "pattern": ("ال" if definite else "") + pattern + ("ة" if feminine else ""),
                 "atbtok": f"{typed_stem}_+{rest}" if size else typed_stem + (rest if peeled else ""),
                 "catib6": "NOM+NOM" if size else "NOM", "ud": ("NOUN" if pos == "noun" else "ADJ") + ("+PRON" if size else ""),
                 "enc0": f"{enclitic}_poss" if size else "0", "stt": "d" if definite else "c" if size else "i",

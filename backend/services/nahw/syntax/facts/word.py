@@ -300,10 +300,11 @@ def is_preposition(token: dict) -> bool:
     """A particle of the book's list of حروف الجر, or one the parser tags a preposition; a word
     particles.stamp read one way (حتى before إذا is no جر) is what that reading says. A و the parser tags
     a joining word is واو القسم (وَاللَّهِ) only on a word that may be in jarr: on one typed in raf' or nasb
-    (وَخُلُقُهُ حَسَنٌ) it joins, since a جار leaves its word in jarr."""
+    (وَخُلُقُهُ حَسَنٌ) it joins, since a جار leaves its word in jarr, and so on a particle (وَأَنْ أَكْتُبَ), which no جار
+    comes onto: the أن and its verb are the masdar the و joins (a لام written on كي is the جار: لِكَيْ)."""
     read = reading(token)
     return token["pos"] == "PRT" and (read == "jarr" if read else token.get("pos_camel") == "prep"
-                                      or (token.get("pos_camel") != "conj" or token.get("case") in (None, "i")) and read_as(token, "jarr"))
+                                      or (token.get("pos_camel") != "conj" or token.get("case") in (None, "i") and not (token.get("on") == "PRT" and is_one(token["form"], "atf"))) and read_as(token, "jarr"))
 
 
 def manqus_tanween(token: dict) -> bool:
