@@ -160,14 +160,14 @@ def warm() -> None:
         log.info("listening is unavailable: %s", exc)
 
 
-def transcribe(audio: bytes, language: str | None = None, hint: str = "") -> str:
+def transcribe(audio: bytes, language: str | None = None, hint: str = "", languages: list[str] | None = None) -> str:
     """What was said, as plain words. Empty when there was nothing to hear.
 
     `language` is the language to hear it in, and naming one makes this a
     recitation: the Qur'an model, no register hint, and a word it is not sure
     of left out. Leaving it out is dictation, heard by the
     general model in whichever of the dictation languages the recording sounds
-    like.
+    like; `languages` narrows that list for one box (the Nahw box is Arabic only).
 
     The recording becomes sound in sound_of, which is the only place it does,
     and which keeps the last one so the check that follows does not decode the
@@ -181,7 +181,7 @@ def transcribe(audio: bytes, language: str | None = None, hint: str = "") -> str
     reciting = language is not None
     how = dict(
         model=settings.recitation_model if reciting else settings.dictation_model,
-        language=language or _which_language(sound),
+        language=language or _which_language(sound, languages),
         hint="" if reciting else hint,
         word_min=settings.recitation_word_min if reciting else 0.0,
         # The general model returns nothing on silence by itself and rates
@@ -226,7 +226,7 @@ def dictation_languages() -> list[str]:
     return named or [get_settings().recitation_language]
 
 
-def _which_language(sound) -> str:
+def _which_language(sound, languages: list[str] | None = None) -> str:
     """Which of the dictation languages this recording is in.
 
     The model is asked how likely every language is, and the answer is taken
@@ -234,7 +234,7 @@ def _which_language(sound) -> str:
     Persian and writes it in their letters. One language on the list means there
     is nothing to choose and no encoding pass is spent on choosing it.
     """
-    allowed = dictation_languages()
+    allowed = languages or dictation_languages()
     if len(allowed) == 1:
         return allowed[0]
 

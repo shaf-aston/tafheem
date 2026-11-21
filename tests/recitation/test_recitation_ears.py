@@ -53,13 +53,13 @@ def both(monkeypatch):
     asked: list[str] = []
 
     def install(hosted_fails=None, here_fails=None, available=True):
-        def hosted_hears(audio, language, hint):
+        def hosted_hears(audio, language, hint, languages):
             asked.append("hosted")
             if hosted_fails:
                 raise hosted_fails
             return "hosted heard it"
 
-        def here_hears(audio, language, hint):
+        def here_hears(audio, language, hint, languages):
             asked.append("here")
             if here_fails:
                 raise here_fails
@@ -255,7 +255,7 @@ def test_an_ear_that_hears_nothing_is_believed_rather_than_asked_again(both, mon
     more seconds reaching the same silence, on every recording with a pause."""
     asked = both()
     monkeypatch.setattr(ears.named("hosted"), "transcribe",
-                        lambda audio, language, hint: asked.append("hosted") or "")
+                        lambda audio, language, hint, languages: asked.append("hosted") or "")
     assert ears.hear(SOUND, None, "") == ""
     assert asked == ["hosted"]
 

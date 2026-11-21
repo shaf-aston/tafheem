@@ -52,7 +52,7 @@ def asked(monkeypatch):
     who: list[str] = []
     for key in ("hosted", "letters", "here"):
         ear = ears.named(key)
-        monkeypatch.setattr(ear, "transcribe", lambda audio, language, hint, key=key: who.append(key) or key)
+        monkeypatch.setattr(ear, "transcribe", lambda audio, language, hint, languages, key=key: who.append(key) or key)
         monkeypatch.setattr(ear, "is_available", lambda: True)
         monkeypatch.setattr(ear, "retired_reason", "")
         monkeypatch.setattr(ear, "_resting_until", 0.0)
