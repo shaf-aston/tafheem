@@ -493,7 +493,7 @@ def _ending(role: str | None, token: dict, before: dict | None, after: str, jarr
     A noun's case is the vowel typed on it, else its role's own. A kasra on ـات is nasb when
     its role takes nasb, or it has no role and nothing puts it in jarr, shown by the kasra (رأيت المعلماتِ)."""
     if role == NAMED.fil:
-        return "mabni" if is_mabni("verb", token.get("asp", "na"), token["base"]) or build_nun(token["typed"], token.get("stuck_on", 0)) else _mood(paused(token["typed"], after), token, before, lam, front)
+        return "mabni" if is_mabni("verb", token.get("asp", "na"), token["base"]) or build_nun(token["typed"], token.get("stuck_on", 0), token.get("lemma", "")) else _mood(paused(token["typed"], after), token, before, lam, front)
     if role in (NAMED.harf, NAMED.harf_jarr):
         return "mabni"
     if role == NAMED.munada and facts.my_ya_dropped(token):

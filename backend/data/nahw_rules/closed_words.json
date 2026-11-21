@@ -1429,6 +1429,16 @@
     "1َ2ِ"
    ]
   },
+  "intensive_patterns": {
+   "ar": "صيغ المبالغة",
+   "book": "Ibn Aqil V2 p111 (فَعَّالٌ أو مِفْعَالٌ أو فَعُولُ في كثرةٍ عن فاعلٍ بديلُ; page unchecked)",
+   "effect": "فَعُول، فَعَّال، مِفْعَال (كَفُورٌ، غَفَّارٌ، مِقْدَامٌ) stand in for فاعل to say «much of it»: a describing word. One the dictionary lacks (كَفُورًا, 76:3) is read as that adjective, never as كَـ before another word",
+   "words": [
+    "1َ2ُو",
+    "1َ2َّا",
+    "مِ1ْ2َا"
+   ]
+  },
   "times_counted": {
    "ar": "عدد المرات",
    "book": "Tasheel 3.2 p67 (a number or a kind stands in for the masdar)",

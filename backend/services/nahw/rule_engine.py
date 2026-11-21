@@ -74,7 +74,7 @@ def _harf_entry(tag: dict, role: str, why: str) -> dict:
 
 
 def _verb_entry(tag: dict) -> dict:
-    mood = "mabni" if not tag.get("enclitic") and build_nun(tag["word"]) else {"s": "nasb", "j": "jazm"}.get(tag.get("mood"), "raf'")
+    mood = "mabni" if not tag.get("enclitic") and build_nun(tag["word"], lemma=tag.get("lemma", "")) else {"s": "nasb", "j": "jazm"}.get(tag.get("mood"), "raf'")
     return {**_entry(tag, "fi'l", NAMED.fil, "fil", None, reason(NAMED.fil)),
             **verb_card(tag["base"], tag.get("aspect"), mood)}
 

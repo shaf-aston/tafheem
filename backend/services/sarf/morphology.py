@@ -1112,7 +1112,10 @@ def _emphasis_nun(typed: str, ranked: list[dict]) -> dict | None:
         # before ني the nun of emphasis and the pronoun's nun are one doubled letter (harakat.build_nun): the pronoun is نِي
         merged = build_nun(verb, after) == "emphasis" and after == 2 and SHADDA in marked[-2][1]
         at = len(marked) - after - (0 if merged else 1)
-        if at < 2 or marked[at][0] != "ن" or SHADDA not in marked[at][1] or not (merged or "َ" in marked[at][1]):
+        # اقْصِدَنْ، لَأَفْعَلَنْ: the light nun, its sukun its own, ends the word (Ibn Aqil V3 p306: للفعل توكيد بنونين
+        # هما كنوني اذهبنّ واقصدنهما; page unchecked)
+        light = marked[at][0] == "ن" and marked[at][1] == {SUKUN}
+        if not light and (at < 2 or marked[at][0] != "ن" or SHADDA not in marked[at][1] or not (merged or "َ" in marked[at][1])):
             continue
         last, marks = marked[at - 1]
         if not (vowel := next((v for v in _RAF_UNDER_NUN if v in marks), None)):
