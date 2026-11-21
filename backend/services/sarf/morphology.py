@@ -651,6 +651,8 @@ def _ranked(tokens: list[str], disambiguator) -> list[list[dict]] | None:
 def pick(tokens: list[str], disambiguator=None) -> list[dict[str, Any]]:
     """One raw CAMeL reading per word ({} where none is read), shared by the cards and
     the parser. Neighbours rank the readings (MLE, or the parser's BERT), the typed vowels choose."""
+    if not tokens:  # only signs and numbers typed (۝ ٢٨ ۚ): no word, no reading
+        return []
     if (all_ranked := _ranked(tokens, disambiguator)) is None:
         return [{} for _ in tokens]
 

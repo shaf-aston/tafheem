@@ -209,3 +209,8 @@ def test_a_hamza_on_its_vowels_seat_is_read_on_the_stems(word, lemma):
 ])
 def test_a_command_whose_first_letter_fell_is_read_on_its_own_root(sentence: str, root: str):
     assert morphology.analyze_sentence(sentence)[0]["root"] == root   # not ضوع، كول، عدن
+
+
+def test_signs_and_numbers_alone_are_no_word_and_get_no_reading():
+    # an ayah's end sign and number with no word (۝ ٢٨ ۚ ،): nothing to read, not a crash
+    assert morphology.pick([]) == []
