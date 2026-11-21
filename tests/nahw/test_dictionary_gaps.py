@@ -64,3 +64,9 @@ def test_the_syntax_names_the_light_nun_verb_built():
         words = sentence.split()
         found = syntax.read(sentence, morphology.pick(words, syntax.disambiguator()))["roles"]
         assert found[1]["case"] == case, sentence
+
+
+def test_a_hollow_present_is_no_intensive():
+    for word in ("أَعُوذُ", "تَكُونَ", "يَقُولُ", "نَقُومُ"):
+        assert noun_reader.reading_of(word) is None, word
+    assert noun_reader.reading_of("الأَكُولُ")["pattern"] == "ال1َ2ُو3"  # ال: no verb, so its letters are the shape's

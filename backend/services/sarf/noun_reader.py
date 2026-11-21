@@ -130,6 +130,10 @@ def reading_of(word: str) -> dict | None:
     for shape, pattern, pos in _shapes() + (_sound_shapes() if peeled else []):
         if not fits_shape(shaped, shape):
             continue
+        # أَعُوذُ، تَكُونَ، يَقُولُ: a hollow verb's present is يَفْعُلُ, its middle و long, so a فَعُول opening on a letter of
+        # the present (أنيت) is read as that verb, not as an intensive (morphology `_emphasis_nun` reads أنيت so too)
+        if pattern == "1َ2ُو3" and not definite and stem[0][0] in "أنيت":
+            continue
         # the stem as the dictionary writes it: an ال kept on the word, the sun letter its shadda (الْمُضَمَّرَ: المُضَمَّرَ),
         # and a ة with the case on it (الْمُنْفِقَةُ: المُنْفِقَةُ, as الكَبِيرَةُ)
         own = letters(word)[2:] if definite else letters(word)
