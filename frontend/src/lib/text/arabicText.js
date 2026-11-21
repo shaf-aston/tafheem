@@ -27,6 +27,9 @@ export const hasDiacritics = (text) => DIACRITICS.test(text ?? '')
  * commandRoutes each had their own copy of this range, drifting apart. */
 export const isArabic = (text) => /[؀-ۿ]/.test(text ?? '')
 
+/** True when the text holds a word of Arabic: two letters together, not a lone ص. or a page number. */
+export const hasArabicWord = (text) => /[ء-يٱ]{2}/.test(unvowelled(text ?? ''))
+
 /** True when a mushaf word is spoken: it has a letter, so a lone pause sign (ۖ ۚ) is not. */
 export const isSpoken = (word) => /[ء-يٱ]/.test(word ?? '')
 

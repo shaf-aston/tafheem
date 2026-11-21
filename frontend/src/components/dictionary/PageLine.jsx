@@ -10,11 +10,11 @@
 import { GoButton } from '../ui/buttons/RootActions'
 import ArabicText from '../ui/text/ArabicText'
 import { smartError } from '../../lib/api/apiError'
-import { isArabic } from '../../lib/text/arabicText'
+import { hasArabicWord } from '../../lib/text/arabicText'
 import { matched } from '../../lib/dictionary/pageLines'
 import PageWord from './PageWord'
 
-export default function PageLine({ line, found, accent, onLookup, onGo }) {
+export default function PageLine({ line, found, accent, chosen, onChoose, onLookup, onGo }) {
   const data = found?.data
   const words = data?.words?.length ? data.words : []
   return (
@@ -26,7 +26,9 @@ export default function PageLine({ line, found, accent, onLookup, onGo }) {
       <ArabicText as="p" size="lg" className="text-[var(--text)] leading-loose">
         {matched(line.text, words).map(({ before, core, word, after }, i) => (
           <span key={i}>
-            {i > 0 && ' '}{before}{word ? <PageWord word={word} onLookup={onLookup} /> : core}{after}
+            {i > 0 && ' '}{before}{word
+              ? <PageWord word={word} chosen={chosen === `${line.text}#${i}`} onChoose={() => onChoose(`${line.text}#${i}`, word)} onLookup={onLookup} />
+              : core}{after}
           </span>
         ))}
       </ArabicText>
@@ -42,7 +44,7 @@ export default function PageLine({ line, found, accent, onLookup, onGo }) {
 
 function English({ line, found }) {
   const dim = 'type-small text-[var(--text-faint)]'
-  if (!isArabic(line.text)) return <p className={dim}>Not Arabic, so not translated.</p>
+  if (!hasArabicWord(line.text)) return <p className={dim}>No Arabic word here, so not translated.</p>
   if (!found || found.state === 'asking') return <p className={`${dim} animate-pulse`}>Translating…</p>
   if (found.state === 'paused') return <p className={dim}>Many lines at once; waiting a moment for the translator…</p>
   if (found.state === 'failed') return <p className={dim}>{smartError(found.error, 'This line could not be translated.')}</p>

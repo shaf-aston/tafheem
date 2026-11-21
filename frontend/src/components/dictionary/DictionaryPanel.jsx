@@ -97,13 +97,19 @@ export default function DictionaryPanel({ accent, incoming, arrival, onGo, onVis
   const closePage = () => swapPage(null)
   // A new page, or the way back to one, brings the reader into sight: on a phone it opens below the fold.
   useEffect(() => { if (pageOpen) scrollToEl(reader.current, 'top') }, [pageOpen, page?.id])
-  const takePicture = (event) => {
-    const file = pictureIn(event.clipboardData ?? event.dataTransfer)
+  // A picture pasted while correcting the page's text is not a new page: it would throw the corrections away.
+  const pasted = (event) => {
+    const file = event.target.tagName !== 'TEXTAREA' && pictureIn(event.clipboardData)
     if (file && canRead) { event.preventDefault(); openPage(file) }
   }
   // Any file dropped here is ours, picture or not: left to the browser, a PDF would replace the whole app.
+  // One that is no picture opens the reader all the same, which says what to send instead.
   const holdsFiles = (event) => canRead && [...(event.dataTransfer?.types ?? [])].includes('Files')
-  const dropped = (event) => { if (holdsFiles(event)) event.preventDefault(); takePicture(event) }
+  const dropped = (event) => {
+    if (!holdsFiles(event)) return
+    event.preventDefault()
+    openPage(pictureIn(event.dataTransfer) ?? event.dataTransfer.files[0])
+  }
   // Arriving from another tab with a word is a search: the page steps aside for it.
   useArrivalEffect(arrival, () => setPageOpen(false))
   // The picture's address is let go when the panel goes, as when a new picture replaces it.
@@ -112,7 +118,7 @@ export default function DictionaryPanel({ accent, incoming, arrival, onGo, onVis
   useEffect(() => () => { if (lastPage.current) URL.revokeObjectURL(lastPage.current.shown) }, [])
 
   return (
-    <div className="panel panel-search" onPaste={takePicture} onDrop={dropped}
+    <div className="panel panel-search" onPaste={pasted} onDrop={dropped}
       onDragOver={(event) => { if (holdsFiles(event)) event.preventDefault() }}>
       <SectionHeader tab="dict" answered={Boolean(shown) || pageOpen}
         subtitle={`Search an Arabic word, a root or an English meaning, or translate a whole Arabic sentence${canRead ? '; or read a picture of a page.' : '.'}`}
@@ -184,7 +190,7 @@ export default function DictionaryPanel({ accent, incoming, arrival, onGo, onVis
 
       {page && (
         <div hidden={!pageOpen} ref={reader} className="scroll-mt-[calc(var(--app-header-h,0px)+1rem)]">
-          <PageReader key={page.id} picture={page.picture} shown={page.shown} accent={accent} onPicked={openPage} onClose={closePage} onLookup={submit} onGo={onGo} />
+          <PageReader key={page.id} picture={page.picture} shown={page.shown} accent={accent} onClose={closePage} onLookup={missing ? null : submit} onGo={onGo} />
         </div>
       )}
       {page && !pageOpen && (

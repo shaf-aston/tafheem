@@ -13,11 +13,12 @@ const busy = () => Object.assign(new Error('busy'), { response: { status: 429 } 
 describe('useLineTranslations', () => {
   it('translates each Arabic line once and skips the rest', async () => {
     const ask = vi.fn(async (text) => ({ meaning: `m:${text}` }))
-    const lines = [{ text: 'ذهب الولد' }, { text: 'ذهب الولد' }, { text: '123' }]
+    const lines = [{ text: 'ذهب الولد' }, { text: 'ذهب الولد' }, { text: '123' }, { text: 'ص. ٣' }]
     const { result } = renderHook(() => useLineTranslations(lines, { ask }), { wrapper })
     await waitFor(() => expect(result.current['ذهب الولد']?.state).toBe('done'))
     expect(result.current['ذهب الولد'].data.meaning).toBe('m:ذهب الولد')
     expect(result.current['123']).toBeUndefined()
+    expect(result.current['ص. ٣']).toBeUndefined()
     expect(ask).toHaveBeenCalledTimes(1)
   })
 

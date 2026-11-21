@@ -21,7 +21,7 @@ import { useQueryClient } from '@tanstack/react-query'
 
 import { translateSentence } from '../../api'
 import config from '../../config/dictionary.json'
-import { isArabic } from '../text/arabicText'
+import { hasArabicWord } from '../text/arabicText'
 
 const TOGETHER = config.page.together
 const PAUSED_MS = config.page['paused-ms']
@@ -44,7 +44,7 @@ export function useLineTranslations(lines, { ask = translateSentence, together =
 
   useEffect(() => {
     let live = true
-    const queue = [...new Set(lines.map((line) => line.text).filter(isArabic))]
+    const queue = [...new Set(lines.map((line) => line.text).filter(hasArabicWord))]
     const note = (text, value) => { if (live) setFound((was) => ({ ...was, [text]: value })) }
 
     async function one(text) {

@@ -1,85 +1,40 @@
 /**
- * One word of a page's line: its English on hover, the dictionary on a click.
+ * One word of a page's line: pointed at, it shows in the reader's word bar; clicked, it is looked up.
  *
- * Hover or focus shows what the grammar read in the word, above it: its English,
- * the word it comes from, and its role. A click (Enter from the keyboard) looks
- * it up in the dictionary. A finger has no hover, so the first tap shows the
- * same and its Look up button is the click. The text stays plain text, a span
- * among spaces, so a reader can select a run of words and copy it whole.
+ * Hover or keyboard focus chooses the word, and the bar at the foot of the
+ * reader (PageWordBar) shows what the grammar read in it. A click, or Enter,
+ * looks it up in the dictionary. A finger has no hover, so its first tap only
+ * chooses the word and the bar's own Look up button is the way on. The word
+ * stays plain text, a span among spaces, so a reader can select a run of words
+ * and copy it whole.
  *
- * The note is kept on screen: near either edge it is slid back in rather than
- * cut off or pushing the page wider.
+ * One bar for the whole page rather than a note floating over each word: a note
+ * covered the line above, ran off the side of a phone, vanished when the mouse
+ * crossed the gap to its button, and took the focus with it.
  */
-import { useLayoutEffect, useRef, useState } from 'react'
+import { useRef } from 'react'
 
-import ArabicText from '../ui/text/ArabicText'
-
-const EDGE = 12
-
-export default function PageWord({ word, onLookup }) {
-  const [open, setOpen] = useState(false)
+export default function PageWord({ word, chosen, onChoose, onLookup }) {
+  // Whether the word was already chosen when the finger came down: a tap's focus chooses it before its click lands.
+  const wasChosen = useRef(false)
   const touch = useRef(false)
-  // Whether the note was open when the finger came down: a tap's focus opens it before its click lands.
-  const wasOpen = useRef(false)
-  const note = useRef(null)
-  const [shift, setShift] = useState(0)
-
-  useLayoutEffect(() => {
-    if (!open || !note.current) return setShift(0)
-    const { left, right } = note.current.getBoundingClientRect()
-    const width = document.documentElement.clientWidth
-    setShift(left < EDGE ? EDGE - left : right > width - EDGE ? width - EDGE - right : 0)
-  }, [open])
-
-  const lookUp = () => { setOpen(false); onLookup(word.base || word.arabic) }
-  const about = [word.lemma && word.lemma !== word.arabic ? word.lemma : '', word.role || word.pos].filter(Boolean)
+  const lookUp = () => (onLookup ? onLookup(word.base || word.arabic) : onChoose())
 
   return (
     <span
-      className="page-word relative inline-block"
-      onMouseEnter={() => setOpen(true)}
-      onMouseLeave={() => setOpen(false)}
+      role="button"
+      tabIndex={0}
+      aria-label={`${word.arabic}: ${word.english || 'look it up'}`}
+      aria-pressed={chosen}
+      onMouseEnter={() => onChoose()}
+      onFocus={() => onChoose()}
+      onPointerDown={(event) => { touch.current = event.pointerType === 'touch'; wasChosen.current = chosen }}
+      onClick={() => (touch.current && !wasChosen.current ? onChoose() : lookUp())}
+      onKeyDown={(event) => { if (event.key === 'Enter') lookUp() }}
+      className={`page-word rounded-[var(--radius-sm)] px-0.5 cursor-pointer transition-colors outline-none
+        focus-visible:ring-2 focus-visible:ring-[var(--c)] ${chosen ? 'bg-[var(--surface-hi)] text-[var(--c)]' : 'hover:text-[var(--c)]'}`}
     >
-      <span
-        role="button"
-        tabIndex={0}
-        aria-expanded={open}
-        aria-label={`${word.arabic}: ${word.english || 'look it up'}`}
-        onPointerDown={(event) => { touch.current = event.pointerType === 'touch'; wasOpen.current = open }}
-        onClick={() => (touch.current && !wasOpen.current ? setOpen(true) : lookUp())}
-        onKeyDown={(event) => { if (event.key === 'Enter') lookUp(); if (event.key === 'Escape') setOpen(false) }}
-        onFocus={() => setOpen(true)}
-        onBlur={() => setOpen(false)}
-        className={`rounded-[var(--radius-sm)] px-0.5 cursor-pointer transition-colors outline-none
-          focus-visible:ring-2 focus-visible:ring-[var(--c)] ${open ? 'bg-[var(--surface-hi)] text-[var(--c)]' : 'hover:text-[var(--c)]'}`}
-      >
-        {word.arabic}
-      </span>
-      {open && (
-        <span
-          ref={note}
-          role="tooltip"
-          dir="ltr"
-          style={{ transform: `translateX(calc(-50% + ${shift}px))` }}
-          className="rise-in absolute bottom-full left-1/2 mb-1.5 z-[var(--layer-tip)] w-max max-w-[min(16rem,calc(100vw-2rem))]
-            flex flex-col items-center gap-0.5 px-3 py-2 rounded-[var(--radius-md)] text-center
-            bg-[var(--surface-hi)] border border-[var(--border-hi)] shadow-[var(--shadow-pop)]"
-        >
-          <span className="type-body text-[var(--text)] leading-snug" lang="en">{word.english || 'No English for this word'}</span>
-          {about.length > 0 && (
-            <ArabicText size="sm" className="text-[var(--text-dim)]">{about.join(' · ')}</ArabicText>
-          )}
-          {/* The finger's way to the dictionary, the mouse's being the click itself. */}
-          <button
-            type="button"
-            onMouseDown={(event) => event.preventDefault()}
-            onClick={lookUp}
-            className="type-label underline text-[var(--text-dim)] hover:text-[var(--text)]"
-          >
-            Look up
-          </button>
-        </span>
-      )}
+      {word.arabic}
     </span>
   )
 }

@@ -47,11 +47,15 @@ const LETTERS = config.entry['paragraph-letters']
 
 // After a full stop or question mark, never inside the "..." between the two
 // halves of a verse, and never inside a number (3.5): the mark must have space
-// or the end after it.
-const SENTENCE_END = /(?<=(?<!\.)[.؟!?])\s+/
+// or the end after it. Never after one Arabic letter standing alone either: that
+// is a short form (د. for doctor, ص. for page), not the end of a sentence. An
+// ayah's number in its brackets (﴿٣﴾) ends one too: a verse copied in carries no
+// full stop.
+const END = String.raw`(?<!\.)(?<!(?:^|\s)[ء-ي])[.؟!?]|[0-9٠-٩]﴾`
+const SENTENCE_END = new RegExp(`(?<=${END})\\s+`, 'u')
 
 /** Whether a paragraph has a full stop anywhere in it: prose, cut into sentences, not a list of lines. */
-export const hasSentenceEnd = (part) => /(?<!\.)[.؟!?](?=\s|$)/.test(part)
+export const hasSentenceEnd = (part) => new RegExp(`(?:${END})(?=\\s|$)`, 'u').test(part)
 
 /** The sentences of one paragraph: its printed lines joined, then cut after each full stop. */
 export const sentencesOf = (part) => part.replace(/\s*\n\s*/g, ' ').trim().split(SENTENCE_END).filter(Boolean)
