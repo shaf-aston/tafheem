@@ -113,6 +113,12 @@ def kaffa_card(word: str, sister: str) -> tuple[str, str]:
     return kaffa["named"], kaffa["said"].format(word=word, bare=sister)
 
 
+def kaffa_chart() -> tuple[str, str]:
+    """The chart's names for an إن sister stopped by ما, cut in two: the sister's, then the ما's (ما الكافة)."""
+    chart = _closed()["families"]["inna"]["kaffa"]["chart"]
+    return chart["sister"], chart["ma"]
+
+
 def book_merges(family: str) -> dict:
     """A family's merged words (أَلَّا in nasb_mudari), or none."""
     return _closed()["families"][family].get("merges", {})

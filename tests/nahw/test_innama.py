@@ -34,3 +34,37 @@ def test_a_nominal_sentence_after_innama_keeps_its_mubtada_and_khabar():
     assert "اسمية" in strip_diacritics(answer["summary"])
     assert answer["words"][1]["role"] == "مبتدأ"
     assert "خبر" in [n.get("role") for n in leaves(answer["tree"]["tree"])]
+
+
+def drawn(answer: dict) -> list[tuple[str, str]]:
+    words = answer["tree"]["words"]
+    return [(strip_diacritics(words[n["word"]]), n.get("role")) for n in leaves(answer["tree"]["tree"])
+            if n.get("word") is not None and not n.get("children")]
+
+
+KAFFA = [("إِنَّمَا الْمُؤْمِنُونَ إِخْوَةٌ", "إن"),
+         ("كَأَنَّمَا يُسَاقُونَ إِلَى الْمَوْتِ", "كأن"),
+         ("أَنَّمَا إِلَٰهُكُمْ إِلَٰهٌ وَاحِدٌ", "أن"),
+         ("لَيْتَمَا زَيْدٌ قَائِمٌ", "ليت"),
+         ("لَعَلَّمَا زَيْدٌ قَائِمٌ", "لعل"),
+         ("لَكِنَّمَا زَيْدٌ قَائِمٌ", "لكن"),
+         ("إنما المؤمنون إخوة", "إن"),  # typed without vowels
+         ("ليتما زيد قائم", "ليت")]
+
+
+def test_every_sister_with_ma_is_drawn_as_the_stopped_sister_then_ma_al_kaffa():
+    """A ما written onto an إن sister is always ما الكافة (Ibn Aqil on إن and her sisters, page unchecked)."""
+    for sentence, sister in KAFFA:
+        answer = analyze(sentence)
+        assert drawn(answer)[:2] == [(sister, "حرف ناسخ مكفوف"), ("ما", "ما الكافة")], sentence
+        assert answer["words"][0]["name"] == "كافة ومكفوفة", sentence
+
+
+def test_a_joined_fa_stays_its_own_piece_before_the_stopped_sister():
+    assert drawn(analyze("فَإِنَّمَا عَلَيْكَ الْبَلَاغُ"))[:3] == [("ف", "حرف عطف"), ("إن", "حرف ناسخ مكفوف"), ("ما", "ما الكافة")]
+
+
+def test_a_verb_that_only_looks_like_laytama_stays_a_verb():
+    pieces = drawn(analyze("لِيَتِمَّا الْأَمْرُ"))
+    assert "ما الكافة" not in [role for _, role in pieces]
+    assert pieces[1] == ("يتما", "فعل مضارع للأمر")
