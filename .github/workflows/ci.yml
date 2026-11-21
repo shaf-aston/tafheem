@@ -39,7 +39,7 @@ jobs:
   # says so and skips, as the tests did before.
   nahw:
     runs-on: ubuntu-latest
-    timeout-minutes: 30  # a run takes about 10; a hang dumps where it is stuck (faulthandler_timeout) and stops here
+    timeout-minutes: 45  # a run takes 23-27 minutes, a slow runner about 34; a hang dumps where it is stuck (faulthandler_timeout) and stops here
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
       # The scores below can move with the processor (onnxruntime picks its math kernels per CPU),
