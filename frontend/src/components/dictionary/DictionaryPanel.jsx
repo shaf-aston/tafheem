@@ -23,6 +23,7 @@ import MicButton from '../ui/buttons/MicButton'
 import PictureButton from '../ui/buttons/PictureButton'
 import SmallButton from '../ui/buttons/SmallButton'
 import { pictureIn } from '../../lib/dictionary/shrinkPicture'
+import { onPageHanded, takePage } from '../../lib/dictionary/pageHandoff'
 import PageReader from './PageReader'
 import PlaceLinks from '../ui/text/PlaceLinks'
 import RecentRow from '../ui/inputs/RecentRow'
@@ -110,8 +111,19 @@ export default function DictionaryPanel({ accent, incoming, arrival, onGo, onVis
     event.preventDefault()
     openPage(pictureIn(event.dataTransfer) ?? event.dataTransfer.files[0])
   }
-  // Arriving from another tab with a word is a search: the page steps aside for it.
-  useArrivalEffect(arrival, () => setPageOpen(false))
+  // A picture handed from Home or the Ask sheet (lib/dictionary/pageHandoff): taken once this server can read,
+  // at once if it was handed before the panel was here, or when it is handed while the panel already is.
+  const opened = useRef(openPage)
+  useEffect(() => { opened.current = openPage })
+  useEffect(() => {
+    if (!canRead) return
+    const take = () => { const file = takePage(); if (file) opened.current(file) }
+    take()
+    return onPageHanded(take)
+  }, [canRead])
+  // Arriving from another tab with a word is a search: the page steps aside for it. Arriving with none
+  // (the first mount counts) leaves it: a picture handed from Home has just opened it.
+  useArrivalEffect(arrival, () => { if (arrival) setPageOpen(false) })
   // The picture's address is let go when the panel goes, as when a new picture replaces it.
   const lastPage = useRef(null)
   useEffect(() => { lastPage.current = page }, [page])
