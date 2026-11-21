@@ -204,7 +204,9 @@ def find(bases: list[dict], named: list[str | None], cases: list[str | None],
         # (the oath's answer, its verb built on the nun of emphasis, shows no jazm: the first verb its clause has)
         sworn = None
         if primer_lam(i):
-            sworn = answer if answer is not None else next((k for k in verbs if not joined(k)), None)
+            # its لام shows it past a relative's own verb (وَلَئِنْ لَمْ يَفْعَلْ مَا آمُرُهُ لَيُسْجَنَنَّ)
+            lam = next((k for k in verbs if not joined(k) and "ل" in before[k]), None)
+            sworn = lam if lam is not None else answer if answer is not None else next((k for k in verbs if not joined(k)), None)
             answer, tie, tie_at = None, None, None
         end = tie_at if tie else verb + 1 if answer is None else answer
         found.append({"opener": i, "verb": verb, "answer": answer, "tie": tie, "tie_at": tie_at, "frame": frame, "sworn": sworn,

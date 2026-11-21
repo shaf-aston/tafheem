@@ -110,6 +110,15 @@ def test_after_lain_the_answer_is_the_oaths_and_the_conditions_is_left_out(sente
     assert cards(sentence)[0]["reason"].startswith("حرف شرط جازم")
 
 
+def test_the_oaths_answer_is_the_verb_its_lam_opens_past_a_relatives_own_verb():
+    """12:32: آمُرُهُ is ما's صلة, never the oath's answer; the لام opens the answer, and what is joined to it goes with it."""
+    picture = top("وَلَئِن لَّمْ يَفْعَلْ مَا آمُرُهُ لَيُسْجَنَنَّ وَلَيَكُونًا مِّنَ الصَّاغِرِينَ")
+    answer = next(n for n in nodes(picture) if n.get("role") == "جواب القسم")
+    assert "اللام الواقعة في جواب القسم" in roles(answer)
+    assert "صلة" not in roles(answer)
+    assert "فعل ناقص" in roles(answer)  # وَلَيَكُونًا, joined to the answer
+
+
 def test_a_plain_conditions_answer_is_its_own():
     picture = top("إِنْ تَدْرُسْ تَنْجَحْ")
     assert [kid.get("role") for kid in picture["children"]][:2] == ["حرف شرط جازم", "فعل الشرط"]
