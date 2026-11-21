@@ -2,9 +2,9 @@
 from __future__ import annotations
 
 from backend.services.nahw.book import condition_of, is_one
-from backend.services.nahw.syntax.facts import is_preposition, spelled, sworn_by
+from backend.services.nahw.syntax.facts import is_preposition, is_verb, opens_answer_inside, spelled, sworn_by
 from backend.services.nahw.syntax.picture.hang import move_to, take_from
-from backend.services.nahw.syntax.picture.names import FRAMES
+from backend.services.nahw.syntax.picture.names import FRAMES, NAMED
 from backend.services.nahw.syntax.picture.state import Picture
 from backend.services.text.arabic_text import strip_diacritics
 
@@ -25,7 +25,7 @@ def draw_oaths(c: Picture) -> None:
         first = next((kid for kid in sorted(children_of[token["id"]], key=lambda k: k["id"])
                       if kid["pos"] == "PRT" and after < kid["id"] < token["id"]), None)
         return token["pos"] == "PRT" and is_one(token["lemma"], "jarr", "oath_answer") or bool(
-            first and is_one(first["lemma"], "jarr", "oath_answer"))
+            first and is_one(first["lemma"], "jarr", "oath_answer")) or opens_answer_inside(token, c.sentence, after)
 
     def to_top(token: dict) -> None:
         if token not in roots:
@@ -36,6 +36,12 @@ def draw_oaths(c: Picture) -> None:
         c.job_of[answer["id"]], c.place_of[answer["id"]] = oath["answer"], c.said["no_place"]
         c.clauses.add(answer["id"])
         c.framed.add(answer["id"])
+        # وَاللَّهِ لَزَيْدٌ قَائِمٌ: a nominal answer, its khabar at the top beside its مبتدأ, holds that مبتدأ as one sentence
+        lam_on = (by_id.get(after + 1) or {}).get("head")
+        if not is_verb(answer) and (subject := next((t for t in roots if t["id"] == lam_on and t["id"] < answer["id"]
+                                                     and c.role_of.get(t["id"]) == NAMED.mubtada), None)):
+            move_to(holder, subject, children_of[answer["id"]])
+            children_of[answer["id"]].sort(key=lambda kid: kid["id"])
         # past any particle before it: وَاللَّهِ إِنْ قَامَ زَيْدٌ لَأَقُومَنَّ has a condition's إنْ first
         if lam := next((t for t in c.drawn if after < t["id"] < answer["id"] and t["pos"] == "PRT"
                         and strip_diacritics(t["lemma"]).strip("+") == oath["lam"]["letter"]), None):
