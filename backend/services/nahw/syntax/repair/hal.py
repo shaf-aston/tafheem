@@ -10,7 +10,7 @@ from backend.services.nahw.syntax.facts import Sentence, may_be_nasb, describes,
 _TOLD_BY = (("kana", "words"), ("kana", "needs_negation"), ("kana", "needs_ma"), ("kaada", "words"), ("zanna", "words"))
 
 
-def hal_clause(bases: list[dict], s: Sentence) -> None:
+def hal_clause(s: Sentence) -> None:
     """جاء الولدُ وهو يبكي، دخل الوزيرُ والصحفيون ينتظرونه، وَهُمْ ظَاهِرُونَ: the parser may join هو
     to the noun before as a معطوف, or take it with the و; but a verb after it makes the pronoun a
     mubtada and the verb its khabar, the clause a hal (Tasheel 3.7). Hung as the parser hangs a
@@ -20,6 +20,7 @@ def hal_clause(bases: list[dict], s: Sentence) -> None:
     hangs on the و as well, so it is the khabar (Tasheel 1.4.4 p11), not a hal on the verb. After a sentence already said
     (الْحَلَالُ بَيِّنٌ وَالْحَرَامُ بَيِّنٌ, typed bare) the parser may hang the noun and the khabar both on the و: the
     و joins a second sentence (عطف الجمل, page unchecked), so the noun is told of that khabar, as above."""
+    bases = s.bases
     for subject, after in zip(bases, bases[1:]):
         waw = s.by_id.get(subject["id"] - 1)
         if not (waw and waw["pos"] == "PRT" and waw["lemma"].strip("+") == "و"):
@@ -76,7 +77,7 @@ def no_khabar_on_full_verb(s: Sentence) -> None:
         verb = s.head(token)
         if token["rel"] == "PRD" and verb and is_verb(verb) and indefinite_nasb(token) \
                 and not any(is_one(verb["lemma"], family, part) for family, part in _TOLD_BY):
-            token["rel"] = "MOD"
+            s.relabel(token, "MOD")
 
 
 def naat_beside_its_noun(s: Sentence) -> None:

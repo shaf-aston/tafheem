@@ -12,8 +12,9 @@ from backend.services.nahw.syntax.mask import above
 from backend.services.nahw.syntax.facts import SUBJECTS, Sentence, has_added, is_built, is_describing, is_elative, is_emphasis_lam, is_known, is_name, is_preposition, listed, noun_tagged, puts_in_jarr, shown_cases, stays_adverb, typed_case_of, typed_or_parsed_case, typed_tanween, tenseless_noun, verb_tagged, works_as_verb
 
 
-def typed_words(bases: list[dict], tokens: list[dict]) -> None:
+def typed_words(s: Sentence) -> None:
     """Reads what was typed into each base word (`typed`, set by `correct`): its vowels, and its kind and tense where they or the book say otherwise."""
+    bases, tokens = s.bases, s.tokens
     for i, token in enumerate(bases):
         word = token["typed"]
         # a tenseless "verb" CAMeL reads as a noun is that noun (facts.tenseless_noun); a word the book lists only as a ظرف,
@@ -29,7 +30,7 @@ def typed_words(bases: list[dict], tokens: list[dict]) -> None:
         if token["pos"] == "NOM" and token.get("pos_camel") == "prep" and only_adverb(token["lemma"]):
             for kid in tokens:
                 if kid["head"] == token["id"] and kid["rel"] == "OBJ":
-                    kid["rel"] = "IDF"
+                    s.relabel(kid, "IDF")
         # مُلَبِّينَ: no verb opens with مُ and ends in the plural ـونَ/ـينَ, so it is a participle, its case by
         # its place; so is one sarf read off its shape, whose ـينَ is nasb or jarr alike (noun_reader)
         elif (verb_tagged(token) or token.get("cas") == "u") and _participle_plural(word):
@@ -101,7 +102,7 @@ def typed_words(bases: list[dict], tokens: list[dict]) -> None:
                 # in raf' (Awdah V1 p85: ما يختص بمحل الرفع ... وياء المخاطبة كقومي)
                 for kid in tokens:
                     if kid["head"] == token["id"] and kid.get("token_type") == "enc0" and kid["form"] == "+ي":
-                        kid["rel"] = "SBJ"
+                        s.relabel(kid, "SBJ")
             elif verb and merged_prefix(own, book_words("ta_merges")):
                 token["asp"] = "i"  # تَطَّوَّعَ: the shadda is the second ta' merged in, so it is present
         # وَالَّذِي نَفْسِي بِيَدِهِ لَأَقْضِيَنَّ: a word the dictionary only guessed as a name, typed ending in the nun of emphasis (a vowel,
@@ -146,17 +147,18 @@ def adverb_only(s: Sentence) -> None:
         head = s.head(token)
         if stays_adverb(token) and (token["rel"] in (*SUBJECTS, "PRD")
                                     or token["rel"] == "OBJ" and head and head["pos"] == "PRT" and not is_preposition(head)):
-            token["rel"] = "MOD"
+            s.relabel(token, "MOD")
 
 
-def since_jarr(tokens: list[dict]) -> None:
+def since_jarr(s: Sentence) -> None:
     """مُنْذُ أَمْسِ: a built time word that is also on the book's list of prepositions (منذ، مذ) is a
     preposition before a noun, the noun its majrur; the parser can read it as a conjunction.
     Before a verb it stays what it read."""
+    tokens = s.tokens
     for since, noun in zip(tokens, tokens[1:]):
         if is_built_word(since["lemma"]) and is_one(since["lemma"], "jarr") and noun["pos"] == "NOM":
             since.update(pos="PRT", pos_camel="prep")
-            noun["head"], noun["rel"] = since["id"], "OBJ"
+            s.relink(noun, since["id"], "OBJ")
 
 
 def _only_conditional_noun(lemma: str) -> bool:
@@ -174,7 +176,7 @@ def described_after_tanween(s: Sentence) -> None:
         head = s.head(token)
         if (head and token["rel"] == "IDF" and noun_tagged(token) and not works_as_verb(head)
                 and typed_tanween(head) and typed_tanween(token) and typed_case_of(token) == typed_case_of(head)):
-            token["rel"] = "MOD"
+            s.relabel(token, "MOD")
 
 
 def jarr_after_mudaf(s: Sentence) -> None:
@@ -191,12 +193,12 @@ def jarr_after_mudaf(s: Sentence) -> None:
                 and (typed_case_of(before) is not None or is_built(before)) and not typed_tanween(before)
                 and not (typed_case_of(before) == "a" and puts_in_jarr(before, s))):
             head, rel = word["head"], word["rel"]
-            _add_to(tokens, before, word)
+            _add_to(s, before, word)
             # ثُمَّ جَعَلَ مِنْ بَعْدِ قُوَّةٍ ضَعْفًا: the verb's object the parser saw is a مضاف إليه, and a word in nasb it hung on
             # it described nothing of it (a نعت wears its noun's case, Tasheel 3.10.1): it is the object in its place
             owed = next((k for k in tokens if k["head"] == word["id"] and k["rel"] == "MOD" and noun_tagged(k) and typed_case_of(k) == "a"), None)
             if owed and rel == "OBJ" and verb_tagged(s.by_id[head]):
-                owed["head"], owed["rel"] = head, rel
+                s.relink(owed, head, rel)
 
 
 def number_after_one(s: Sentence) -> None:
@@ -205,26 +207,27 @@ def number_after_one(s: Sentence) -> None:
     for before, word in pairwise(s.tokens):
         if (word["head"] == before["id"] and word["rel"] == "MOD" and typed_case_of(word) == "i" and listed(word, "adad_mudaf")
                 and noun_tagged(before) and before.get("num") == "s" and not is_known(before, s)):
-            _add_to(s.tokens, before, word)
+            _add_to(s, before, word)
 
 
-def nunless_mudaf(tokens: list[dict]) -> None:
+def nunless_mudaf(s: Sentence) -> None:
     """كَانَتْ بَنُو إِسْرَائِيلَ typed bare: the nun of a sound masculine plural is dropped when it is added
     (Alfiyya: نُونًا تَلِي الْإِعْرَابَ أَوْ تَنْوِينًا مِمَّا تُضِيفُ احْذِفْ), so one written with a final و and no nun is the
     مضاف of the noun straight after it, which shows no case of its own to say otherwise, whatever the parser hung it on."""
+    tokens = s.tokens
     for before, word in pairwise(tokens):
         if (noun_tagged(before) and before.get("num") == "p" and before.get("gen") == "m"
                 and strip_diacritics(before.get("typed") or "").endswith("و")
                 and noun_tagged(word) and word["rel"] != "IDF" and typed_case_of(word) is None):
-            _add_to(tokens, before, word)
+            _add_to(s, before, word)
 
 
-def _add_to(tokens: list[dict], before: dict, word: dict) -> None:
+def _add_to(s: Sentence, before: dict, word: dict) -> None:
     """`word` is the مضاف إليه of `before`. A مضاف the parser hung under that word takes the word's place first,
     so the link closes no loop."""
-    if above([t["head"] for t in tokens], before["id"], word["id"]):
-        before["head"], before["rel"] = word["head"], word["rel"]
-    word["head"], word["rel"] = before["id"], "IDF"
+    if above([t["head"] for t in s.tokens], before["id"], word["id"]):
+        s.relink(before, word["head"], word["rel"])
+    s.relink(word, before["id"], "IDF")
     before["mudaf"] = True
 
 
@@ -248,22 +251,23 @@ def described_known(s: Sentence) -> None:
             s.relink(word, noun["id"], "MOD")
 
 
-def emphasis_lam_opener(tokens: list[dict]) -> None:
+def emphasis_lam_opener(s: Sentence) -> None:
     """لَزَيْدٌ قَائِمٌ، وَلَلْآخِرَةُ خَيْرٌ لَكَ: the لام of emphasis (facts.is_emphasis_lam) governs nothing,
     so a noun the parser hung on it as a جار's majrur is in that لام's place: it hangs where the لام hung,
     what hung on the لام hangs on it, and the لام on it (لام الابتداء). That لام has the head of the
     sentence, so its word's khabar never comes before it (Ibn Aqil V1 p236: لام الابتداء لها صدر الكلام،
     فلا تقول قائم لزيد), and it comes onto no فاعل: the word hung on a word after it, as its صفة or
     its doer (لَأَنْتُمْ أَشَدُّ رَهْبَةً، لَزَيْدٌ يَقُومُ، عَلِمْتُ لَزَيْدٌ قَائِمٌ), is its مبتدأ."""
+    tokens = s.tokens
     by_id = {t["id"]: t for t in tokens}
     for i, (lam, word) in enumerate(pairwise(tokens)):
         if not (word["head"] == lam["id"] and noun_tagged(word) and is_emphasis_lam(tokens, i)):
             continue
         for kid in tokens:
             if kid["head"] == lam["id"]:
-                kid["head"] = word["id"]
-        word["head"], word["rel"] = lam["head"], lam["rel"]
-        lam["head"], lam["rel"] = word["id"], "MOD"
+                s.relink(kid, word["id"], kid["rel"])
+        s.relink(word, lam["head"], lam["rel"])
+        s.relink(lam, word["id"], "MOD")
         told = by_id.get(word["head"])
         if told and told["id"] > word["id"]:
-            word["rel"] = "SBJ"
+            s.relabel(word, "SBJ")

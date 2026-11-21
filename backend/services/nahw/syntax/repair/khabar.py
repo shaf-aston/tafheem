@@ -66,7 +66,7 @@ def naat_not_subject(s: Sentence) -> None:
                 and token.get("stt") == "d" and noun_tagged(token) and not is_verb(token)
                 and noun_tagged(noun) and is_known(noun, s) and not is_describing(noun) and works_as_verb(noun) is None
                 and typed_or_parsed_case(token) == typed_or_parsed_case(noun)):
-            token["rel"] = "MOD"
+            s.relabel(token, "MOD")
 
 
 def hasr_khabar(s: Sentence) -> None:
@@ -127,7 +127,7 @@ def before_la(s: Sentence) -> None:
             noun = s.by_id.get(la["id"] + 1)
             if noun and noun["head"] == la["id"] and noun["rel"] == "PRD" and noun_tagged(noun) \
                     and not any(subject_link(k) for k in s.kids(la)):
-                noun["rel"] = "SBJ"
+                s.relabel(noun, "SBJ")
         # اللَّهُمَّ أَنْتَ رَبِّي لَا إِلَهَ إِلَّا أَنْتَ: a raf' pronoun hung on لا from before it is no part of its sentence
         # either; it is a mubtada, and the noun straight after it, hung on it, its khabar (a pronoun takes no صفة)
         elif (la and la["pos"] == "PRT" and strip_diacritics(la["form"]) == "لا" and token["id"] < la["id"]
@@ -151,7 +151,7 @@ def la_over_its_khabar(s: Sentence) -> None:
                 and khabar and khabar["head"] == 0 and khabar["id"] > la["id"] + 1 and noun_tagged(khabar)
                 and noun and noun_tagged(noun) and noun["head"] == la["id"] and noun["rel"] in ("SBJ", "PRD")):
             s.relink(la, 0, "---")
-            noun["rel"] = "SBJ"
+            s.relabel(noun, "SBJ")
             s.relink(khabar, la["id"], "PRD")
 
 
@@ -182,7 +182,7 @@ def after_pointer(s: Sentence) -> None:
         elif (token.get("pos_camel") == "pron_dem" and token["rel"] == "MOD" and head and head["head"] == 0
                 and head["id"] > token["id"] and head.get("pos_camel") in ("noun", "adj")
                 and not is_known(head, s) and typed_case_of(head) != "a"):
-            token["rel"] = "SBJ"
+            s.relabel(token, "SBJ")
 
 
 def name_not_told_by_ma(s: Sentence) -> None:
@@ -301,7 +301,7 @@ def zarf_is_no_subject(s: Sentence) -> None:
         head = s.head(token)
         if (token["rel"] == "SBJ" and is_zarf(token, s) and typed_case_of(token) != "u" and head
                 and head["head"] == 0 and head["id"] > token["id"] and noun_tagged(head) and not is_known(head, s)):
-            token["rel"] = "MOD"
+            s.relabel(token, "MOD")
 
 
 def khabar_said_first(s: Sentence) -> None:
@@ -315,7 +315,7 @@ def khabar_said_first(s: Sentence) -> None:
             first, second = khabars
             if (is_zarf(first, s) and first["id"] < second["id"] and noun_tagged(second)
                     and not is_known(second, s)):
-                second["rel"] = "SBJ"
+                s.relabel(second, "SBJ")
 
 
 def jar_off_particle(s: Sentence) -> None:
@@ -333,7 +333,7 @@ def jar_off_particle(s: Sentence) -> None:
             if khabar and is_participle(khabar):
                 s.relink(jar, khabar["id"], "MOD")
             elif not khabar:
-                jar["rel"] = "PRD"
+                s.relabel(jar, "PRD")
                 khabar = jar
 
 
@@ -402,14 +402,14 @@ def object_of_noun(s: Sentence) -> None:
         # told of that subject, a sentence of its own after the call (hung on it as the parser hangs one after يا)
         if (opener and token["rel"] == "OBJ" and is_called_alone(opener) and opener["id"] < token["id"]
                 and any(k["rel"] == "SBJ" and k["id"] < token["id"] for k in s.kids(token))):
-            token["rel"] = "MOD"
+            s.relabel(token, "MOD")
             continue
         # زَيْدٌ مَا رَأَيْتُهُ: a built word shows no case to forbid it (is_built)
         if not (opener and token["rel"] == "OBJ" and opener["id"] < token["id"] and (typed_case_of(token) == "u" or is_built(token))
                 and not is_verb(opener) and not works_as_verb(opener)
                 and (behind_jar or opener["rel"] == "---" and typed_case_of(opener) == "u")):
             continue
-        token["rel"] = "SBJ" if behind_jar else "PRD"
+        s.relabel(token, "SBJ" if behind_jar else "PRD")
         if is_elative(token):
             for kid in s.kids(opener):
                 if kid["rel"] == "OBJ" and kid["id"] > token["id"] and typed_case_of(kid) == "a" and not is_known(kid, s):
@@ -426,7 +426,7 @@ def elative_specified(s: Sentence) -> None:
         head = s.head(token)
         if head and token["rel"] == "IDF" and is_elative(head) and typed_case_of(token) == "a" \
                 and not is_known(token, s) and not shows_jarr(token):
-            token["rel"] = "TMZ"
+            s.relabel(token, "TMZ")
 
 
 # the attached pronoun's letters, by the number and gender it stands for
