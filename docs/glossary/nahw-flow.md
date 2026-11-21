@@ -111,6 +111,12 @@ Before labels are chosen, the book's masks rule labels out (`backend/services/na
 - nasab: name + ابن/بن + noun → صفة and مضاف chain; next noun = خبر in a verbless sentence (`backend/services/nahw/syntax/repair/nasab.py`)
 - untied_command: a command read as a jazm condition's answer (إن تضربْ أضربْ) with no فاء on it → jussive present, جواب الشرط (`backend/services/nahw/syntax/repair/answer.py`)
 - stamp: particle families from the particle decision tree, one reading per small word (`backend/services/nahw/syntax/particles.py`)
+- emphasis_lam_frees_its_word: a لام of emphasis governs nothing → the place the parser gave it is its word's, and it hangs on that word (`backend/services/nahw/syntax/particles.py`)
+- hasr_frees_its_words: a word hung on the restricting إلا → the verb above's; in raf' with no doer yet, its doer; كان's اسم or خبر (`backend/services/nahw/syntax/particles.py`)
+- negation_settles_its_words: a verb hung under its negation → the two swapped: the negation hangs on the verb as its modifier (`backend/services/nahw/syntax/particles.py`)
+- wonder_settles_its_words: the wonder ما → مبتدأ, the verb after it a built past verb, the noun its object (ما أجمل السماء) (`backend/services/nahw/syntax/particles.py`)
+- asks_settles_its_words: a question ما/من → the مبتدأ of a verb of informing, else the fronted khabar over the noun after it (`backend/services/nahw/syntax/particles.py`)
+- idhan_settles_its_words: إذن read as the particle → it hangs on its present verb, as لن does (`backend/services/nahw/syntax/particles.py`)
 - untangle: after book_links and every repair, a word left in a loop → the parser's own link back, or the root (`backend/services/nahw/syntax/repair/__init__.py`)
 <!-- /list -->
 

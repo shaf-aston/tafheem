@@ -786,38 +786,39 @@ def _amma_names_its_fa(tokens: list[dict], s: facts.Sentence) -> None:
             fa["reading"] = {"family": "ghair_amila_other", "named": named["ف"], "kind": "harf", "book": None}
 
 
-def _emphasis_lam_frees_its_word(tokens: list[dict]) -> None:
+def emphasis_lam_frees_its_word(s: facts.Sentence) -> None:
     """إِنَّ هَذَا لَسِحْرٌ، إِنَّ اللَّهَ لَغَفُورٌ: the لام of emphasis (_emphasis_lam) governs nothing, so
     a place the parser gave it (here خبر إنّ) is the place of the word it is written onto, and the لام
     hangs on that word, as in إِنَّ زَيْدًا لَجَالِسٌ."""
+    tokens = s.tokens
     for lam, word in zip(tokens, tokens[1:]):
         if facts.reading(lam) != "ghair_amila_other" or lam["form"] != "ل+" \
                 or lam["head"] in (0, word["id"]):
             continue  # لَزَيْدٌ قَائِمٌ: a لام the sentence rests on took no other word's place
         if word["head"] == lam["id"]:
-            word["head"], word["rel"] = lam["head"], lam["rel"]
-        lam["head"], lam["rel"] = word["id"], "MOD"
+            s.relink(word, lam["head"], lam["rel"])
+        s.relink(lam, word["id"], "MOD")
 
 
-def _hasr_frees_its_words(tokens: list[dict]) -> None:
+def hasr_frees_its_words(s: facts.Sentence) -> None:
     """لا تعبدوا إلا الله: the إلا of restriction excepts nothing, so the word the parser hung on
     it belongs to the verb above it, as in ما ضربتُ إلا زيدًا (Tasheel 3.8.7 p85). It takes the place
     the verb leaves open, so one in raf' under a verb with no doer yet is that doer whatever the
     parser hung it as (ما أنقذ الغريقَ إلا فتًى جريءٌ: فتى shows its raf' on its نعت). A كان sister takes no object:
     its word is one of its own two, as _kana_place reads it."""
-    s = facts.Sentence(tokens)
+    tokens = s.tokens
     for particle in tokens:
         verb = s.head(particle)
         if facts.reading(particle) == "hasr" and verb and facts.is_verb(verb):
             open_doer = not facts.own_doer(verb) and not facts.holds_doer(verb, s.kids(verb))
             for kid in s.kids(particle):
-                kid["head"] = verb["id"]
+                s.relink(kid, verb["id"], kid["rel"])
                 if kid["rel"] != "OBJ":
                     continue
                 if in_family(verb["lemma"], "kana"):
                     _kana_place(verb, kid, s)
                 elif open_doer and _typed_raf(kid, s):
-                    kid["rel"] = "SBJ"
+                    s.relabel(kid, "SBJ")
 
 
 def _kana_place(verb: dict, word: dict, s: facts.Sentence) -> None:
@@ -830,10 +831,10 @@ def _kana_place(verb: dict, word: dict, s: facts.Sentence) -> None:
     ism = next((k for k in s.kids(verb) if k["rel"] == "SBJ"), None)
     if _typed_raf(word, s):
         if ism:
-            ism["rel"] = "PRD"
-        word["rel"] = "SBJ"
+            s.relabel(ism, "PRD")
+        s.relabel(word, "SBJ")
     else:
-        word["rel"] = "PRD"
+        s.relabel(word, "PRD")
 
 
 def _typed_raf(word: dict, s: facts.Sentence) -> bool:
@@ -843,11 +844,11 @@ def _typed_raf(word: dict, s: facts.Sentence) -> bool:
     return facts.typed_case_of(word) == "u"
 
 
-def _wonder_settles_its_words(tokens: list[dict]) -> None:
+def wonder_settles_its_words(s: facts.Sentence) -> None:
     """ما أجمل السماء: a ما read as the wonder ما is the مبتدأ, the verb after it a built past verb
     (its hidden doer goes back to ما) and its clause the khabar, the noun its object. The parser
     tags and hangs these differently from one sentence to the next, so they are written over."""
-    s = facts.Sentence(tokens)
+    tokens = s.tokens
     for ma in tokens:
         if facts.reading(ma) != "wonder" or not (parts := _wonder_parts(ma, s)):
             continue
@@ -857,21 +858,21 @@ def _wonder_settles_its_words(tokens: list[dict]) -> None:
                     reading={"family": "wonder", "named": None, "kind": "fil", "book": ma["reading"]["book"]})
         three = {ma["id"], verb["id"], noun["id"]}
         outer = next((t for t in (verb, ma, noun) if t["head"] not in three), None)
-        ma["head"], ma["rel"] = (outer["head"], outer["rel"]) if outer else (0, "---")
-        verb["head"], verb["rel"] = ma["id"], "---"
-        noun["head"], noun["rel"] = verb["id"], "OBJ"
+        s.relink(ma, *((outer["head"], outer["rel"]) if outer else (0, "---")))
+        s.relink(verb, ma["id"], "---")
+        s.relink(noun, verb["id"], "OBJ")
         if specified := _after_object(noun, s):
-            specified["head"], specified["rel"] = verb["id"], "TMZ"  # ما أجملها ليلةً
+            s.relink(specified, verb["id"], "TMZ")  # ما أجملها ليلةً
 
 
-def _asks_settles_its_words(tokens: list[dict]) -> None:
+def asks_settles_its_words(s: facts.Sentence) -> None:
     """ما اسمك، وما أدراك: a ما or من read as the question word is a built noun. With a clause
     of its own after it (the verb of informing) it is that verb's مبتدأ; otherwise it is the
     khabar brought to the front and the noun after it its مبتدأ, hung on it. Standing after a verb,
     its clause is that verb's (قال ما اسمك). Hung on a preposition (لِمَنْ هذا الكتابُ) it is that
     preposition's majrur, and the جار ومجرور is the fronted khabar the noun hangs on. The parser
     tags and hangs these differently from one sentence to the next, so they are written over."""
-    s = facts.Sentence(tokens)
+    tokens = s.tokens
     def before(token: dict) -> dict | None:
         return next((t for t in reversed(tokens) if t["id"] < token["id"] and not facts.is_suffix(t)), None)
     for ma in tokens:
@@ -880,35 +881,35 @@ def _asks_settles_its_words(tokens: list[dict]) -> None:
         ma.update(pos="NOM", pos_camel="pron_interrog")
         jar = s.head(ma) if ma["rel"] == "OBJ" else None
         if not (jar and facts.is_preposition(jar)) and (verb := _informing(ma, s)):
-            ma["head"], ma["rel"] = verb["id"], "SBJ"
-            verb["head"], verb["rel"] = 0, "---"
+            s.relink(ma, verb["id"], "SBJ")
+            s.relink(verb, 0, "---")
             continue
         top = jar if jar and facts.is_preposition(jar) else ma
         if (noun := facts.next_word(ma, s)) and not facts.is_verb(noun):
-            noun["head"], noun["rel"] = top["id"], "SBJ"
+            s.relink(noun, top["id"], "SBJ")
         verb = before(top)
-        top["head"], top["rel"] = (verb["id"], "---") if verb and facts.is_verb(verb) else (0, "---")
+        s.relink(top, *((verb["id"], "---") if verb and facts.is_verb(verb) else (0, "---")))
 
 
-def _idhan_settles_its_words(tokens: list[dict]) -> None:
+def idhan_settles_its_words(s: facts.Sentence) -> None:
     """إِذَنْ أُكْرِمَكَ: an إذن read as the particle stands over its verb, as لن does, and the verb
     is the present one it works on. The parser took it for a noun with a past verb under it,
     so both are written over."""
-    s = facts.Sentence(tokens)
+    tokens = s.tokens
     for idhan in tokens:
         if not idhan.get("reading") or _word(idhan, s) != "إذن" or not (verb := _verb_after(idhan, s)):
             continue
         if verb["head"] == idhan["id"]:
-            verb["head"], verb["rel"] = idhan["head"], idhan["rel"]
-        idhan["head"], idhan["rel"] = verb["id"], "MOD"
+            s.relink(verb, idhan["head"], idhan["rel"])
+        s.relink(idhan, verb["id"], "MOD")
         verb["asp"] = "i"
 
 
-def _negation_settles_its_words(tokens: list[dict]) -> None:
+def negation_settles_its_words(s: facts.Sentence) -> None:
     """وَمَا قَلَىٰ: a negation is said of the verb after it and hangs on it as its modifier (مَا نَجَحَ زَيْدٌ). The
     parser may hang the verb under the particle, which then stands where the verb stands, as the object of the و
     before it (Tasheel 1.7 p18: only a noun is a حرف جر's majrur); the two are swapped."""
-    s = facts.Sentence(tokens)
+    tokens = s.tokens
     for ma in tokens:
         if facts.reading(ma) != "negation":
             continue
@@ -916,8 +917,9 @@ def _negation_settles_its_words(tokens: list[dict]) -> None:
         if not verb or above([t["head"] for t in tokens], ma["head"], verb["id"]):
             continue
         for kid in s.kids(ma):
-            kid["head"] = verb["id"]
-        verb["head"], verb["rel"], ma["head"], ma["rel"] = ma["head"], ma["rel"], verb["id"], "MOD"
+            s.relink(kid, verb["id"], kid["rel"])
+        s.relink(verb, ma["head"], ma["rel"])  # the verb takes the place the negation stood in
+        s.relink(ma, verb["id"], "MOD")
 
 
 @lru_cache(maxsize=1)
@@ -942,11 +944,11 @@ def negates(token: dict) -> None:
     _read(token, walker.walk({"word": "لا", "next": "verb"}, _tree()))
 
 
-def stamp(tokens: list[dict]) -> None:
+def stamp(s: facts.Sentence) -> None:
     """Stamp each listed word's reading on its token: {family, named, kind, book, sense}, and the
     families the tree judges for it as `judged`. A word no leaf took (a و that opens no
     sentence) is read by its other lists as before, never as one of those families."""
-    s = facts.Sentence(tokens)
+    tokens = s.tokens
     # a word class written over first (ما قبل إلا is a particle) is seen by the words read after it
     for token in sorted(tokens, key=lambda t: _word(t, s) not in _retagged()):
         token.pop("reading", None)
@@ -963,9 +965,3 @@ def stamp(tokens: list[dict]) -> None:
     _emphasis_lam(tokens, s)
     _qad_names_its_sense(tokens, s)
     _amma_names_its_fa(tokens, s)
-    _emphasis_lam_frees_its_word(tokens)
-    _hasr_frees_its_words(tokens)
-    _negation_settles_its_words(tokens)
-    _wonder_settles_its_words(tokens)
-    _asks_settles_its_words(tokens)
-    _idhan_settles_its_words(tokens)

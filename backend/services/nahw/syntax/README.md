@@ -80,8 +80,9 @@ closed_words.json (the list)  → nahw_book question  → naming FINISHES step (
 
 Rule of thumb: fix the cause by a grammar rule. Never key a fix to one sentence or one hadith.
 
-A new repair is one function in its `repair/` module: it takes the `Sentence` (`s`, with `bases` first when it reads the
-typed words) and moves links with `s.relink`. Then one line in `PASSES` (`repair/__init__.py`, the order) and one line in
+A new repair is one function in its `repair/` module: it takes the `Sentence` (`s`; the typed words are
+`s.bases`) and moves links with `s.relink` / `s.relabel`, never by writing `head` or `rel` itself.
+Then one line in `PASSES` (`repair/__init__.py`, the order) and one line in
 `docs/glossary/nahw-flow.md` (a test keeps the two equal).
 
 ## Verifying a change
