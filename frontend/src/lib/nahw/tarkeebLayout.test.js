@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { cells, fold, foldRows, groupThreads, hiddenWords, measure, rows, threadSpans, tones } from './tarkeebLayout'
+import { align, cells, fold, foldRows, groupThreads, hiddenWords, layout, measure, rows, textOf, threadSpans, tones } from './tarkeebLayout'
 
 /** Shaped exactly as the API sends it: empty arrays, not missing keys. */
 const AYAH = {
@@ -224,5 +224,112 @@ describe('groupThreads', () => {
   it('does not thread a unit with no job to reach', () => {
     const plain = { label: 'جملة', children: [{ label: 'x', children: [leaf(0, 'a'), leaf(1, 'b')] }, { label: 'y', children: [{ label: 'z', children: [leaf(2, 'c'), leaf(3, 'd')] }, leaf(4, 'e')] }] }
     expect(groupThreads(rows(plain, 5))).toEqual([])
+  })
+})
+
+// فَـ + سَوَّىٰهُنَّ cut into two columns of one written word, then an understood
+// (ثابت) column, then a plain word: the shapes a tapped word has to survive.
+const CUT = {
+  words: ['فَ', 'سَوَّىٰهُنَّ', '(ثابت)', 'زَيْدٌ'],
+  written: [0, 0, -1, 1],
+  tree: {
+    label: 'جُمْلَةٌ',
+    parts: [],
+    children: [
+      { word: 0, role: 'حَرْفُ عَطْفٍ', tone: 'harf', children: [], parts: [] },
+      { word: 1, role: 'فِعْلٌ', tone: 'verb', children: [], parts: [] },
+      { word: 2, role: 'خَبَرٌ', tone: 'khabar', hidden: true, children: [], parts: [] },
+      { word: 3, role: 'فَاعِلٌ', tone: 'fail', children: [], parts: [] },
+    ],
+  },
+}
+
+describe('textOf', () => {
+  it('joins the pieces of one written word and spaces written words', () => {
+    expect(textOf(CUT, [0, 1, 3])).toBe('فَسَوَّىٰهُنَّ زَيْدٌ')
+  })
+
+  it('copies a word typed with a tatweel as it was typed', () => {
+    expect(textOf({ words: ['اللـه'] }, [0])).toBe('اللـه')
+  })
+
+  it('spaces every column when nothing says which word it was cut from', () => {
+    expect(textOf({ words: ['أ', 'ب'] }, [0, 1])).toBe('أ ب')
+  })
+})
+
+describe('layout', () => {
+  it('gives one entry per written word, its pieces in their own colours and its place on the page', () => {
+    const { written } = layout(CUT)
+    expect(written.map((w) => [w.from, w.to, w.text, w.hidden, w.nth])).toEqual([
+      [0, 1, 'فَسَوَّىٰهُنَّ', false, 0],
+      [2, 2, '(ثابت)', true, null],
+      [3, 3, 'زَيْدٌ', false, 1],
+    ])
+    expect(written[0].pieces).toEqual([{ text: 'فَ', tone: 'harf' }, { text: 'سَوَّىٰهُنَّ', tone: 'verb' }])
+  })
+
+  it('hands a tap the word without the tatweel a book\'s example cuts with (فَـ)', () => {
+    expect(layout({ ...CUT, words: ['فَـ', ...CUT.words.slice(1)] }).written[0].text).toBe('فَسَوَّىٰهُنَّ')
+  })
+
+  it('merged, draws each written word in one column, and counts the page the same way', () => {
+    const merged = layout(CUT, { mode: 'merged' })
+    expect(merged.words).toHaveLength(3)
+    expect(merged.written.map((w) => w.nth)).toEqual(layout(CUT).written.map((w) => w.nth))
+  })
+
+  it('holds back the rows past `keep`, and says how many', () => {
+    const deep = (word, last) => (word === last
+      ? { word, role: 'خَبَرٌ', children: [], parts: [] }
+      : { label: 'جُمْلَةٌ', children: [{ word, role: 'مُبْتَدَأٌ', children: [], parts: [] }, deep(word + 1, last)], parts: [] })
+    const tarkeeb = { words: ['أ', 'ب', 'ت', 'ث'], tree: deep(0, 3) }
+    expect(layout(tarkeeb).levels).toHaveLength(3)
+    const folded = layout(tarkeeb, { keep: 2 })
+    expect([folded.levels.length, folded.more]).toEqual([2, 1])
+    expect(folded.threads.every((t) => t.to <= 2)).toBe(true)
+  })
+})
+
+describe('align', () => {
+  const page = (...texts) => texts.map((text, nth) => ({ text, hidden: false, nth }))
+  const listed = (key, ...texts) => texts.map((text, at) => ({ [key]: text, at }))
+  const ats = (found) => found.map((item) => item?.at)
+
+  it('by place, takes the nth card for the nth word when the counts agree, whatever the spelling', () => {
+    // an ayah's record writes ٱلرَّحْمَٰنِ where الرحمن was typed: still that card
+    const cards = listed('word', 'بسم', 'الله', 'الرحمن')
+    expect(ats(align(page('بِسْمِ', 'ٱللَّهِ', 'ٱلرَّحْمَٰنِ'), cards, 'word', { byPlace: true }))).toEqual([0, 1, 2])
+  })
+
+  it('leaves an understood word out: it has no card', () => {
+    const written = [...page('قَامَ'), { text: '(ثابت)', hidden: true, nth: null }, { text: 'زَيْدٌ', hidden: false, nth: 1 }]
+    expect(ats(align(written, listed('word', 'قام', 'زيد'), 'word', { byPlace: true }))).toEqual([0, 1])
+  })
+
+  it('never trusts the English list by place: as long as the page by chance, each word still needs its own letters', () => {
+    const glosses = listed('arabic', 'في البيت', 'رجل', 'و', 'قال')
+    expect(ats(align(page('في', 'البيت', 'رجل', 'وقال'), glosses, 'arabic'))).toEqual([undefined, undefined, 1, undefined])
+  })
+
+  it('keeps the order of both, so a word said twice gets its own item, not the next one\'s', () => {
+    // the English list dropped the first قال: the second keeps its own
+    expect(ats(align(page('قال', 'زيد', 'قال'), listed('arabic', 'زيد', 'قال'), 'arabic'))).toEqual([undefined, 0, 1])
+    // counts apart, a repeated word nearer its own place
+    const cards = listed('word', 'زيد', 'قال', 'إن', 'زيد', 'قائم')
+    expect(ats(align(page('قال', 'إن', 'زيد'), cards, 'word', { byPlace: true }))).toEqual([1, 2, 3])
+  })
+
+  it('never gives one item to two words', () => {
+    expect(ats(align(page('زيد', 'زيد'), listed('word', 'زيد', 'هو', 'قائم'), 'word'))).toEqual([0, undefined])
+  })
+
+  it('finds nothing for a word with no item of its letters, and nothing at all from no list', () => {
+    expect(ats(align(page('قال', 'عمرو'), listed('word', 'قال', 'زيد', 'هو'), 'word'))).toEqual([0, undefined])
+    expect(align(page('قال'), undefined, 'arabic')).toEqual([undefined])
+  })
+
+  it('matches no word to an item with no Arabic, even one whose letters come to nothing', () => {
+    expect(ats(align(page('َ', 'قال'), [{ at: 0 }, ...listed('arabic', 'قال').map((g) => ({ ...g, at: 1 }))], 'arabic'))).toEqual([undefined, 1])
   })
 })
