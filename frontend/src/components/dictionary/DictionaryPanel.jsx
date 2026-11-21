@@ -1,5 +1,5 @@
 /** Arabic to English, and back the other way. */
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 import { searchDictionary, translateSentence } from '../../api'
 import config from '../../config/dictionary.json'
@@ -19,6 +19,10 @@ import ChipRow from '../ui/inputs/ChipRow'
 import ErrorAlert from '../ui/feedback/ErrorAlert'
 import ExampleChips from '../ui/inputs/ExampleChips'
 import MicButton from '../ui/buttons/MicButton'
+import PictureButton from '../ui/buttons/PictureButton'
+import SmallButton from '../ui/buttons/SmallButton'
+import { pictureIn } from '../../lib/dictionary/shrinkPicture'
+import PageReader from './PageReader'
 import PlaceLinks from '../ui/text/PlaceLinks'
 import RecentRow from '../ui/inputs/RecentRow'
 import SearchBox from '../ui/inputs/SearchBox'
@@ -49,7 +53,7 @@ const languageOf = (text) => (/[a-z]/i.test(text) && !isArabic(text) ? 'en' : 'a
 const isSentence = (text) => text.split(/\s+/).filter((w) => w.length > 1).length > 1
 
 export default function DictionaryPanel({ accent, incoming, arrival, onGo, onVisit }) {
-  const { dictionaryLoaded } = useHealth()
+  const { dictionaryLoaded, pageReader } = useHealth()
   const missing = dictionaryLoaded === false
 
   // How many Recent keeps is session.json's recent-kept; unlimited buried the
@@ -73,10 +77,34 @@ export default function DictionaryPanel({ accent, incoming, arrival, onGo, onVis
   // search too, put in the box so the reader can see where they have got to.
   const submit = (given) => { if (!missing) lookUp(given) }
 
+  // A picture of a page: picked, pasted or dropped. The reader stays mounted
+  // while a word from it is looked up, so "Back to the page" finds it as left.
+  const canRead = pageReader !== 'none'
+  // The picture's address is made here, when it is picked, and let go when the next one or Close
+  // replaces it: made inside the reader, React's second mount in development let it go too early.
+  const [page, setPage] = useState(null)
+  const [pageOpen, setPageOpen] = useState(false)
+  const reader = useRef(null)
+  const swapPage = (file) => {
+    if (page) URL.revokeObjectURL(page.shown)
+    setPage(file && { picture: file, shown: URL.createObjectURL(file), id: (page?.id ?? 0) + 1 })
+    setPageOpen(Boolean(file))
+  }
+  const openPage = (file) => { if (file && canRead) swapPage(file) }
+  const closePage = () => swapPage(null)
+  // A new page, or the way back to one, brings the reader into sight: on a phone it opens below the fold.
+  useEffect(() => { if (pageOpen) scrollToEl(reader.current, 'top') }, [pageOpen, page?.id])
+  const lookUpFromPage = (word) => { setPageOpen(false); submit(word) }
+  const takePicture = (event) => {
+    const file = pictureIn(event.clipboardData ?? event.dataTransfer)
+    if (file && canRead) { event.preventDefault(); openPage(file) }
+  }
+
   return (
-    <div className="panel panel-search">
-      <SectionHeader tab="dict" answered={Boolean(shown)}
-        subtitle="Search an Arabic word, a root or an English meaning, or translate a whole Arabic sentence."
+    <div className="panel panel-search" onPaste={takePicture} onDrop={takePicture}
+      onDragOver={(event) => { if (canRead && [...(event.dataTransfer?.types ?? [])].includes('Files')) event.preventDefault() }}>
+      <SectionHeader tab="dict" answered={Boolean(shown) || pageOpen}
+        subtitle={`Search an Arabic word, a root or an English meaning, or translate a whole Arabic sentence${canRead ? '; or read a picture of a page.' : '.'}`}
       />
 
       {/* Say the dictionary is not installed rather than letting every search
@@ -115,6 +143,7 @@ export default function DictionaryPanel({ accent, incoming, arrival, onGo, onVis
             accent={accent}
             title="Say the word"
           />
+          {canRead && <PictureButton onPicked={openPage} title="Read a picture of a page" />}
         </SearchBox>
 
         {/* Every recent word, whichever language it was in, each chip set in its
@@ -130,7 +159,7 @@ export default function DictionaryPanel({ accent, incoming, arrival, onGo, onVis
 
         {/* True whichever language is typed, so it no longer waits on a toggle
             to be set the right way before it can be read. */}
-        {!query && !shown && (
+        {!query && !shown && !pageOpen && (
           <>
             {/* First visit has nothing to click; these give it something. */}
             <ExampleChips
@@ -142,16 +171,29 @@ export default function DictionaryPanel({ accent, incoming, arrival, onGo, onVis
         )}
       </QuestionForm>
 
-      {mutation.isError && (
+      {page && (
+        <div hidden={!pageOpen} ref={reader} className="scroll-mt-[calc(var(--app-header-h,0px)+1rem)]">
+          <PageReader key={page.id} picture={page.picture} shown={page.shown} accent={accent} onPicked={openPage} onClose={closePage} onLookup={lookUpFromPage} onGo={onGo} />
+        </div>
+      )}
+      {page && !pageOpen && (
+        <div><SmallButton onClick={() => setPageOpen(true)}>← Back to the page</SmallButton></div>
+      )}
+
+      {!pageOpen && mutation.isError && (
         <ErrorAlert title="Search failed" error={mutation.error} fallback="The dictionary file may not be installed yet." onRetry={() => submit()} />
       )}
 
-      {mutation.isPending && !shown && <AnalyzerSkeleton />}
+      {!pageOpen && (
+        <>
+          {mutation.isPending && !shown && <AnalyzerSkeleton />}
 
-      <AnswerFacts shown={shown} accent={accent} />
+          <AnswerFacts shown={shown} accent={accent} />
 
-      {shown?.words && <SentenceMeaning data={shown} accent={accent} onGo={onGo} onLookup={submit} />}
-      {shown?.results && <WordEntry data={shown} accent={accent} onGo={onGo} onLookup={submit} />}
+          {shown?.words && <SentenceMeaning data={shown} accent={accent} onGo={onGo} onLookup={submit} />}
+          {shown?.results && <WordEntry data={shown} accent={accent} onGo={onGo} onLookup={submit} />}
+        </>
+      )}
 
       {/* Under the word results, not above them: the meaning searched for is the
           answer, and the root's origin sense is the wider context behind it. On a
@@ -159,7 +201,7 @@ export default function DictionaryPanel({ accent, incoming, arrival, onGo, onVis
           Maqayees is a root book, so an English search has no root to ask about. */}
       {/* Keyed by the search: a new search is a new question, so the choice of
           root starts over on the one it found. */}
-      {shown?.lang === 'ar' && <ClassicalRoot key={shown.query} found={shown} accent={accent} />}
+      {!pageOpen && shown?.lang === 'ar' && <ClassicalRoot key={shown.query} found={shown} accent={accent} />}
     </div>
   )
 }

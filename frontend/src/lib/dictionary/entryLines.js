@@ -49,11 +49,17 @@ const LETTERS = config.entry['paragraph-letters']
 // halves of a verse.
 const SENTENCE_END = /(?<=(?<!\.)[.؟!])\s+/
 
+/** The sentences of one paragraph: its printed lines joined, then cut after each full stop. */
+export const sentencesOf = (part) => part.replace(/\s*\n\s*/g, ' ').trim().split(SENTENCE_END).filter(Boolean)
+
+/** Text cut at its blank lines, each part trimmed, empty parts dropped. */
+export const blocksOf = (text) => (text ?? '').split(/\n\s*\n/).map((part) => part.trim()).filter(Boolean)
+
 export function paragraphs(text) {
-  return (text ?? '').split(/\n\s*\n/).flatMap((part) => {
+  return blocksOf(text).flatMap((part) => {
     const said = []
     let run = ''
-    for (const sentence of part.replace(/\s*\n\s*/g, ' ').trim().split(SENTENCE_END)) {
+    for (const sentence of sentencesOf(part)) {
       run = run ? `${run} ${sentence}` : sentence
       if (run.length >= LETTERS) { said.push(run); run = '' }
     }

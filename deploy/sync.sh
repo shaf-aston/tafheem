@@ -73,6 +73,11 @@ rsync -a --delete backend/data/colloquial/ /home/ubuntu/tafheem/backend/data/col
 rsync -aR frontend/public/words/words.json frontend/public/words/coverage.json \
 	frontend/public/words/word_audio.json frontend/public/words/sentences.json \
 	frontend/public/jazariyya/poem.json frontend/src/config/speak.json /home/ubuntu/tafheem/
+# The page reader's Tesseract with its Arabic (services/reading/tesseract.py), once: already there costs nothing.
+# Never fatal: without it pictures are read by the vision model alone, and /api/health says which.
+if ! tesseract --list-langs 2>/dev/null | grep -qx ara; then
+	sudo -n apt-get install -y -q tesseract-ocr tesseract-ocr-ara || echo "sync: could not install tesseract-ocr-ara"
+fi
 cp requirements-torch.txt requirements.txt requirements-nodeps.txt /home/ubuntu/tafheem/
 /home/ubuntu/tafheem/venv/bin/pip install -q -r requirements-torch.txt
 /home/ubuntu/tafheem/venv/bin/pip install -q -r requirements.txt

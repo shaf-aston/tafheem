@@ -15,10 +15,10 @@ from fastapi.middleware.gzip import GZipMiddleware
 from backend.config import get_settings
 from backend.routers import (
     analyze, colloquial, daleel, dawah, dictionary, grow, hadith, journal, listen, morphology, nahw_notes, practice, progress, quran,
-    recordings, speak, tamreen, tarkeeb, timelines,
+    read, recordings, speak, tamreen, tarkeeb, timelines,
 )
 from backend.services import ai as ai_service
-from backend.services import recitation, speech
+from backend.services import reading, recitation, speech
 from backend.services.dictionary import service as dictionary_service
 from backend.services.core import audit, provenance
 from backend.services.core.headers import ApiHeaders, SameOrigin, crash_headers
@@ -169,6 +169,7 @@ def create_app() -> FastAPI:
         dawah.router,
         speak.router,
         recordings.router,
+        read.router,
     ):
         app.include_router(router)
 
@@ -198,6 +199,8 @@ def create_app() -> FastAPI:
             "voice": speech.active(),
             "corpus_loaded": quran_service.is_loaded(),
             "dictionary_loaded": dictionary_service.is_loaded(),
+            # Who reads a picture of a page (POST /api/read/image): "tesseract + <model>", or "none".
+            "page_reader": reading.health(),
             "root_meaning_status": root_meaning.status(),
             "parser": syntax.status(),
             # "onnxruntime" once data/disambig is built (deploy/sync.sh), "torch" if it is not or failed.

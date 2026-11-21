@@ -53,11 +53,13 @@ class GroqBackend(AIBackend):
                                 timeout=get_settings().groq_timeout_seconds)
         return self._client
 
-    def complete_json(self, messages: list[dict], max_tokens: int) -> dict:
-        raw = self._retry(lambda: self._raw_complete(messages, max_tokens))
+    def complete_json(self, messages: list[dict], max_tokens: int, model: str | None = None) -> dict:
+        """`model` asks another of Groq's models than the one configured (the page reader's vision
+        model); it is sent without the reasoning setting, which is groq_model's."""
+        raw = self._retry(lambda: self._raw_complete(messages, max_tokens, model))
         return self.parse_json(raw)
 
-    def _raw_complete(self, messages: list[dict], max_tokens: int) -> str:
+    def _raw_complete(self, messages: list[dict], max_tokens: int, model: str | None = None) -> str:
         from groq._exceptions import APIConnectionError, APIError, APITimeoutError  # noqa: F401
         settings = get_settings()
         extra = {}
@@ -66,10 +68,10 @@ class GroqBackend(AIBackend):
         # empty, which is how gpt-oss first arrived here; an empty reply, not
         # an error. Not every model takes the setting, so it is only sent when
         # config asks for one.
-        if effort := settings.groq_reasoning_effort.strip():
+        if not model and (effort := settings.groq_reasoning_effort.strip()):
             extra["reasoning_effort"] = effort
         response = self._get_client().chat.completions.create(
-            model=settings.groq_model,
+            model=model or settings.groq_model,
             messages=messages,
             temperature=settings.ai_temperature,
             max_tokens=max_tokens,

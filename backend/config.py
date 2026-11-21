@@ -640,6 +640,27 @@ class Progress(BaseSettings):
         return value
 
 
+class Reading(BaseSettings):
+    """The page reader: a picture of Arabic text read into text (services/reading)."""
+
+    # Largest picture POST /api/read/image takes. The page shrinks a phone photo to about half a
+    # megabyte before it sends it, so this only turns away what no page of text needs.
+    read_max_kb: int = Field(default=8192, gt=0)
+    # Tesseract's mean word confidence (0-100) at or over which its reading stands and no model is asked.
+    # Measured on printed pages and screenshots: 86-91 for a clean read, 35-55 for a fully vowelled page,
+    # where it takes the marks for letters.
+    read_sure_confidence: int = Field(default=80, ge=0, le=100)
+    # The hosted model asked when Tesseract is unsure, on the Groq key; blank never asks one.
+    # Groq's one vision model open to every key (a preview, docs checked 2026-11-21).
+    read_model: str = "qwen/qwen3.8-27b"
+    read_max_tokens: int = Field(default=4096, gt=0)
+    # The longest Tesseract may take over one picture before the reader gives up on it.
+    read_seconds: float = Field(default=20.0, gt=0)
+    # Pictures a minute per visitor, and for everyone together (services/core/ratelimit.PICTURE).
+    read_per_minute: int = Field(default=12, gt=0)
+    read_all_per_minute: int = Field(default=120, gt=0)
+
+
 class Server(BaseSettings):
     """The port, what loads at startup, which pages may call, and the longest search query."""
 
@@ -670,7 +691,7 @@ class Server(BaseSettings):
     )
 
 
-class Settings(Ai, Nahw, Quran, Dictionary, Listening, Speech, Journal, Daleel, Content, Hadith, Progress, Server):
+class Settings(Ai, Nahw, Quran, Dictionary, Reading, Listening, Speech, Journal, Daleel, Content, Hadith, Progress, Server):
     """Every setting, one per line in the groups above. Env names are the field names: grouping changes none."""
 
     model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8")
