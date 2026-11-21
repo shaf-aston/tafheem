@@ -135,6 +135,17 @@ def has_tanween(word: str) -> bool:
     return any(marks & TANWEEN for _, marks in letters(word))
 
 
+def tanween_nun(word: str) -> bool:
+    """لَنَسْفَعًا، وَلَيَكُونًا: the light nun of emphasis written as a fatha tanween on its alef, after the لام of emphasis
+    on a present (Ibn Aqil V3 p306, the light nun's pause: وأبدلنها بعد فتح ألفا وقفا; page unchecked). A noun may share the
+    shape (لَنَصْرًا), so it tells only on a word read as a verb."""
+    marked = letters(word)
+    while marked and marked[0][0] in "وف" and not marked[0][1] - {"َ"}:
+        marked = marked[1:]
+    return len(marked) >= 4 and marked[0] == ("ل", {"َ"}) and marked[1][0] in "أنيت" and marked[-1] == ("ا", set()) \
+        and marked[-2][1] == {"ً"}
+
+
 def weak_radical(raw_root: str | None, place: int) -> bool:
     """Whether CAMeL's root has a weak letter (و or ي) as its radical at `place` (-1 last,
     1 middle). `#` is how CAMeL writes one (and a hamza too: see weak_last); a root read
@@ -281,6 +292,8 @@ def build_nun(word: str, after: int = 0, lemma: str = "") -> str | None:
             and "َ" in marked[-3][1]:
         return "emphasis"
     marked = marked[:len(marked) - after]
+    if not after and tanween_nun(word):
+        return "emphasis"
     if not after and lemma and not strip_diacritics(lemma).endswith("ن") and len(marked) >= 3 and marked[-1][0] == "ن" \
             and marked[-1][1] == {SUKUN} and "َ" in marked[-2][1]:
         return "emphasis"

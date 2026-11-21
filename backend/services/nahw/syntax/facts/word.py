@@ -5,7 +5,7 @@ from __future__ import annotations
 import re
 
 from backend.services.text.arabic_text import bare_letters, strip_diacritics
-from backend.services.text.harakat import CAMEL_CASE, CASE_LETTER, CASE_NAME, VOWEL, stilled, TANWEEN, PRESENT_PREFIX, FATHA, KASRA, SHADDA, SUKUN, build_nun, doubled_last, drops_weak, drops_ya, five_before_emphasis, five_verb_nun, has_tanween, letters, merged_nun, vowel_agreement, own_letters, opens_active, past_passive_shape, typed_case, typed_passive
+from backend.services.text.harakat import CAMEL_CASE, CASE_LETTER, CASE_NAME, VOWEL, stilled, TANWEEN, PRESENT_PREFIX, FATHA, KASRA, SHADDA, SUKUN, build_nun, doubled_last, drops_weak, drops_ya, five_before_emphasis, five_verb_nun, has_tanween, tanween_nun, letters, merged_nun, vowel_agreement, own_letters, opens_active, past_passive_shape, typed_case, typed_passive
 from backend.services.nahw.book import book_words, five_verbs as book_five_verbs, reseated, is_diptote, elative_shape, measure, participle_shape, stem_pattern, is_fem_plural, is_mabni, is_object_stem, is_one, six_noun_case
 
 
@@ -151,8 +151,8 @@ def takes_two_objects(verb: dict) -> bool:
 def is_verb(token: dict) -> bool:
     if kind := reading(token, "kind"):
         return kind == "fil"  # أَلَا is a particle, whatever the parser tagged it
-    if has_tanween(token.get("typed")):
-        return False  # a verb never carries tanween, whatever the parser tagged it
+    if has_tanween(token.get("typed")) and not tanween_nun(token.get("typed")):
+        return False  # a verb never carries tanween, whatever the parser tagged it, but the light nun's (لَنَسْفَعًا)
     if verb_tagged(token):  # VRB-PASS is a verb too
         return True
     # the word is unknown to the morphology, but the reader typed a passive verb or a
