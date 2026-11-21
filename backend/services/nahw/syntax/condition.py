@@ -167,6 +167,10 @@ def find(bases: list[dict], named: list[str | None], cases: list[str | None],
         span = []
         for k in range(verb + 1, len(bases)):
             if opens(k):
+                # فَإِمَّا يَأْتِيَنَّكُمْ ... فَمَنْ تَبِعَ ... فَلَا خَوْفٌ: a condition the tying letter is written on is the answer of
+                # the one before it, a sentence like any other
+                if any(t in before[k] for t in frame["ties"]):
+                    span.append(k)
                 break
             if not (frame.get("before") == "noun" and under(k, verb)):  # أَنَّنَا أَسْرَعْنَا: the masdar's own verb answers nothing
                 span.append(k)

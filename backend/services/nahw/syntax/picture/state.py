@@ -15,7 +15,7 @@ class Picture:
         "detail_of", "named_by_unsaid", "opens", "replies", "said_verb", "job_by_place", "job_of",
         "kind_of_ma", "ma_card", "masdar", "nominal", "family_of", "framed", "label_of", "name_of", "place_of",
         "clauses", "described", "in_place", "children_of", "depth", "parent", "pulled", "roots", "opened",
-        "root", "chained", "doer_of", "persons_of", "seen", "sworn")
+        "root", "wraps", "chained", "doer_of", "persons_of", "seen", "sworn")
 
     def __init__(self, words: list[str], tokens: list[dict], named: list[dict], bases: list[dict]) -> None:
         self.words, self.tokens, self.named, self.bases = words, tokens, named, bases

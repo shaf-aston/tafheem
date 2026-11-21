@@ -17,11 +17,17 @@ def draw_conditions(c: Picture) -> None:
     # one unit, as the books draw it, wherever the parser hung them (syntax.condition)
     holder = {kid["id"]: kids for kids in (roots, *children_of.values()) for kid in kids}
     opened: dict[int, tuple[dict, ...]] = {}  # answer id -> (opener, condition verb, tie letters)
-    for i, found in enumerate(named):
+    # فَإِمَّا يَأْتِيَنَّكُمْ ... فَمَنْ تَبِعَ ... فَلَا خَوْفٌ: a condition answering the one before it is drawn first, whole, and
+    # stands as that one's answer (syntax.condition): inner answer id -> (outer opener, verb, ties, the answer's job)
+    wraps: dict[int, tuple] = {}
+    answer_of: dict[int, int] = {}  # opener id -> its answer id, for the condition around it
+    for i, found in reversed(list(enumerate(named))):
         if found.get("condition", {}).get("part") != "opener" or found["condition"]["answer"] is None:
             continue
         condition = condition_of(spelled(bases[i]))
         opener, verb, answer = bases[i], by_id[subject_id(i, found, bases)], bases[found["condition"]["answer"]]
+        inner = answer_of.get(answer["id"])
+        answer = by_id[inner] if inner is not None else answer
         # فَهُوَ نَاجِحٌ، فَلَهُ أَجْرٌ: the answer is the sentence its first word is in, so a مبتدأ (or a jar) the tying
         # letter is written on answers through the khabar heading that sentence (picture.unwritten)
         while (up := by_id.get(by_id[answer["id"]]["head"])) and up["id"] in c.nominal and up["id"] not in (opener["id"], verb["id"]):
@@ -47,7 +53,7 @@ def draw_conditions(c: Picture) -> None:
         verb_job = None if condition.get("subject") else condition.get("verb_named") or condition["verb"]
         units = ((verb, verb_job, verb_case), (answer, condition.get("answer_named") or condition["answer"], answer_case))
         # لَوْلَا أَنَّكَ صَدِيقِي: a masdar keeps the مبتدأ's job and place it was given (picture.jobs)
-        for unit, job, case in units[found["condition"]["masdar"]:]:
+        for unit, job, case in units[found["condition"]["masdar"]:len(units) - (inner is not None)]:
             job_of[unit["id"]] = job
             place_of[unit["id"]] = in_place(case) if case else said["no_place"]
             clauses.add(unit["id"])
@@ -63,6 +69,10 @@ def draw_conditions(c: Picture) -> None:
         for unit in (opener, verb):
             take_from(holder, unit)
             del holder[unit["id"]]
+        answer_of[opener["id"]] = answer["id"]
+        if inner is not None:
+            wraps[inner] = ((opener, verb, *beside, *ties), units[1][1])
+            continue
         opened[answer["id"]] = (opener, verb, *beside, *ties)
     # مَنْ شاء فليصمه ومَن شاء أفطر: a condition has the front of its sentence, so the وَ
     # bringing a second one joins it beside the first, not inside the first one's answer
@@ -82,4 +92,4 @@ def draw_conditions(c: Picture) -> None:
     # any half of a sentence drawn in several halves side by side (رَجُلٌ كَرِيمٌ فِي الدَّارِ: the مبتدأ unit beside
     # its unwritten خبر ثابت): the sentence is all of them, none is it alone
     root = None if len(roots) > 1 or pulled else roots[0]
-    c.opened, c.root = opened, root
+    c.opened, c.root, c.wraps = opened, root, wraps
