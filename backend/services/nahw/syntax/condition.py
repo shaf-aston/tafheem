@@ -83,6 +83,10 @@ def find(bases: list[dict], named: list[str | None], cases: list[str | None],
         if not frame or v >= len(bases) or (i and not joined(i) and not tells(i) and not primed and frame.get("before") != "noun"
                                              and (frame["shared"] or not frame["noun"])):
             return None
+        # فَأَمَّا مَنْ أَعْطَى وَاتَّقَى فَسَنُيَسِّرُهُ: the one word after أمّا is the mubtada its فاء's answer tells of (closed_words
+        # ghair_amila_other `detail`), so a word a relative shares its letters with is that relative, never a condition
+        if frame["shared"] and i and is_one(bases[i - 1]["lemma"], "ghair_amila_other", "detail"):
+            return None
         # إنما: the lemma is the pair, a ما الكافة cut off the إنّ sister it stops, so no إنْ of a condition
         if kaffa_sister(bases[i]["lemma"]):
             return None

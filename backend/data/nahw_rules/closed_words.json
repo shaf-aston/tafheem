@@ -598,6 +598,8 @@
    "oath_lam": {"lam": "ل", "onto": ["إن"]},
    "_detail": "أما is a particle of condition and emphasis, and mostly of detail (حرف شرط وتوكيد دائما وتفصيل غالبا); the فاء after it joins the answer, and the one word between them is the mubtada the answer tells of (فأما اليتيم فلا تقهر، فأما من أعطى واتقى) (Ibn Hisham, Awdah al-Masalik, vol 4 p231-232, فصل في أما)",
    "detail": ["أما"],
+   "_detail_named": "أمّا, its mim doubled, is named for all three works (حرف شرط وتفصيل وتوكيد), and the فاء after it, which ties its answer and cannot be left out, is الفاء الواقعة في جواب أما (Ibn Hisham, Awdah al-Masalik, vol 4 p231-232, فصل في أما; page unchecked). أَمَا, its mim light, opens speech (الاستفتاحية) and asks no فاء.",
+   "detail_named": {"أما": "حرف شرط وتفصيل وتوكيد", "ف": "الفاء الواقعة في جواب أما"},
    "effect": "draws attention, answers, explains, urges, or adds a nuance; governs nothing",
    "_fatha_lam": "a لام written onto a word with a fatha is the لام of emphasis (لَيَقُولَنَّ، إِنَّ زَيْدًا لَجَالِسٌ: اللام المزحلقة), governing nothing; the jarr لام takes a kasra, a fatha only before an attached pronoun (لَهُ), which the parser keeps as its own word (particles._emphasis_lam)",
    "words": [
