@@ -1,11 +1,14 @@
 """A picture of Arabic text, read into text: the page reader's first step.
 
     picture.py    the upload checked and tidied: upright, grey, dark pages turned light, small type enlarged
-    tesseract.py  Tesseract on this computer: about 0.3s a page, free, near perfect on plain print and
-                  screenshots, lost on a fully vowelled page (it takes the marks for letters)
+    tesseract.py  Tesseract on this computer: 0.3s a screenshot, 1-2s a full page, free, near perfect on
+                  plain print and screenshots, lost on a fully vowelled page (it takes the marks for letters)
     vision.py     a hosted vision model on the Groq key, asked only when Tesseract is unsure
 
-Cheapest first. Tesseract's own confidence tells the two kinds of page apart (86-91 on a clean read,
+Cheapest first. A small picture (a phone screenshot) is read enlarged twice over: its type is small,
+and read at its own size Tesseract misspells words it is sure of. An unsure reading is tried again
+turned upright when Tesseract's orientation check finds a photo held sideways; the surer of the two
+stands. Tesseract's own confidence tells the two kinds of page apart (86-91 on a clean read,
 35-55 on a vowelled one, `read_sure_confidence` between them), so a plain page never waits on a model
 and a vowelled one is not left as Tesseract's guess when a model can do better. A picture in which
 Tesseract found no words at all (a blank, a photo of a cat) is not sent to the model either: it
@@ -59,12 +62,12 @@ def read(body: bytes) -> dict:
     """
     page = picture.prepare(body)
     here = tesseract.available()
-    first = tesseract.read(page.grey) if here else None  # None too when it failed on this picture
+    first = _surest(page) if here else None  # None too when it failed on this picture
     if first and first.confidence >= get_settings().read_sure_confidence:
         return _answer(first.text, "tesseract")
     if vision.available() and (first is None or first.text.strip()):
         try:
-            return _answer(vision.read(page.colour), "vision")
+            return _answer(vision.read(page.jpeg()), "vision")
         except OverBudget:
             if first is None:
                 raise
@@ -77,8 +80,27 @@ def read(body: bytes) -> dict:
     return _answer(first.text if first else "", "tesseract", unsure=True)
 
 
+def _surest(page: picture.Prepared) -> tesseract.Reading | None:
+    """Tesseract's reading (a small picture enlarged first: its type is small), read again turned upright when unsure."""
+    scale = 2 if page.small() else 1
+    first = tesseract.read(page.grey(scale=scale))
+    if first and first.confidence >= get_settings().read_sure_confidence:
+        return first
+    turn = tesseract.upright(page.grey())
+    again = tesseract.read(page.grey(scale=scale, turn=turn)) if turn else None
+    return max((one for one in (first, again) if one), key=lambda one: one.confidence, default=None)
+
+
+# A word of Arabic: two of its letters together. A lone comma, tatweel or digit is not one.
+_ARABIC_WORD = re.compile(r"[\u0621-\u064A]{2}")
+
+
 def _answer(text: str, source: str, unsure: bool = False) -> dict:
-    return {"text": tidy(text), "source": provenance.of(source), "unsure": unsure}
+    """The reading, tidied; no text at all when it has no Arabic word in it (an English page, noise)."""
+    text = tidy(text)
+    if not _ARABIC_WORD.search(text):
+        text, unsure = "", True
+    return {"text": text, "source": provenance.of(source), "unsure": unsure}
 
 
 def health() -> str:

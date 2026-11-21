@@ -66,6 +66,7 @@ def readers(monkeypatch):
 
     monkeypatch.setattr(tesseract, "available", lambda: True)
     monkeypatch.setattr(tesseract, "read", tess)
+    monkeypatch.setattr(tesseract, "upright", lambda _: 0)
     monkeypatch.setattr(vision, "available", lambda: True)
     monkeypatch.setattr(vision, "read", see)
     return state, asked
@@ -110,18 +111,26 @@ def test_no_reader_at_all_says_so(monkeypatch):
     assert reading.health() == "none"
 
 
-def test_a_dark_screenshot_is_turned_light_and_enlarged_for_tesseract():
+def test_a_dark_screenshot_is_turned_light_and_enlarged_only_when_asked():
     ready = picture.prepare(png((600, 200), "#1e1f22"))
-    grey = Image.open(io.BytesIO(ready.grey))
-    assert grey.size == (1200, 400)
-    assert ImageStat.Stat(grey).mean[0] > 200
-    assert Image.open(io.BytesIO(ready.colour)).format == "JPEG"
+    grey = Image.open(io.BytesIO(ready.grey()))
+    assert grey.size == (600, 200) and ImageStat.Stat(grey).mean[0] > 200
+    assert Image.open(io.BytesIO(ready.grey(scale=2))).size == (1200, 400)
+    assert Image.open(io.BytesIO(ready.grey(turn=90))).size == (200, 600)
+    assert Image.open(io.BytesIO(ready.jpeg())).format == "JPEG"
+
+
+def test_a_16_bit_picture_keeps_its_greys():
+    out = io.BytesIO()
+    Image.new("I;16", (40, 20), 32896).save(out, "PNG")  # mid-grey in 16 bits
+    grey = Image.open(io.BytesIO(picture.prepare(out.getvalue()).grey()))
+    assert 120 < ImageStat.Stat(grey).mean[0] < 136
 
 
 def test_a_big_photo_is_sent_to_the_model_small():
     ready = picture.prepare(png((5000, 3000)))
-    assert max(Image.open(io.BytesIO(ready.colour)).size) == 2000
-    assert max(Image.open(io.BytesIO(ready.grey)).size) == 4000
+    assert max(Image.open(io.BytesIO(ready.jpeg())).size) == 2000
+    assert max(Image.open(io.BytesIO(ready.grey())).size) == 4000
 
 
 @pytest.mark.parametrize("body", [b"not a picture", png((8000, 6000))])
@@ -237,7 +246,7 @@ def test_a_huge_picture_is_made_page_sized_before_any_copy():
     out = io.BytesIO()
     Image.new("RGB", (6000, 3000), "white").save(out, "JPEG")
     prepared = picture.prepare(out.getvalue())
-    assert max(Image.open(io.BytesIO(prepared.grey)).size) <= 4000
+    assert max(Image.open(io.BytesIO(prepared.grey())).size) <= 4000
 
 
 def test_a_model_answer_mostly_in_latin_letters_is_refused():
@@ -267,3 +276,29 @@ def test_a_vision_only_server_whose_model_fails_says_try_again_not_unset(readers
     state["vision"] = RuntimeError("timed out")
     with pytest.raises(reading.NotRead):
         reading.read(png())
+
+
+def test_an_unsure_reading_is_tried_again_upright_and_the_surest_stands(readers, monkeypatch):
+    state, asked = readers
+    tries = iter([tesseract.Reading("ركيك", 30.0), tesseract.Reading("قال الشيخ", 91.0)])
+    monkeypatch.setattr(tesseract, "read", lambda _: next(tries))
+    monkeypatch.setattr(tesseract, "upright", lambda _: 90)
+    found = reading.read(png())
+    assert (found["text"], found["unsure"]) == ("قال الشيخ", False) and asked == []
+
+
+def test_a_small_picture_is_read_enlarged_and_a_big_one_at_its_size(readers, monkeypatch):
+    sizes = []
+
+    def tess(body):
+        sizes.append(Image.open(io.BytesIO(body)).size)
+        return tesseract.Reading("قال", 95.0)
+    monkeypatch.setattr(tesseract, "read", tess)
+    reading.read(png((600, 200)))
+    reading.read(png((2400, 800)))
+    assert sizes == [(1200, 400), (2400, 800)]
+
+
+def test_a_reading_with_no_arabic_word_is_no_text():
+    assert reading._answer("Hello, world. 12 ـ ،", "tesseract") == {
+        "text": "", "source": reading.provenance.of("tesseract"), "unsure": True}

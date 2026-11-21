@@ -9,6 +9,7 @@ import csv
 import io
 import logging
 import os
+import re
 import shutil
 import subprocess
 from dataclasses import dataclass
@@ -42,18 +43,42 @@ def available() -> bool:
     return "ara" in listed.stdout.split()
 
 
-def read(png: bytes) -> Reading | None:
+def read(picture: bytes) -> Reading | None:
     """Its reading of the picture, or None when Tesseract failed or ran out of time (logged): the
     vision model may still read it, so a failure here is not the request's."""
     try:
         done = subprocess.run(
             ["tesseract", "stdin", "stdout", "-l", "ara", "tsv"],
-            input=png, capture_output=True, timeout=get_settings().read_seconds, env=_ENV, check=True,
+            input=picture, capture_output=True, timeout=get_settings().read_seconds, env=_ENV, check=True,
         )
     except (OSError, subprocess.SubprocessError) as exc:
         logger.warning("page reader  tesseract failed on a picture: %s", exc)
         return None
     return from_tsv(done.stdout.decode("utf-8", "replace"))
+
+
+_TURN = re.compile(r"^Rotate: (\d+)", re.M)
+_TURN_SURE = re.compile(r"^Orientation confidence: ([\d.]+)", re.M)
+# Tesseract's own guide: an orientation guess under about 2 is no guess.
+_SURE_ENOUGH = 2.0
+
+
+def upright(picture: bytes) -> int:
+    """How far to turn the picture, counter-clockwise, for its text to stand upright: 0, 90, 180 or 270.
+    Tesseract's orientation check (--psm 0, its osd data), about a second; 0 when unsure or it failed."""
+    try:
+        done = subprocess.run(
+            ["tesseract", "stdin", "stdout", "--psm", "0"],
+            input=picture, capture_output=True, timeout=get_settings().read_seconds, env=_ENV, check=True,
+        )
+    except (OSError, subprocess.SubprocessError) as exc:
+        logger.info("page reader  no orientation for a picture: %s", exc)
+        return 0
+    said = done.stdout.decode("utf-8", "replace")
+    turn, sure = _TURN.search(said), _TURN_SURE.search(said)
+    if not turn or not sure or float(sure.group(1)) < _SURE_ENOUGH:
+        return 0
+    return (360 - int(turn.group(1))) % 360
 
 
 def from_tsv(tsv: str) -> Reading:

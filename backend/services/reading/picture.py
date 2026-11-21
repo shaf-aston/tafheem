@@ -1,14 +1,13 @@
 """An uploaded picture checked, and made ready for each reader.
 
-Tesseract reads dark letters on a light ground at a fair size, so its copy is grey, a dark page
-(a phone's dark mode) is turned light, and small type is enlarged: a screenshot of a chat read
-"مرحبايا أذ ؛ قل" as it came and "مرحبا يا أخي، هل" so tidied. The model's copy keeps its colour
-and is only made small enough to send.
+Tesseract reads dark letters on a light ground, so its copy is grey and a dark page (a phone's dark
+mode) is turned light. Enlarging and turning are asked for only on a second try (services/reading):
+enlarging normal type made it read worse, and both cost time a clear page should not pay. The
+model's copy keeps its colour and is only made small enough to send, and only when it is sent.
 """
 from __future__ import annotations
 
 import io
-from dataclasses import dataclass
 
 from PIL import Image, ImageOps, ImageStat, UnidentifiedImageError
 
@@ -18,7 +17,7 @@ _MOST_PIXELS = 24_000_000
 # What a page is sent as (the browser makes anything else a JPEG first). Pillow can open many
 # more, each a parser this upload would reach: TIFF, PSD, EPS through Ghostscript.
 _FORMATS = ("PNG", "JPEG", "WEBP")
-# Tesseract's copy: under _SMALL on its long side is enlarged twice over, and no copy is over _LARGE.
+# A picture under _SMALL on its long side may have small type, worth an enlarged second read; no copy is over _LARGE.
 _SMALL, _LARGE = 1800, 4000
 # The model's copy: the long side it sees, and the JPEG quality it is sent at.
 _SENT, _QUALITY = 2000, 90
@@ -28,10 +27,34 @@ class NotAPicture(ValueError):
     """The upload is not a picture Pillow can open, or is far too large to be a page."""
 
 
-@dataclass(frozen=True)
 class Prepared:
-    grey: bytes    # PNG for Tesseract
-    colour: bytes  # JPEG for the vision model
+    """One upload, opened once and page-sized; each reader's copy made only when that reader asks."""
+
+    def __init__(self, colour: Image.Image):
+        self.colour = colour
+
+    def grey(self, scale: int = 1, turn: int = 0) -> bytes:
+        """Tesseract's copy, as BMP (a PNG took 0.8s to write; BMP 0.01s, and reads the same).
+
+        `scale` enlarges it (small type reads better twice the size); `turn` rotates it by that many
+        degrees, counter-clockwise, for a photo taken sideways with no record of it.
+        """
+        grey = self.colour.convert("L")
+        if ImageStat.Stat(grey).mean[0] < 128:  # mostly dark: light letters on a dark ground
+            grey = ImageOps.invert(grey)
+        if turn:
+            grey = grey.rotate(turn, expand=True, fillcolor=255)
+        if scale > 1:
+            grey = grey.resize((grey.width * scale, grey.height * scale), Image.Resampling.LANCZOS)
+        return _encoded(_fit(grey, _LARGE), "BMP")
+
+    def small(self) -> bool:
+        """Small enough that its type may be too: worth a second read enlarged when the first is unsure."""
+        return max(self.colour.size) < _SMALL
+
+    def jpeg(self) -> bytes:
+        """The vision model's copy: colour, at most _SENT on its long side."""
+        return _encoded(_fit(self.colour, _SENT), "JPEG", quality=_QUALITY)
 
 
 def prepare(body: bytes) -> Prepared:
@@ -44,26 +67,19 @@ def prepare(body: bytes) -> Prepared:
         image.thumbnail((_LARGE, _LARGE), Image.Resampling.LANCZOS)  # no copy below is ever larger than this
     except (UnidentifiedImageError, OSError, Image.DecompressionBombError, SyntaxError) as exc:
         raise NotAPicture(str(exc)) from exc
-    colour = _on_white(image)
-    return Prepared(grey=_png(_for_tesseract(colour)), colour=_jpeg(_fit(colour, _SENT)))
+    return Prepared(_on_white(image))
 
 
 def _on_white(image: Image.Image) -> Image.Image:
-    """RGB, with any transparency laid on white: a clear background is a light page, not a black one."""
+    """RGB, with any transparency laid on white: a clear background is a light page, not a black one.
+    A 16-bit picture is brought to 8 bits by scale, not by clipping, which turned its grey edges white."""
+    if image.mode.startswith("I"):
+        image = image.point(lambda v: v / 257).convert("L")
     if image.mode in ("RGBA", "LA", "P"):
         image = image.convert("RGBA")
         ground = Image.new("RGBA", image.size, "white")
         return Image.alpha_composite(ground, image).convert("RGB")
     return image.convert("RGB")
-
-
-def _for_tesseract(colour: Image.Image) -> Image.Image:
-    grey = colour.convert("L")
-    if ImageStat.Stat(grey).mean[0] < 128:  # mostly dark: light letters on a dark ground
-        grey = ImageOps.invert(grey)
-    if max(grey.size) < _SMALL:
-        grey = grey.resize((grey.width * 2, grey.height * 2), Image.Resampling.LANCZOS)
-    return _fit(grey, _LARGE)
 
 
 def _fit(image: Image.Image, longest: int) -> Image.Image:
@@ -74,13 +90,7 @@ def _fit(image: Image.Image, longest: int) -> Image.Image:
     return image
 
 
-def _png(image: Image.Image) -> bytes:
+def _encoded(image: Image.Image, kind: str, **options) -> bytes:
     out = io.BytesIO()
-    image.save(out, "PNG")
-    return out.getvalue()
-
-
-def _jpeg(image: Image.Image) -> bytes:
-    out = io.BytesIO()
-    image.save(out, "JPEG", quality=_QUALITY)
+    image.save(out, kind, **options)
     return out.getvalue()
