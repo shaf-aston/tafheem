@@ -68,3 +68,22 @@ def test_man_kana_with_no_amma_still_asks():
 
 def test_a_relative_ma_after_its_verb_is_still_its_doer():
     assert "فاعل" in roles("قَامَ مَا قَامَ")
+
+
+IN_MA = "إنْ الشرطية المدغمة في ما الزائدة"
+
+
+def test_imma_alone_before_a_verb_is_in_with_ma_and_opens_a_condition():
+    found = tree("فَإِمَّا تَرَيِنَّ مِنَ الْبَشَرِ أَحَدًا فَقُولِي")
+    names = [n.get("role") for n in found]
+    assert IN_MA in names and "جواب الشرط" in names
+    assert "شَرْطِيَّةٌ" in (found[0].get("label") or "")
+
+
+def test_imma_with_a_second_imma_after_it_sets_out_a_choice():
+    names = roles("إِمَّا يُعَذِّبُهُمْ وَإِمَّا يَتُوبُ عَلَيْهِمْ")
+    assert IN_MA not in names and "حرف تفصيل" in names and "حرف عطف وتفصيل" in names
+
+
+def test_imma_alone_before_a_noun_opens_no_condition():
+    assert IN_MA not in roles("إِمَّا زَيْدٌ")

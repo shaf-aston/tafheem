@@ -685,6 +685,13 @@ def _again(token: dict, s: facts.Sentence) -> str:
     return "yes" if any(t["id"] < token["id"] and _lemma(t) == word for t in s.tokens) else "no"
 
 
+def _paired(token: dict, s: facts.Sentence) -> str:
+    """The same small word stands later in the sentence: إمّا with a second إمّا after it sets out a choice
+    (إِمَّا يُعَذِّبُهُمْ وَإِمَّا يَتُوبُ عَلَيْهِمْ); alone before a verb it is إنْ with ما merged into it (فَإِمَّا يَأْتِيَنَّكُمْ)."""
+    word = _lemma(token)
+    return "yes" if any(t["id"] > token["id"] and _lemma(t) == word for t in s.tokens) else "no"
+
+
 def _doubled(token: dict, s: facts.Sentence) -> str:
     """The reader typed a shadda on it: إِنَّا is إنّ, never the إنْ of a condition."""
     return "yes" if SHADDA in (token.get("typed") or "") else "no"
@@ -693,6 +700,7 @@ def _doubled(token: dict, s: facts.Sentence) -> str:
 AXES: dict[str, tuple[tuple[str, ...], Callable[[dict, facts.Sentence], str]]] = {
     "doubled": (("yes", "no"), _doubled),
     "again": (("yes", "no"), _again),
+    "paired": (("yes", "no"), _paired),
     "next": (("verb_jazm", "verb", "indefinite_noun", "noun", "tool", "none"), _what_follows),
     "negated": (("yes", "no"), _negated),
     "joins": (("yes", "no"), _joins),
