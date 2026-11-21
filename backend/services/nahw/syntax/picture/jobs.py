@@ -34,6 +34,11 @@ def give_jobs(c: Picture) -> None:
         governor = by_id.get(token["head"])
         if governor and is_preposition(governor) and token["rel"] == "OBJ":
             return masdar["after_preposition"]["job"], masdar["after_preposition"]["case"]
+        # أُرِيدُ أَنْ أَقْرَأَ وَأَنْ أَكْتُبَ: a masdar a حرف عطف brings is معطوف, in the case of the one it is joined on to
+        # (one whose case is not known, as after إِمَّا, keeps the job its relation gives)
+        if governor and token["rel"] == "OBJ" and is_one(governor["form"], "atf") and (joined := by_id.get(governor["head"])) \
+                and (place := job_by_place(joined)):
+            return NAMED.matoof, place[1]
         # لَوْلَا أَنَّنَا أَسْرَعْنَا: after لولا the masdar is its مبتدأ (roles.json condition by_word subject)
         if governor and governor["pos"] == "PRT" and (frame := condition_of(governor["form"])) and frame.get("subject"):
             return frame["subject"], case_of(frame["subject"])

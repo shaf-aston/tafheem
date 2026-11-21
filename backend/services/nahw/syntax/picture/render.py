@@ -182,7 +182,8 @@ def draw(c: Picture) -> dict:
             seen.update(kid["id"] for kid in rest)
             inside = [(index, first), *((at[kid["id"]], unit(kid)) for kid in rest)]
             # أَلَا لَهُ الْحُكْمُ وَهُوَ أَسْرَعُ: sentences begun afresh, joined, do no job either
-            job = None if token is root or is_particle(token) or token["id"] in nominal and placeless(token) \
+            # (أَنْ أَقْرَأَ وَأَنْ أَكْتُبَ: a masdar's أن heads a clause that keeps its job)
+            job = None if token is root or is_particle(token) and token["id"] not in clauses or token["id"] in nominal and placeless(token) \
                 and any(role_of[kid["id"]] == NAMED.mubtada for kid in kids) else job_of[token["id"]]
             label = top_label if token is root and token["id"] not in opened else ""
             return {"role": job, "label": label, "tone": tone(job), "detail": said_of(token),
