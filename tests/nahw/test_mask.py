@@ -6,7 +6,7 @@ LABELS = ["<bos>", "---", "IDF", "MOD", "OBJ", "PRD", "SBJ", "TMZ", "TPC"]
 
 
 def tok(pos, **feats):
-    return {"pos": pos, "pos_camel": "noun", "case": None, "lemma": "", "base": "", **feats}
+    return {"pos": pos, "pos_camel": "noun", "lemma": "", "base": "", **feats}
 
 
 def linked(toks, heads, rels):
@@ -35,7 +35,10 @@ def test_the_subject_after_its_verb_is_untouched():
 
 
 def test_a_typed_fatha_keeps_the_fronted_object_open_and_a_pronoun_is_not_a_noun():
-    assert allowed([tok("NOM", case="a"), tok("VRB")], 1, 2, "OBJ")
+    assert allowed([tok("NOM", typed="الدَّرْسَ"), tok("VRB")], 1, 2, "OBJ")
+    # the written alif of nasb tanween, typed bare, is the same fatha (facts.written_nasb: زيد بكرا)
+    assert allowed([tok("NOM", typed="درسا", diac="دَرْسًا"), tok("VRB")], 1, 2, "OBJ")
+    assert not allowed([tok("NOM", typed="الدَّرْسُ"), tok("VRB")], 1, 2, "OBJ")
     assert allowed([tok("NOM", pos_camel="pron"), tok("VRB")], 1, 2, "SBJ")
 
 
@@ -66,6 +69,9 @@ def test_a_listed_preposition_takes_the_next_word_in_jarr():
     toks = [tok("NOM", form="رب"), tok("NOM", form="رجل", cas="g", stt="i")]
     assert linked(toks, [0, 0], ["---", "MOD"]) == ([0, 1], ["---", "OBJ"])
     assert toks[0]["pos"] == "PRT"
+    # رُبَّ قَاضٍ: a منقوص typed with its tanween may be the jarr
+    toks = [tok("NOM", form="رب"), tok("NOM", form="قاض", lemma="قاضِي", typed="قَاضٍ", stt="i")]
+    assert linked(toks, [0, 0], ["---", "MOD"]) == ([0, 1], ["---", "OBJ"])
 
 
 def test_before_a_noun_with_al_the_listed_word_is_a_mudaf():
@@ -87,6 +93,15 @@ def test_a_joined_preposition_hung_under_its_noun_takes_its_place():
     toks = [tok("VRB", form="ليس"), tok("PROP", form="الله"), tok("PRT", pos_camel="prep", form="ب+"),
             tok("NOM", form="كاف", stt="i", cas="g")]
     assert linked(toks, [0, 1, 4, 1], ["---", "SBJ", "MOD", "PRD"]) == ([0, 1, 1, 3], ["---", "SBJ", "PRD", "OBJ"])
+    # مِنْ وَادٍ typed: a منقوص's tanween may be jarr, whatever the parser said; بِأَحْمَدَ: a diptote's fatha the parser
+    # read as jarr (a typed fatha does not hide the parser's jarr)
+    for noun in (tok("NOM", form="واد", lemma="وادِي", typed="وَادٍ", stt="i"),
+                 tok("NOM", form="أحمد", typed="أَحْمَدَ", stt="i", cas="g")):
+        toks = [tok("VRB", form="مررت"), tok("PRT", pos_camel="prep", form="ب+"), noun]
+        assert linked(toks, [0, 3, 1], ["---", "MOD", "OBJ"]) == ([0, 1, 2], ["---", "OBJ", "OBJ"])
+    # وَيُونُسَ: the fatha typed and parsed alike, the و over it joins, no جار
+    toks = [tok("VRB", form="مررت"), tok("PRT", pos_camel="prep", form="و+"), tok("PROP", form="يونس", typed="وَيُونُسَ", cas="a")]
+    assert linked(toks, [0, 3, 1], ["---", "MOD", "OBJ"]) == ([0, 3, 1], ["---", "MOD", "OBJ"])
 
 
 def test_a_preposition_already_over_its_noun_is_unchanged():
@@ -111,7 +126,7 @@ def test_a_noun_before_its_verb_carries_the_verb():
     toks = [tok("NOM", stt="d"), tok("VRB", pos_camel="verb")]
     assert linked(toks, [2, 0], ["---", "---"]) == ([0, 1], ["---", "---"])
     # الطعامَ أكل الولدُ: a noun in nasb before the verb is its fronted object, left alone
-    toks[0]["case"] = "a"
+    toks[0]["typed"] = "الطَّعَامَ"
     assert linked(toks, [2, 0], ["---", "---"]) == ([2, 0], ["---", "---"])
 
 

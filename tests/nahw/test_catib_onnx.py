@@ -64,3 +64,10 @@ def test_the_parser_reads_the_lemma_the_word_carries():
     catib_onnx.warm()
     tokens = parse(typed, morphology.pick(typed, catib_onnx.disambiguator()))
     assert tokens[0]["lemma"] == "رأى"
+
+
+def test_the_six_nouns_carry_their_case_on_the_long_letter_from_the_start():
+    # جاء أخوك / مررت بأخيك: the و and ي show the case, not the vowel on the كَ after them
+    for typed, case in ((["جَاءَ", "أَخُوكَ"], "u"), (["مَرَرْتُ", "بِأَخِيكَ"], "i")):
+        tokens = parse(typed, morphology.pick(typed, catib_onnx.disambiguator()))
+        assert [t["word_case"] for t in tokens if t["form"].startswith("أخ")] == [case]

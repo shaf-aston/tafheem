@@ -2,8 +2,7 @@
 from __future__ import annotations
 
 from backend.services.text.arabic_text import strip_diacritics
-from backend.services.text.harakat import typed_case
-from backend.services.nahw.syntax.facts import Sentence, is_name, listed, typed_tanween, noun_tagged, verb_tagged
+from backend.services.nahw.syntax.facts import Sentence, is_name, listed, typed_case_of, typed_tanween, noun_tagged, verb_tagged
 from backend.services.nahw.syntax.mask import above
 
 
@@ -89,4 +88,4 @@ def _name_goes_on(word: dict, bases: list[dict], s: Sentence) -> dict:
 
 def _typed_kasra(word: dict) -> bool:
     """Typed with kasra: a mubtada's khabar never is, so the noun is the name's مضاف إليه."""
-    return typed_case(word.get("typed") or "") == "i"
+    return typed_case_of(word) == "i"
