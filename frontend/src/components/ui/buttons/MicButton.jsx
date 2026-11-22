@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { listen } from '../../../api'
+import { unreached } from '../../../lib/api/apiError'
 import config from '../../../config/dictation.json'
 import { watchForVoice } from '../../../lib/speech/dictation'
 import { CANNOT_RECORD, canRecord, createRecorder, openMicrophone, refusal } from '../../../lib/speech/microphone'
@@ -141,7 +142,8 @@ export default function MicButton({ onHeard, match = false, recite = false, anyA
         } catch (error) {
           if (gone.current) return
           setState('refused')
-          setProblem(error?.response?.data?.detail || 'Could not make that out.')
+          // A server that never answered is not a voice it could not make out: say which it was.
+          setProblem(error?.response?.data?.detail || unreached(error) || 'Could not make that out.')
         }
       }
       made.start()
