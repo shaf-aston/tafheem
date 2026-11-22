@@ -1,5 +1,5 @@
 import { useRemembered } from '../../../lib/store/useRemembered'
-import { caseFrom } from '../../../lib/nahw/grammarTerms'
+import { describeWord } from '../../../lib/nahw/describeWord'
 import { buildIraabExportText } from '../../../lib/nahw/iraabExport'
 import { useTarkeebView } from '../../../lib/nahw/useTarkeebView'
 import ArabicText from '../../ui/text/ArabicText'
@@ -18,12 +18,13 @@ import WordGrid, { GovernsWhy } from './WordGrid'
 // What the word row draws: each word's role, or arcs from governor to governed.
 const LENSES = ['roles', 'governs']
 
+// `data` is an analysis (lib/nahw/analysis): words, tree, summary, source, unvowelled always present.
 export default function AnalysisResults({ data, accent, onGo, onWordClick, picked, practice, more }) {
   const [lens, setLens] = useRemembered('nahw.analyse-lens', LENSES)
-  const linked = data.words.some((w) => caseFrom(w) !== undefined)
+  const linked = data.words.some((w) => describeWord(w, data.words).headIndex !== undefined)
   const governs = linked && lens === 'governs'
   const view = useTarkeebView(data.tree)
-  const meaning = useSentenceMeaning(data.sentence)
+  const meaning = useSentenceMeaning(data)
   const copy = <CopyButton text={buildIraabExportText(data)} label="Copy" />
   return (
     <div className="space-y-4">
@@ -64,7 +65,7 @@ export default function AnalysisResults({ data, accent, onGo, onWordClick, picke
           </FlagButton>
         )} />
       <p className="text-center type-small text-[var(--text-faint)]">
-        {governs && picked >= 0 && caseFrom(data.words[picked]) !== undefined
+        {governs && picked >= 0 && describeWord(data.words[picked], data.words).headIndex !== undefined
           ? <GovernsWhy words={data.words} i={picked} />
           : 'Tap a word for breakdown'}
       </p>

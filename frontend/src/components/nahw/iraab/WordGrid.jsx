@@ -1,18 +1,18 @@
 import { useLayoutEffect, useRef, useState } from 'react'
 
-import { isUnnamed, caseLabel, caseFrom, roleGloss } from '../../../lib/nahw/grammarTerms'
+import { describeWord } from '../../../lib/nahw/describeWord'
 import Gloss from '../../grammar/Gloss'
 import { arc } from '../../../lib/nahw/govArc'
-import { roleVar } from '../../../lib/nahw/roleColors'
 import ArabicText from '../../ui/text/ArabicText'
 
 // "X governs Y" or "Y follows X", the typed words themselves.
 export function GovernsWhy({ words, i }) {
   const w = words[i]
-  const from = <ArabicText size="sm" className="text-[var(--text)]">{words[caseFrom(w)].word}</ArabicText>
+  const d = describeWord(w, words)
+  const from = <ArabicText size="sm" className="text-[var(--text)]">{d.head.word}</ArabicText>
   const to = <ArabicText size="sm" className="text-[var(--text)]">{w.word}</ArabicText>
-  return w.governor != null
-    ?<>{from} governs {to}: it gives it its case.</>
+  return !d.follows
+    ? <>{from} governs {to}: it gives it its case.</>
     : <>{to} follows {from} and copies its case.</>
 }
 
@@ -30,9 +30,10 @@ export default function WordGrid({ words, onClick, governs, picked, corner }) {
       const box = line.querySelector('svg').getBoundingClientRect()
       const cards = [...line.querySelectorAll('.word')].map((c) => c.getBoundingClientRect())
       const at = (i) => [cards[i].left - box.left + cards[i].width / 2, cards[i].top - box.top]
-      setArcs(words.flatMap((w, i) => (caseFrom(w) === undefined ? [] : [{
-        i, dashed: w.governor == null, ...arc(at(caseFrom(w)), at(i), ARC_CAP),
-      }])))
+      setArcs(words.flatMap((w, i) => {
+        const d = describeWord(w, words)
+        return d.headIndex === undefined ? [] : [{ i, dashed: d.follows, ...arc(at(d.headIndex), at(i), ARC_CAP) }]
+      }))
     }
     measure()
     const ro = new ResizeObserver(measure)
@@ -60,7 +61,7 @@ export default function WordGrid({ words, onClick, governs, picked, corner }) {
       {governs && (
         <svg className="absolute inset-0 w-full h-full overflow-visible pointer-events-none" aria-hidden="true">
           {arcs.map((a) => (
-            <g key={a.i} stroke={roleVar(words[a.i].role_key)} fill="none" strokeWidth="2"
+            <g key={a.i} stroke={describeWord(words[a.i]).color} fill="none" strokeWidth="2"
               strokeLinecap="round" strokeLinejoin="round"
               className="transition-opacity" style={{ opacity: picked < 0 || picked === a.i ? 1 : 0.25 }}>
               <path d={a.d} strokeDasharray={a.dashed ? '4 5' : undefined} />
@@ -70,14 +71,14 @@ export default function WordGrid({ words, onClick, governs, picked, corner }) {
         </svg>
       )}
       {words.map((word, i) => {
-        const key = word.role_key
+        const d = describeWord(word, words)
         return (
           <button
             key={`${word.word}-${i}`}
             type="button"
             onClick={() => onClick(word)}
-            aria-label={`${word.word}, ${isUnnamed(word) ? 'not named, see why' : (word.name ?? word.role) || 'details'}`}
-            style={{ '--i': i, '--c': roleVar(key) }}
+            aria-label={`${word.word}, ${d.unnamed ? 'not named, see why' : d.label || 'details'}`}
+            style={{ '--i': i, '--c': d.color }}
             className="word rise-in role glow
               flex flex-col items-center gap-1.5 px-4 py-3 rounded-[var(--radius-md)]
               bg-[var(--surface-hi)] border"
@@ -85,14 +86,14 @@ export default function WordGrid({ words, onClick, governs, picked, corner }) {
             <ArabicText className="text-glow leading-tight">{word.word}</ArabicText>
             {/* The term, and two or three words of English saying what it names. What it
                 means in full is in the glossary at the foot of the page, once. */}
-            {word.role && (
+            {d.hasRole && (
               <span className="type-tiny px-2 py-0.5 rounded-full role-tag">
-                {word.name ?? word.role}
+                {d.label}
               </span>
             )}
-            {word.role && <Gloss>{roleGloss(word.name) || roleGloss(word.role)}</Gloss>}
-            {word.case && (
-              <ArabicText size="tiny" className="text-[var(--text-faint)]">{caseLabel(word.case)}</ArabicText>
+            {d.hasRole && <Gloss>{d.roleGloss}</Gloss>}
+            {d.caseText && (
+              <ArabicText size="tiny" className="text-[var(--text-faint)]">{d.caseText}</ArabicText>
             )}
           </button>
         )
