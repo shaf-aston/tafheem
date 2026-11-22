@@ -58,11 +58,14 @@ export default function PageReader({ picture, shown, accent, onClose, onLookup, 
   const found = useLineTranslations(lines)
   const asked = lines.filter((line) => hasArabicWord(line.text))
   const done = asked.filter((line) => found[line.text]?.state === 'done').length
+  // Nothing to translate: the reader emptied the box and confirmed it, or the picture had no Arabic.
+  const nothing = confirmed !== null ? 'The box has no Arabic to translate. Type or paste the text into it.'
+    : 'No Arabic was found in this picture. Try a sharper photo, or type the text into the box.'
   // One line a screen reader hears at each step, rather than every count as it ticks.
   const status = reading.isFetching && !read ? 'Reading the picture…'
     : reading.isError ? ''
     : checking ? 'Read. Check the text against the picture, then translate it.'
-    : read ? (lines.length ? `${lines.length} lines read; translating.` : 'No Arabic was found in this picture.') : ''
+    : read ? (lines.length ? `${lines.length} lines read; translating.` : nothing) : ''
   // A file that is no picture at all is not worth sending again.
   const canRetry = !(reading.error instanceof NotAPicture) && reading.error?.response?.status !== 415
 
@@ -127,14 +130,12 @@ export default function PageReader({ picture, shown, accent, onClose, onLookup, 
           )}
           {checking && <p className="hidden lg:block type-body text-[var(--text-dim)]">{CHECK}</p>}
           {read && !checking && lines.length === 0 && (
-            <p className="type-body text-[var(--text-dim)]">
-              No Arabic was found in this picture. Try a sharper photo, or type the text into the box.
-            </p>
+            <p className="type-body text-[var(--text-dim)]">{nothing}</p>
           )}
           {lines.length > 0 && (
             <ol className="flex flex-col gap-3">
               {lines.map((line, i) => (
-                <PageLine key={`${i}:${line.text}`} line={line} found={found[line.text]} accent={accent}
+                <PageLine key={`${i}:${line.text}`} line={line} at={i} found={found[line.text]} accent={accent}
                   chosen={chosen?.key} onChoose={(key, word) => setChosen({ key, word })} onLookup={onLookup} onGo={onGo} />
               ))}
             </ol>

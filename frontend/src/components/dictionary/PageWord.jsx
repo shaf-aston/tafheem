@@ -30,7 +30,7 @@ export default function PageWord({ word, chosen, onChoose, onLookup }) {
       onFocus={() => onChoose()}
       onPointerDown={(event) => { touch.current = event.pointerType === 'touch'; wasChosen.current = chosen }}
       onClick={() => (touch.current && !wasChosen.current ? onChoose() : lookUp())}
-      onKeyDown={(event) => { if (event.key === 'Enter') lookUp() }}
+      onKeyDown={(event) => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); lookUp() } }}
       className={`page-word rounded-[var(--radius-sm)] px-0.5 cursor-pointer transition-colors outline-none
         focus-visible:ring-2 focus-visible:ring-[var(--c)] ${chosen ? 'bg-[var(--surface-hi)] text-[var(--c)]' : 'hover:text-[var(--c)]'}`}
     >

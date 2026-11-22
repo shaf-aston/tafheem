@@ -6,6 +6,7 @@
  * translation arrives each word the translator also read becomes a PageWord
  * (matched in order, vowel marks aside); a word it skipped stays plain text.
  * A line from inside the Qur'an says which ayah, the way the sentence view does.
+ * `at` is the line's place on the page: a word chosen on one copy of a repeated line is not chosen on the other.
  */
 import { GoButton } from '../ui/buttons/RootActions'
 import ArabicText from '../ui/text/ArabicText'
@@ -14,7 +15,7 @@ import { hasArabicWord } from '../../lib/text/arabicText'
 import { matched } from '../../lib/dictionary/pageLines'
 import PageWord from './PageWord'
 
-export default function PageLine({ line, found, accent, chosen, onChoose, onLookup, onGo }) {
+export default function PageLine({ line, at, found, accent, chosen, onChoose, onLookup, onGo }) {
   const data = found?.data
   const words = data?.words?.length ? data.words : []
   return (
@@ -27,7 +28,7 @@ export default function PageLine({ line, found, accent, chosen, onChoose, onLook
         {matched(line.text, words).map(({ before, core, word, after }, i) => (
           <span key={i}>
             {i > 0 && ' '}{before}{word
-              ? <PageWord word={word} chosen={chosen === `${line.text}#${i}`} onChoose={() => onChoose(`${line.text}#${i}`, word)} onLookup={onLookup} />
+              ? <PageWord word={word} chosen={chosen === `${at}#${i}`} onChoose={() => onChoose(`${at}#${i}`, word)} onLookup={onLookup} />
               : core}{after}
           </span>
         ))}

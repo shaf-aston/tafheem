@@ -87,6 +87,34 @@ describe('PageReader', () => {
     expect(await screen.findByText('He read the book.')).toBeTruthy()
   })
 
+  it('looks a word up with Space as with Enter', async () => {
+    const onLookup = vi.fn()
+    show({ onLookup })
+    await screen.findByText('The boy went to school.')
+    fireEvent.keyDown(within(screen.getAllByRole('listitem')[0]).getByText('الولد'), { key: ' ' })
+    expect(onLookup).toHaveBeenCalledWith('الولد')
+  })
+
+  it('chooses a word on one copy of a repeated line only', async () => {
+    readPicture.mockResolvedValueOnce({ text: 'قرأ الكتاب.\n\nقرأ الكتاب.', source: { key: 'tesseract', label: 'Tesseract' }, unsure: false })
+    show()
+    await screen.findAllByText('He read the book.')
+    const [one, two] = screen.getAllByRole('listitem')
+    fireEvent.mouseEnter(within(one).getByText('الكتاب'))
+    expect(within(one).getByRole('button', { name: /الكتاب/ }).getAttribute('aria-pressed')).toBe('true')
+    expect(within(two).getByRole('button', { name: /الكتاب/ }).getAttribute('aria-pressed')).toBe('false')
+  })
+
+  it('says the box is empty, not the picture, when emptied text is confirmed', async () => {
+    readPicture.mockResolvedValueOnce({ text: 'قرأ الكتاب.', source: { key: 'tesseract', label: 'Tesseract' }, unsure: true })
+    show()
+    await screen.findAllByText(/hard to read, so it waits for you/)
+    fireEvent.change(screen.getByLabelText('Text read from the picture'), { target: { value: '' } })
+    fireEvent.click(screen.getByText(/^Translate (this|the corrected) text$/))
+    expect((await screen.findAllByText(/The box has no Arabic to translate/)).length).toBeGreaterThan(0)
+    expect(screen.queryByText(/No Arabic was found in this picture/)).toBeNull()
+  })
+
   it('says a file that is no picture cannot be read, with no retry', async () => {
     show({ picture: new File(['x'], 'notes.pdf', { type: 'application/pdf' }) })
     expect(await screen.findByText('Send a screenshot.')).toBeTruthy()

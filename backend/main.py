@@ -199,7 +199,7 @@ def create_app() -> FastAPI:
             "voice": speech.active(),
             "corpus_loaded": quran_service.is_loaded(),
             "dictionary_loaded": dictionary_service.is_loaded(),
-            # Who reads a picture of a page (POST /api/read/image): "tesseract + <model>", or "none".
+            # Who reads a picture of a page (POST /api/read/image): "tesseract", "tesseract + vision", or "none".
             "page_reader": reading.health(),
             "root_meaning_status": root_meaning.status(),
             "parser": syntax.status(),

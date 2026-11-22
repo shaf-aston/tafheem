@@ -654,6 +654,9 @@ class Reading(BaseSettings):
     # Measured on printed pages and screenshots: 86-91 for a clean read, 35-55 for a fully vowelled page,
     # where it takes the marks for letters.
     read_sure_confidence: int = Field(default=80, ge=0, le=100)
+    # Below this, an unsure reading may be a page held sideways, worth Tesseract's orientation check (about
+    # a second). An upright but unsure page (vowelled, a photo) reads well above it; a sideways one near 25.
+    read_sideways_confidence: int = Field(default=40, ge=0, le=100)
     # The hosted model asked when Tesseract is unsure, on the Groq key; blank never asks one.
     # Groq's one vision model open to every key (a preview, docs checked 2026-11-21).
     read_model: str = "qwen/qwen3.8-27b"

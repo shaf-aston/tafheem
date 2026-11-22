@@ -309,6 +309,16 @@ def test_an_unsure_reading_is_tried_again_upright_and_the_surest_stands(readers,
     assert (found["text"], found["unsure"]) == ("قال الشيخ", False) and asked == []
 
 
+def test_an_upright_but_unsure_reading_is_not_turned(readers, monkeypatch):
+    state, asked = readers
+    state["tesseract"] = tesseract.Reading("قَالَ الشَّيْخُ", 50.0)  # a vowelled page: unsure, but far above sideways
+    turned = []
+    monkeypatch.setattr(tesseract, "upright", lambda _: turned.append(1) or 0)
+    monkeypatch.setattr(vision, "available", lambda: False)
+    found = reading.read(png())
+    assert turned == [] and found["unsure"] and found["text"]
+
+
 def test_a_small_picture_is_read_enlarged_and_a_big_one_at_its_size(readers, monkeypatch):
     sizes = []
 

@@ -81,12 +81,13 @@ def read(body: bytes) -> dict:
 
 
 def _surest(page: picture.Prepared) -> tesseract.Reading | None:
-    """Tesseract's reading (a small picture enlarged first: its type is small), read again turned upright when unsure."""
+    """Tesseract's reading (a small picture enlarged first: its type is small), read again turned upright when it
+    looks sideways (so low a confidence that an upright page, vowelled or photographed, does not come near it)."""
     scale = 2 if page.small() else 1
     first = tesseract.read(page.grey(scale=scale))
     if first is None:  # it failed or ran out of time: a second read would only do the same, holding the slot
         return None
-    if first.confidence >= get_settings().read_sure_confidence:
+    if first.confidence >= get_settings().read_sideways_confidence:
         return first
     turn = tesseract.upright(page.grey())
     again = tesseract.read(page.grey(scale=scale, turn=turn)) if turn else None
