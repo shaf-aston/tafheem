@@ -26,6 +26,9 @@ class AttemptIn(BaseModel):
     or a clock change, and storing it would poison every average made from it."""
     tz: int = Field(default=0, ge=-720, le=840)
     """Minutes east of UTC, so XP days are the learner's. Default UTC."""
+    ago_ms: int = Field(default=0, ge=0)
+    """How long ago it was given: an answer that waited on the phone for a signal. A span on the phone's own
+    clock, not a time, so a phone set wrong still says it right. Capped by the server (progress_late_answer_max_ms)."""
     context: dict | None = None
     """Small free-form note about the round it came from, kept for later
     questions nobody has asked yet ("am I worse on Arabic to English?"). Capped

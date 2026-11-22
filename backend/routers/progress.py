@@ -78,7 +78,8 @@ async def record_attempt(request: Request, attempt: AttemptIn, user: str = USER)
     if not quiz_words.allowed(attempt.module, attempt.item):
         raise HTTPException(status_code=422, detail="Not a word of the quiz")
     own = user != GUEST
-    earns = own and attempt.correct and attempts.earns(attempt.module, attempt.item, user, attempt.tz)
+    at = attempts.given_at(attempt.ago_ms)
+    earns = own and attempt.correct and attempts.earns(attempt.module, attempt.item, user, attempt.tz, at)
     row_id = attempts.record(
         module=attempt.module,
         item=attempt.item,
@@ -86,6 +87,7 @@ async def record_attempt(request: Request, attempt: AttemptIn, user: str = USER)
         ms=attempt.ms,
         context=attempt.context,
         user=user,
+        at=at,
     )
     return AttemptSaved(
         id=row_id,
