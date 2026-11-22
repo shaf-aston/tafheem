@@ -104,3 +104,38 @@ def test_today_is_the_learners_own_day():
 
 def test_a_zone_past_the_earth_is_refused():
     assert client.get("/api/progress/rewards", params={"tz": 900}, headers=AS).status_code == 422
+
+
+DAY_MS = 86_400_000
+
+
+def test_an_answer_that_waited_for_a_signal_lands_on_the_day_it_was_given():
+    # Yesterday's answer, sent today: it earns yesterday's XP and keeps yesterday in the streak.
+    yesterday = answer("kitab", ago_ms=DAY_MS)
+    assert yesterday["earned"] == 10
+    assert yesterday["rewards"]["xpToday"] == 0
+    today = answer("kitab")
+    assert today["earned"] == 10
+    assert today["rewards"]["streak"] == 2
+
+
+def test_an_answer_cannot_be_dated_further_back_than_the_cap():
+    # Said to be a week old, it lands two days back (the cap), not a week back.
+    answer("kitab", ago_ms=7 * DAY_MS)
+    answer("qalam", ago_ms=DAY_MS)
+    assert answer("bayt")["rewards"]["streak"] == 3
+
+
+def test_a_negative_age_is_refused():
+    response = client.post("/api/progress/attempts", headers=AS,
+                           json={"module": "quiz", "item": "kitab", "correct": True, "ago_ms": -1})
+    assert response.status_code == 422
+
+
+def test_review_follows_the_order_answers_were_given_not_sent():
+    # Right just now, then yesterday's wrong answer arrives: the wrong one came first, so the last word is right.
+    from backend.services.learner import attempts
+    answer("kitab", correct=True)
+    answer("kitab", correct=False, ago_ms=DAY_MS)
+    rows = list(progress_db.connection().execute(attempts._ANSWERS, (NAME, "quiz")))
+    assert [row["correct"] for row in rows] == [0, 1]

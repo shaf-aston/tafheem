@@ -68,10 +68,11 @@ _EARNED_TODAY = (
     "SELECT 1 FROM attempts WHERE user = ? AND module = ? AND item = ? AND correct = 1 AND date(at, ?) = ? LIMIT 1"
 )
 
-_ANSWERS = "SELECT item, at, correct FROM attempts WHERE user = ? AND module = ? ORDER BY id"
+# In the order they were given: an answer that waited on the phone for a signal arrives after later ones.
+_ANSWERS = "SELECT item, at, correct FROM attempts WHERE user = ? AND module = ? ORDER BY at, id"
 
 # Every answer one learner gave, in every module, for the overview's learnt counts in one read.
-_EVERY_ANSWER = "SELECT module, item, at, correct FROM attempts WHERE user = ? ORDER BY id"
+_EVERY_ANSWER = "SELECT module, item, at, correct FROM attempts WHERE user = ? ORDER BY at, id"
 
 
 def record(
@@ -82,13 +83,14 @@ def record(
     ms: int | None = None,
     context: dict | None = None,
     user: str = GUEST,
+    at: datetime | None = None,
 ) -> int:
-    """File one answer. Returns the row id, so a caller can prove it landed."""
+    """File one answer, given at `at` (UTC; now when None). Returns the row id, so a caller can prove it landed."""
     db = connection()
     with db:
         cursor = db.execute(
-            "INSERT INTO attempts (user, module, item, correct, ms, context) "
-            "VALUES (?, ?, ?, ?, ?, ?)",
+            "INSERT INTO attempts (user, module, item, correct, ms, context, at) "
+            "VALUES (?, ?, ?, ?, ?, ?, ?)",
             (
                 user,
                 module,
@@ -96,6 +98,7 @@ def record(
                 1 if correct else 0,
                 ms,
                 json.dumps(context, ensure_ascii=False) if context else None,
+                _stamp(at or datetime.now(timezone.utc)),
             ),
         )
     return int(cursor.lastrowid)
@@ -171,19 +174,31 @@ def _learnt_everywhere(user: str) -> dict[str, int]:
     return counts
 
 
+def _stamp(at: datetime) -> str:
+    """`at` as the column keeps it: UTC with no zone, to the second, as SQLite's datetime('now') writes it."""
+    return at.astimezone(timezone.utc).strftime("%Y-%m-%d %H:%M:%S")
+
+
+def given_at(ago_ms: int) -> datetime:
+    """When an answer said to be `ago_ms` old was given; no further back than progress_late_answer_max_ms."""
+    ago = min(ago_ms, get_settings().progress_late_answer_max_ms)
+    return datetime.now(timezone.utc) - timedelta(milliseconds=ago)
+
+
 def _shift(minutes: int) -> str:
     """SQLite date modifier for `minutes` east of UTC."""
     return f"{minutes:+d} minutes"
 
 
-def local_today(minutes: int = 0):
-    """The learner's today."""
-    return (datetime.now(timezone.utc) + timedelta(minutes=minutes)).date()
+def local_today(minutes: int = 0, at: datetime | None = None):
+    """The learner's today, or the learner's day at `at`."""
+    return ((at or datetime.now(timezone.utc)) + timedelta(minutes=minutes)).date()
 
 
-def earns(module: str, item: str, user: str, minutes: int = 0) -> bool:
-    """True if this item has not been answered right yet today (so a right answer earns)."""
-    found = connection().execute(_EARNED_TODAY, (user, module, item, _shift(minutes), local_today(minutes).isoformat()))
+def earns(module: str, item: str, user: str, minutes: int = 0, at: datetime | None = None) -> bool:
+    """True if this item has not been answered right yet that day (today, or the day of `at`), so a right answer earns."""
+    day = local_today(minutes, at).isoformat()
+    found = connection().execute(_EARNED_TODAY, (user, module, item, _shift(minutes), day))
     return found.fetchone() is None
 
 
