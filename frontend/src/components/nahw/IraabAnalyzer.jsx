@@ -3,12 +3,13 @@
  * a card for each word. One `/api/analyze` request returns both, so they are the
  * same reading. The picture is left out when nothing could be joined.
  */
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 
 import { analyzeIraab, generatePractice } from '../../api'
 import { errorMessage, errorStatus } from '../../lib/api/apiError'
 import { useMutation } from '../../lib/api/useMutation'
 import { useArrivalEffect } from '../../lib/nav/useArrival'
+import { fromAnalyzeResponse } from '../../lib/nahw/analysis'
 
 import WordCard from '../grammar/WordCard'
 import BottomSheet from '../ui/overlays/BottomSheet'
@@ -40,6 +41,7 @@ export default function IraabAnalyzer({ accent, onGo, onVisit, analyse = null, m
     onSuccess: (_, asked) => { practice.reset(); onVisit?.(asked) },
   })
   const shown = analyze.data && !analyze.isPending
+  const analysis = useMemo(() => analyze.data && fromAnalyzeResponse(analyze.data), [analyze.data])
 
   const submit = () => {
     const trimmed = sentence.trim()
@@ -99,11 +101,11 @@ export default function IraabAnalyzer({ accent, onGo, onVisit, analyse = null, m
       <div aria-live="polite">
         {shown && (
           <AnalysisResults
-            data={analyze.data}
+            data={analysis}
             accent={accent}
             onGo={onGo}
             onWordClick={setSelectedWord}
-            picked={analyze.data.words.indexOf(selectedWord)}
+            picked={analysis.words.indexOf(selectedWord)}
             practice={practice}
             more={more}
           />

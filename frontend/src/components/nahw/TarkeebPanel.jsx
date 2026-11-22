@@ -9,6 +9,7 @@ import { useQuery } from '@tanstack/react-query'
 import { getTarkeebExamples } from '../../api'
 import { exampleMatches } from '../../lib/nahw/exampleSearch'
 import { buildIraabExportText } from '../../lib/nahw/iraabExport'
+import { toAnalysis } from '../../lib/nahw/analysis'
 import { useInView } from '../../lib/motion/useInView'
 import { useRemembered } from '../../lib/store/useRemembered'
 import { useTarkeebView } from '../../lib/nahw/useTarkeebView'
@@ -172,7 +173,7 @@ function Example({ example, topic, showBook, accent, onWordByWord }) {
         </div>
         <div className="flex items-center gap-2">
           {near && <TarkeebTools view={view} />}
-          <CopyButton text={buildIraabExportText({ sentence: example.sentence, words: [], tree: example })} />
+          <CopyButton text={buildIraabExportText(toAnalysis({ sentence: example.sentence, tree: example }))} />
         </div>
       </div>
       {near ? (

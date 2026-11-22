@@ -32,6 +32,7 @@ import SourceBadge from '../ui/feedback/SourceBadge'
 import AyahTafsir from './AyahTafsir'
 import { isQuranic } from '../../lib/text/arabicText'
 import { useTarkeebView } from '../../lib/nahw/useTarkeebView'
+import { fromAyahStore, wordKey } from '../../lib/nahw/analysis'
 import ArabicText from '../ui/text/ArabicText'
 import CloseButton from '../ui/buttons/CloseButton'
 import { GoButton } from '../ui/buttons/RootActions'
@@ -48,7 +49,7 @@ const TABS = [
 
 /** The word a key names, or undefined. Keys are the word's own `position`. */
 const wordByKey = (words, key) =>
-  key == null ? undefined : words.find((w, i) => (w.position || i) === key)
+  key == null ? undefined : words.find((w, i) => wordKey(w, i) === key)
 
 /** How many look-alike pairs the catalogue records for this ayah, 0 while unknown. The same query Similar keeps. */
 function useLookAlikes(surah, ayah) {
@@ -58,7 +59,8 @@ function useLookAlikes(surah, ayah) {
 }
 
 export default function AyahStudy({ surah, ayah, onGo, onClose, accent, sheet }) {
-  const { data, isPending, isError, error, refetch } = useQuery(quranAyahQuery(surah, ayah))
+  const { data: ayahData, isPending, isError, error, refetch } = useQuery(quranAyahQuery(surah, ayah))
+  const data = ayahData && fromAyahStore({ ayah: ayahData })
   const lookAlikes = useLookAlikes(surah, ayah)
   // One word open at a time. A closed chip stays a word you can read; the full
   // grammar only appears for the word actually being asked about.
@@ -107,10 +109,10 @@ export default function AyahStudy({ surah, ayah, onGo, onClose, accent, sheet })
             className={`flex gap-2 peer-dim ${sheet && opened ? 'strip-x' : 'flex-wrap'}`}
             dir="rtl"
             lang="ar"
-            data-script={isQuranic(data.words.map((w) => w.arabic).join(' ')) ? 'quran' : undefined}
+            data-script={isQuranic(data.sentence) ? 'quran' : undefined}
           >
             {data.words.map((w, i) => {
-              const key = w.position || i
+              const key = wordKey(w, i)
               return <WordChip key={key} word={w} index={i} open={openWord === key} onToggle={() => toggle(key)} />
             })}
           </div>
@@ -146,19 +148,21 @@ export default function AyahStudy({ surah, ayah, onGo, onClose, accent, sheet })
  * the ayah is actually accounted for, and every unmade join is drawn open.
  */
 function AyahTarkeeb({ surah, ayah }) {
-  const { data, isPending, isError, error, refetch } = useQuery({
+  const { data: tarkeeb, isPending, isError, error, refetch } = useQuery({
     queryKey: ['tarkeeb', surah, ayah],
     queryFn: () => getQuranTarkeeb(surah, ayah),
   })
+  // The chart is the whole analysis here; the chart record (`tree`) holds its own source.
+  const chart = fromAyahStore({ tarkeeb }).tree
 
-  const view = useTarkeebView(data)
+  const view = useTarkeebView(chart)
 
   // A failed fetch used to return null here, the same as an ayah with no tree,
   // so a dropped connection read as "this ayah has no joins". Now it says so.
-  if (!isPending && !isError && !data?.tree) return null
+  if (!isPending && !isError && !chart?.tree) return null
 
   // Why a join is open depends on who did the work; said in a hover, not a paragraph.
-  const openWhy = data?.source?.key === 'treebank'
+  const openWhy = chart?.source?.key === 'treebank'
     ? 'Left open by the people who worked this ayah out.'
     : 'Worked out by rule from each word’s tags.'
 
@@ -169,8 +173,8 @@ function AyahTarkeeb({ surah, ayah }) {
           How the words join <ArabicText size="sm" className="text-[var(--text)]">التَّرْكِيْب</ArabicText>
         </h3>
         <div className="flex items-center gap-2">
-          {data?.tree && <TarkeebTools view={view} />}
-          {data && <SourceBadge source={data.source} />}
+          {chart?.tree && <TarkeebTools view={view} />}
+          {chart && <SourceBadge source={chart.source} />}
         </div>
       </div>
 
@@ -178,8 +182,8 @@ function AyahTarkeeb({ surah, ayah }) {
       {isError && (
         <ErrorAlert inline title="Could not load the word joins" error={error} onRetry={() => refetch()} />
       )}
-      {data?.tree && (
-        <TarkeebFigure tarkeeb={data} openWhy={openWhy} view={view} />
+      {chart?.tree && (
+        <TarkeebFigure tarkeeb={chart} openWhy={openWhy} view={view} />
       )}
     </section>
   )

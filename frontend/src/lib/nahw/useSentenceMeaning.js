@@ -6,7 +6,9 @@ import { retryServerErrors } from '../api/apiError'
 // The sentence in English, asked of the dictionary as soon as it is analysed:
 // the same answer the Dictionary tab gives a sentence. Its word-by-word list is
 // also what the chart shows on hover, so the one request serves both.
-export function useSentenceMeaning(sentence) {
+// Takes the analysis (lib/nahw/analysis), not a raw response.
+export function useSentenceMeaning(analysis) {
+  const sentence = analysis?.sentence ?? ''
   return useQuery({
     queryKey: ['dictionary-sentence', sentence],
     queryFn: () => translateSentence(sentence),
