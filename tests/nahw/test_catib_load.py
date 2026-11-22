@@ -33,7 +33,7 @@ def test_overlapping_requests_share_one_load(fresh):
     def slow_load():
         loads.append(1)
         time.sleep(0.3)
-        return catib_onnx._Parser({}, [], [], None, object(), object(), None, _Disambiguator())
+        return catib_onnx._Parser({}, [], None, object(), object(), _Disambiguator())
 
     fresh.setattr(catib_onnx, "_load", slow_load)
     failures = []
@@ -87,5 +87,5 @@ def test_health_names_what_runs_the_bert(fresh):
     client = TestClient(create_app())
     assert client.get("/api/health").json()["parser_bert"] == ""  # not loaded yet
     fresh.setattr(catib_onnx, "_parser", catib_onnx._Parser(
-        {}, [], [], None, object(), object(), None, _Disambiguator(), "onnxruntime"))
+        {}, [], None, object(), object(), _Disambiguator(), "onnxruntime"))
     assert client.get("/api/health").json()["parser_bert"] == "onnxruntime"

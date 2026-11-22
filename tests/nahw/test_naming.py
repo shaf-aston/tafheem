@@ -372,10 +372,10 @@ def test_every_role_the_code_names_is_declared_in_roles_json():
 
 def test_a_word_is_split_where_its_tokenisation_splits_it(monkeypatch):
     # ثُلْثَ_+هُ comes tagged NOM alone; its pronoun is still its own token
-    from backend.services.nahw.syntax import catib_onnx
-    monkeypatch.setattr(catib_onnx, "_clitic_token_feats", lambda tok, order, a: dict.fromkeys(
+    from backend.services.nahw.syntax import splitter
+    monkeypatch.setattr(splitter, "_clitic_token_feats", lambda tok, order, a: dict.fromkeys(
         ("pos_camel", "asp", "vox", "stt", "cas", "token_type"), "na"))
-    _split_word = catib_onnx._split_word
+    _split_word = splitter.split_word
     reading = {"atbtok": "ثُلْثَ_+هُ", "catib6": "NOM", "ud": "NOUN", "pos": "noun", "lex": "ثُلْث",
                "enc0": "3ms_poss", "stt": "c", "cas": "a"}
     assert [t["form"] for t in _split_word("ثُلُثَهُ", reading)] == ["ثلث", "+ه"]
@@ -383,11 +383,11 @@ def test_a_word_is_split_where_its_tokenisation_splits_it(monkeypatch):
 
 def test_a_word_joined_in_front_is_split_with_its_own_tag(monkeypatch):
     # ف+_ليست comes tagged PRT alone, the فاء's tag; ليست is still a verb
-    from backend.services.nahw.syntax import catib_onnx
-    monkeypatch.setattr(catib_onnx, "_clitic_token_feats", lambda tok, order, a: dict.fromkeys(
+    from backend.services.nahw.syntax import splitter
+    monkeypatch.setattr(splitter, "_clitic_token_feats", lambda tok, order, a: dict.fromkeys(
         ("pos_camel", "asp", "vox", "stt", "cas", "token_type"), "na"))
     reading = {"atbtok": "فَ+_لَيْسَتِ", "catib6": "PRT", "ud": "CCONJ", "pos": "verb", "lex": "لَيْس", "asp": "p"}
-    pieces = catib_onnx._split_word("فَلَيْسَتِ", reading)
+    pieces = splitter.split_word("فَلَيْسَتِ", reading)
     assert [(t["form"], t["pos"]) for t in pieces] == [("ف+", "PRT"), ("ليست", "VRB")]
 
 
@@ -396,11 +396,11 @@ def test_a_word_joined_in_front_is_split_with_its_own_tag(monkeypatch):
     ("أَيّكُم", "3ms_poss", ["أيكم"]),  # the word does not end with that pronoun's letters (ه): left whole
 ])
 def test_a_word_filed_with_its_pronoun_unsplit_is_cut_before_the_pronouns_letters(monkeypatch, atbtok, enc, split):
-    from backend.services.nahw.syntax import catib_onnx
-    monkeypatch.setattr(catib_onnx, "_clitic_token_feats", lambda tok, order, a: dict.fromkeys(
+    from backend.services.nahw.syntax import splitter
+    monkeypatch.setattr(splitter, "_clitic_token_feats", lambda tok, order, a: dict.fromkeys(
         ("pos_camel", "asp", "vox", "stt", "cas", "token_type"), "na"))
     reading = {"atbtok": atbtok, "catib6": "", "ud": "", "pos": "pron_interrog", "lex": "أَيّ", "enc0": enc}
-    assert [t["form"] for t in catib_onnx._split_word("أَيُّكُمْ", reading)] == split
+    assert [t["form"] for t in splitter.split_word("أَيُّكُمْ", reading)] == split
 
 
 @pytest.mark.parametrize("front, passive", [(1, True), (0, False)])

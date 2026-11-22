@@ -824,5 +824,5 @@ def test_a_waw_before_its_verb_opens_no_maful_maahu(sentence):
     ("يَفُوتُنَا", "1p_dobj", "يَفُوتُ_+نَا"),
 ])
 def test_an_unsplit_pronoun_is_cut_by_its_letters(atbtok, enc, cut):
-    from backend.services.nahw.syntax.catib_onnx import _pronoun_cut_off
-    assert _pronoun_cut_off({"atbtok": atbtok, "enc0": enc})["atbtok"] == cut
+    from backend.services.nahw.syntax.splitter import pronoun_cut_off
+    assert pronoun_cut_off({"atbtok": atbtok, "enc0": enc})["atbtok"] == cut

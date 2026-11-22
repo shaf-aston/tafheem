@@ -56,22 +56,22 @@ def parsed_as(form: str | int, head: str | int | None = None, rel: str | None = 
     """Inside it, the parser hangs the word typed `form` (or the token with that id) on the word `head` (or the token with that id) and/or by `rel`, as
     another machine's floats may when its scores sit near a tie (بعيدا on ضل by 0.27): a repair
     that must hold whichever way the tie falls is tested both ways. No reading is kept across it."""
-    decode = catib_onnx._decode
+    links = catib_onnx.links
 
-    def forced(s_arc, s_rel, toks):
-        heads, rels = decode(s_arc, s_rel, toks)
+    def forced(toks):
+        heads, rels = links(toks)
         forms = [t["form"] for t in toks]
         for i, t in enumerate(toks):
             if t["form"] == form or i + 1 == form:
                 heads[i], rels[i] = (head if isinstance(head, int) else forms.index(head) + 1) if head else heads[i], rel or rels[i]
         return heads, rels
 
-    catib_onnx._decode = forced
+    catib_onnx.links = forced
     iraab._kept.cache_clear()
     try:
         yield
     finally:
-        catib_onnx._decode = decode
+        catib_onnx.links = links
         iraab._kept.cache_clear()
 
 
