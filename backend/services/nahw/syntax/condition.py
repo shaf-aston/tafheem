@@ -19,7 +19,8 @@ from __future__ import annotations
 
 from backend.services.text.arabic_text import strip_diacritics
 from backend.services.text.harakat import has_tanween
-from backend.services.nahw.book import book_map, condition_of, frames, is_one, kaffa_sister, named_roles, says
+from backend.services.nahw.book import book_map, condition_of, frames, is_one, named_roles, says
+from backend.services.nahw.syntax import ma
 from backend.services.nahw.syntax.facts import reading, spelled
 
 NAMED = named_roles()
@@ -88,7 +89,7 @@ def find(bases: list[dict], named: list[str | None], cases: list[str | None],
         if frame["shared"] and i and is_one(bases[i - 1]["lemma"], "ghair_amila_other", "detail"):
             return None
         # إنما: the lemma is the pair, a ما الكافة cut off the إنّ sister it stops, so no إنْ of a condition
-        if kaffa_sister(bases[i]["lemma"]):
+        if ma.kaffa_sister(bases[i]["lemma"]):
             return None
         # لولا زيدٌ: a particle of امتناع لوجود opens on a noun; before a verb it urges and opens none
         # a masdar particle with its pair is a noun too (لَوْلَا أَنَّنَا أَسْرَعْنَا)

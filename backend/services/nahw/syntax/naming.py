@@ -12,9 +12,9 @@ from typing import NamedTuple, TypedDict
 
 from backend.services.text.arabic_text import strip_diacritics
 from backend.services.nahw.book import (
-    book_spelling, extra_ba_named, extra_ba_on, extra_min_letter, is_extra_ba, kaffa_sister,
+    book_spelling, extra_ba_named, extra_ba_on, extra_min_letter, is_extra_ba,
     book_map, book_merges, takes_object, frames, family_mother, book_path, case_of, teacher_rules, family_cards, in_family, is_mabni, is_one, needs_praised, doer_written_in, named_roles, role_table, unseen_case)
-from backend.services.nahw.syntax import condition, facts, particles, walker
+from backend.services.nahw.syntax import condition, facts, ma, particles, walker
 from backend.services.nahw.syntax.followers import FOLLOWERS, followed, take_their_ending
 from backend.services.nahw.syntax.facts import base_tokens  # re-exported: teacher and tree read it from here
 from backend.services.text.harakat import (
@@ -117,7 +117,7 @@ class FoundEntry(TypedDict, total=False):
     gap: Gap  # set by the teacher: the rule a dashed role broke
     name: str  # set from the picture: its finer name (اسم ليس)
     doer: Doer  # set from the picture: the doer drawn inside a verb, said on its card too
-    built: bool  # set from the picture: a relative ما built in the place of its job (facts.ma_kind)
+    built: bool  # set from the picture: a relative ما built in the place of its job (ma.kind)
 
 
 def _written(piece: dict, base: dict, word: str, tokens: list[dict], attached: dict, word_of: dict, at: int) -> str:
@@ -233,7 +233,7 @@ def _kaffa(n: Named) -> None:
     """إنما، كأنما: a particle that is an إن sister with ما written onto it (data: closed_words
     inna `kaffa`) leaves the sister on its entry; card_wording names the pair."""
     for entry, base in zip(n.found, n.bases):
-        if entry["role"] == NAMED.harf and (sister := kaffa_sister(base["lemma"])):  # وَإِنَّمَا: the و is a word of its own
+        if entry["role"] == NAMED.harf and (sister := ma.kaffa_sister(base["lemma"])):  # وَإِنَّمَا: the و is a word of its own
             entry["kaffa"] = sister
 
 
@@ -654,9 +654,9 @@ def finish(found: list[FoundEntry], drawn: dict) -> None:
     for word, doer in zip(found, doers):
         if doer and word["role"]:
             word["doer"] = doer
-    for word, ma in zip(found, ma_of):
-        if ma:
-            job, case = ma
+    for word, card in zip(found, ma_of):
+        if card:
+            job, case = card
             word.update(role=job or NAMED.harf, case=CASE_NAME[case] if case else None, built=bool(job))
             if not job:
                 word["named"] = frames()["masdar"]["named_by_word"]["ما"]

@@ -289,6 +289,6 @@ def draw(c: Picture) -> dict:
             "piece_names": {key: name for key, name in name_of.items() if key not in role_of or (key in split and name != role_of[key])},
             # the doer no typed word is (هو hidden in يكتبُ, the تاء of كتبتُ): the card says it as the picture draws it
             "doer": [doer_of.get(token["id"]) for token in bases],
-            # ما read by its عائد (facts.ma_kind): the relative's job and case, or (None, None) for ما المصدرية
+            # ما read by its عائد (ma.kind): the relative's job and case, or (None, None) for ما المصدرية
             "ma": [ma_card.get(token["id"]) for token in bases],
             **({"unwritten": {"mark": columns[written.index(-1)], "note": tarkeeb_rules()["treebank"]["unwritten_note"]}} if understood else {})}

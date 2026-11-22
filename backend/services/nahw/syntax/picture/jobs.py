@@ -3,11 +3,11 @@ from __future__ import annotations
 
 from backend.services.nahw.book import book_spelling, case_of, condition_of, is_one, kaffa_chart, teacher_rules
 from backend.services.nahw.syntax.doer import written_on
-from backend.services.nahw.syntax.facts import is_participle, is_passive, is_preposition, is_verb, listed, ma_kind
+from backend.services.nahw.syntax import ma
+from backend.services.nahw.syntax.facts import is_participle, is_passive, is_preposition, is_verb, listed
 from backend.services.nahw.syntax.naming import NAMED
 from backend.services.nahw.syntax.picture.names import FRAMES, SISTERS, command_name, finer_name
 from backend.services.nahw.syntax.picture.state import Picture
-from backend.services.text.arabic_text import strip_diacritics
 
 
 def give_jobs(c: Picture) -> None:
@@ -27,7 +27,7 @@ def give_jobs(c: Picture) -> None:
         and role_of[t["id"]] == NAMED.mubtada and token["head"] != t["id"] for t in drawn)}
     opens = {token["id"] for token in drawn if role_of[token["id"]] == NAMED.fil} | nominal
     # أكلتُ ما طبختَ: a ما whose صلة has room for its عائد is the relative, whatever the tagger
-    # guessed; سرّني ما قمتَ: one with none is ما المصدرية (facts.ma_kind)
+    # guessed; سرّني ما قمتَ: one with none is ما المصدرية (ma.kind)
     masdar = FRAMES["masdar"]
     def job_by_place(token: dict) -> tuple[str, str] | None:
         """The job a ما or masdar unit does: a حرف جر's مجرور (its object: لكم الخيار ما دمتم, hung on ل, is no second one),
@@ -60,7 +60,7 @@ def give_jobs(c: Picture) -> None:
                 and not written_on(governor)):
             return masdar["after_passive"]["job"], masdar["after_passive"]["case"]
         return (masdar["job_by_rel"][rel], masdar["case_by_rel"][rel]) if rel in masdar["job_by_rel"] else None
-    kind_of_ma = {token["id"]: kind for token in drawn if (kind := ma_kind(token, sentence))}
+    kind_of_ma = {token["id"]: kind for token in drawn if (kind := ma.kind(token, sentence))}
     ma_card: dict[int, tuple[str | None, str | None]] = {}  # what the ما's card says: its job and case, or none
     for token in drawn:
         kind = kind_of_ma.get(token["id"])
@@ -114,8 +114,8 @@ def give_names(c: Picture) -> None:
     for token, found in zip(bases, named):
         if found.get("kaffa") and token["id"] in name_of:
             name_of[token["id"]] = sister_name
-            if (ma := c.by_id.get(token["id"] + 1)) and ma["id"] in name_of and strip_diacritics(ma["form"]).strip("+") == "ما":
-                name_of[ma["id"]] = ma_name
+            if (after := c.by_id.get(token["id"] + 1)) and after["id"] in name_of and ma.is_ma(after):
+                name_of[after["id"]] = ma_name
     name_of.update(dict.fromkeys(replies, said_verb["word"]))
     name_of.update(fronted)  # the question's verb, said no more than it is: unwritten
     # في البيت رجلٌ كريمٌ: a مبتدأ مؤخر heading its own unit is one as a whole, as on its own

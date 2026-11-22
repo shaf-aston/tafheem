@@ -2,7 +2,8 @@
 from __future__ import annotations
 
 from backend.services.text.arabic_text import strip_diacritics
-from backend.services.nahw.book import frames, is_one, kaffa_sister, is_subject_pronoun
+from backend.services.nahw.book import frames, is_one, is_subject_pronoun
+from backend.services.nahw.syntax import ma
 from backend.services.nahw.syntax.facts import Sentence, attached_pronoun, is_built, is_called_alone, is_known, is_name, is_suffix, listed, noun_tagged, reaches_pronoun, read_as, is_describing, is_elative, is_participle, is_prefix, is_preposition, is_verb, is_zarf, is_masdar, zarf_in_nasb, shows_jarr, typed_case_of, typed_or_parsed_case, subject_link, works_as_verb
 
 
@@ -48,7 +49,7 @@ def known_pair_in_order(s: Sentence) -> None:
         first = s.head(told)
         # the first hung as the khabar, or as the subject of an إنّ stopped by ما that has no khabar (إِنَّمَا أَخُوكَ زَيْدٌ)
         particle = s.head(first) if first and first["rel"] == "SBJ" else None
-        no_khabar = particle and particle["pos"] == "PRT" and kaffa_sister(particle["lemma"]) and not any(k["rel"] == "PRD" for k in s.kids(particle))
+        no_khabar = particle and particle["pos"] == "PRT" and ma.kaffa_sister(particle["lemma"]) and not any(k["rel"] == "PRD" for k in s.kids(particle))
         if (first and told["rel"] == "SBJ" and first["id"] < told["id"] and (first["rel"] in ("PRD", "---") or no_khabar)
                 and not is_one(first["lemma"], "negation") and works_as_verb(first) is None and not is_zarf(first, s)
                 and is_known(first, s) and not any(k["rel"] == "SBJ" and k is not told for k in s.kids(first))):
@@ -190,17 +191,17 @@ def name_not_told_by_ma(s: Sentence) -> None:
     name opening the clause is told of by no relative ما: ما straight after it, a verb straight after ما holding the ه
     that goes back to the name, negates that verb, and the verb's clause is the name's khabar, hung as the parser hangs
     زَيْدٌ لَمْ أَرَهُ (the verb on the name, the negation on the verb)."""
-    for ma in s.tokens:
-        name, verb = s.by_id.get(ma["id"] - 1), s.by_id.get(ma["id"] + 1)
-        if not (name and verb and strip_diacritics(ma["form"]) == "ما" and ma["pos"] != "PRT" and is_name(name) and is_verb(verb)
-                and (ma["head"] == name["id"] or name["head"] == ma["id"]) and verb["head"] == ma["id"]
+    for word in s.tokens:
+        name, verb = s.by_id.get(word["id"] - 1), s.by_id.get(word["id"] + 1)
+        if not (name and verb and ma.is_ma(word, alone=True) and word["pos"] != "PRT" and is_name(name) and is_verb(verb)
+                and (word["head"] == name["id"] or name["head"] == word["id"]) and verb["head"] == word["id"]
                 and any(attached_pronoun(k) and strip_diacritics(k["form"]).strip("+") == "ه" for k in s.kids(verb))):
             continue
-        if name["head"] == ma["id"]:
-            s.relink(name, ma["head"], ma["rel"])
+        if name["head"] == word["id"]:
+            s.relink(name, word["head"], word["rel"])
         s.relink(verb, name["id"], "---")
-        s.relink(ma, verb["id"], "MOD")
-        ma["pos"], ma["pos_camel"] = "PRT", "part_neg"
+        s.relink(word, verb["id"], "MOD")
+        word["pos"], word["pos_camel"] = "PRT", "part_neg"
 
 
 def relative_khabar(s: Sentence) -> None:
