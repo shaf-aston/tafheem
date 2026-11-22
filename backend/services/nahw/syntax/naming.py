@@ -117,6 +117,7 @@ class FoundEntry(TypedDict, total=False):
     gap: Gap  # set by the teacher: the rule a dashed role broke
     name: str  # set from the picture: its finer name (اسم ليس)
     doer: Doer  # set from the picture: the doer drawn inside a verb, said on its card too
+    built: bool  # set from the picture: a relative ما built in the place of its job (facts.ma_kind)
 
 
 def _written(piece: dict, base: dict, word: str, tokens: list[dict], attached: dict, word_of: dict, at: int) -> str:
@@ -625,3 +626,38 @@ def _idle(n: Named) -> None:
 
 
 FINISHES = (_pair, _extra_ba, _extra_min, _kaffa, _excepted_after_la, _compound_number, _idle)
+
+
+# what the picture works out and the cards say too, one list per typed word (picture.render.draw), taken off the
+# drawing here so the page gets the drawing alone and the cards and the picture can never say two things
+CARD_FACTS = ("unsaid", "finer", "piece_names", "doer", "ma")
+
+
+def finish(found: list[FoundEntry], drawn: dict) -> None:
+    """Put on the cards what only the whole picture shows, and take it off `drawn`."""
+    unsaid, finer, piece_names, doers, ma_of = (drawn.pop(key, None) or {} for key in CARD_FACTS)
+    # شكرًا is the object of an understood verb: the card says the job the picture
+    # gives it. Only that; a picture's unit name (مضاف, اسم موصول) is not a job.
+    for word, job in zip(found, unsaid):
+        # بابُ الفاعلِ alone: the khabar of an unwritten هذا, not the مبتدأ it was named
+        if job and (not word["role"] or word["role"] == NAMED.mubtada):
+            word["role"] = job
+            word.pop("gap", None)
+    # the card says the same finer name the picture prints, read off the one tree
+    for word, name in zip(found, finer):
+        if name and word["role"]:
+            word["name"] = name
+    for piece in (piece for word in found for piece in word.get("attached", [])):
+        if piece["id"] in piece_names:
+            piece["name"] = piece_names[piece["id"]]
+    # and the doer drawn inside a verb (ضمير مستتر تقديره هو), so its card says the same
+    for word, doer in zip(found, doers):
+        if doer and word["role"]:
+            word["doer"] = doer
+    for word, ma in zip(found, ma_of):
+        if ma:
+            job, case = ma
+            word.update(role=job or NAMED.harf, case=CASE_NAME[case] if case else None, built=bool(job))
+            if not job:
+                word["named"] = frames()["masdar"]["named_by_word"]["ما"]
+            word.pop("gap", None)

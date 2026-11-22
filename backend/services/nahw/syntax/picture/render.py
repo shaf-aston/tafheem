@@ -60,8 +60,9 @@ def find_doers(c: Picture) -> None:
         if owner is None and not any(_could_be_meant(t) for t in c.tokens if t["id"] < token["id"]):
             owner = [DOER["reply_to"]]
         persons_of[token["id"]] = _persons(token, owner)
-    doer_of: dict[int, dict] = {}  # the doer drawn inside each typed verb, said on its card too
-    c.chained, c.doer_of, c.persons_of, c.seen = chained, doer_of, persons_of, seen
+    # the doer drawn inside each verb (هو hidden in يكتبُ, the تاء of كتبتُ), said on a typed verb's card too
+    doer_of = {key: _doer(by_id[key], c.family_of[key], persons) for key, persons in persons_of.items()}
+    c.chained, c.doer_of, c.seen = chained, doer_of, seen
 
 
 def _could_be_meant(token: dict) -> bool:
@@ -86,7 +87,7 @@ def draw(c: Picture) -> dict:
     family_of, framed, hung, job_of, joins, kept = c.family_of, c.framed, c.hung, c.job_of, c.joins, c.kept
     label_of, ma_card, mubdal_minhu, name_of, named = c.label_of, c.ma_card, c.mubdal_minhu, c.name_of, c.named
     named_by_unsaid, nominal, opened, parent = c.named_by_unsaid, c.nominal, c.opened, c.parent
-    persons_of, place_of, role_of, root, roots = c.persons_of, c.place_of, c.role_of, c.root, c.roots
+    place_of, role_of, root, roots = c.place_of, c.role_of, c.root, c.roots
     seen, split, typed_at, understood = c.seen, c.split, c.typed_at, c.understood
     why_of, words, written = c.why_of, c.words, c.written
     def said_of(token: dict) -> str | None:
@@ -104,9 +105,7 @@ def draw(c: Picture) -> dict:
         attached = [{"role": name_of.get(piece["id"]) or finer_name(piece, piece["role"], piece["family"]), "tone": tone(piece["role"]),
                      "gap": piece["role"] is None}
                     for piece in found.get("attached", []) if piece["id"] not in split]
-        doer = _doer(token, family_of[token["id"]], persons_of[token["id"]]) if token["id"] in persons_of else None
-        if doer and token["id"] in typed_at:
-            doer_of[token["id"]] = doer
+        doer = doer_of.get(token["id"])
         stands_for = mubdal_minhu.get(token["id"])
         inner = {**stands_for, "tone": tone(NAMED.badal), "hidden": True} if stands_for else None
         if not attached and not doer and not inner:

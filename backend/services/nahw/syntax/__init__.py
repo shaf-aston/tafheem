@@ -20,10 +20,8 @@ from backend.services.core import provenance
 from backend.services.sarf.morphology import as_said
 from backend.services.text.arabic_text import words as split_words
 from backend.services.nahw.syntax import teacher, tree
-from backend.services.nahw.syntax.picture.names import FRAMES
 from backend.services.nahw.syntax.repair import correct
-from backend.services.nahw.syntax.naming import NAMED, roles as name_roles
-from backend.services.text.harakat import CASE_NAME
+from backend.services.nahw.syntax.naming import finish, roles as name_roles
 
 logger = logging.getLogger(__name__)
 
@@ -101,32 +99,7 @@ def read(sentence: str, picks: list[dict]) -> dict:
         correct(typed, tokens)
         found = teacher.review(typed, tokens, name_roles(typed, tokens))
         drawn = tree.build(typed, tokens, found)
-        # شكرًا is the object of an understood verb: the card says the job the picture
-        # gives it. Only that; a picture's unit name (مضاف, اسم موصول) is not a job.
-        for word, job in zip(found, drawn.pop("unsaid", [])):
-            # بابُ الفاعلِ alone: the khabar of an unwritten هذا, not the مبتدأ it was named
-            if job and (not word["role"] or word["role"] == NAMED.mubtada):
-                word["role"] = job
-                word.pop("gap", None)
-        # the card says the same finer name the picture prints, read off the one tree
-        for word, finer in zip(found, drawn.pop("finer", [])):
-            if finer and word["role"]:
-                word["name"] = finer
-        piece_names = drawn.pop("piece_names", {})
-        for piece in (piece for word in found for piece in word.get("attached", [])):
-            if piece["id"] in piece_names:
-                piece["name"] = piece_names[piece["id"]]
-        # and the doer drawn inside a verb (ضمير مستتر تقديره هو), so its card says the same
-        for word, doer in zip(found, drawn.pop("doer", [])):
-            if doer and word["role"]:
-                word["doer"] = doer
-        for word, ma in zip(found, drawn.pop("ma", [])):
-            if ma:
-                job, case = ma
-                word.update(role=job or NAMED.harf, case=CASE_NAME[case] if case else None, built=bool(job))
-                if not job:
-                    word["named"] = FRAMES["masdar"]["named_by_word"]["ما"]
-                word.pop("gap", None)
+        finish(found, drawn)  # what only the picture works out (an unsaid job, a finer name, a hidden doer) goes on the cards
         for i, (said, word) in enumerate(zip(typed, written)):
             if said != word:  # مَالِيَهْ, read as مَالِيَ: its last column shows the هاء السكت as typed
                 last = max(at for at, of in enumerate(drawn["written"]) if of == i)
