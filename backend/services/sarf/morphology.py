@@ -22,7 +22,7 @@ from backend.services.text.arabic_text import HAS_PYARABIC, bare_letters, hamzah
 from backend.services.sarf import engine, expects, noun_reader
 from backend.services.sarf import verb_reader
 from backend.services.quran import corpus as quran_corpus
-from backend.services.nahw.book import book_map, book_words, condition_of, elative_shape, is_built_word, is_mabni, is_one, participle_shape, sakt_off, six_noun_case
+from backend.services.nahw.book import book_map, book_words, condition_of, elative_shape, is_built_word, is_mabni, is_one, kaffa_sister, participle_shape, sakt_off, six_noun_case
 from backend.services.text.harakat import CAMEL_CASE, CASE_NAME, NO_ANALYSIS, SHADDA, SUKUN, TANWEEN, base_of, best_reading, build_nun, has_tanween, nearest_reading, own_letters, past_passive_shape, weak_last, moved_for_wasl, no_vowels_typed, paused, stuck_letters, typed_case, unread, vowel_agreement, letters
 
 logger = logging.getLogger(__name__)
@@ -651,6 +651,8 @@ def _ranked(tokens: list[str], disambiguator) -> list[list[dict]] | None:
 def pick(tokens: list[str], disambiguator=None) -> list[dict[str, Any]]:
     """One raw CAMeL reading per word ({} where none is read), shared by the cards and
     the parser. Neighbours rank the readings (MLE, or the parser's BERT), the typed vowels choose."""
+    if not tokens:  # only signs and numbers typed (۝ ٢٨ ۚ): no word, no reading
+        return []
     if (all_ranked := _ranked(tokens, disambiguator)) is None:
         return [{} for _ in tokens]
 
@@ -679,6 +681,8 @@ def pick(tokens: list[str], disambiguator=None) -> list[dict[str, Any]]:
             ranked = [oath]
         if jarred := _jarred_ma(evidence):
             ranked = [jarred]
+        if kaffa := _kaffa_ma(evidence, ranked):
+            ranked = [kaffa]
         if sister := _inna_short_me(evidence) or _noun_only_particle(evidence) or _twin_particle(evidence, i == 0):
             ranked = [sister]
         if not _agreeing(evidence, ranked) and (seated := _hamza_written_waw(evidence, disambiguator)
@@ -805,6 +809,17 @@ def pick(tokens: list[str], disambiguator=None) -> list[dict[str, Any]]:
                                                        and not (out[i - 1].get("enc0") or "").startswith(("2d", "3d")))) \
                 and (elative := _elative_reading(tokens[i], steps[i])):
             out[i] = elative
+    # إِنِّي أَعْلَمُ مَا لَا تَعْلَمُونَ (2:30): the elative never takes an object (Ashmuni V2 p312: لا ينصب المفعول به), so a word of
+    # its shape, said by the speaker (إِنِّي، أَنَا before it) with a relative or a word typed in nasb straight after it, is the
+    # speaker's present verb "I know" and that word its object; with a preposition after it (أَعْلَمُ بِمَا) it stays the elative
+    for i in range(1, len(out) - 1):
+        if out[i].get("pos") in NOUNISH and elative_shape(out[i].get("pattern", ""), out[i].get("lex", "")) \
+                and out[i].get("enc0") in ("0", "na", None) and _speaker(tokens[i - 1]) \
+                and all(out[i + 1].get(prc, "0") in ("0", "na") for prc in ("prc1", "prc2", "prc3")) \
+                and (out[i + 1].get("pos") == "pron_rel" or typed_case(tokens[i + 1]) == "a" and out[i + 1].get("pos", "").startswith("noun")) \
+                and (verb := best_reading(tokens[i], [r for r in _widened(tokens[i], steps[i][1])
+                                                      if r.get("pos") == "verb" and r.get("asp") == "i" and r.get("per") == "1"])):
+            out[i] = verb
     # نصر زيد بكرا، زيد نصر بكرا: every منصوب has its عامل (Ibn Aqil on the Alfiyya, المفعول به).
     # A noun read in nasb (بكرا's alif of tanween is written, typed vowels or none), in a line of
     # nouns alone, has none but a verb before it, or is that verb when the fatha is typed (زَيْدٌ أَكْرَمَ
@@ -1209,6 +1224,31 @@ def _jarred_ma(typed: str) -> dict | None:
     return {**shared, "lex": jar, "pos": "prep", "atbtok": f"{jar}_+{ma}", "prc0": "na", "prc1": "0", "enc0": "ma_interrog", "stt": "na", "cas": "na"}
 
 
+def _kaffa_ma(typed: str, ranked: list[dict]) -> dict | None:
+    """إِنَّمَا، أَنَّمَا، كَأَنَّمَا، لَكِنَّمَا، لَيْتَمَا، لَعَلَّمَا: an إنّ sister with ما الكافة written onto it (closed_words
+    inna `kaffa`), a و or ف joining it on. The dictionary splits only إِنَّمَا (إِنَّ_+ما); it reads أَنَّمَا as إِنَّمَا, keeps
+    كَأَنَّمَا whole, reads لَعَلَّمَا and لَيْتَمَا as لَ or لِ on a verb, and has no لَكِنَّمَا. So the sister's own reading
+    gets the ما put after it, as the dictionary writes إِنَّمَا; typed vowels must fit the sister (لِيَتِمَّا stays a verb)."""
+    if any("_+ما" in r.get("atbtok", "") and best_reading(typed, [r]) for r in ranked[:1]):
+        return None  # the dictionary's own إِنَّ_+ما, read as typed
+    joined = next(((split, name) for letter, name in _JOINING if (split := _one_letter_off(typed, letter))
+                   and kaffa_sister(split[1])), None)
+    said, rest = joined[0] if joined else ("", typed)
+    if not (sister := kaffa_sister(rest)):
+        return None
+    cut = rest.rindex("م")  # the ما's own letters, its fatha with them
+    # the heavy sister only (لَيْتَ is written without a shadda): never the light أَنْ، إِنْ، لٰكِنْ
+    own = [r for r in _analyses(sister) if r.get("catib6") == "PRT" and strip_diacritics(r.get("diac", "")) == sister
+           and (r.get("pos") == "verb_pseudo" or SHADDA in r.get("diac", ""))]
+    found = next((r for r in own if vowel_agreement(rest[:cut], r["diac"]) is not None), None)
+    if not found:
+        return None
+    reading = {**found, "diac": found["diac"] + "ما", "lex": found["diac"] + "ما", "pos": "verb_pseudo", "atbtok": f"{found['diac']}_+ما",
+               "bw": f"{found['diac']}/PSEUDO_VERB+ما/REL_PRON", "catib6": "PRT+NOM", "ud": "CCONJ+PRON", "enc0": "mA_rel",
+               "prc0": "na", "prc1": "0", "prc2": "0"}
+    return _joined_onto(said, reading, "CONJ", prc2=f"{joined[1]}_conj") if joined else reading
+
+
 def _rest_readings(rest: str, disambiguator=None) -> list[dict]:
     """The readings of what is left once a one-letter particle is off: the word itself, not an
     abbreviation spelled like it (فِي)."""
@@ -1437,6 +1477,15 @@ def _min_phrase_follows(after: list[dict]) -> bool:
         if reading.get("pos") == "prep" and reading.get("lex") == "مِن":
             return True
     return False
+
+
+def _speaker(typed: str) -> bool:
+    """أَنَا, or a sister of إنّ with "me" on it (إِنِّي، إِنَّنِي، لَعَلِّي), a joining وَ or فَ on it or not (وَإِنِّي): the one
+    speaking stands before what follows."""
+    bare = strip_diacritics(typed)  # its hamza kept: the book lists إنّ with it
+    if bare[:1] in "وف" and len(bare) > 3:
+        bare = bare[1:]
+    return bare in ("أنا", "انا") or any(bare.endswith(me) and is_one(bare[:-len(me)], "inna") for me in ("ني", "ي"))
 
 
 def _elative_reading(token: str, step: tuple) -> dict | None:

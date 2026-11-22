@@ -582,6 +582,9 @@ class Progress(BaseSettings):
     progress_learning_hours: int = Field(default=24, gt=0)
     # Without it SQLite gives up the moment two answers land together, which auto-advance makes ordinary.
     progress_busy_timeout_ms: int = Field(default=5000, gt=0)
+    # An answer given with no signal waits on the phone and says how long ago it was given, so it lands on the
+    # day it was given. Further back than this it lands now: a day's catch-up is honest, a week's is a made-up streak.
+    progress_late_answer_max_ms: int = Field(default=172_800_000, gt=0)
     # XP per right answer, once per item per day (services/learner/rewards.py).
     rewards_xp_per_answer: int = Field(default=10, gt=0)
     # Level n needs this × n XP to reach n + 1.

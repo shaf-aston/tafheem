@@ -29,8 +29,8 @@ const postRecording = (path, recording, params, { tuned, signal, reading } = {})
   return api.post(`${path}?${asked}`, body, { headers, signal }).then((r) => r.data)
 }
 
-export const listen = (recording, { match = false, recite = false, fusha = true, near, before, signal, reading } = {}) =>
-  postRecording('/listen', recording, { match, recite, fusha, ...(near && { near }), ...(before && { before }) }, { signal, reading })
+export const listen = (recording, { match = false, recite = false, fusha = true, language, near, before, signal, reading } = {}) =>
+  postRecording('/listen', recording, { match, recite, fusha, ...(language && { language }), ...(near && { near }), ...(before && { before }) }, { signal, reading })
 
 // How sure the ear is of each word of `check`'s ayahs (as "1:1"), scored from
 // the same recording `listen` already wrote `heard` down from. Its own request

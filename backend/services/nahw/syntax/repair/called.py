@@ -32,4 +32,4 @@ def called_annexes(s: Sentence) -> None:
         if (token["rel"] == "---" and head and head["id"] == token["id"] - 1 and noun_tagged(token)
                 and not is_describing(token) and calling_head(head, s) == "nida"
                 and typed_case_of(head) is None and not typed_tanween(head)):
-            token["rel"] = "IDF"
+            s.relabel(token, "IDF")

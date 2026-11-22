@@ -31,6 +31,7 @@ from backend.services import recitation
 from backend.services.core.ratelimit import RECORDING
 from backend.services.learner import journal
 from backend.services.recitation import NotInstalled, Refused, TooLong, Unreadable, kind_of, rules
+from backend.services.recitation.whisper import dictation_languages
 
 log = logging.getLogger(__name__)
 
@@ -173,6 +174,7 @@ async def listen(
     match: bool = Query(False, description="Also return the ayahs these words came from; heard as a recitation, like recite"),
     recite: bool = Query(False, description="Qur'an being recited: heard in Arabic by the Qur'an ear, no ayahs looked up"),
     fusha: bool = Query(True, description="Lean towards classical Arabic; off hears any Arabic"),
+    language: str | None = Query(None, description="A search box that takes one language only, e.g. ar; one of the dictation languages"),
     near: str | None = Query(
         None, pattern=f"^{rules.AYAH_KEY.pattern}-{rules.AYAH_KEY.pattern}$",
         description="The open page's first and last ayah, 2:1-2:5: also say where in the Qur'an this was",
@@ -192,6 +194,8 @@ async def listen(
             rules.words_within_cap("before", before)
         except Refused as exc:
             raise filed.fail(422, str(exc), "validate") from None
+        if language and language not in dictation_languages():
+            raise filed.fail(422, f"{language} is not a language this app listens for", "validate")
         body = await _read_recording(audio, filed)
         is_recitation = recitation.is_recitation(match, recite)
         journal.note("reading.received", bytes=len(body), recite=is_recitation)
@@ -213,6 +217,7 @@ async def listen(
                 heard_started = time.perf_counter()
                 text, hits = await run_in_threadpool(
                     recitation.hear, body, match_ayahs=match, recite=recite, fusha=fusha,
+                    languages=[language] if language else None,
                 )
                 journal.note(
                     "reading.heard", ms=round((time.perf_counter() - heard_started) * 1000), chars=len(text),

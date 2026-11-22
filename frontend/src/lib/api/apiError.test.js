@@ -40,6 +40,11 @@ describe('errorMessage', () => {
     expect(errorMessage(new Error('Network Error'))).toMatch(/reach the server/)
   })
 
+  it('says plainly when the host could not reach the server, not "status code 502"', () => {
+    expect(errorMessage(failure(502))).toMatch(/reach the server/)
+    expect(smartError(failure(504))).toMatch(/reach the server/)
+  })
+
   it('keeps what the server said, and other messages as they are', () => {
     expect(errorMessage(failure(422, 'Not Arabic.'))).toBe('Not Arabic.')
     expect(errorMessage(new Error('Bad JSON'))).toBe('Bad JSON')
@@ -50,9 +55,15 @@ describe('retryServerErrors', () => {
   const once = retryServerErrors(1)
 
   it('tries a server failure or a lost connection again, up to the count', () => {
-    expect(once(0, failure(502))).toBe(true)
+    expect(once(0, failure(500))).toBe(true)
     expect(once(0, { code: 'ERR_NETWORK' })).toBe(true)
-    expect(once(1, failure(502))).toBe(false)
+    expect(once(1, failure(500))).toBe(false)
+  })
+
+  // The host already waited ~30 s for the server: asking again only waits another 30 s.
+  it('not when the host could not reach the server', () => {
+    expect(once(0, failure(502))).toBe(false)
+    expect(once(0, failure(504))).toBe(false)
   })
 
   // A model route counts every ask against the reader's share, refused or not.

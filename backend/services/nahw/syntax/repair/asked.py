@@ -11,7 +11,8 @@ from backend.services.nahw.syntax.facts.sentence import set_out_by_amma
 from backend.services.nahw.syntax.facts import Sentence, holds_doer, is_passive, is_verb, subject_link, typed_case_of
 
 
-def asked_man(bases: list[dict], tokens: list[dict]) -> None:
+def asked_man(s: Sentence) -> None:
+    bases, tokens = s.bases, s.tokens
     if not bases or any(is_verb(t) for t in tokens):
         return
     first = bases[0]
@@ -19,12 +20,13 @@ def asked_man(bases: list[dict], tokens: list[dict]) -> None:
         first["pos_camel"] = "pron_interrog"
 
 
-def man_before_verb(bases: list[dict], s: Sentence) -> None:
+def man_before_verb(s: Sentence) -> None:
     """مَنْ أَكْرَمَ ضَيْفًا، مَنْ أَكْرَمْتَ: an opening مَنْ the parser hung loose on the verb after
     it is a noun with a job. A verb whose doer is the hidden هو holds the pronoun back to it, so
     مَنْ is the مبتدأ and the verb its khabar, as مَنْ جَاءَ reads; a verb with a doer of its own
     has مَنْ as its fronted object (Ibn Yaʿish on the Mufassal: a verb that has its object takes no
     other), so one that has its object already (مَنْ يُرِدِ اللَّهُ بِهِ خَيْرًا) leaves مَنْ the مبتدأ."""
+    bases = s.bases
     if len(bases) < 2 or not (_man(man := bases[0]) and man["rel"] == "MOD" and is_verb(verb := bases[1])):
         return
     own_object = any(k["rel"] == "OBJ" and k is not man for k in s.kids(verb))
@@ -39,9 +41,10 @@ def man_before_verb(bases: list[dict], s: Sentence) -> None:
     s.relink(verb, man["id"], "MOD")
 
 
-def asked_anna(tokens: list[dict]) -> None:
+def asked_anna(s: Sentence) -> None:
     """أَنَّى يَكُونُ لَهُ وَلَدٌ، أَنَّى لَكِ هَذَا: the analyser files أَنَّى with the particles (closed_words istifham
     particle_tagged_nouns), but it is a question noun, as أَيْنَ and كَيْفَ are."""
+    tokens = s.tokens
     for token in tokens:
         if token["pos"] == "PRT" and is_one(token["form"], "istifham", "particle_tagged_nouns"):
             token.update(pos="NOM", pos_camel="adv_interrog")

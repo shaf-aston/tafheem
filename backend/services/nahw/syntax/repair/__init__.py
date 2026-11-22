@@ -21,111 +21,118 @@ from backend.services.nahw.syntax.repair.subject_clash import added_to_verb, pro
 from backend.services.nahw.syntax.repair.typed import adverb_only, described_after_tanween, described_known, emphasis_lam_opener, jarr_after_mudaf, number_after_one, nunless_mudaf, since_jarr, typed_words
 
 
-# Each repair and what it reads: the parser's "tokens", the typed words' "bases", "both", the "sentence" (links kept
-# in step by `Sentence.relink`), or the "bases_sentence".
+# Each repair takes the one Sentence: its tokens, the typed words (`s.bases`) and the lookups, kept in step as it moves
+# links (`Sentence.relink`, `Sentence.relabel`).
 PASSES = (
-    (typed_words, "both"),
-    (adverb_only, "sentence"),
-    (compound_number, "bases"),
-    (since_jarr, "tokens"),
-    (jarr_after_mudaf, "sentence"),
-    (number_after_one, "sentence"),
-    (nunless_mudaf, "tokens"),
-    (emphasis_lam_opener, "tokens"),
-    (asked_man, "both"),
-    (man_before_verb, "bases_sentence"),
-    (asked_anna, "tokens"),
-    (counted_by_min, "sentence"),  # first: the verb it puts back on كم is the one asked_before_verb places
-    (asked_before_verb, "sentence"),
-    (asked_of_kana, "sentence"),
-    (pronoun_on_its_verb, "sentence"),
-    (added_to_verb, "sentence"),
-    (excepted_after_doer, "sentence"),
-    (first_object_owed, "sentence"),
-    (subject_clash, "sentence"),
-    (described_known, "sentence"),  # after: the object subject_clash moved onto the verb is a noun it describes
-    (name_told_to, "sentence"),
-    (repeated_doer, "sentence"),
-    (kana_subject, "sentence"),
-    (kafa_doer, "sentence"),
-    (kana_fronted_khabar, "sentence"),
-    (kana_nasb_khabar, "sentence"),
-    (inna_object, "sentence"),
-    (inna_second_khabar, "sentence"),
-    (zanna_pair, "sentence"),
-    (praise_specified, "sentence"),
-    (doer_first, "sentence"),
-    (doer_after_object, "sentence"),
-    (late_doer, "sentence"),
-    (outer_doer, "sentence"),
-    (verb_under_fronted_object, "sentence"),
-    (object_after_tanween, "sentence"),
-    (described_after_tanween, "sentence"),
-    (object_past_verb, "sentence"),
-    (relative_owed, "sentence"),
-    (called, "sentence"),
-    (called_annexes, "sentence"),
-    (dua_clause, "sentence"),
-    (counted_times, "sentence"),
-    (object_of_noun, "sentence"),
-    (elative_specified, "sentence"),
-    (after_pointer, "sentence"),
-    (relative_khabar, "sentence"),
-    (khabar_after_silah, "sentence"),
-    (name_not_told_by_ma, "sentence"),
-    (majrur_of_jar, "sentence"),
-    (hung_on_pronoun, "sentence"),
-    (told_of_jar, "sentence"),
-    (zarf_is_no_subject, "sentence"),
-    (khabar_said_first, "sentence"),
-    (second_khabar, "sentence"),
-    (known_pair_in_order, "sentence"),
-    (naat_after_its_noun, "sentence"),
-    (naat_not_subject, "sentence"),
-    (before_la, "sentence"),
-    (la_over_its_khabar, "sentence"),
-    (jar_off_particle, "sentence"),
-    (masdar_khabar, "sentence"),
-    (jar_on_its_khabar, "sentence"),
-    (tawkeed_before_khabar, "sentence"),
-    (sentence_khabar, "sentence"),
-    (hasr_khabar, "sentence"),
-    (described_doer, "sentence"),
-    (hal_clause, "bases_sentence"),
-    (oath_clause, "sentence"),
-    (amma_clause, "sentence"),
-    (negated_conjunct, "sentence"),
-    (said_again, "sentence"),
-    (doer_then_khabar, "sentence"),
-    (no_khabar_on_full_verb, "sentence"),
-    (naat_beside_its_noun, "sentence"),
-    (elative_describes, "sentence"),
-    (nasab, "bases_sentence"),
-    (untied_command, "tokens"),
-    (particles.stamp, "tokens"),
+    typed_words,
+    adverb_only,
+    compound_number,
+    since_jarr,
+    jarr_after_mudaf,
+    number_after_one,
+    nunless_mudaf,
+    emphasis_lam_opener,
+    asked_man,
+    man_before_verb,
+    asked_anna,
+    counted_by_min,  # first: the verb it puts back on كم is the one asked_before_verb places
+    asked_before_verb,
+    asked_of_kana,
+    pronoun_on_its_verb,
+    added_to_verb,
+    excepted_after_doer,
+    first_object_owed,
+    subject_clash,
+    described_known,  # after: the object subject_clash moved onto the verb is a noun it describes
+    name_told_to,
+    repeated_doer,
+    kana_subject,
+    kafa_doer,
+    kana_fronted_khabar,
+    kana_nasb_khabar,
+    inna_object,
+    inna_second_khabar,
+    zanna_pair,
+    praise_specified,
+    doer_first,
+    doer_after_object,
+    late_doer,
+    outer_doer,
+    verb_under_fronted_object,
+    object_after_tanween,
+    described_after_tanween,
+    object_past_verb,
+    relative_owed,
+    called,
+    called_annexes,
+    dua_clause,
+    counted_times,
+    object_of_noun,
+    elative_specified,
+    after_pointer,
+    relative_khabar,
+    khabar_after_silah,
+    name_not_told_by_ma,
+    majrur_of_jar,
+    hung_on_pronoun,
+    told_of_jar,
+    zarf_is_no_subject,
+    khabar_said_first,
+    second_khabar,
+    known_pair_in_order,
+    naat_after_its_noun,
+    naat_not_subject,
+    before_la,
+    la_over_its_khabar,
+    jar_off_particle,
+    masdar_khabar,
+    jar_on_its_khabar,
+    tawkeed_before_khabar,
+    sentence_khabar,
+    hasr_khabar,
+    described_doer,
+    hal_clause,
+    oath_clause,
+    amma_clause,
+    negated_conjunct,
+    said_again,
+    doer_then_khabar,
+    no_khabar_on_full_verb,
+    naat_beside_its_noun,
+    elative_describes,
+    nasab,
+    untied_command,
+    particles.stamp,
+    particles.emphasis_lam_frees_its_word,
+    particles.hasr_frees_its_words,
+    particles.negation_settles_its_words,
+    particles.wonder_settles_its_words,
+    particles.asks_settles_its_words,
+    particles.idhan_settles_its_words,
 )
 
 
 def correct(words: list[str], tokens: list[dict]) -> None:
     parsed = {t["id"]: (t["head"], t["rel"]) for t in tokens}  # a tree: every word reaches the root (decode)
     book_links(tokens)
-    untangle(tokens, parsed)
+    s = Sentence(tokens)
+    untangle(s, parsed)
     if len(bases := base_tokens(words, tokens)) == len(words):
         for word, base in zip(words, bases):
             base["typed"] = word
-        s = Sentence(tokens)
-        reads = {"tokens": (tokens,), "bases": (bases,), "both": (bases, tokens), "sentence": (s,), "bases_sentence": (bases, s)}
-        for repair, kind in PASSES:
+        s.bases = bases
+        for repair in PASSES:
             s.refresh()  # a pass may change more than links (a retag): the next reads the tokens as it left them
-            repair(*reads[kind])
-            untangle(tokens, parsed)  # the next pass walks up the links, and a walk round a loop never ends
+            repair(s)
+            untangle(s, parsed)  # the next pass walks up the links, and a walk round a loop never ends
 
 
-def untangle(tokens: list[dict], parsed: dict[int, tuple[int, str]]) -> None:
+def untangle(s: Sentence, parsed: dict[int, tuple[int, str]]) -> None:
     """Each repair moves one link; two of them may close a loop (a word under a word under
     itself), which no sentence has: every word hangs on a word that reaches the root. A word
     left in a loop takes back the parser's own link, or hangs on the root when that loops too.
     Runs after every repair, so none reads a loop (وهو الله لا إله إلا هو froze in excepted_from)."""
+    tokens = s.tokens
     by_id = {t["id"]: t for t in tokens}
 
     def looped(token: dict) -> bool:
@@ -139,6 +146,6 @@ def untangle(tokens: list[dict], parsed: dict[int, tuple[int, str]]) -> None:
 
     for token in tokens:
         if looped(token):
-            token["head"], token["rel"] = parsed.get(token["id"], (0, token["rel"]))
+            s.relink(token, *parsed.get(token["id"], (0, token["rel"])))
             if looped(token):
-                token["head"] = 0
+                s.relink(token, 0, token["rel"])

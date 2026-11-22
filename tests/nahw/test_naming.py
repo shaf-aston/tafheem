@@ -1,7 +1,7 @@
 """The naming layer reads links plus typed vowels, so both are tested without a model."""
 import pytest
 
-from backend.services.nahw.syntax import facts, followers, naming
+from backend.services.nahw.syntax import facts, followers, naming, repair
 from backend.services.nahw.syntax.repair import correct, untangle
 from backend.services.text.harakat import typed_case, typed_passive
 
@@ -40,7 +40,7 @@ def test_typed_case_and_passive():
 def test_a_word_left_in_a_loop_takes_back_the_parsers_link_or_the_root():
     toks = [token(1, "كتب", "كتب", "VRB", 2, "MOD"), token(2, "زيد", "زيد", "PROP", 1, "SBJ"),
             token(3, "عمرو", "عمرو", "PROP", 3, "OBJ")]
-    untangle(toks, {1: (0, "---"), 2: (1, "SBJ"), 3: (3, "OBJ")})
+    untangle(facts.Sentence(toks), {1: (0, "---"), 2: (1, "SBJ"), 3: (3, "OBJ")})
     assert [(t["head"], t["rel"]) for t in toks] == [(0, "---"), (1, "SBJ"), (0, "OBJ")]
 
 
@@ -53,6 +53,22 @@ def test_the_repairs_hand_on_no_loop():
         while up in by_id and steps <= len(toks):
             up, steps = by_id[up]["head"], steps + 1
         assert up == 0
+
+
+def test_each_repair_reads_the_sentence_as_the_last_one_left_it(monkeypatch):
+    """A repair may change more than a link (a retag); the next one's lookups must already see it."""
+    seen = []
+
+    def retag(s):
+        s.tokens[1]["pos"] = "VRB"
+
+    def look(s):
+        seen.append(s.verbless)
+
+    monkeypatch.setattr(repair, "PASSES", (retag, look))
+    toks = [token(1, "زيد", "زيد", "PROP", 0, "---"), token(2, "كتب", "كتب", "NOM", 1, "PRD")]
+    correct(["زَيْدٌ", "كَتَبَ"], toks)
+    assert seen == [False]
 
 
 @pytest.mark.parametrize("verb, passive", [
@@ -908,3 +924,13 @@ def test_a_follower_of_the_called_ayyuha_follows_it_though_it_is_tagged_a_partic
 def test_a_list_of_the_words_round_a_family_makes_no_member_of_it(lemma: str, family: str, member: bool):
     from backend.services.nahw.book import in_family
     assert in_family(lemma, family) is member
+
+
+def test_a_moved_link_moves_the_asked_pair_with_it():
+    """مَنِ الَّذِي يَضْمَنُ: a verb in the relative's صلة leaves the clause asked; hung on the question word, it does not."""
+    toks = [token(1, "مَنِ", "مَن", "NOM", 0, "---"), token(2, "الَّذِي", "الَّذِي", "NOM", 1, "MOD"),
+            token(3, "يَضْمَنُ", "ضَمِن", "VRB", 2, "MOD")]
+    s = facts.Sentence(toks)
+    assert s.asked_pair == (toks[0], toks[1])
+    s.relink(toks[2], 1, "MOD")
+    assert s.asked_pair is None

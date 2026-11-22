@@ -22,7 +22,8 @@ def excepted_after_doer(s: Sentence) -> None:
         noun = next((k for k in kids if word and k["rel"] == "OBJ" and noun_tagged(k) and typed_case_of(k) is None
                      and verb["id"] < k["id"] < word["id"]), None)
         if noun:
-            noun["rel"], word["rel"] = "SBJ", "OBJ"
+            s.relabel(noun, "SBJ")
+            s.relabel(word, "OBJ")
 
 
 def first_object_owed(s: Sentence) -> None:
@@ -67,7 +68,7 @@ def subject_clash(s: Sentence) -> None:
                 and ((typed := typed_case_of(token)) == "u" or typed is None and token["id"] > verb["id"]
                      and is_name(token) and typed_or_parsed_case(token) != "a"
                      and says(verb["lemma"])):
-            token["rel"] = "SBJ"
+            s.relabel(token, "SBJ")
     for token in tokens:
         head = s.head(token)
         verb = s.head(head) if head else None
@@ -78,7 +79,7 @@ def subject_clash(s: Sentence) -> None:
         # جَاءَ خَلِيفَةُ عُمَرَ: a diptote's fatha is its jarr, so the مضاف إليه stays
         # بَنُو إِسْرَائِيلَ: left unlabelled (---) under a مضاف, a diptote's fatha is its jarr
         if token["rel"] == "---" and shows_jarr(token) and not typed_tanween(head):
-            token["rel"] = "IDF"
+            s.relabel(token, "IDF")
             continue
         clash = (token["rel"] in ("MOD", "---") or (token["rel"] == "IDF" and not shows_jarr(token))) \
             and _in_nasb(token) and not (indefinite_nasb(token) and (is_state_word(token) or same_root(token, verb)))
@@ -112,7 +113,7 @@ def added_to_verb(s: Sentence) -> None:
                 or place_time(token, s):
             continue
         has_doer = own_doer(verb) or any(k["rel"] == "SBJ" for k in s.kids(verb))
-        token["rel"] = "OBJ" if has_doer or typed_case_of(token) == "a" else "SBJ"
+        s.relabel(token, "OBJ" if has_doer or typed_case_of(token) == "a" else "SBJ")
 
 
 def name_told_to(s: Sentence) -> None:
@@ -163,7 +164,7 @@ def doer_first(s: Sentence) -> None:
                 and (is_name(token) and token.get("stt") != "d" and typed_case_of(token) is typed_case_of(first) is None
                      or typed_or_parsed_case(token) == "a") \
                 and not any(subject_link(k) for k in s.kids(verb) if k is not first):
-            first["rel"] = "SBJ"
+            s.relabel(first, "SBJ")
             s.relink(token, verb["id"], "OBJ")
 
 
@@ -190,7 +191,7 @@ def doer_after_object(s: Sentence) -> None:
             kana = s.family(verb) == "kana"
             for jar in [k for k in s.kids(verb) if kana and k["rel"] == "PRD" and is_preposition(k)]:
                 s.relink(jar, token["id"], "MOD")
-            token["rel"] = "PRD" if kana else "OBJ"
+            s.relabel(token, "PRD" if kana else "OBJ")
             s.relink(doer, verb["id"], "SBJ")
 
 
@@ -214,7 +215,7 @@ def late_doer(s: Sentence) -> None:
         objects = [k for k in s.kids(verb) if subject_link(k) and typed_case_of(k) == "a" and not is_mabni(k.get("pos_camel", ""))]
         if not holds_doer(verb, [k for k in s.kids(verb) if k not in objects]):
             for k in objects:
-                k["rel"] = "OBJ"
+                s.relabel(k, "OBJ")
             s.relink(token, verb["id"], "SBJ")
 
 
@@ -276,7 +277,7 @@ def object_after_tanween(s: Sentence) -> None:
         head = s.head(token)
         if (head and token["rel"] == "IDF" and works_as_verb(head) and typed_tanween(head)
                 and typed_case_of(token) in ("a", None)):
-            token["rel"] = "OBJ"
+            s.relabel(token, "OBJ")
         # زَيْدٌ مُكْرِمٌ الطُّلَّابَ / الطَّالِبَاتِ: hung instead on the word the participle itself hangs on, a word in nasb
         # straight after it is still its object: the tanween makes it no مضاف إليه, and its nasb against the participle's
         # raf' or jarr no نعت (a ـات kasra is a jarr too, so it shows nasb only against a raf': طَالِبَاتٍ مُجْتَهِدَاتٍ مَاهِرَاتٍ
@@ -357,10 +358,10 @@ def kana_subject(s: Sentence) -> None:
         if not any(subject_link(k) for k in kids) and (token["rel"] == "PRD" and typed_case_of(token) == "u" or (
                 token["rel"] == "MOD" and typed_or_parsed_case(token) == "u" and token["id"] == verb["id"] + 1
                 and any(k["rel"] == "PRD" for k in kids))):
-            token["rel"] = "SBJ"
+            s.relabel(token, "SBJ")
         elif (token["rel"] == "MOD" and token["id"] == verb["id"] + 1 and typed_case_of(token) is None
               and not any(subject_link(k) for k in s.kids(verb)) and any(k["rel"] == "PRD" and k["id"] > token["id"] for k in s.kids(verb))):
-            token["rel"] = "SBJ"  # كَانَ الطِّفْلُ يَلْعَبُ typed bare: the first noun after كان is its اسم, the khabar comes after it
+            s.relabel(token, "SBJ")  # كَانَ الطِّفْلُ يَلْعَبُ typed bare: the first noun after كان is its اسم, the khabar comes after it
         elif not (subject_link(token) and not any(k["rel"] == "PRD" for k in s.kids(verb))):
             continue
         told = next((k for k in s.kids(token) if k["id"] > token["id"] and k["rel"] == "MOD"
@@ -375,7 +376,7 @@ def kana_subject(s: Sentence) -> None:
         rule = verb and noun and s.family(verb) == "kana" and extra_ba_on(verb["lemma"])
         if rule and ba["rel"] == "MOD" and verb["id"] < ba["id"] and khabar_behind_ba(ba, noun) \
                 and not any(k["rel"] == rule["rel"] or (subject_link(k) and k["id"] > ba["id"]) for k in s.kids(verb)):
-            ba["rel"] = rule["rel"]
+            s.relabel(ba, rule["rel"])
 
 
 def kafa_doer(s: Sentence) -> None:
@@ -404,7 +405,8 @@ def kana_fronted_khabar(s: Sentence) -> None:
                      and k["rel"] == "SBJ" and noun_tagged(k) and typed_case_of(k) == "a"), None)
         told = next((k for k in kids if noun and k["id"] > noun["id"] and k["rel"] in ("PRD", "SBJ") and typed_case_of(k) != "a"), None)
         if told:
-            noun["rel"], told["rel"] = "PRD", "SBJ"
+            s.relabel(noun, "PRD")
+            s.relabel(told, "SBJ")
             for jar in jars:
                 s.relink(jar, noun["id"], "MOD")
 
@@ -425,12 +427,12 @@ def kana_nasb_khabar(s: Sentence) -> None:
         ism = next((k for k in kids if subject_link(k) and k["id"] > verb["id"]), None)
         if (ism and noun_tagged(ism) and typed_case_of(ism) == "a" and not is_zarf(ism, s)
                 and sum(subject_link(k) for k in kids) == 1):
-            ism["rel"] = "PRD"
+            s.relabel(ism, "PRD")
             continue
         noun = ism and next((k for k in kids if k["id"] == ism["id"] + 1 and k["rel"] in ("OBJ", "MOD") and noun_tagged(k)
                              and typed_case_of(k) == "a" and not is_zarf(k, s)), None)
         if noun:
-            noun["rel"] = "PRD"
+            s.relabel(noun, "PRD")
 
 
 def inna_object(s: Sentence) -> None:
@@ -443,7 +445,7 @@ def inna_object(s: Sentence) -> None:
         if (token["rel"] == "OBJ" and head and s.family(head) == "inna" and noun_tagged(token)
                 and (typed_case_of(token) == "a" or shows_nasb_by_kasra(token) or listed(token, "mawsul"))
                 and not any(subject_link(k) for k in s.kids(head))):
-            token["rel"] = "SBJ"
+            s.relabel(token, "SBJ")
 
 
 def inna_second_khabar(s: Sentence) -> None:
@@ -468,7 +470,7 @@ def inna_second_khabar(s: Sentence) -> None:
         for token in s.kids(governor):
             if token["rel"] == "SBJ" and noun_tagged(token) and any(
                     k["rel"] == "PRD" and k["id"] < token["id"] for k in s.kids(governor)):
-                token["rel"] = "PRD"
+                s.relabel(token, "PRD")
 
 
 def zanna_pair(s: Sentence) -> None:

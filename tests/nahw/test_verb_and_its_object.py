@@ -254,3 +254,59 @@ def test_a_word_showing_tanween_never_describes_a_name_whatever_its_tag():
 def test_a_built_words_last_vowel_tells_no_case(sentence, said):
     """facts.slot.verb_place reads no case off a built word's last vowel."""
     assert roles(sentence) == said
+
+
+def test_a_present_opening_on_a_madda_is_the_speakers_present_not_a_command():
+    """آ is the speaker's أ with the hamza after it (أَأْمُرُ → آمُرُ), so a present read on it is no command;
+    a present read with no present letter at all still is (اِتَّقِ)."""
+    from backend.services.nahw.book import verb_aspect
+    assert verb_aspect("i", "آمر") == "i"
+    assert verb_aspect("i", "أكتب") == "i"
+    assert verb_aspect("i", "اتق") == "c"
+    assert verb_aspect("p", "آمن") == "p"
+
+
+@needs_parser
+@pytest.mark.parametrize("sentence, word", [
+    ("آمُرُهُ بِالصَّلَاةِ", "آمُرُهُ"),
+    ("آكُلُ الْخُبْزَ", "آكُلُ"),
+    ("لَا آكُلُ", "آكُلُ"),
+    ("وَلَئِنْ لَمْ يَفْعَلْ مَا آمُرُهُ لَيُسْجَنَنَّ", "آمُرُهُ"),  # 12:32
+])
+def test_i_command_and_i_eat_are_present_verbs_with_the_speaker_hidden(sentence, word):
+    found = next(c for c in cards(sentence) if c["word"] == word)
+    assert found["reason"].startswith("فعل مضارع مرفوع") and "تقديره أنا" in found["reason"]
+
+
+@needs_parser
+@pytest.mark.parametrize("sentence, word", [
+    ("وَآتُوا الزَّكَاةَ", "وَآتُوا"),
+    ("آمِنُوا بِاللَّهِ وَرَسُولِهِ", "آمِنُوا"),
+    ("وَآتِ ذَا الْقُرْبَى حَقَّهُ", "وَآتِ"),
+    ("آتِنَا فِي الدُّنْيَا حَسَنَةً", "آتِنَا"),
+])
+def test_a_command_opening_on_a_madda_stays_a_command(sentence, word):
+    found = next(c for c in cards(sentence) if c["word"] == word)
+    assert found["reason"].startswith("فعل أمر")
+
+
+@needs_parser
+@pytest.mark.parametrize("sentence, said", [
+    ("إِنِّي أَعْلَمُ مَا لَا تَعْلَمُونَ", ["حرف", "فعل", "مفعول به"]),  # 2:30
+    ("وَإِنِّي أَعْلَمُ مَا تُبْدُونَ", ["حرف", "فعل", "مفعول به"]),
+    ("إِنِّي أَعْلَمُ الْغَيْبَ", ["حرف", "فعل", "مفعول به"]),
+])
+def test_the_speakers_elative_shape_with_an_object_after_it_is_i_know(sentence, said):
+    """The elative never takes an object (Ashmuni V2 p312), so أَعْلَمُ after إِنِّي with ما or a nasb noun after it is the verb."""
+    assert roles(sentence)[:3] == said
+
+
+@needs_parser
+@pytest.mark.parametrize("sentence, role", [
+    ("إِنِّي أَعْلَمُ بِمَا تَعْمَلُونَ", "خبر إن"),
+    ("وَأَنَا أَعْلَمُ بِمَا أَخْفَيْتُمْ", "خبر"),   # 60:1
+    ("اللَّهُ أَعْلَمُ بِمَا يَصْنَعُونَ", "خبر"),
+    ("إِنِّي أَكْبَرُ مِنْكَ", "خبر إن"),
+])
+def test_the_elative_with_a_preposition_after_it_stays_the_noun(sentence, role):
+    assert roles(sentence)[1] == role

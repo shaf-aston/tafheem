@@ -105,6 +105,7 @@ class Sentence:
 
     def __init__(self, tokens: list[dict]):
         self.tokens = tokens
+        self.bases: list[dict] = []  # the tokens that are the typed words, set by repair.correct (base_tokens)
         self.refresh()
 
     def refresh(self) -> None:
@@ -193,6 +194,10 @@ class Sentence:
         self._kids[head] = [*(k for k in kids if k["id"] < token["id"]), token, *(k for k in kids if k["id"] > token["id"])]
         self._family.clear()
         self.asked_pair = self._asked_pair()
+
+    def relabel(self, token: dict, rel: str) -> None:
+        """Name the token's link `rel`, where it hangs, and keep the lookups that read the names in step."""
+        self.relink(token, token["head"], rel)
 
     def climb(self, token: dict | None, stop) -> dict | None:
         """The first word at or above `token` that `stop` accepts. None when the climb runs past the root;

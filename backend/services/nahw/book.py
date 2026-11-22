@@ -113,6 +113,12 @@ def kaffa_card(word: str, sister: str) -> tuple[str, str]:
     return kaffa["named"], kaffa["said"].format(word=word, bare=sister)
 
 
+def kaffa_chart() -> tuple[str, str]:
+    """The chart's names for an إن sister stopped by ما, cut in two: the sister's, then the ما's (ما الكافة)."""
+    chart = _closed()["families"]["inna"]["kaffa"]["chart"]
+    return chart["sister"], chart["ma"]
+
+
 def book_merges(family: str) -> dict:
     """A family's merged words (أَلَّا in nasb_mudari), or none."""
     return _closed()["families"][family].get("merges", {})
@@ -275,8 +281,10 @@ def six_noun_case(base: str, lemma: str) -> str | None:
     return by_letter.get(base[-1:])
 
 
-def verb_aspect(aspect: str, base: str) -> str:  # a "present" verb with no present prefix is a command (اِتَّقِ)
-    return "c" if aspect == "i" and base[:1] not in PRESENT_PREFIX else aspect
+def verb_aspect(aspect: str, base: str) -> str:
+    """A "present" verb with no present prefix is a command (اِتَّقِ). آ is the speaker's أ written with the hamza after
+    it (أَأْمُرُ → آمُرُ, أَأْكُلُ → آكُلُ: the أ of أنيت, Ibn Aqil V1, page unchecked), so آمُرُ is "I command", not a command."""
+    return "c" if aspect == "i" and base[:1] not in PRESENT_PREFIX | {"آ"} else aspect
 
 
 def is_mabni(pos: str, aspect: str | None = None, base: str = "") -> bool:

@@ -9,6 +9,7 @@
  *
  * Pure: no DOM, no React. The component below it only turns this into elements.
  */
+import { bareForm } from '../text/arabicText'
 
 /** The API sends empty arrays where the artifact's data had nothing at all. */
 /** What chart and copied text both write for a word no rule named. */
@@ -186,4 +187,88 @@ export function fold({ words, written, tree }) {
   const renumber = (node) =>
     kids(node) ? { ...node, children: node.children.map(renumber) } : node.word == null ? node : { ...node, word: column[node.word] }
   return { words: whole.map(({ from, to }) => words.slice(from, to + 1).join('')), tree: renumber(tree) }
+}
+
+/**
+ * Columns as they are written: the pieces of one written word joined (فَ + سَوَّىٰهُنَّ →
+ * فَسَوَّىٰهُنَّ), written words spaced. `cols` are column indexes in order. The chart's
+ * words and the copied text both say a word this way.
+ */
+export const textOf = ({ words, written }, cols) =>
+  cols.map((i, k) => (k && written && written[i] === written[cols[k - 1]] ? '' : ' ') + words[i]).join('').trim()
+
+/**
+ * Everything one chart draws, from one call: the screen only turns this into elements.
+ *
+ * `mode` 'split' keeps a column per piece, 'merged' each written word whole (fold);
+ * `keep` is how many rows to draw before the rest fold behind "more rows".
+ *
+ * Returns { words, written, levels, more, threads, unitThreads }:
+ * - `words`: the column texts drawn;
+ * - `written`: one entry per written word, in order: { from, to, pieces: [{ text, tone }],
+ *   text, tone, hidden, nth }. `nth` is its place among the words on the page (the order
+ *   the analysis lists its cards in), null for a word understood and not written;
+ * - `levels`/`more`: the rows drawn and how many wait behind "more rows";
+ * - `threads`/`unitThreads`: the lines running down to a word's or a unit's name.
+ */
+export function layout(tarkeeb, { mode = 'split', keep = Infinity } = {}) {
+  const shown = mode === 'merged' ? { ...fold(tarkeeb), written: null } : tarkeeb
+  const hidden = hiddenWords(shown.tree)
+  const tone = tones(shown.tree)
+  let onPage = 0
+  const written = runs(shown.words, shown.written).map(({ from, to }) => {
+    const cols = Array.from({ length: to - from + 1 }, (_, k) => from + k)
+    const missing = hidden.has(from)
+    return {
+      from,
+      to,
+      pieces: cols.map((col) => ({ text: shown.words[col], tone: tone[col] })),
+      // what a tap hands on, to look the word up by: without the tatweel a book's example cuts with (فَـ)
+      text: textOf(shown, cols).replaceAll('ـ', ''),
+      tone: tone[from],
+      hidden: missing,
+      nth: missing ? null : onPage++,
+    }
+  })
+  const { shown: levels, more } = foldRows(rows(shown.tree, shown.words.length), keep)
+  return { words: shown.words, written, levels, more, threads: threadSpans(levels), unitThreads: groupThreads(levels) }
+}
+
+/**
+ * Which item of `list` each word on the page is: an array indexed by `nth` (layout),
+ * an item or undefined. `key` names the item's Arabic.
+ *
+ * `byPlace` is for a list that names the words on the page in order, one each, as the
+ * analysis's cards do: when it has exactly as many items, the nth is the one, whatever
+ * its spelling (an ayah's record writes ٱلرَّحْمَٰنِ where الرحمن was typed).
+ *
+ * Any other list (the English word list, which may join or drop words) is matched by
+ * letters, keeping the order of both: the longest run of words the two share, so a word
+ * said twice gets its own item, an item goes to one word only, and a word with no item of
+ * its letters gets none rather than its neighbour's.
+ */
+export function align(written, list, key, { byPlace = false } = {}) {
+  const page = written.filter((word) => !word.hidden).map((word) => bareForm(word.text))
+  if (!list?.length) return page.map(() => undefined)
+  if (byPlace && list.length === page.length) return [...list]
+  const items = list.map((item) => bareForm(item?.[key] ?? ''))
+  // letters that come to nothing match nothing, not even an item with no Arabic
+  const same = (p, i) => page[p] !== '' && page[p] === items[i]
+  // longest common subsequence: best[p][i] = most matches between page[p..] and items[i..]
+  const best = Array.from({ length: page.length + 1 }, () => new Array(items.length + 1).fill(0))
+  for (let p = page.length - 1; p >= 0; p -= 1) {
+    for (let i = items.length - 1; i >= 0; i -= 1) {
+      best[p][i] = same(p, i) ? best[p + 1][i + 1] + 1 : Math.max(best[p + 1][i], best[p][i + 1])
+    }
+  }
+  const found = page.map(() => undefined)
+  for (let p = 0, i = 0; p < page.length && i < items.length;) {
+    if (same(p, i)) {
+      found[p] = list[i]
+      p += 1
+      i += 1
+    } else if (best[p + 1][i] >= best[p][i + 1]) p += 1
+    else i += 1
+  }
+  return found
 }

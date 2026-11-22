@@ -134,7 +134,7 @@ def test_a_recitation_sends_groq_the_fixed_vowel_hint_whatever_the_fusha_switch(
     """The hint makes Groq write the vowels. It is one fixed phrase, never the
     page's words, which in the prompt would hide a reader's mistakes."""
     hints = []
-    monkeypatch.setattr(recitation, "transcribe", lambda audio, language=None, hint="": hints.append(hint) or "x")
+    monkeypatch.setattr(recitation, "transcribe", lambda audio, language=None, hint="", languages=None: hints.append(hint) or "x")
     for fusha in (True, False):
         recitation.hear(SOUND, match_ayahs=False, recite=True, fusha=fusha)
     assert hints == [get_settings().recitation_hosted_hint] * 2
@@ -143,14 +143,14 @@ def test_a_recitation_sends_groq_the_fixed_vowel_hint_whatever_the_fusha_switch(
 
 def test_reciting_without_looking_up_is_still_arabic(monkeypatch):
     asked = []
-    monkeypatch.setattr(recitation, "transcribe", lambda audio, language=None, hint="": asked.append(language) or "x")
+    monkeypatch.setattr(recitation, "transcribe", lambda audio, language=None, hint="", languages=None: asked.append(language) or "x")
     recitation.hear(SOUND, match_ayahs=False, recite=True)
     assert asked == [get_settings().recitation_language]
 
 
 def test_the_fusha_switch_decides_the_hint(monkeypatch):
     hints = []
-    monkeypatch.setattr(recitation, "transcribe", lambda audio, language=None, hint="": hints.append(hint) or "علم")
+    monkeypatch.setattr(recitation, "transcribe", lambda audio, language=None, hint="", languages=None: hints.append(hint) or "علم")
     recitation.hear(SOUND, match_ayahs=False, fusha=True)
     recitation.hear(SOUND, match_ayahs=False, fusha=False)
     assert hints == [get_settings().listening_fusha_hint, ""]
@@ -169,6 +169,21 @@ def test_a_word_heard_as_another_language_comes_back_in_an_allowed_one_and_its_a
     fake = groq([("モーズス", "Japanese"), ("モーズス", "Arabic", -0.52), ("Moses", "English", -0.85)])
     assert hosted.transcribe(SOUND, KEY) == "Moses"
     assert [how.get("language") for how in fake.asked] == [None, "ar", "en"]
+
+
+def test_an_arabic_only_box_never_returns_english(groq):
+    """The Nahw box takes Arabic only: a word heard as English is asked again in Arabic, never kept."""
+    fake = groq([("Rahm.", "English"), ("رحم", "Arabic", -0.46)])
+    assert hosted.transcribe(SOUND, KEY, languages=["ar"]) == "رحم"
+    assert [how.get("language") for how in fake.asked] == [None, "ar"]
+
+
+def test_an_arabic_only_search_is_dictation_not_a_recitation(monkeypatch):
+    asked = []
+    monkeypatch.setattr(recitation, "transcribe", lambda audio, language=None, hint="", languages=None: asked.append((language, languages)) or "x")
+    recitation.hear(SOUND, match_ayahs=False, languages=["ar"])
+    recitation.hear(SOUND, match_ayahs=False, recite=True, languages=["ar"])
+    assert asked == [(None, ["ar"]), (get_settings().recitation_language, None)]
 
 
 def test_of_two_answers_in_their_own_alphabet_the_surer_wins(groq):
@@ -207,7 +222,7 @@ def test_a_language_it_did_get_right_is_not_asked_twice(groq):
 def test_no_internet_falls_back_to_this_machine(groq, monkeypatch):
     """The one that matters: a dead cloud must never reach the reader."""
     groq(fail=ConnectionError("getaddrinfo failed"))
-    monkeypatch.setattr(whisper, "transcribe", lambda audio, language=None, hint="": "heard here")
+    monkeypatch.setattr(whisper, "transcribe", lambda audio, language=None, hint="", languages=None: "heard here")
     assert recitation.transcribe(SOUND) == "heard here"
 
 
@@ -215,7 +230,7 @@ def test_a_retired_key_or_a_spent_allowance_falls_back_too(groq, monkeypatch):
     """Both have happened on this key. Neither is news the reader can act on."""
     for failure in (PermissionError("401 invalid api key"), RuntimeError("429 rate limit")):
         groq(fail=failure)
-        monkeypatch.setattr(whisper, "transcribe", lambda audio, language=None, hint="": "heard here")
+        monkeypatch.setattr(whisper, "transcribe", lambda audio, language=None, hint="", languages=None: "heard here")
         assert recitation.transcribe(SOUND) == "heard here"
 
 
@@ -253,7 +268,7 @@ def test_switching_it_off_keeps_every_recording_on_this_machine(monkeypatch):
 def test_an_empty_recording_is_never_sent(groq, monkeypatch):
     """Nothing recorded is answered here, before any machine is troubled."""
     fake = groq()
-    monkeypatch.setattr(whisper, "transcribe", lambda audio, language=None, hint="": "")
+    monkeypatch.setattr(whisper, "transcribe", lambda audio, language=None, hint="", languages=None: "")
     assert recitation.transcribe(b"") == ""
     assert fake.asked == []
 
@@ -261,7 +276,7 @@ def test_an_empty_recording_is_never_sent(groq, monkeypatch):
 def test_a_recitation_is_heard_as_arabic_and_a_search_in_either(monkeypatch):
     """The rule that decides the language, tested without a server in the way."""
     asked = []
-    monkeypatch.setattr(recitation, "transcribe", lambda audio, language=None, hint="": asked.append(language) or "علم")
+    monkeypatch.setattr(recitation, "transcribe", lambda audio, language=None, hint="", languages=None: asked.append(language) or "علم")
     monkeypatch.setattr(recitation, "find", lambda text, limit: [])
     recitation.hear(SOUND, match_ayahs=True)
     recitation.hear(SOUND, match_ayahs=False)
@@ -269,7 +284,7 @@ def test_a_recitation_is_heard_as_arabic_and_a_search_in_either(monkeypatch):
 
 
 def test_nothing_heard_is_not_matched(monkeypatch):
-    monkeypatch.setattr(recitation, "transcribe", lambda audio, language=None, hint="": "")
+    monkeypatch.setattr(recitation, "transcribe", lambda audio, language=None, hint="", languages=None: "")
     monkeypatch.setattr(recitation, "find", lambda text, limit: pytest.fail("matched silence"))
     assert recitation.hear(SOUND, match_ayahs=True) == ("", [])
 

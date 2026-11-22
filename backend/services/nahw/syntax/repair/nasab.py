@@ -12,13 +12,14 @@ def _under(token: dict, ancestor: dict, tokens: list[dict]) -> bool:
     return above([t["head"] for t in tokens], token["head"], ancestor["id"])
 
 
-def nasab(bases: list[dict], s: Sentence) -> None:
+def nasab(s: Sentence) -> None:
     """محمدُ بنُ عبدِ اللهِ: ابن or بنت between a name and the noun after it is the name's صفة,
     in its case, and مضاف to that noun (Tasheel 3.10.1): the three are one name, never a
     mubtada and its khabar, typed vowels or none. A name typed with tanween is complete,
     so ابن after it opens what is told of it (زيدٌ ابنُ عمرٍو) and is left to the parser.
     The name keeps its own place in the sentence, or the one the ابن held when the parser
     hung the name under it."""
+    bases = s.bases
     tokens = s.tokens
     for name, son, after in zip(bases, bases[1:], bases[2:]):
         if not (_names(name, son) and listed(son, "nasab") and noun_tagged(after)

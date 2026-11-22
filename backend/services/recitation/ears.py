@@ -67,8 +67,8 @@ class Ear(Retirable, ABC):
     reciting_only: bool = False
 
     @abstractmethod
-    def transcribe(self, audio: bytes, language: str | None, hint: str) -> str:
-        """What was said. Name a language to hear it in that one."""
+    def transcribe(self, audio: bytes, language: str | None, hint: str, languages: list[str] | None) -> str:
+        """What was said. Name a language to hear it in that one; else heard in one of `languages`."""
 
     @abstractmethod
     def is_available(self) -> bool:
@@ -101,9 +101,9 @@ class HostedEar(Ear):
         #: Which ask this key last answered, so turns go round.
         self.used = 0
 
-    def transcribe(self, audio: bytes, language: str | None, hint: str) -> str:
+    def transcribe(self, audio: bytes, language: str | None, hint: str, languages: list[str] | None) -> str:
         self.used = next(HostedEar._asks)
-        return hosted.transcribe(audio, self.key, language, hint)
+        return hosted.transcribe(audio, self.key, language, hint, languages)
 
     def is_available(self) -> bool:
         return hosted.is_available(self.key)
@@ -126,8 +126,8 @@ class LocalEar(Ear):
 
     local = True
 
-    def transcribe(self, audio: bytes, language: str | None, hint: str) -> str:
-        return whisper.transcribe(audio, language, hint)
+    def transcribe(self, audio: bytes, language: str | None, hint: str, languages: list[str] | None) -> str:
+        return whisper.transcribe(audio, language, hint, languages)
 
     def is_available(self) -> bool:
         return True
@@ -151,7 +151,7 @@ class LettersEar(Ear):
     local = True
     reciting_only = True
 
-    def transcribe(self, audio: bytes, language: str | None, hint: str) -> str:
+    def transcribe(self, audio: bytes, language: str | None, hint: str, languages: list[str] | None) -> str:
         return letters.read(whisper.sound_of(audio))
 
     def is_available(self) -> bool:
@@ -222,7 +222,7 @@ def order(reciting: bool = False) -> list[Ear]:
     return chain
 
 
-def hear(audio: bytes, language: str | None, hint: str) -> str:
+def hear(audio: bytes, language: str | None, hint: str, languages: list[str] | None = None) -> str:
     """Ask each ear in turn until one answers. Raises only when none can.
 
     Every way of not answering is the same thing to the reader, a moment longer,
@@ -242,7 +242,7 @@ def hear(audio: bytes, language: str | None, hint: str) -> str:
         name = ear.name(reciting)
         try:
             started = time.perf_counter()
-            heard = timed("heard", ear.transcribe, audio, language, hint,
+            heard = timed("heard", ear.transcribe, audio, language, hint, languages,
                          ear=name, bytes=len(audio), hint=bool(hint))
             # Written here, inside the ear that actually answered, rather than
             # by the caller guessing from `active()`: the router used to log

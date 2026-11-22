@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { listen } from '../../../api'
+import { unreached } from '../../../lib/api/apiError'
 import config from '../../../config/dictation.json'
 import { watchForVoice } from '../../../lib/speech/dictation'
 import { CANNOT_RECORD, canRecord, createRecorder, openMicrophone, refusal } from '../../../lib/speech/microphone'
@@ -41,7 +42,8 @@ import MicMark from '../display/MicMark'
  */
 // `anyArabic` hears spoken dialect as it is, whatever the reader's classical-Arabic setting
 // (Colloquial): leaning to classical turns a dialect word into its fusha cousin.
-export default function MicButton({ onHeard, match = false, recite = false, anyArabic = false, accent, title = 'Recite' }) {
+// `language` (e.g. 'ar') holds a box that takes one language to it, so the ear never guesses English.
+export default function MicButton({ onHeard, match = false, recite = false, anyArabic = false, language, accent, title = 'Recite' }) {
   // Falls back to the theme's own colour, so a caller that gives no accent gets
   // a button that is still visible while recording rather than a white-on-white one.
   const live = accent || 'var(--primary)'
@@ -122,7 +124,7 @@ export default function MicButton({ onHeard, match = false, recite = false, anyA
         setState('thinking')
         try {
           const recording = new Blob(chunks.current, { type: made.mimeType })
-          const heard = await listen(recording, { match, recite, fusha })
+          const heard = await listen(recording, { match, recite, fusha, language })
           // Nothing heard is answered here rather than passed on. It is the
           // ordinary result of a quiet room, and every box this button sits in
           // would otherwise show its own "nothing matched", which blames what
@@ -140,7 +142,8 @@ export default function MicButton({ onHeard, match = false, recite = false, anyA
         } catch (error) {
           if (gone.current) return
           setState('refused')
-          setProblem(error?.response?.data?.detail || 'Could not make that out.')
+          // A server that never answered is not a voice it could not make out: say which it was.
+          setProblem(error?.response?.data?.detail || unreached(error) || 'Could not make that out.')
         }
       }
       made.start()

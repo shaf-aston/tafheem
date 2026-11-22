@@ -137,4 +137,4 @@ def doer_then_khabar(s: Sentence) -> None:
         if is_verb(verb) and len(doers) == 2 and any(is_suffix(k) and k["rel"] == "OBJ" for k in kids) \
                 and doers[0]["id"] < doers[1]["id"] and typed_case_of(doers[1]) == "u" \
                 and not any(is_suffix(k) for k in s.kids(doers[1])):
-            doers[1]["rel"] = "PRD"
+            s.relabel(doers[1], "PRD")
