@@ -388,7 +388,7 @@ def _heads_clause(token: dict, s: Sentence) -> bool:
 
 def _opens_clause(token: dict, s: Sentence) -> bool:
     """مَنِ اسْتَطَاعَ مِنْكُمُ الْبَاءَةَ، مَنْ لَا يَجْمَعُ: a relative, conditional or question noun (not ما, whose place the condition and
-    ma_kind settle) that a verb after it hangs on, a verb with nothing left to take (wants_object) and no mubtada before the noun for
+    ma.kind settle) that a verb after it hangs on, a verb with nothing left to take (wants_object) and no mubtada before the noun for
     it to be the khabar of (خَيْرُكُمْ مَنْ تَعَلَّمَ), is the mubtada of that clause (Tasheel 1.4 p6); its verb is its صلة or its شرط."""
     camel = token.get("pos_camel", "")
     verb = next((k for k in s.kids(token) if is_verb(k) and k["id"] > token["id"]), None)

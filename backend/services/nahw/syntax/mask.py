@@ -15,6 +15,7 @@ import numpy as np
 from backend.services.text.arabic_text import strip_diacritics
 from backend.services.nahw.book import is_one, is_plain_noun, is_subject_pronoun, vetoes
 from backend.services.text.harakat import CAMEL_CASE
+from backend.services.nahw.syntax import ma
 from backend.services.nahw.syntax.facts import attached_pronoun, case_unseen, listed, noun_tagged, tenseless_noun, typed_case_of, typed_or_parsed_case, verb_tagged
 from backend.services.nahw.syntax.facts.word import manqus_tanween
 
@@ -208,8 +209,7 @@ def _ma_cancels_inna(toks, heads, rels) -> None:
     for m, tok in enumerate(toks, 1):
         # the ما is written onto the word before it, the sister, wherever the parser hung it (إِنَّمَا زَيْدٌ قَائِمٌ: on قائم)
         particle = m - 1
-        if strip_diacritics(tok.get("form", "")) != "+ما" or not particle \
-                or not is_one(toks[particle - 1]["lemma"].removesuffix("ما"), "inna"):
+        if not (particle and ma.cut_off(tok) and ma.stops_sister(toks[particle - 1])):
             continue
         for n, h in enumerate(heads, 1):
             if h == m:

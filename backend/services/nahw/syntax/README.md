@@ -70,6 +70,7 @@ is first said to be is `card_keys().<id>` (teacher.json `card_keys`); a word lis
 | Right role and sign, wrong wording on the card | `card_wording/` (one pass per feature; naming leaves the key it reads) |
 | The doer inside a verb (هو، أنتَ، the تاء) | `syntax/doer.py` and roles.json `frames.doer`; its card line is teacher.json `doer_said` |
 | A closed list *is* the grammar (built words, sisters) | `closed_words.json`, read through `nahw_book`'s questions (`extra_ba_on`, `kaffa_sister`), never its raw shape |
+| What a ما is (كافة on an إنّ sister, relative, مصدرية) | `syntax/ma.py`: one place every step asks |
 
 ## Adding a grammar feature that changes a card
 
