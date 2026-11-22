@@ -3,13 +3,23 @@ import offline from '../../config/offline.json'
 // A command to start the server helps only on the machine the server would run on.
 const OWN_MACHINE = ['localhost', '127.0.0.1'].includes(globalThis.location?.hostname)
 
+// 502 and 504 are the host (Vercel) answering for a server it waited ~30 s for and could not reach.
+const HOST_UNREACHED = new Set([502, 504])
+
+/** True when the host answered that it could not reach the server: asking again at once only waits again. */
+export const hostUnreached = (error) => HOST_UNREACHED.has(error?.response?.status)
+
 /**
- * The words for a request that got no answer at all, or null when it did get one. With no
- * signal that is the reader's connection, not the server, and says so in their words.
+ * The words for a request that never reached the server (no answer at all, or the host saying it
+ * could not reach it), or null when the server answered. With no signal that is the reader's
+ * connection, not the server, and says so in their words.
  */
-function unreached(error) {
+export function unreached(error) {
+  if (globalThis.navigator?.onLine === false && (hostUnreached(error) || !error?.response?.status)) {
+    return offline.copy['needs-signal']
+  }
+  if (hostUnreached(error)) return OWN_MACHINE ? null : offline.copy.unreached
   if (error?.response?.status) return null
-  if (globalThis.navigator?.onLine === false) return offline.copy['needs-signal']
   if (error?.code === 'ERR_NETWORK' || error?.message?.toLowerCase().includes('network')) {
     return OWN_MACHINE ? "Can't reach the backend. Is it running? Try: python -m uvicorn backend.main:app --reload" : offline.copy.unreached
   }
@@ -27,12 +37,13 @@ export function errorStatus(error) {
 
 /**
  * A query's `retry`: a failed request tried again up to `times` times, but never one the
- * server refused (4xx, 429 among them). Asked again it answers the same, and on a model
- * route each refusal still counts against the reader's share of calls.
+ * server refused (4xx, 429 among them), nor one the host could not get to the server at all.
+ * Asked again the server answers the same, and on a model route each refusal still counts
+ * against the reader's share of calls; an unreachable server only makes the reader wait again.
  */
 export const retryServerErrors = (times) => (failures, error) => {
   const status = errorStatus(error)
-  return failures < times && !(status >= 400 && status < 500)
+  return failures < times && !(status >= 400 && status < 500) && !hostUnreached(error)
 }
 
 /**
@@ -59,7 +70,7 @@ export function smartError(error, fallback = 'Request failed.') {
   // which. Telling the reader to wait for a startup that already finished sends
   // them to watch the wrong thing.
   if (status === 503) return detail || 'Backend is starting up. Wait a moment, then try again.'
-  if (status === 504) return 'Request timed out. Try again in a few seconds.'
+  if (hostUnreached(error)) return unreached(error) || 'Request timed out. Try again in a few seconds.'
 
   return detail || fallback
 }

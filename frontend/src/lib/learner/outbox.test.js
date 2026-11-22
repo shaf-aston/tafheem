@@ -12,14 +12,24 @@ const memory = () => {
   return { getItem: (k) => data.get(k) ?? null, setItem: (k, v) => data.set(k, String(v)), removeItem: (k) => data.delete(k) }
 }
 
-beforeEach(() => vi.stubGlobal('localStorage', memory()))
-afterEach(() => vi.unstubAllGlobals())
+beforeEach(() => {
+  vi.stubGlobal('localStorage', memory())
+  vi.useFakeTimers({ now: 1_000_000 })
+})
+afterEach(() => {
+  vi.useRealTimers()
+  vi.unstubAllGlobals()
+})
 
 describe('answers waiting for a signal', () => {
-  it('keeps them oldest first, each with whose it is', () => {
+  it('keeps them oldest first, each with whose it is and when it was given', () => {
     hold({ item: 'a' }, { who: 'amina' })
+    vi.advanceTimersByTime(5)
     hold({ item: 'b' }, { who: 'guest' })
-    expect(waiting()).toEqual([{ body: { item: 'a' }, headers: { who: 'amina' } }, { body: { item: 'b' }, headers: { who: 'guest' } }])
+    expect(waiting()).toEqual([
+      { body: { item: 'a' }, headers: { who: 'amina' }, at: 1_000_000 },
+      { body: { item: 'b' }, headers: { who: 'guest' }, at: 1_000_005 },
+    ])
   })
 
   it('keeps at most the configured number, dropping the oldest', () => {
@@ -54,8 +64,23 @@ describe('sending them', () => {
     hold({ item: 'b' }, { who: 'amina' })
     const post = vi.fn().mockResolvedValue({})
     await expect(sendWaiting(post)).resolves.toBe(2)
-    expect(post.mock.calls).toEqual([[{ item: 'a' }, { who: 'amina' }], [{ item: 'b' }, { who: 'amina' }]])
+    expect(post.mock.calls).toEqual([[{ item: 'a', ago_ms: 0 }, { who: 'amina' }], [{ item: 'b', ago_ms: 0 }, { who: 'amina' }]])
     expect(waiting()).toEqual([])
+  })
+
+  it('says how long ago each was given, so it lands on its own day', async () => {
+    hold({ item: 'a' }, {})
+    vi.advanceTimersByTime(60_000)
+    const post = vi.fn().mockResolvedValue({})
+    await sendWaiting(post)
+    expect(post.mock.calls[0][0]).toEqual({ item: 'a', ago_ms: 60_000 })
+  })
+
+  it('sends one kept before answers carried a time as given now', async () => {
+    localStorage.setItem(PROFILE.outbox.key, JSON.stringify([{ body: { item: 'old' }, headers: {} }]))
+    const post = vi.fn().mockResolvedValue({})
+    await sendWaiting(post)
+    expect(post.mock.calls[0][0]).toEqual({ item: 'old', ago_ms: 0 })
   })
 
   it('stops at the first that still cannot land, keeping it and the rest', async () => {

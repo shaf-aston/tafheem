@@ -20,7 +20,7 @@ export default function ExampleChips({ label = 'Try one', examples, onPick, acce
             type="button"
             onClick={() => onPick(arabic)}
             style={{ '--i': i }}
-            className="rise-in flex flex-col items-end gap-0.5 px-3 py-1.5 rounded-[var(--radius-md)]
+            className="rise-in flex flex-col items-center text-center gap-0.5 px-3 py-1.5 rounded-[var(--radius-md)]
               bg-[var(--surface)] border border-[var(--border)] text-[var(--text-dim)]
               hover:border-[var(--c)] hover:text-[var(--text)] transition-colors"
           >

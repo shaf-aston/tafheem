@@ -21,7 +21,7 @@ describe('shownView', () => {
 describe('englishQuery', () => {
   it('asks once more for lines after a failure, never after a refusal', () => {
     const { retry } = englishQuery(ENGLISH.lines, 'كتب')
-    expect(retry(0, failure(502))).toBe(true)
+    expect(retry(0, failure(500))).toBe(true)
     expect(retry(0, failure(429))).toBe(false)
   })
 
