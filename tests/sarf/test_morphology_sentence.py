@@ -214,3 +214,20 @@ def test_a_command_whose_first_letter_fell_is_read_on_its_own_root(sentence: str
 def test_signs_and_numbers_alone_are_no_word_and_get_no_reading():
     # an ayah's end sign and number with no word (۝ ٢٨ ۚ ،): nothing to read, not a crash
     assert morphology.pick([]) == []
+
+
+@needs_camel
+def test_a_word_the_letters_leave_open_carries_its_rival_reading():
+    # كتب typed bare is كَتَبَ or كُتِبَ: the voice not chosen rides along for a second reading (morphology._rivals);
+    # a word with a vowel typed on it speaks for itself and has none
+    bare, voweled = morphology.pick(["كتب", "الطالب", "الدرس"]), morphology.pick(["كَتَبَ", "الطَّالِبُ", "الدَّرْسَ"])
+    assert {bare[0]["vox"], bare[0]["rival"]["vox"]} == {"a", "p"}
+    assert "rival" not in voweled[0]
+
+
+@needs_camel
+def test_the_overrides_and_passes_run_in_the_order_written():
+    # pick reads each word through WORD_OVERRIDES, then the sentence through SENTENCE_PASSES, each in its list's order
+    assert morphology.WORD_OVERRIDES[0] is morphology._name_adding_fewer
+    assert morphology.WORD_OVERRIDES[-1] is morphology._by_shape
+    assert morphology.SENTENCE_PASSES[-1] is morphology._rivals  # last: it reads every reading the others settled
