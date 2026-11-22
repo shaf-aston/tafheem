@@ -15,7 +15,8 @@ import numpy as np
 from backend.services.text.arabic_text import strip_diacritics
 from backend.services.nahw.book import is_one, is_plain_noun, is_subject_pronoun, vetoes
 from backend.services.text.harakat import CAMEL_CASE
-from backend.services.nahw.syntax.facts import attached_pronoun, case_unseen, listed, noun_tagged, tenseless_noun, verb_tagged
+from backend.services.nahw.syntax.facts import attached_pronoun, case_unseen, listed, noun_tagged, tenseless_noun, typed_case_of, typed_or_parsed_case, verb_tagged
+from backend.services.nahw.syntax.facts.word import manqus_tanween
 
 
 def _verb_subject_follows(toks, add_rel) -> None:
@@ -26,7 +27,7 @@ def _verb_subject_follows(toks, add_rel) -> None:
     what is left is the topic (الطعامَ أكل الولدُ). A detached pronoun of raf' (أنتَ تكتبُ)
     is the same, its fatha being no case."""
     for d, dep in enumerate(toks, 1):
-        if not (is_subject_pronoun(dep) or (is_plain_noun(dep) and dep.get("case") != "a")):
+        if not (is_subject_pronoun(dep) or (is_plain_noun(dep) and typed_case_of(dep) != "a")):
             continue
         for h in range(d + 1, len(toks) + 1):
             if verb_tagged(toks[h - 1]):
@@ -102,7 +103,7 @@ def _listed_preposition_takes_majrur(toks, heads, rels) -> None:
         form = strip_diacritics(dep.get("form", "")).strip("+")
         after = toks[d]
         majrur = (after["pos"] == "NOM" and after.get("stt") == "i" and not after.get("form", "").startswith("+")
-                  and "i" in (after.get("case"), CAMEL_CASE.get(after.get("cas"))))
+                  and _jarr_seen(after))
         if dep["pos"] == "PRT" or len(form) < 2 or not is_one(form, "jarr") or not majrur or above(heads, d, d + 1):
             continue
         dep.update(pos="PRT", pos_camel="prep")
@@ -118,7 +119,7 @@ def _particle_over_its_noun(toks, heads, rels) -> None:
         noun = toks[d]
         if not (dep["pos"] == "PRT" and heads[d - 1] == d + 1 and noun_tagged(noun)
                 and (is_one(dep["form"], "istithna") or is_one(dep["form"], "jarr")
-                     and ("i" in (noun.get("case"), CAMEL_CASE.get(noun.get("cas"))) or case_unseen(noun)))):
+                     and (_jarr_seen(noun) or case_unseen(noun)))):
             continue
         heads[d - 1], rels[d - 1] = heads[d], rels[d]
         heads[d], rels[d] = d, "OBJ"
@@ -145,7 +146,7 @@ def _topic_carries_its_verb(toks, heads, rels) -> None:
     for d, dep in enumerate(toks, 1):
         h = heads[d - 1]
         if not (h > d and verb_tagged(toks[h - 1]) and not tenseless_noun(toks[h - 1]) and rels[d - 1] in ("---", "TPC")
-                and (is_subject_pronoun(dep) or (is_plain_noun(dep) and _case(dep) not in ("a", "i")))):
+                and (is_subject_pronoun(dep) or (is_plain_noun(dep) and typed_or_parsed_case(dep) not in ("a", "i")))):
             continue
         heads[d - 1], rels[d - 1] = heads[h - 1], rels[h - 1]
         heads[h - 1], rels[h - 1] = d, "---"
@@ -154,8 +155,11 @@ def _topic_carries_its_verb(toks, heads, rels) -> None:
             heads[d - 2], rels[d - 2] = d, "MOD"
 
 
-def _case(tok: dict) -> str | None:
-    return tok.get("case") or CAMEL_CASE.get(tok.get("cas"))
+def _jarr_seen(tok: dict) -> bool:
+    """A jar's noun: typed in jarr or parsed in it, either one (بِأَحْمَدَ: a diptote's fatha, the parser's jarr), or a
+    منقوص whose tanween may be jarr (مِنْ وَادٍ). Not every case the ending can mean (facts.shown_cases): a diptote's
+    fatha the parser took for nasb is no جار's noun (وَيُونُسَ: the و joins)."""
+    return "i" in (typed_case_of(tok), CAMEL_CASE.get(tok.get("cas"))) or manqus_tanween(tok)
 
 
 def _inner_sentence(toks, heads, rels) -> None:
@@ -176,13 +180,13 @@ def _inner_sentence(toks, heads, rels) -> None:
         # agreement decides, tawkeed_before_khabar: الْقَوْمُ كُلُّهُمْ حَاضِرٌ)
         if not (is_plain_noun(noun) and noun.get("stt") == "c" and CAMEL_CASE.get(noun.get("cas")) not in ("a", "i")
                 and attached_pronoun(pronoun) and is_one(pronoun["form"], "damir_muttasil", "absent")
-                and (noun_tagged(khabar) and khabar.get("stt") == "i" and _case(khabar) == "u"
+                and (noun_tagged(khabar) and khabar.get("stt") == "i" and typed_or_parsed_case(khabar) == "u"
                      or verb_tagged(khabar) and not tenseless_noun(khabar) and not listed(noun, "tawkeed", "with_pronoun"))):
             continue
         relative = "rel" in before.get("pos_camel", "")
         verbless = not any(verb_tagged(t) for i, t in enumerate(toks, 1) if i != n3)
         # a noun in nasb or jarr is no مبتدأ (غَدًا أَخُوهُ يُسَافِرُ: a ظرف; زَيْدًا أَبُوهُ يَضْرِبُ: the verb's object said first)
-        first = verbless and n1 == 1 and noun_tagged(before) and _case(before) not in ("a", "i") and not before.get("form", "").startswith("+")
+        first = verbless and n1 == 1 and noun_tagged(before) and typed_or_parsed_case(before) not in ("a", "i") and not before.get("form", "").startswith("+")
         if relative and (above(heads, n1, n2) or above(heads, n1, n3)):
             continue  # the relative hangs inside the sentence: its own place is not known
         if first:
@@ -233,7 +237,7 @@ def _exception_word_by_case(toks, heads, rels) -> None:
                 or after.get("form", "").startswith("+") or not is_one(dep.get("form", ""), "istithna_verbs")
                 or above(heads, d, d + 1)):
             continue
-        case, verb = _case(after), d > 1 and is_one(toks[d - 2].get("form", ""), "istithna_verbs", "masdar_ma")
+        case, verb = typed_or_parsed_case(after), d > 1 and is_one(toks[d - 2].get("form", ""), "istithna_verbs", "masdar_ma")
         if case == "i" and not verb:
             dep.update(pos="PRT", pos_camel="prep")
             heads[d], rels[d] = d, "OBJ"

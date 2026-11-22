@@ -25,6 +25,7 @@ from tokenizers import Tokenizer
 
 from backend.config import data_path, get_settings
 from backend.services.nahw.syntax import decode, exact_int8
+from backend.services.nahw.syntax.facts.word import typed_case_of
 from backend.services.nahw.syntax.mask import book_mask
 from backend.services.sarf.morphology import reading_lemma, reading_root
 from backend.services.text.harakat import NO_ANALYSIS, base_of, stuck_letters, typed_case, weak_last
@@ -413,9 +414,16 @@ def parse(words: list[str], picks: list[dict]) -> list[dict]:
         pieces = _split_word(word, pick)
         # the vowel of an attached pronoun is the pronoun's: عِلْمَهُ is in nasb, not raf'
         stuck_on = stuck_letters(pieces, word)
-        # وَأَنْ: a letter written on a particle is no جار, so each piece keeps the tag of the word it is written on
-        on = next((t["pos"] for t in pieces if t.get("token_type") == "baseword"), None)
-        subtokens.extend({**t, "case": typed_case(word, stuck_on), "on": on} for t in pieces)
+        # the typed word rides on its one base piece from the start, so the book's masks and links read its case through
+        # the one view (facts.typed_case_of: the six nouns, a written nasb alif, a منقوص, the hundreds) as every later step does
+        bases = [t for t in pieces if t.get("token_type") == "baseword"]
+        if len(bases) == 1:
+            bases[0].update(typed=word, stuck_on=stuck_on)
+        word_case = typed_case_of(bases[0]) if len(bases) == 1 else typed_case(word, stuck_on)
+        # وَأَنْ: a letter written on a particle is no جار, so each piece keeps the tag of the word it is written on, and
+        # the case typed on that word (وَخُلُقُهُ: a و on a word in raf' joins, facts.is_preposition)
+        on = bases[0]["pos"] if bases else None
+        subtokens.extend({**t, "word_case": word_case, "on": on} for t in pieces)
 
     heads, rels = _parse_forms(subtokens)
 

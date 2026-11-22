@@ -114,12 +114,15 @@ PASSES = (
 
 def correct(words: list[str], tokens: list[dict]) -> None:
     parsed = {t["id"]: (t["head"], t["rel"]) for t in tokens}  # a tree: every word reaches the root (decode)
+    # the parser put each typed word on its base piece already (catib_onnx.parse); put again here for tokens built by
+    # hand and for a reader who wrote بِ or وَ apart, so the book's links read the typed case as the repairs do
+    if lined_up := len(bases := base_tokens(words, tokens)) == len(words):
+        for word, base in zip(words, bases):
+            base["typed"] = word
     book_links(tokens)
     s = Sentence(tokens)
     untangle(s, parsed)
-    if len(bases := base_tokens(words, tokens)) == len(words):
-        for word, base in zip(words, bases):
-            base["typed"] = word
+    if lined_up:
         s.bases = bases
         for repair in PASSES:
             s.refresh()  # a pass may change more than links (a retag): the next reads the tokens as it left them

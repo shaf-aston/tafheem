@@ -304,7 +304,7 @@ def is_preposition(token: dict) -> bool:
     comes onto: the أن and its verb are the masdar the و joins (a لام written on كي is the جار: لِكَيْ)."""
     read = reading(token)
     return token["pos"] == "PRT" and (read == "jarr" if read else token.get("pos_camel") == "prep"
-                                      or (token.get("pos_camel") != "conj" or token.get("case") in (None, "i") and not (token.get("on") == "PRT" and is_one(token["form"], "atf"))) and read_as(token, "jarr"))
+                                      or (token.get("pos_camel") != "conj" or token.get("word_case") in (None, "i") and not (token.get("on") == "PRT" and is_one(token["form"], "atf"))) and read_as(token, "jarr"))
 
 
 def manqus_tanween(token: dict) -> bool:

@@ -18,7 +18,7 @@ from backend.services.nahw.syntax import condition, facts, particles, walker
 from backend.services.nahw.syntax.followers import FOLLOWERS, followed, take_their_ending
 from backend.services.nahw.syntax.facts import base_tokens  # re-exported: teacher and tree read it from here
 from backend.services.text.harakat import (
-    CASE_NAME, KASRA, SUKUN, build_nun, doubled_last, five_verb_nun, letters, merged_nun, paused, typed_case, written_sizes)
+    CASE_NAME, KASRA, SUKUN, build_nun, doubled_last, five_verb_nun, letters, merged_nun, paused, written_sizes)
 
 # Every role this module can name, with its card colour key and bracket tone
 # (data/nahw_rules/roles.json); a role missing there is left uncoloured.
@@ -500,7 +500,7 @@ def _ending(role: str | None, token: dict, before: dict | None, after: str, jarr
     if role == NAMED.munada and facts.my_ya_dropped(token):
         return "nasb"  # يَا قَوْمِ: مضاف to the ياء المتكلم gone, its kasra no case
     # يَا وَلَدُ، يا أيها: a single called noun is built on the damma (in the place of nasb), as is اللهمّ
-    if role == NAMED.munada and (typed_case(token["typed"]) == "u" or facts.is_called_noun(token)
+    if role == NAMED.munada and (facts.typed_case_of(token) == "u" or facts.is_called_noun(token)
                                  or facts.is_called_alone(token)):
         return "mabni"
     # a question word, a demonstrative, a relative or a pronoun never changes its
