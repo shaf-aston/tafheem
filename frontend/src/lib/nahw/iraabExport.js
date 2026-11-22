@@ -2,7 +2,7 @@
  * Render an I'raab analysis result as plain text suitable for the clipboard.
  * Terms print in Arabic, as on the page: مرفوع, not "raf'".
  */
-import { reading } from './grammarTerms'
+import { describeWord } from './describeWord'
 import { GAP, kids, pieces, textOf } from './tarkeebLayout'
 
 // The columns a node covers, in reading order (children come sorted). A word no one
@@ -35,8 +35,9 @@ export function buildIraabExportText(data) {
 
   for (const w of data.words) {
     lines.push(w.word)
-    if (w.role) lines.push(`  Role: ${w.name ?? w.role}`)
-    const [said, ...rest] = reading(w)
+    const d = describeWord(w, data.words)
+    if (d.hasRole) lines.push(`  Role: ${d.label}`)
+    const [said, ...rest] = d.reading
     if (said) lines.push(`  Case: ${said}${rest.length ? ` (${rest.join(' ')})` : ''}`)
     if (w.root) lines.push(`  Root: ${w.root}`)
     if (w.reason) lines.push(`  Reason: ${w.reason}`)

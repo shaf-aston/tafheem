@@ -15,9 +15,9 @@
 import { useEffect, useRef } from 'react'
 
 import { useDismiss } from '../../lib/hooks/useDismiss'
-import { caseGloss, caseLabel, isUnnamed, typeGloss, typeLabel } from '../../lib/nahw/grammarTerms'
+import { typeGloss, typeLabel } from '../../lib/nahw/grammarTerms'
+import { describeWord } from '../../lib/nahw/describeWord'
 import Gloss from './Gloss'
-import { roleVar } from '../../lib/nahw/roleColors'
 import { scrollToEl } from '../../lib/motion/scrollToEl'
 import ArabicText from '../ui/text/ArabicText'
 import BookPath from './BookPath'
@@ -30,9 +30,9 @@ const ROOTLESS = new Set(['harf', 'damir'])
 
 export default function WordCard({ word, onClose, onGo, exclude }) {
   const cardRef = useRef(null)
-  const key = word?.role_key
+  const d = word ? describeWord(word) : null
   const hasPieces = word?.segments?.length > 1
-  const unsure = isUnnamed(word)
+  const unsure = d?.unnamed ?? false
 
   useEffect(() => {
     if (!word) return
@@ -51,7 +51,7 @@ export default function WordCard({ word, onClose, onGo, exclude }) {
       tabIndex={-1}
       role="group"
       aria-label={`${word.word || word.arabic}: grammar`}
-      style={{ '--c': roleVar(key) }}
+      style={{ '--c': d.color }}
       className="fade-in role glow rounded-[var(--radius-lg)] p-4
         bg-[var(--surface)] border space-y-2.5 outline-none"
     >
@@ -100,7 +100,7 @@ export default function WordCard({ word, onClose, onGo, exclude }) {
         <div className="grid grid-cols-2 gap-2.5 type-small">
           {word.root && <Detail label="Root" value={word.root} arabic />}
           {word.type && <Detail label="Type" value={typeLabel(word.type)} gloss={typeGloss(word.type)} arabic />}
-          {word.case && <Detail label="Case" value={caseLabel(word.case)} gloss={caseGloss(word.case)} arabic />}
+          {word.case && <Detail label="Case" value={d.caseText} gloss={d.caseGloss} arabic />}
           {word.sign && <Detail label="Sign" value={word.sign} arabic />}
         </div>
       )}

@@ -1,7 +1,7 @@
 import { Fragment } from 'react'
 
-import { UNNAMED, reading, caseFrom } from '../../../lib/nahw/grammarTerms'
-import { roleVar } from '../../../lib/nahw/roleColors'
+import { UNNAMED } from '../../../lib/nahw/grammarTerms'
+import { describeWord } from '../../../lib/nahw/describeWord'
 import BookPath from '../../grammar/BookPath'
 import ArabicText from '../../ui/text/ArabicText'
 import Disclosure from '../../ui/overlays/Disclosure'
@@ -41,7 +41,8 @@ export default function FullIraabTable({ words, onRowClick }) {
           </thead>
           <tbody onClick={pick}>
             {words.map((w, i) => {
-              const said = reading(w)  // one reading of case and sign, the same the copied text prints
+              const d = describeWord(w, words)
+              const said = d.reading  // one reading of case and sign, the same the copied text prints
               const proof = (
                 <>
                   <ArabicText size="sm" className="block leading-relaxed">{w.reason || NONE}</ArabicText>
@@ -52,7 +53,7 @@ export default function FullIraabTable({ words, onRowClick }) {
                 <Fragment key={`${w.word}-${i}`}>
                 <tr
                   data-i={i}
-                  style={{ '--c': roleVar(w.role_key) }}
+                  style={{ '--c': d.color }}
                   className="md:border-b border-[var(--border)] cursor-pointer align-top transition-colors
                     hover:bg-[var(--surface-hi)] role"
                 >
@@ -67,7 +68,7 @@ export default function FullIraabTable({ words, onRowClick }) {
                   </td>
                   <ArabicText as="td" size="sm" className="py-3 px-3 text-[var(--text-dim)] whitespace-nowrap">{w.root || NONE}</ArabicText>
                   <ArabicText as="td" size="sm" className="py-3 px-3 text-[var(--text-dim)] whitespace-nowrap">
-                    {caseFrom(w) === undefined ? NONE : <>{w.governor == null && 'تابع لـ '}{words[caseFrom(w)].word}</>}
+                    {d.head ? <>{d.follows && 'تابع لـ '}{d.head.word}</> : NONE}
                   </ArabicText>
                   <td className="hidden md:table-cell py-3 px-3 text-[var(--text-dim)] min-w-[var(--layout-proof)]">{proof}</td>
                 </tr>

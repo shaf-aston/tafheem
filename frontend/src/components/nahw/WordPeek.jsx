@@ -8,9 +8,8 @@
 import { useEffect, useRef } from 'react'
 
 import { useDismiss } from '../../lib/hooks/useDismiss'
-import { caseGloss, caseLabel, roleGloss } from '../../lib/nahw/grammarTerms'
+import { describeWord } from '../../lib/nahw/describeWord'
 import Gloss from '../grammar/Gloss'
-import { roleVar } from '../../lib/nahw/roleColors'
 import ArabicText from '../ui/text/ArabicText'
 import CloseButton from '../ui/buttons/CloseButton'
 
@@ -19,6 +18,7 @@ const reasonOnly = (reason) => (reason ?? '').split('. القاعدة')[0]
 
 export default function WordPeek({ word, english, at, onClose, onMore, onLookup }) {
   const box = useRef(null)
+  const d = describeWord(word)
   useDismiss(box, onClose)
   useEffect(() => { box.current?.focus() }, [])
 
@@ -40,10 +40,10 @@ export default function WordPeek({ word, english, at, onClose, onMore, onLookup 
         <CloseButton onClick={onClose} />
       </div>
       <p className="type-ui" dir="rtl" lang="ar">
-        <span style={{ color: roleVar(word.role_key) }}>{word.name ?? word.role}</span>
-        {word.case && <span className="text-[var(--text-dim)]"> · {caseLabel(word.case)}{word.sign ? ` (${word.sign})` : ''}</span>}
+        <span style={{ color: d.color }}>{d.label}</span>
+        {word.case && <span className="text-[var(--text-dim)]"> · {d.caseText}{word.sign ? ` (${word.sign})` : ''}</span>}
       </p>
-      <Gloss>{[roleGloss(word.name) || roleGloss(word.role), caseGloss(word.case)].filter(Boolean).join(' · ')}</Gloss>
+      <Gloss>{[d.roleGloss, d.caseGloss].filter(Boolean).join(' · ')}</Gloss>
       {word.reason && <p className="type-label text-[var(--text-dim)] leading-relaxed" dir="rtl" lang="ar">{reasonOnly(word.reason)}</p>}
       <div className="flex gap-3 pt-1 type-label">
         <button type="button" className="underline text-[var(--text-dim)] hover:text-[var(--text)]" onClick={onMore}>Full card</button>
