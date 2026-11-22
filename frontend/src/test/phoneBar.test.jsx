@@ -4,6 +4,7 @@
 // (a lesson running) is one counted flag on <html>.
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { cleanup, fireEvent, render, renderHook, screen } from '@testing-library/react'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 import BottomNav from '../components/shell/BottomNav'
 import AskSheet from '../components/shell/AskSheet'
@@ -43,7 +44,12 @@ describe('Ask', () => {
   it('sends an ayah number to the Quran tab and closes', () => {
     const onGo = vi.fn()
     const onClose = vi.fn()
-    render(<AskSheet tabs={LISTED} colorOf={accentOf} onGo={onGo} onClose={onClose} />)
+    // A provider as in the app: the sheet asks /api/health whether a picture of a page can be read.
+    render(
+      <QueryClientProvider client={new QueryClient()}>
+        <AskSheet tabs={LISTED} colorOf={accentOf} onGo={onGo} onClose={onClose} />
+      </QueryClientProvider>,
+    )
     fireEvent.click(screen.getByRole('button', { name: '2:255' }))
     fireEvent.keyDown(screen.getByRole('combobox'), { key: 'Enter' })
     expect(onClose).toHaveBeenCalled()
