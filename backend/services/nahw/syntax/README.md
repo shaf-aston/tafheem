@@ -9,7 +9,9 @@ Every module opens with a docstring that says what it owns. Read that before you
 typed sentence
  → morphology.pick           one reading per word: CAMeL readings, ranked by BERT, chosen by the typed vowels
                              (harakat.vowel_agreement); sarf table (verb_reader) fills verbs CAMeL lacks
- → syntax.catib_onnx.parse   dependency links (head, rel) per token; mask.py bans links the book forbids
+ → syntax.splitter.pieces    each word split by its reading into the clitic pieces the parser links (no model)
+ → syntax.catib_onnx.parse   dependency links (head, rel) per token via links(pieces), the one model seam;
+                             mask.py bans links the book forbids
  → syntax.repair             corrects the parser's tokens in place, in a fixed order (repair/__init__.py)
  → syntax.particles          one reading per many-reading particle (لا، إلا، إذا ...), once per sentence
  → syntax.condition          where a شرط opens, by the book's test (shared by naming, tree and cards)
