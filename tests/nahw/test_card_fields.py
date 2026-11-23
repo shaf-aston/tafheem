@@ -101,6 +101,12 @@ def test_a_particle_before_the_verb_keeps_the_sentence_verbal(sentence: str, ver
 
 # One card field each, found by typing the sentence in (backend/scripts/nahw/analyze.py).
 CARDS = [
+    # the kasra the ي left, a command after it: called again past the first word, governed by no word before it
+    ("رَبِّ اغْفِرْ لِي رَبِّ اغْفِرْ لِي", 3, "role", "منادى"),
+    ("اللَّهُمَّ اغْفِرْ لِي رَبِّ اغْفِرْ لِي", 3, "role", "منادى"),
+    ("تُبْ إِلَى رَبِّ اسْجُدْ لَهُ", 2, "role", "مجرور"),  # a preposition before it governs it
+    ("قَالَ يَا قَوْمِ اعْبُدُوا اللَّهَ قَوْمِ اعْبُدُوا اللَّهَ", 5, "role", "منادى"),  # a noun with ال before it takes no مضاف إليه
+    ("نَظَرْتُ إِلَى كِتَابِ رَبِّ اقْرَأْ", 3, "role", "مضاف إليه"),  # a bare noun before it does
     # لا hung on the noun at the head, a جار ومجرور telling of it: the noun is اسم لا
     ("لَا قَطْعَ فِي ثَمَرٍ وَلَا كَثَرٍ", 1, "role", "اسم لا"),
     ("لَا قَطْعَ الْيَوْمَ وَلَا كَثَرٍ", 2, "role", "خبر لا"),  # a ظرف tells of it the same
