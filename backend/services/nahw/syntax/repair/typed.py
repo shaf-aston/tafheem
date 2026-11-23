@@ -6,7 +6,7 @@ from itertools import pairwise, takewhile
 from backend.services.sarf import verb_reader
 from backend.services.sarf.morphology import is_listed_verb
 from backend.services.text.arabic_text import has_al, strip_diacritics
-from backend.services.text.harakat import FATHA, has_tanween, letters, merged_prefix, own_letters, paused, plural_alef, stuck_letters, typed_case, vowel_agreement
+from backend.services.text.harakat import DAMMA, FATHA, has_tanween, letters, merged_prefix, own_letters, paused, plural_alef, stuck_letters, typed_case, vowel_agreement
 from backend.services.nahw.book import book_words, condition_of, is_built_word, is_one, only_adverb
 from backend.services.nahw.syntax.mask import above
 from backend.services.nahw.syntax.facts import SUBJECTS, Sentence, has_added, is_built, is_describing, is_elative, is_emphasis_lam, is_known, is_name, is_preposition, listed, noun_tagged, puts_in_jarr, shown_cases, stays_adverb, typed_case_of, typed_or_parsed_case, typed_tanween, tenseless_noun, verb_tagged, works_as_verb
@@ -39,6 +39,12 @@ def typed_words(s: Sentence) -> None:
         # parser may hang on the verb after it, is أنْ's: أَلَّا يَقْدِرُونَ), then at the front that are joined words (وَ، فَ، لِـ)
         token["stuck_on"] = stuck_letters(takewhile(lambda t: t["form"].startswith("+"), (t for t in tokens if t["id"] > token["id"])))
         token["front"] = max(0, len(letters(word)) - token["stuck_on"] - len(token["base"]))
+        # فَلِمَنْ أَخَذَهُ سَلَبُهُ: a past verb is built on a fatha, a sukun, or a damma before the و of many (its doer's تُ and تُمُ aside: رَأَيْتُمُهُ), so a word read as one
+        # whose own last letter is typed with a damma and a pronoun stuck on is the noun its letters spell (سَلَبُهُ, not سَلَبَهُ)
+        own = letters(word)[:len(letters(word)) - token["stuck_on"]]
+        if (verb_tagged(token) and token.get("asp") == "p" and token["stuck_on"] and own and DAMMA in own[-1][1] and own[-1][0] not in "وت"
+                and not (own[-1][0] == "م" and len(own) > 1 and own[-2][0] == "ت")):
+            token.update(pos="NOM", pos_camel="noun", asp="na")
         # نِعْمَ الْوَكِيلُ: a verb of praise or blame typed with its fatha is that past verb, whatever the reading; typed bare,
         # the word straight before a noun with ال is that verb, whose doer is such a noun (Ibn Aqil V2, باب نعم وبئس)
         bare = strip_diacritics(word) == word

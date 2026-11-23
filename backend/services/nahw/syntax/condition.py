@@ -136,8 +136,10 @@ def find(bases: list[dict], named: list[str | None], cases: list[str | None],
         """Word k is what a verb of saying inside the condition says, its مقول القول (وَإِذَا قِيلَ لَهُمْ لَا تُفْسِدُوا فِي الْأَرْضِ
         قَالُوا): a sentence of its own, never the condition's answer nor its clause. A verb of saying before the opener
         says the whole condition (قَالَ الْمُعَلِّمُ إِنْ تَدْرُسْ لَا تَرْسُبْ), so it hides nothing inside it. A verb joined on to
-        a said one is said with it, the معطوف sharing its place (إِنْ قُلْتَ لَهُ لَا تَكْذِبْ وَلَا تَسْرِقْ غَضِبَ)."""
-        if any(named[v] == NAMED.fil and says(bases[v]["lemma"]) and under(k, v) for v in range(opener + 1, k)):
+        a said one is said with it, the معطوف sharing its place (إِنْ قُلْتَ لَهُ لَا تَكْذِبْ وَلَا تَسْرِقْ غَضِبَ). A pronoun
+        written on the verb is what it says, its object (مَنْ قَالَهُنَّ ثُمَّ مَاتَ ... مَاتَ), so nothing after it is said. That
+        holds for قال, the one verb `says` lists; a verb of calling or asking would carry the one spoken to instead."""
+        if any(named[v] == NAMED.fil and says(bases[v]["lemma"]) and not after[v] and under(k, v) for v in range(opener + 1, k)):
             return True
         last = next((v for v in reversed(range(opener + 1, k)) if named[v] == NAMED.fil), None)
         return last is not None and joined(k) and said(last, opener)
