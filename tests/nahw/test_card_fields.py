@@ -101,6 +101,10 @@ def test_a_particle_before_the_verb_keeps_the_sentence_verbal(sentence: str, ver
 
 # One card field each, found by typing the sentence in (backend/scripts/nahw/analyze.py).
 CARDS = [
+    # لا hung on the noun at the head, a جار ومجرور telling of it: the noun is اسم لا
+    ("لَا قَطْعَ فِي ثَمَرٍ وَلَا كَثَرٍ", 1, "role", "اسم لا"),
+    ("لَا قَطْعَ الْيَوْمَ وَلَا كَثَرٍ", 2, "role", "خبر لا"),  # a ظرف tells of it the same
+    ("لَا قَطْعَ ثَمَرٍ وَلَا كَثَرٍ", 2, "role", "مضاف إليه"),  # a bare noun under it is no khabar
     # a pronoun on a verb of saying is what it says: the verb after ثُمَّ ... is the condition's answer, nothing said
     ("مَنْ قَالَهُنَّ ثُمَّ مَاتَ تَحْتَ لَيْلَتِهِ مَاتَ عَلَى الْفِطْرَةِ", 1, "name", "فعل الشرط"),
     ("مَنْ قَالَهُنَّ ثُمَّ مَاتَ تَحْتَ لَيْلَتِهِ مَاتَ عَلَى الْفِطْرَةِ", 6, "name", "جواب الشرط"),
