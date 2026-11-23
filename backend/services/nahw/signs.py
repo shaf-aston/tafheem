@@ -24,6 +24,18 @@ def sign(case: str | None, kind: str = "vowel") -> str | None:
     return tables[kind].get(case) or tables["vowel"].get(case)
 
 
+def _unknown_ta_dual(tag: dict, marked: list) -> bool:
+    """تَطْلِيقَتَانِ، حَيْضَتَيْنِ: a word the analyser could not read (no number) ending in a voweled letter, then تَانِ or
+    تَيْنِ, is the dual of a ة noun (تَطْلِيقَة), its ة opened to ت before the dual's ending (page unchecked).
+    The letter before the ت must carry a vowel and the ت no shadda: بُهْتَانِ، الْكَتَّانِ are one word, not a dual."""
+    if tag.get("number") in ("s", "d", "p") or len(marked) < 5:
+        return False
+    vowels = {"\u064e", "\u064f", "\u0650"}
+    before, ta, long, nun = marked[-4:]
+    return (ta[0] == "ت" and "\u064e" in ta[1] and SHADDA not in ta[1] and bool(before[1] & vowels) and nun[0] == "ن"
+            and (long[0] == "ا" or (long[0] == "ي" and SUKUN in long[1])))
+
+
 def kind_of(tag: dict, annexed: bool) -> str:
     """Which sign table a noun's case is read from. CAMeL's number names a dual or a
     plural, unless the reader typed a tanween, which neither ever carries (غَافِلًا); a sound
@@ -44,7 +56,7 @@ def kind_of(tag: dict, annexed: bool) -> str:
             return "attached_dual" if _has_pronoun(tag) else "on_alef"
         if is_one(strip_diacritics(tag["base"]), "compound_number", "dual"):
             return "attached_dual"  # اثْنَا، اثْنَيْ عَشَرَ: ملحق بالمثنى, its letters show the case (Tasheel 1.4.3 p10)
-        if tag.get("number") == "d":
+        if tag.get("number") == "d" or _unknown_ta_dual(tag, marked):
             return "dual"
         # بِمَسَاجِدَ: a diptote, unless a مضاف إليه follows (CAMeL's construct state is no guide: a صفة after it reads as a مضاف إليه)
         if tag.get("case") in ("jarr", "nasb") and is_diptote(word, tag.get("pos", ""), tag.get("lemma") or "", attached=_has_pronoun(tag), annexed=annexed):

@@ -3,7 +3,7 @@ and the rest, under a verb (verb_place) or in a verbless sentence (nominal_place
 from __future__ import annotations
 
 from backend.services.text.arabic_text import strip_diacritics
-from backend.services.nahw.book import book_map, book_words, condition_of, extra_ba_on, is_extra_ba, is_mabni, is_one, is_plain_noun, is_subject_pronoun, named_roles, takes_object
+from backend.services.nahw.book import book_map, book_words, condition_of, extra_ba_on, is_extra_ba, is_mabni, is_one, is_plain_noun, is_subject_pronoun, named_roles, stem_pattern, takes_object
 from backend.services.nahw.syntax.facts.word import manqus_tanween, may_be_nasb, purpose, shows_nasb_by_kasra, is_built, is_describing, shown_cases, case_unseen, is_elative, is_name, stands_for_its_noun, is_suffix, works_as_verb, listed, indefinite_nasb, is_deputy, is_masdar, names_what_is_made, hollow_or_doubled_first_form, is_object_pronoun, is_participle, names_a_thing, on_doing_measure, is_passive, is_preposition, is_state_word, is_verb, read_as, same_root, shows_jarr, state_or_specification, told_of_subject, typed_case_of, typed_or_parsed_case, typed_tanween, unlike, attached_pronoun, noun_tagged, subject_link, holds_doer, own_doer, NOUN_LINKS, SUBJECTS
 from backend.services.nahw.syntax.facts.sentence import Sentence, at_work, is_built_zarf, stays_adverb, counts, is_zarf, zarf_in_nasb, busied, jarr_takes, praised_noun, quoted_head, told_of_lone_mubtada, verb_above
 from backend.services.nahw.syntax.facts.follows import verb_joined_by_waw
@@ -141,9 +141,16 @@ def _doer_of_describer(token: dict, head: dict, s: Sentence) -> bool:
 def stands_for_masdar(token: dict, verb: dict, s: Sentence) -> bool:
     """ضربتُه ثلاثَ مراتٍ، أحببتُه كلَّ الحبِّ: a word added to the verb's own masdar, or to the
     count of its doing, takes the masdar's place as its مفعول مطلق (النائب عن المصدر, Tasheel 3.2 p67):
-    the number of times, كل or بعض. Added to any other noun it is the object (أكلتُ كلَّ الطعامِ)."""
-    return any(k["rel"] == "IDF" and (listed(k, "times_counted") or (is_masdar(k) and same_root(k, verb)))
+    the number of times, كل or بعض. Added to any other noun it is the object (أكلتُ كلَّ الطعامِ).
+    A longer verb's root on فَعَال is its doing too, its اسم مصدر (أَفْلَحْتَ كُلَّ الْفَلَاحِ); a three-letter verb's
+    فَعَال names a thing as often (شَرِبْتُ كُلَّ الشَّرَابِ: the object)."""
+    return any(k["rel"] == "IDF" and (listed(k, "times_counted") or ((is_masdar(k) or (_doing_on_faal(k) and len(strip_diacritics(verb["lemma"] or "")) > 3)) and same_root(k, verb)))
                for k in s.kids(token))
+
+
+def _doing_on_faal(token: dict) -> bool:
+    """A noun on فَعَال (فَلَاح، ذَهَاب، صَلَاح) by the analyser's pattern."""
+    return token.get("pos_camel") == "noun" and stem_pattern(token.get("pattern") or "").replace("2\u064e\u0627", "2\u0627").rstrip("\u064b\u064c\u064d\u064e\u064f\u0650\u0652") == "1\u064e2\u06273"
 
 
 def wants_object(verb: dict, kids: list[dict]) -> bool:
@@ -319,6 +326,11 @@ def verb_place(token: dict, s: Sentence) -> str:
                 return "specification"
             if is_participle(token) and stands_for_its_noun(token) and wants_object(head, siblings):
                 return "object"  # أكرم محمد خالدا، مَنْ عَمِلَ صَالِحًا: the describing word stands for its noun
+            if (is_participle(token) and same_root(token, head) and wants_object(head, siblings)
+                    and stem_pattern(token.get("pattern") or "").startswith("1\u064e2\u0650\u064a3")):
+                # مَنْ قَتَلَ قَتِيلًا: فَعِيل off a verb that takes an object is the one done to (قتيل = مقتول), its object,
+                # not the doing (a فَعِيل doing is a sound's or a going's, off a verb that takes none: صَهَلَ صَهِيلًا)
+                return "object"
             if is_participle(token) and same_root(token, head) and not on_doing_measure(token):
                 return "absolute"  # فَرِحَ فَرَحًا، ضَحِكَتْ ضَحِكًا: its own root off a doer's measure is the doing again
             # أَهْدَى أَخِي الصَّغِيرَ خَمْسَةً مِنْهَا: a number counts, it describes no state (a حال is مشتق), whatever CAMeL tags it
