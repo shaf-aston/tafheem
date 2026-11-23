@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 
 import config from '../../config/dictionary.json'
-import { entryLines, paragraphs } from './entryLines'
+import { entryLines, hasSentenceEnd, paragraphs, sentencesOf } from './entryLines'
 
 describe('entryLines', () => {
   it('gives back one line per line the book broke', () => {
@@ -61,5 +61,18 @@ describe('paragraphs', () => {
   it('reads nothing as no paragraphs', () => {
     expect(paragraphs(undefined)).toEqual([])
     expect(paragraphs('')).toEqual([])
+  })
+})
+
+describe('sentencesOf', () => {
+  it('does not end a sentence at a short form of one letter (د. ص.)', () => {
+    expect(sentencesOf('قال د. محمد إن العلم نور. انظر ص. ٣ منه.')).toEqual(['قال د. محمد إن العلم نور.', 'انظر ص. ٣ منه.'])
+    expect(hasSentenceEnd('قال د. محمد')).toBe(false)
+  })
+
+  it('ends a sentence after an ayah number in its brackets', () => {
+    const verses = 'بسم الله الرحمن الرحيم ﴿١﴾ الحمد لله رب العالمين ﴿٢﴾'
+    expect(hasSentenceEnd(verses)).toBe(true)
+    expect(sentencesOf(verses)).toEqual(['بسم الله الرحمن الرحيم ﴿١﴾', 'الحمد لله رب العالمين ﴿٢﴾'])
   })
 })

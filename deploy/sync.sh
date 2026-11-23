@@ -73,6 +73,9 @@ rsync -a --delete backend/data/colloquial/ /home/ubuntu/tafheem/backend/data/col
 rsync -aR frontend/public/words/words.json frontend/public/words/coverage.json \
 	frontend/public/words/word_audio.json frontend/public/words/sentences.json \
 	frontend/public/jazariyya/poem.json frontend/src/config/speak.json /home/ubuntu/tafheem/
+# The page reader's Tesseract is a system package, installed by setup.sh, never from here: sync runs from
+# master and must not hold apt rights. Without it pictures go to the vision model alone; /api/health says which.
+tesseract --list-langs 2>/dev/null | grep -qx ara || echo "sync: no tesseract-ocr-ara; run: sudo apt-get install tesseract-ocr tesseract-ocr-ara"
 cp requirements-torch.txt requirements.txt requirements-nodeps.txt /home/ubuntu/tafheem/
 /home/ubuntu/tafheem/venv/bin/pip install -q -r requirements-torch.txt
 /home/ubuntu/tafheem/venv/bin/pip install -q -r requirements.txt

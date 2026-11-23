@@ -139,6 +139,31 @@ def gist_lexicon_entry(book: str, root: str, entry: str) -> dict:
     )
 
 
+def read_picture(image_b64: str, media_type: str) -> dict:
+    """The Arabic in a picture as text ({"text": ...}), copied out by Groq's vision model (`read_model`).
+
+    Groq only: no other backend here takes a picture. Charged to the one AI budget like every
+    model call. Never retires the shared backend on failure, as _ask does: a vision model that is
+    missing says nothing of the text model every other answer runs on, so services/reading/vision
+    keeps its own record of whether it works.
+    """
+    settings = get_settings()
+    if not settings.has_groq or not settings.read_model.strip():
+        raise RuntimeError("No vision model: set GROQ_API_KEY and READ_MODEL")
+    ratelimit.AI.spend()
+    return _groq.complete_json(
+        messages=[
+            {"role": "system", "content": prompts.READ_SYSTEM},
+            {"role": "user", "content": [
+                {"type": "text", "text": prompts.READ_USER},
+                {"type": "image_url", "image_url": {"url": f"data:{media_type};base64,{image_b64}"}},
+            ]},
+        ],
+        max_tokens=settings.read_max_tokens,
+        model=settings.read_model.strip(),
+    )
+
+
 def translate_sentence(text: str, facts: str) -> dict:
     """A reader's Arabic phrase or sentence as one English sentence, from the grammar's facts.
 
@@ -148,6 +173,18 @@ def translate_sentence(text: str, facts: str) -> dict:
     return _ask(
         prompts.SENTENCE_USER.format(text=text, facts=facts),
         max_tokens=get_settings().sentence_max_tokens,
+        system=prompts.SENTENCE_SYSTEM,
+    )
+
+
+def translate_sentences(lines: list[tuple[str, str]]) -> dict:
+    """Several Arabic lines of one page, each with its grammar facts, as English ({"english": [...]}):
+    one model call, one charge to the AI budget, however many lines. Same caveats as above; the
+    caller checks the count and each answer."""
+    numbered = "\n\n".join(f"Line {n}. {text}\n{facts}" for n, (text, facts) in enumerate(lines, 1))
+    return _ask(
+        prompts.SENTENCES_USER.format(lines=numbered, count=len(lines)),
+        max_tokens=get_settings().sentence_batch_max_tokens,
         system=prompts.SENTENCE_SYSTEM,
     )
 

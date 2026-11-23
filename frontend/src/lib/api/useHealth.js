@@ -38,6 +38,8 @@ export function useHealth() {
     // Null until the answer arrives, so a panel can tell "not installed" apart
     // from "not asked yet" and stay quiet in the meantime.
     dictionaryLoaded: data ? data.dictionary_loaded === true : null,
+    // Who reads a picture of a page: "tesseract", "tesseract + <model>", or "none" when nothing can.
+    pageReader: data?.page_reader ?? '',
     corpusLoaded: data ? data.corpus_loaded === true : null,
     // 'missing' | 'broken' | 'ready', or null before the answer arrives. Three
     // states rather than a flag, because "no book here" and "the book would not

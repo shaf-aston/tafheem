@@ -5,7 +5,7 @@ set -e
 HOST="${1:?Pass your duckdns name, for example: bash deploy/setup.sh tafheem.duckdns.org}"
 
 sudo apt-get update
-sudo apt-get install -y python3-venv python3-dev build-essential debian-keyring debian-archive-keyring apt-transport-https curl ffmpeg
+sudo apt-get install -y python3-venv python3-dev build-essential debian-keyring debian-archive-keyring apt-transport-https curl ffmpeg tesseract-ocr tesseract-ocr-ara
 
 python3 -m venv venv
 venv/bin/pip install --upgrade pip

@@ -112,6 +112,56 @@ def translate(text: str) -> dict:
     return {"kind": kind_of(summary, pairs), **found}
 
 
+def translate_many(texts: list[str]) -> list[dict]:
+    """translate() for each of a page's lines, in order, with every line the model must answer put to
+    it in ONE call: a page of 120 lines is 15 calls, not 120, so it is not held up by the per-minute
+    budget. A line already on file, or a whole ayah, costs nothing. When the model is unreachable,
+    or its answers do not match the lines one for one, those lines keep their words and no sense;
+    an answer that is no rendering of its line is dropped alone. OverBudget is raised as for one line.
+    """
+    found: list[dict] = []
+    for text in texts:
+        pairs, summary = read_words(text)
+        one = _whole_ayah(text, pairs)
+        if one is None:
+            rows = _ayah_words(text, pairs) or {"rows": pairs}
+            meaning = _kept(text, _QUESTION)
+            one = {"meaning": meaning, "source": "ai" if meaning else None, "ref": rows.get("ref"),
+                   "words": rows["rows"], "words_source": rows.get("words_source", "camel"), "ask": not meaning}
+        found.append({"kind": kind_of(summary, pairs), **one})
+    asking = [(texts[n], one) for n, one in enumerate(found) if one.pop("ask", False)]
+    if asking:
+        for (text, one), answer in zip(asking, _many_answers([(text, _facts(one["words"])) for text, one in asking])):
+            if answer:
+                one.update(meaning=answer, source="ai")
+    return found
+
+
+def _many_answers(lines: list[tuple[str, str]]) -> list[str | None]:
+    """The model's English for each line, filed like _asked's, or None where it gave none worth keeping."""
+    try:
+        answers = ai.translate_sentences(lines)["english"]
+        if not isinstance(answers, list) or len(answers) != len(lines):
+            raise ValueError(f"{len(lines)} lines and {len(answers) if isinstance(answers, list) else 'no'} answers")
+    except OverBudget:
+        raise
+    except Exception as exc:  # noqa: BLE001, a dead model leaves the word-by-word standing
+        logger.info("sentence meaning  model failed on %d lines: %s", len(lines), exc)
+        return [None] * len(lines)
+    kept: list[str | None] = []
+    for (text, _), answer in zip(lines, answers):
+        try:
+            answer = plausible(text, answer, arabic=False)
+        except ValueError as exc:
+            logger.info("sentence meaning  dropped one line's answer: %s", exc)
+            kept.append(None)
+            continue
+        attempts.keep_questions(module=_KEPT, sentence=text, source="ai",
+                                questions=[{"question": _QUESTION, "answer": answer}])
+        kept.append(_kept(text, _QUESTION))
+    return kept
+
+
 def _whole_ayah(text: str, pairs: list[dict]) -> dict | None:
     """The ayah's published sense, when the text is one whole ayah and nothing more,
     and its published words too unless their count disagrees with the ayah's own,

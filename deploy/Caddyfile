@@ -48,6 +48,10 @@ import /etc/caddy/origin-secret.caddy
 		request_body {
 			max_size 14MiB
 		}
+		# A picture of a page (routers/read.py, read_max_kb): refused here past it, before it is spooled.
+		request_body /api/read/* {
+			max_size 9MiB
+		}
 		reverse_proxy 127.0.0.1:8000 127.0.0.1:8001 {
 			header_up -X-Origin-Secret
 			health_uri /api/health
