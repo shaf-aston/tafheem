@@ -452,7 +452,7 @@ def inna_second_khabar(s: Sentence) -> None:
     """لَا رَيْبَ فِيهِ هُدًى: إنّ and its sisters, لا النافية للجنس too, take one اسم and a خبر (Tasheel 1.8, 3.7.3), so a noun
     the parser hung on one as a second subject, after its khabar, is a second khabar (تعدد الخبر). So is a noun in raf'
     the parser hung as a مضاف إليه, which is never in raf' (وَلَوْ أَنَّ مَا فِي الْأَرْضِ مِنْ شَجَرَةٍ أَقْلَامٌ), when
-    the pair has none yet and the noun comes after the اسم, or one typed in raf' the parser hung as a صفة of the
+    the pair has none yet and the noun comes after the اسم, or a second subject typed in raf' on it, or one typed in raf' the parser hung as a صفة of the
     اسم, which a نعت in its منعوت's case never is (لَا طَالِبَ عِلْمٍ مُتَكَاسِلٌ فِي هَذَا الْفَصْلِ); typed bare, the noun that ends the sentence on the pair that has
     none is the khabar, since the pair cannot stand without it."""
     tokens = s.tokens
@@ -465,6 +465,9 @@ def inna_second_khabar(s: Sentence) -> None:
                          and (t["rel"] == "IDF" and (typed_case_of(t) == "u" or typed_case_of(t) is None and t is tokens[-1])
                               or t["rel"] == "MOD" and typed_case_of(t) == "u")
                          and above([x["head"] for x in tokens], t["id"], subject["id"])), None)
+            # إِنَّ أَحْسَنَ مَا زُرْتُمُ اللَّهَ فِي قُبُورِكُمْ وَمَسَاجِدِكُمُ الْبَيَاضُ: a second subject on it, typed in raf' after the اسم and its صلة
+            told = told or next((k for k in s.kids(governor) if k["id"] > subject["id"] and subject_link(k)
+                                 and noun_tagged(k) and typed_case_of(k) == "u"), None)
             if told:
                 s.relink(told, governor["id"], "PRD")
         for token in s.kids(governor):

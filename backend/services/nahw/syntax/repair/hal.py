@@ -52,6 +52,24 @@ def hal_clause(s: Sentence) -> None:
             s.relink(subject, khabar["id"], subject["rel"])
 
 
+def joined_sentence(s: Sentence) -> None:
+    """مِفْتَاحُ الصَّلَاةِ الطُّهُورُ وَتَحْرِيمُهَا التَّكْبِيرُ: after a sentence already said, the parser may hang the noun
+    after the و as its معطوف and the noun after that on it as its object; but a noun takes no object, and a word typed
+    in raf' is never one, so the و joins a second sentence (عطف الجمل, page unchecked), the first noun its مبتدأ and
+    the second its khabar, hung as hal_clause hangs one: the khabar on the و, the noun on the khabar."""
+    for told in s.tokens:
+        noun, waw = s.head(told), None
+        if noun:
+            waw = s.head(noun)
+        if not (waw and told["rel"] == "OBJ" and noun["rel"] == "OBJ" and waw["pos"] == "PRT"
+                and waw["lemma"].strip("+") == "و" and waw["head"] and waw["id"] > 1):  # a sentence said before the و
+            continue
+        if (noun_tagged(noun) and not is_verb(noun) and noun_tagged(told) and not is_verb(told)
+                and told["id"] > noun["id"] and typed_case_of(told) == typed_case_of(noun) == "u"):
+            s.relink(told, waw["id"], "OBJ")
+            s.relink(noun, told["id"], "SBJ")
+
+
 def _waw_on_verb(waw: dict, s: Sentence) -> None:
     """كَادَ زَيْدٌ وَهُوَ صَغِيرٌ يَمُوتُ: the و that brings a sentence joins no noun to the noun before it; it hangs on
     the verb that noun hangs on (its doer or object), the sentence telling the state it was in (Tasheel 3.7)."""
