@@ -101,6 +101,16 @@ def test_a_particle_before_the_verb_keeps_the_sentence_verbal(sentence: str, ver
 
 # One card field each, found by typing the sentence in (backend/scripts/nahw/analyze.py).
 CARDS = [
+    ("شَرِبْتُ كُلَّ الشَّرَابِ", 1, "role", "مفعول به"),  # a three-letter verb's فَعَال names the drink
+    ("جَاءَ عُثْمَتَّانِ", 1, "sign", "ضمة"),  # an unread word with a doubled ت: one word, no dual
+    ("جَاءَ كُرْبْتَانِ", 1, "sign", "ضمة"),  # an unread word with sukun before the ت: one word, no dual
+    ("هَذِهِ تَطْلِيقَتَانِ", 1, "sign", "الألف، مثنى"),  # an unread ة noun's dual still shows its alif
+    ("طَلَّقَهَا تَطْلِيقَتَيْنِ", 1, "sign", "الياء، مثنى"),
+    ("جَاءَ بِبُهْتَانِ", 1, "sign", "كسرة"),  # sukun before the ت: one word, no dual
+    ("أَفْلَحْتَ كُلَّ الْفَلَاحِ", 1, "role", "مفعول مطلق"),  # كل added to the verb's فَعَال doing
+    ("كَتَبْتُ كُلَّ الْكِتَابِ", 1, "role", "مفعول به"),  # فِعَال here names the thing written
+    ("مَنْ قَتَلَ قَتِيلًا فَلَهُ سَلَبُهُ", 2, "role", "مفعول به"),  # قتيل = مقتول, the one done to
+    ("صَهَلَ الْفَرَسُ صَهِيلًا", 2, "role", "مفعول مطلق"),  # فَعِيل doing off a verb with no object
     # the kasra the ي left, a command after it: called again past the first word, governed by no word before it
     ("رَبِّ اغْفِرْ لِي رَبِّ اغْفِرْ لِي", 3, "role", "منادى"),
     ("اللَّهُمَّ اغْفِرْ لِي رَبِّ اغْفِرْ لِي", 3, "role", "منادى"),
