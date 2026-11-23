@@ -17,6 +17,7 @@ import { useHealth } from '../../lib/api/useHealth'
 import { resumePlace, useJourney } from '../../lib/nav/journey'
 import { progressByTab } from '../../lib/nav/moduleTab'
 import { useCommandLine } from '../../lib/nav/useCommandLine'
+import { usePageHandoff } from '../../lib/dictionary/pageHandoff'
 import { accentOf, FIXED, GROUPS, HOME, LISTED, START } from '../../lib/nav/tabs'
 import { progressText } from '../../lib/shell/homeCopy'
 import { copy as offlineCopy, noSignal } from '../../lib/shell/offline'
@@ -29,6 +30,7 @@ import ArabicText from '../ui/text/ArabicText'
 import ErrorAlert from '../ui/feedback/ErrorAlert'
 import TabGroups from '../ui/inputs/TabGroups'
 import CommandField from '../shell/CommandField'
+import PictureButton from '../ui/buttons/PictureButton'
 import CommandResults from '../shell/CommandResults'
 import LogInButton from '../profile/LogInButton'
 import LevelPicker from '../level/LevelPicker'
@@ -59,6 +61,8 @@ export default function HomePanel({ accent, onGo }) {
   const level = levelOf(levelId)?.grow ?? null
   const health = useHealth()
   const line = useCommandLine(LISTED, (row) => onGo(row.tabId, row.value))
+  // A picture of a page, chosen, pasted (a laptop's screenshot) or dropped here, opens in the Dictionary's page reader.
+  const page = usePageHandoff(onGo)
   const sums = progressByTab(overview.data?.modules)
   const showing = line.rows.length > 0
   const offline = health.status === 'error'
@@ -84,7 +88,7 @@ export default function HomePanel({ accent, onGo }) {
   )
 
   return (
-    <div className="panel isolate space-y-6" style={{ '--c': accent }}>
+    <div className="panel isolate space-y-6" style={{ '--c': accent }} onPaste={page.pasted} onDrop={page.dropped} onDragOver={page.dragOver}>
       <header className="space-y-2">
         <div className="flex items-start justify-between gap-3">
           <h2 className="type-head rise-in text-3xl sm:text-5xl font-semibold leading-tight">
@@ -102,14 +106,17 @@ export default function HomePanel({ accent, onGo }) {
       {/* Beside the tiles on a wide screen, the progress column, held in view as the page scrolls. */}
       <div className="lg:grid lg:grid-cols-[minmax(0,1fr)_var(--layout-rail)] lg:gap-8 lg:items-start">
         <div className="space-y-6">
-          <div className="cb md:max-w-xl" data-wide>
-            <CommandField line={line} name={NAME} placeholder={phone ? copy['placeholder-phone'] : copy.placeholder} showing={showing}
-              trailing={!line.query && <ArabicText as="span" size="sm" className="cb-hint-ar" aria-hidden="true">{copy['placeholder-ar']}</ArabicText>} />
-            {showing && (
-              <CommandResults id={`${NAME}-results`} name={NAME} rows={line.rows} tabs={LISTED} colorOf={accentOf}
-                active={line.active} onHover={line.setActive} onPick={line.run}
-                railTab={line.rows[line.active]?.tabId} onRail={(id) => onGo(id)} />
-            )}
+          <div className="flex items-start gap-2 md:max-w-xl">
+            <div className="cb flex-1 min-w-0" data-wide>
+              <CommandField line={line} name={NAME} placeholder={phone ? copy['placeholder-phone'] : copy.placeholder} showing={showing}
+                trailing={!line.query && <ArabicText as="span" size="sm" className="cb-hint-ar" aria-hidden="true">{copy['placeholder-ar']}</ArabicText>} />
+              {showing && (
+                <CommandResults id={`${NAME}-results`} name={NAME} rows={line.rows} tabs={LISTED} colorOf={accentOf}
+                  active={line.active} onHover={line.setActive} onPick={line.run}
+                  railTab={line.rows[line.active]?.tabId} onRail={(id) => onGo(id)} />
+              )}
+            </div>
+            {page.canRead && <PictureButton onPicked={page.send} title="Read a picture of a page" />}
           </div>
 
           {/* The quiet word sits in the room beside the card, on a phone as on a laptop, and scrolls with the page. */}

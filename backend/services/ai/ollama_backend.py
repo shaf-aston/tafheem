@@ -52,12 +52,12 @@ class OllamaBackend(AIBackend):
             self._available = False
             logger.info("Ollama not available (%s), local-only mode", exc)
 
-    def complete_json(self, messages: list[dict], max_tokens: int) -> dict:
+    def complete_json(self, messages: list[dict], max_tokens: int, model: str | None = None) -> dict:
         cfg = get_settings()
         url = cfg.ollama_url.rstrip("/") + "/api/chat"
 
         payload = {
-            "model": cfg.ollama_model,
+            "model": model or cfg.ollama_model,
             "messages": messages,
             "stream": False,
             "format": "json",

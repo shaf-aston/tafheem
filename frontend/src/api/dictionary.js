@@ -8,6 +8,19 @@ export const searchDictionary = (q, lang = 'ar') =>
 export const translateSentence = (q) =>
   api.get('/dictionary/sentence', { params: { q } }).then((r) => r.data)
 
+// A page's Arabic lines translated together (the page reader): one model call on the
+// server for all of them. One answer a line, in order, each as translateSentence's.
+export const translateSentences = (lines) =>
+  api.post('/dictionary/sentences', { lines }).then((r) => r.data.results)
+
+// A picture of a page read into its Arabic text (the page reader's first step). The
+// text comes back for the reader to check; its lines are then put to translateSentences.
+export const readPicture = (picture) => {
+  const body = new FormData()
+  body.append('image', picture, picture.name || 'page.jpg')
+  return api.post('/read/image', body, { headers: { 'Content-Type': undefined } }).then((r) => r.data)
+}
+
 // What a root has meant since the beginning, as against what a word means today.
 // A different book from the dictionary, so a separate call with its own source.
 export const getRootMeaning = (root) =>

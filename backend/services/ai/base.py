@@ -17,8 +17,9 @@ class AIBackend(Retirable, ABC):
     """
 
     @abstractmethod
-    def complete_json(self, messages: list[dict], max_tokens: int) -> dict:
-        """Send a chat completion and return parsed JSON dict."""
+    def complete_json(self, messages: list[dict], max_tokens: int, model: str | None = None) -> dict:
+        """Send a chat completion and return parsed JSON dict. `model`: another of this backend's models
+        than its configured one, for one call (the page reader's vision model)."""
 
     @abstractmethod
     def is_available(self) -> bool:

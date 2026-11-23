@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { foldForSearch, isOneArabicWord, joinedOn, mostlyArabic, unpunctuated, untrailed } from './arabicText'
+import { foldForSearch, hasArabicWord, isOneArabicWord, joinedOn, mostlyArabic, unpunctuated, untrailed } from './arabicText'
 
 describe('mostlyArabic', () => {
   it('is true for an ayah', () => {
@@ -65,5 +65,16 @@ describe('isOneArabicWord', () => {
 
   it('does not count a pause sign as a word', () => {
     expect(isOneArabicWord('۞ كتب')).toBe(true)
+  })
+})
+
+describe('hasArabicWord', () => {
+  it('needs two Arabic letters together', () => {
+    expect(hasArabicWord('قال')).toBe(true)
+    expect(hasArabicWord('ٱلله')).toBe(true)
+    expect(hasArabicWord('Hello 12 ، ق')).toBe(false)
+  })
+  it('does not count tatweel as a letter', () => {
+    expect(hasArabicWord('قـ ـــ')).toBe(false)
   })
 })

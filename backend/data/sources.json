@@ -224,6 +224,26 @@
       "dict"
     ]
   },
+  "tesseract": {
+    "label": "Read by Tesseract",
+    "confidence": "guessed",
+    "detail": "Text read out of your picture by Tesseract, an OCR program, on this server. Near exact on clear print; check it against the picture",
+    "url": "https://github.com/tesseract-ocr/tesseract",
+    "where": "The page reader's first reader, on this server. Your picture is not kept.",
+    "used_in": [
+      "dict"
+    ]
+  },
+  "vision": {
+    "label": "Read by an AI model",
+    "confidence": "guessed",
+    "detail": "Text copied out of your picture by a vision model on Groq, asked when Tesseract could not read it well. Check it against the picture",
+    "url": "https://console.groq.com/docs/vision",
+    "where": "The page reader's second reader: the picture goes to Groq to be read. It is not kept here.",
+    "used_in": [
+      "dict"
+    ]
+  },
   "ai": {
     "label": "AI explanation",
     "confidence": "guessed",
