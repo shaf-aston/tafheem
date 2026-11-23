@@ -101,6 +101,15 @@ def test_a_particle_before_the_verb_keeps_the_sentence_verbal(sentence: str, ver
 
 # One card field each, found by typing the sentence in (backend/scripts/nahw/analyze.py).
 CARDS = [
+    # a pronoun on a verb of saying is what it says: the verb after ثُمَّ ... is the condition's answer, nothing said
+    ("مَنْ قَالَهُنَّ ثُمَّ مَاتَ تَحْتَ لَيْلَتِهِ مَاتَ عَلَى الْفِطْرَةِ", 1, "name", "فعل الشرط"),
+    ("مَنْ قَالَهُنَّ ثُمَّ مَاتَ تَحْتَ لَيْلَتِهِ مَاتَ عَلَى الْفِطْرَةِ", 6, "name", "جواب الشرط"),
+    # a damma on the last letter before a stuck pronoun is no past verb's: سَلَبُهُ is the noun, so the مَنْ before it is a relative
+    ("مَنْ قَطَعَ مِنْهُ شَيْئًا فَلِمَنْ أَخَذَهُ سَلَبُهُ", 6, "name", "مبتدأ مؤخر"),
+    # the doer's تُ keeps its past verb
+    ("كُلُّ مَالٍ نَحَلْتُهُ عَبْدًا حَلَالٌ", 2, "role", "فعل"),
+    # a damma carried over to join the next word is no ending: with no pronoun stuck on, the past verb stays
+    ("إِذَا دَعَوْتُمُ اللَّهَ فَاعْزِمُوا", 1, "role", "فعل"),
     ("إِذَا صَلَّى جَالِسًا فَصَلُّوا جُلُوسًا", 4, "role", "حال"),  # a masdar of a verb that takes no object, as a state
     ("إِنَّ أَحْسَنَ مَا زُرْتُمُ اللَّهَ فِي قُبُورِكُمْ وَمَسَاجِدِكُمُ الْبَيَاضُ", 8, "role", "خبر إن"),  # past the اسم's صلة
     ("مِفْتَاحُ الصَّلَاةِ الطُّهُورُ وَتَحْرِيمُهَا التَّكْبِيرُ وَتَحْلِيلُهَا التَّسْلِيمُ", 3, "role", "مبتدأ"),  # و joins a sentence
