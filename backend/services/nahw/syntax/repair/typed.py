@@ -90,8 +90,11 @@ def typed_words(s: Sentence) -> None:
             cut = (own_letters(word, 1, token["stuck_on"]),) if first in "فو" and marks <= {FATHA} and not read_past else ()
             if token["stuck_on"]:
                 own, *cut = map(plural_alef, (own, *cut))  # اُكْتُبُوهُ is اُكْتُبُوا with its object
+            # حُجُّوا، سِيرُوا: a doubled or hollow root's command to many is spelled as its past passive; opening the
+            # sentence, or after a joined فَ (فَحُجُّوا), it is the command; told on (ثُمَّ رُدُّوا إِلَى اللَّهِ) it stays passive
             cell = next((found for form in dict.fromkeys((word, paused(word, after), own, *cut))
-                         if (found := verb_reader.command(form, governed, token.get("root", ""), vouched, answers))
+                         if (found := verb_reader.command(form, governed, token.get("root", ""), vouched, answers,
+                                                                command_place=i == 0 or first == "ف" and marks == {FATHA}))
                          and (not (read_noun or read_past) or vouched or verb_reader.typed_fully(form, found))), None)
             if cell:  # the person is sarf's: the reading may have taken اقبل for "I accept"
                 token.update(asp="c", per=cell.person, gen=cell.gender, num=cell.number)
