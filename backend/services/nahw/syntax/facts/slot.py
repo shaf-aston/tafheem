@@ -3,7 +3,7 @@ and the rest, under a verb (verb_place) or in a verbless sentence (nominal_place
 from __future__ import annotations
 
 from backend.services.text.arabic_text import strip_diacritics
-from backend.services.nahw.book import book_map, condition_of, extra_ba_on, is_extra_ba, is_mabni, is_one, is_plain_noun, is_subject_pronoun, named_roles, takes_object
+from backend.services.nahw.book import book_map, book_words, condition_of, extra_ba_on, is_extra_ba, is_mabni, is_one, is_plain_noun, is_subject_pronoun, named_roles, takes_object
 from backend.services.nahw.syntax.facts.word import manqus_tanween, may_be_nasb, purpose, shows_nasb_by_kasra, is_built, is_describing, shown_cases, case_unseen, is_elative, is_name, stands_for_its_noun, is_suffix, works_as_verb, listed, indefinite_nasb, is_deputy, is_masdar, names_what_is_made, hollow_or_doubled_first_form, is_object_pronoun, is_participle, names_a_thing, on_doing_measure, is_passive, is_preposition, is_state_word, is_verb, read_as, same_root, shows_jarr, state_or_specification, told_of_subject, typed_case_of, typed_or_parsed_case, typed_tanween, unlike, attached_pronoun, noun_tagged, subject_link, holds_doer, own_doer, NOUN_LINKS, SUBJECTS
 from backend.services.nahw.syntax.facts.sentence import Sentence, at_work, is_built_zarf, stays_adverb, counts, is_zarf, zarf_in_nasb, busied, jarr_takes, praised_noun, quoted_head, told_of_lone_mubtada, verb_above
 from backend.services.nahw.syntax.facts.follows import verb_joined_by_waw
@@ -300,6 +300,13 @@ def verb_place(token: dict, s: Sentence) -> str:
         # اشْتَرَتِ الْمَكْتَبَةُ خَمْسَةً وَعِشْرِينَ كِتَابًا: a number is a noun the tamyeez counts, never a state, though CAMeL tags it an adjective
         if counts(token) and rel == "OBJ" and may_be_nasb(token, typed_only=True) and not after_first:
             return "object"
+        # فَصَلُّوا جُلُوسًا: after a command, an indefinite masdar of a verb that takes no object names nothing done to,
+        # so it stands for the state the doing is in (Alfiyya, باب الحال: ومصدر منكر حالا يقع بكثرة كبغتة زيد طلع; page
+        # unchecked); kept to the command, whose doer is always in it, so a reason (قَعَدَ جُبْنًا) is left to the rules below
+        if (head.get("asp") == "c" and rel == "MOD" and typed == "a" and not before and token.get("stt") == "i"
+                and is_masdar(token) and not same_root(token, head)
+                and any(same_root(token, {"lemma": verb}) for verb in book_words("intransitive_verbs"))):
+            return "state"
         # زَيْدٌ أَكْرَمَ ضَيْفًا: a verb said of the مبتدأ the sentence rests on holds its doer, the
         # pronoun back to it its khabar must carry (رابط جملة الخبر, Ibn Aqil on the Alfiyya)
         told = s.head(head)

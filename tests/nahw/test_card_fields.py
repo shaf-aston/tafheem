@@ -101,6 +101,10 @@ def test_a_particle_before_the_verb_keeps_the_sentence_verbal(sentence: str, ver
 
 # One card field each, found by typing the sentence in (backend/scripts/nahw/analyze.py).
 CARDS = [
+    ("إِذَا صَلَّى جَالِسًا فَصَلُّوا جُلُوسًا", 4, "role", "حال"),  # a masdar of a verb that takes no object, as a state
+    ("إِنَّ أَحْسَنَ مَا زُرْتُمُ اللَّهَ فِي قُبُورِكُمْ وَمَسَاجِدِكُمُ الْبَيَاضُ", 8, "role", "خبر إن"),  # past the اسم's صلة
+    ("مِفْتَاحُ الصَّلَاةِ الطُّهُورُ وَتَحْرِيمُهَا التَّكْبِيرُ وَتَحْلِيلُهَا التَّسْلِيمُ", 3, "role", "مبتدأ"),  # و joins a sentence
+    ("مِفْتَاحُ الصَّلَاةِ الطُّهُورُ وَتَحْرِيمُهَا التَّكْبِيرُ وَتَحْلِيلُهَا التَّسْلِيمُ", 6, "role", "خبر"),
     ("زَارَنَا صَدِيقِي أَمْسِ", 2, "sign", "مبني على الكسر"),  # a built ظرف says the vowel it is built on
     ("ذَهَبَ الطَّالِبُ إِلَى المَدْرَسَةِ", 2, "sign", "مبني على السكون"),  # a particle ending in a long letter
     ("إِنَّ اللهَ غَفُورٌ رَحِيمٌ", 0, "sign", "مبني على الفتح"),          # a particle says its vowel too
@@ -512,6 +516,10 @@ CARDS = [
     # a past read with its typed vowels keeps its first و or ف: no command ضَعُوا، رِحُوا joined on
     ("الرِّجَالُ وَضَعُوا الْكِتَابَ", 1, "name", "أمر"),
     ("الْقَوْمُ فَرِحُوا", 1, "name", "أمر"),
+    # the masdar-as-state rule is kept to commands: a past verb's masdar is left to the other rules
+    ("صَلَّى الرَّجُلُ جُلُوسًا", 2, "role", "حال"),
+    # و + a raf' noun opens a second sentence only when both nouns are typed in raf'
+    ("وَاللَّهِ إِنْ كَانَ ذَلِكَ وَلَإِلَى اللَّهِ مَصِيرُهُ", 4, "role", "مبتدأ"),
 ])
 def test_card_field_is_not(sentence: str, index: int, field: str, wrong: str):
     assert wrong not in (_read(sentence)["words"][index][field] or "")
