@@ -38,6 +38,13 @@ def test_each_reason_explains_its_own_role(sentence: str):
 # The verb's card: a command by its typed shape, a present verb's case by its ending or the particle before it.
 VERB_CARDS = [
     ("اُكْتُبْ الدَّرْسَ", 0, "mabni", "فعل أمر"),
+    # a doubled or hollow root's command to many, spelled as its past passive: opening the sentence or after فَ
+    ("يَا أَيُّهَا النَّاسُ قَدْ فُرِضَ عَلَيْكُمُ الْحَجُّ فَحُجُّوا", 7, "mabni", "فعل أمر"),
+    ("سِيرُوا هَذَا جُمْدَانُ", 0, "mabni", "فعل أمر"),
+    ("مُدُّوهُ مِنَ الْمَاءِ", 0, "mabni", "فعل أمر"),
+    ("ثُمَّ رُدُّوا إِلَى اللَّهِ", 1, "mabni", "مبني للمجهول"),  # told on after ثُمَّ: still passive
+    ("قُتِلُوا فِي سَبِيلِ اللَّهِ", 0, "mabni", "مبني للمجهول"),  # a sound root: its command is spelled اُقْتُلُوا, no tie
+    ("اقْضِيَا يَوْمًا آخَرَ مَكَانَهُ", 0, "mabni", "فعل أمر"),  # a dual command the dictionary only guessed a name
     ("قُمْ يَا وَلَدُ", 0, "mabni", "فعل أمر"),
     ("لَمْ يَكْتُبْ الطَّالِبُ", 1, "jazm", "مجزوم"),
     ("لم يكتب الطالب", 1, "jazm", "مجزوم"),

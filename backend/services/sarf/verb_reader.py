@@ -232,7 +232,7 @@ def _said(cells: list[Cell], said: Callable[[str, str], bool] | None) -> list[Ce
 
 
 def command(word: str, governed: bool = False, root: str = "", vouched: bool = False, answers: bool = False,
-            said: Callable[[str, str], bool] | None = None) -> Cell | None:
+            said: Callable[[str, str], bool] | None = None, command_place: bool = False) -> Cell | None:
     """The command this typed word is (اِجْلِسِي، ارْحَمُوا، قُمْ), or None.
 
     `root` is the one the dictionary read the word with, if any: where sarf finds
@@ -244,6 +244,8 @@ def command(word: str, governed: bool = False, root: str = "", vouched: bool = F
     so the bare letters are read too (اكتبي درسك).
     `said` says whether the dictionary has a verb (يَقِفْ، وَقَفَ) of a root: it narrows the roots the letters fit where
     `root` is none of them, and the بابs of the root kept (_said).
+    `command_place` says the word stands where a command does (opening the sentence, or after a joined فَ): there a
+    command ties with a past passive spelled alike (حُجُّوا) and wins.
     `answers` says the word is past the first and agrees with the present read: a jussive the typed vowels fit as closely
     is that jussive, a command's answer
     (اسْتَغْفِرُونِي أَغْفِرْ لَكُمْ: أَغْفِرْ, I forgive), so it is no command; أَكْرِمْ fits only the command (أُكْرِمْ is the jussive).
@@ -265,12 +267,17 @@ def command(word: str, governed: bool = False, root: str = "", vouched: bool = F
     if not found:
         return None
     closest = [c for c, score in found.items() if score == min(found.values())]
+    # حُجُّوا، مُدُّوا، سِيرُوا: a doubled or hollow root's command to many is spelled as its past passive to them; in a
+    # command's place (`command_place`) the command stands, elsewhere the tie leaves no command (ثُمَّ رُدُّوا: passive)
+    if command_place and any(c.column == "amr" for c in closest):
+        closest = [c for c in closest if c.column != "madi-passive"]
     # اُكْتُبَا: the dual is one word for two men or two women, both أنتما, so one person
     # only for the root the dictionary read: اهْدِنَا is هدي with "us", not a dual of هدن
     # قِفَا: the dictionary's قفو holds وقف's letters, out of order, so it still vouches for it
     # قفي too: a dictionary spells a weak root's last letter و or ي, so the two are one letter here
     closest = [c for c in closest if _letters_of(c.root) == _letters_of(root)] or closest if root else closest
-    sure = bool(root) and all(_letters_of(c.root) == _letters_of(root) for c in closest)
+    # اِقْضِيَا, which the dictionary only guessed a name (`vouched`): one root among the closest is sure of itself too
+    sure = (bool(root) or vouched) and all(_letters_of(c.root) == _letters_of(root or closest[0].root) for c in closest)
     people = {(c.person, "" if c.number == "d" and sure else c.gender, c.number) for c in closest}
     if all(c.column == "amr" for c in closest) and len(people) == 1:
         # its root tied between بابs whose pasts differ (ضَرَبَ، حَسِبَ): the command is sure, its past is not
