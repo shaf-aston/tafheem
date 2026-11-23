@@ -154,6 +154,14 @@ def la_over_its_khabar(s: Sentence) -> None:
             s.relink(la, 0, "---")
             s.relabel(noun, "SBJ")
             s.relink(khabar, la["id"], "PRD")
+        # لَا قَطْعَ فِي ثَمَرٍ: or the noun after it stands at the head with لا hung on it, typed with the fatha of
+        # its build, and a جار ومجرور or ظرف hung on it after it tells of it; لا heads the sentence there too, that its khabar
+        elif (la["pos"] == "PRT" and strip_diacritics(la["form"]) == "لا" and la["rel"] == "MOD" and noun and khabar is noun
+                and noun["head"] == 0 and noun_tagged(noun) and typed_case_of(noun) == "a"
+                and (jar := next((k for k in s.kids(noun) if k["id"] > noun["id"] and (is_preposition(k) or is_zarf(k, s))), None))):
+            s.relink(la, 0, "---")
+            s.relink(noun, la["id"], "SBJ")
+            s.relink(jar, la["id"], "PRD")
 
 
 def after_pointer(s: Sentence) -> None:
