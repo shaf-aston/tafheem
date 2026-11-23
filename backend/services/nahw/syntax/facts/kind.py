@@ -5,7 +5,7 @@ from __future__ import annotations
 from backend.services.text.arabic_text import strip_diacritics
 from backend.services.text.harakat import letters, vowel_agreement
 from backend.services.nahw.book import book_map, is_one
-from backend.services.nahw.syntax.facts.word import is_called_alone, is_called_noun, is_object_pronoun, noun_tagged, my_ya_dropped, is_suffix, is_verb, read_as, reading, subject_link, takes_two_objects, typed_bare, typed_case_of
+from backend.services.nahw.syntax.facts.word import is_called_alone, is_called_noun, is_object_pronoun, is_preposition, noun_tagged, my_ya_dropped, is_suffix, is_verb, read_as, reading, subject_link, takes_two_objects, typed_bare, typed_case_of, typed_tanween
 from backend.services.nahw.syntax.facts.sentence import Sentence, busied, next_word, verb_above
 
 
@@ -40,8 +40,16 @@ def _called_without_ya(token: dict, s: Sentence) -> bool:
     while after and after["rel"] == "IDF":
         after = next_word(after, s)
     case = typed_case_of(token)
-    if token is not s.tokens[0] or after is None:
+    if after is None:
         return False
+    if token is not s.tokens[0]:
+        # رَبِّ اغْفِرْ لِي رَبِّ اغْفِرْ لِي: past the first word only the kasra the ي left, a command straight after it,
+        # marks the call again, where no word before it governs it: a preposition, or a noun it would be added to
+        # (يَا بَنِي عَبْدِ الْمُطَّلِبِ اشْتَرُوا), which takes no ال or tanween (قَوْمِ اعْبُدُوا اللَّهَ قَوْمِ اعْبُدُوا: called again)
+        before = s.tokens[next(i for i, t in enumerate(s.tokens) if t is token) - 1]
+        could_add = noun_tagged(before) and not is_suffix(before) and not typed_tanween(before) \
+            and not strip_diacritics(before.get("typed") or before["form"]).startswith("ال")
+        return bool(after.get("asp") == "c" and my_ya_dropped(token) and not is_preposition(before) and not could_add)
     if after.get("asp") == "c":
         return bool(token.get("mudaf") and case in ("a", None) or my_ya_dropped(token))
     # رَبَّنَا ظَلَمْنَا أَنْفُسَنَا: a verb after it with an object of its own, taking one only and busied with no
