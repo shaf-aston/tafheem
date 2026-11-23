@@ -7,7 +7,7 @@
   "routes": [
     {
       "src": "/api/(.*)",
-      "dest": "https://152-67-130-63.sslip.io/api/$1",
+      "dest": "https://deals-would-paintball-retro.trycloudflare.com/api/$1",
       "transforms": [
         {
           "type": "request.headers",
