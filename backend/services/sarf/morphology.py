@@ -1066,9 +1066,15 @@ def _one_taa_written(before: dict, reading: dict, token: str, nasbed: bool = Fal
     marked = letters(token)
     ending = bare_letters(token).endswith(("وا", "ا")) or (
         bare_letters(token).endswith("ن") and len(marked) > 1 and SUKUN in marked[-2][1])
+    # تَنَزَّلُ الْمَلَائِكَةُ (97:4): a damma typed on the last letter is a present's raf'; no past ends on one
+    # (its ت keeps the fatha: تُحَدِّثُ is فَعَّلَ's own present); only the bare past of one man, which ends on a fatha,
+    # not one carrying a pronoun or تُ whose damma is theirs (تَنَزَّلَهُ، تَعَلَّمْتُ)
+    bare_past = (reading.get("per"), reading.get("num"), reading.get("gen")) == ("3", "s", "m") \
+        and reading.get("enc0", "0") in ("0", "", None)
+    raised = bare_past and len(marked) > 1 and "\u064e" in marked[0][1] and "\u064f" in marked[-1][1] and not has_tanween(token)
     return reading.get("pos") == "verb" and reading.get("asp") == "p" \
-        and (lam or nasbed or lemma in book_words("jazm") - takes_a_past) \
-        and str(reading.get("pattern") or "")[len("لَ") if lam else 0:].startswith("تَ") and ending
+        and (raised or (lam or nasbed or lemma in book_words("jazm") - takes_a_past) and ending) \
+        and str(reading.get("pattern") or "")[len("لَ") if lam else 0:].startswith("تَ")
 
 
 def _la_before_a_past(out: list[dict], i: int) -> bool:
