@@ -330,6 +330,19 @@ def relative_owed(s: Sentence) -> None:
                 s.relink(token, verb["id"], "OBJ")
 
 
+def relative_doer_owed(s: Sentence) -> None:
+    """يَنْفَعُ مَا تَعَلَّمْتَ: a relative straight after a verb whose doer is not yet settled, a verb after it as its
+    صلة, is that doer; the parser may hang it on the verb as a mere modifier, which reads it as the timed ما.
+    Not after a passive verb, whose deputy is a separate matter, nor a verb that is the خبر of a word before it
+    (الْعِلْمُ يَنْفَعُ مَنْ طَلَبَهُ), whose doer is the hidden pronoun back to that word."""
+    for token in s.tokens:
+        verb = s.head(token)
+        if (token["rel"] == "MOD" and listed(token, "mawsul") and verb and verb["id"] == token["id"] - 1
+                and is_verb(verb) and not is_passive(verb) and not holds_doer(verb, s.kids(verb))
+                and not ((up := s.head(verb)) and up["id"] < verb["id"])
+                and (after := next_word(token, s)) and is_verb(after)):
+            s.relink(token, verb["id"], "SBJ")
+
 def pronoun_on_its_verb(s: Sentence) -> None:
     """فَوَجَدْتُهُ أَشْمَلَ: a pronoun written onto a verb is its object (ضمير متصل في محل نصب مفعول به), so one the parser
     hung on another word hangs on its verb; كان's is its خبر (كُنْتُهُ), left as the parser hung it."""

@@ -72,6 +72,7 @@ Before labels are chosen, the book's masks rule labels out (`backend/services/na
 - described_after_tanween: a noun with tanween takes no مضاف إليه, so one hung so → its صفة (`backend/services/nahw/syntax/repair/typed.py`)
 - object_past_verb: a nasb word hung past a verb onto the verb's own noun → the verb's object, hal or tamyeez (`backend/services/nahw/syntax/repair/subject_clash.py`)
 - relative_owed: a relative hung on the doer, under a verb that owes an object → the verb's object (`backend/services/nahw/syntax/repair/subject_clash.py`)
+- relative_doer_owed: a relative hung as a modifier on the verb before it, that verb's doer not yet settled, a verb after → the verb's doer (`backend/services/nahw/syntax/repair/subject_clash.py`)
 - called: a verb the parser hung on يا → a sentence of its own, not a second منادى (`backend/services/nahw/syntax/repair/called.py`)
 - called_annexes: a noun with no link straight after a called noun that shows no damma or tanween → its مضاف إليه, typed bare (يا عبد الله اجتهد) (`backend/services/nahw/syntax/repair/called.py`)
 - dua_clause: a praying noun (ويل، سلام) in raf' with a لِ phrase after it → a mubtada of its own with that khabar, not the verb's doer (`backend/services/nahw/syntax/repair/dua.py`)
