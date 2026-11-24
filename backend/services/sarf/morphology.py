@@ -669,7 +669,8 @@ def pick(tokens: list[str], disambiguator=None) -> list[dict[str, Any]]:
         if unread(ranked) and (twin := verb_reader.known_as(token)) and (twin_ranked := _ranked([twin], disambiguator)):
             # a verb the dictionary lacks but sarf's table has (فَلْيَسْتَعْفِفْ): it reads the table's spelling of it
             ranked, evidence = twin_ranked[0], twin
-        word = _Word(tokens, i, token, evidence, ranked, after, disambiguator, _reading(evidence, ranked))
+        word = _Word(tokens, i, token, evidence, ranked, after, disambiguator, _reading(evidence, ranked),
+                     bool(steps) and _saying(_reading(*steps[-1])))
         for override in WORD_OVERRIDES:
             if found := override(word):
                 word.ranked = [found]
@@ -693,6 +694,7 @@ class _Word:
     after: str
     disambiguator: Any
     first: dict
+    said_before: bool = False  # the word before is a verb of saying (قَالَ): what follows it opens a sentence of its own
 
 
 @dataclass(slots=True)
@@ -764,7 +766,7 @@ def _by_shape(w: _Word) -> dict | None:
     disagreeing = lambda: not _agreeing(w.evidence, w.ranked)  # noqa: E731, asked only as each step is reached
     return (_answer_command(w.tokens[:w.i], w.token, w.evidence, w.ranked)
             or disagreeing() and _table_verb(w.token, w.evidence, w.ranked)
-            or w.i == 0 and _asked_reading(w.evidence, w.ranked, w.after, w.disambiguator)
+            or (w.i == 0 or w.said_before) and _asked_reading(w.evidence, w.ranked, w.after, w.disambiguator)
             # تَبَسُّمُكَ، أَدْوَمُهَا: a masdar or an elative the dictionary lacks, by sarf's shapes, its pronoun split off;
             # one with a joining و or ف on it (وَإِقَامِ الصَّلَاةِ) is that noun with the particle put back
             or disagreeing() and (noun_reader.reading_of(w.evidence) or next(
@@ -1143,6 +1145,12 @@ def _quran_name(typed: str, readings: list[dict], bare: bool = False) -> dict | 
             "asp": "na", "vox": "na", "per": "na", "mod": "na", "prc0": "0", "prc1": "0", "prc2": "0", "prc3": "0", "source": "quran"}
 
 
+def _saying(reading: dict) -> bool:
+    """A verb of saying (closed_words saying_verbs): قَالَ، فَقَالُوا. What is said after it is a sentence of its own
+    (Tasheel 1.2), so a question hamza may open it (قَالَ أَتَقُولُونَ)."""
+    return reading.get("pos") == "verb" and is_one(strip_diacritics(reading.get("lex", "")), "saying_verbs")
+
+
 def _asked_split(typed: str) -> tuple[str, str] | None:
     """The question hamza written onto the front of a word (its fatha with it, or with no vowel typed on the word at
     all), and the rest of the word."""
@@ -1197,7 +1205,9 @@ def _asked_reading(typed: str, ranked: list[dict], after: str, disambiguator=Non
     asked, rest = split
     bare_rest = strip_diacritics(rest)
     asks_onto = (bare_rest in book_words("jarr") and typed_case(after) == "i") \
-        or (bare_rest in book_words("jazm") and rest.endswith("ْ"))
+        or (bare_rest in book_words("jazm") and rest.endswith("ْ")) \
+        or (bare_rest[:1] in "فو" and bare_rest[1:] in ("لا", "لم")  # أَفَلَا تَعْقِلُونَ، أَوَلَمْ يَرَوْا: not the verb أَفَلَا;
+            and "ْ" not in letters(rest)[0][1])  # a joining و/ف is never silent: أَوْلَمَ (he gave a feast) is one verb
     bare = no_vowels_typed([typed])
     if _agreeing(typed, ranked) and not asks_onto and not (bare and unread(ranked)):
         return None

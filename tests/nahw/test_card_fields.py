@@ -101,6 +101,10 @@ def test_a_particle_before_the_verb_keeps_the_sentence_verbal(sentence: str, ver
 
 # One card field each, found by typing the sentence in (backend/scripts/nahw/analyze.py).
 CARDS = [
+    ("قَالَ أَتَقُولُونَ عَلَى اللَّهِ", 1, "role", "فعل"),  # a question hamza opens what is said
+    ("قَالَ أَوَعَلَيْكَ أَغَارُ", 1, "role", "حرف جر"),
+    ("أَفَلَا تَعْقِلُونَ", 0, "role", "حرف"),  # أَ + فَ + لا, not the verb أَفَلَا
+    ("أَوْلَمَ الرَّجُلُ", 0, "role", "فعل"),  # a silent و is the verb's own letter
     ("جَمَعْنَاهُمْ جَمِيعًا", 1, "role", "حال"),  # bare جميع is a حال even off the verb's own root
     ("يَفْعَلُ مَا آمُرُهُ", 1, "role", "مفعول به"),
     ("أَكَلَ مَا طَبَخَهُ", 1, "role", "مفعول به"),
