@@ -55,6 +55,13 @@ if [ "$NEW" = "$(cat /home/ubuntu/.deployed-sha 2>/dev/null || true)" ]; then
 	echo "already on $NEW"
 	exit 0
 fi
+# Never backwards: a by-hand SYNC_SKIP_CI deploy can be ahead of the newest green commit,
+# and going back to it would run that older sync and undo the deploy.
+DONE=$(cat /home/ubuntu/.deployed-sha 2>/dev/null || true)
+if [ -n "$DONE" ] && git merge-base --is-ancestor "$NEW" "$DONE" 2>/dev/null; then
+	echo "already past $NEW (on $DONE)"
+	exit 0
+fi
 git reset -q --hard "$NEW"
 # The reset may have changed this very script; bash would finish the old one,
 # so a change here would only apply a deploy late. Run the new copy once.
