@@ -257,7 +257,7 @@ def test_a_sister_lends_its_name_to_what_it_governs(sentence, word, said, drawn)
 
 @pytest.mark.parametrize("named, mother", [("خبر لعل", "خبر إن"), ("اسم كأن", "اسم إن"), ("خبر ليس", "خبر كان"), ("اسم عسى", "اسم كاد")])
 def test_a_sisters_name_keeps_its_mothers_colour(named, mother):
-    from backend.services.nahw.syntax.naming import role_key, tone
+    from backend.services.nahw.roles import role_key, tone
     assert (tone(named), role_key(named)) == (tone(mother), role_key(mother)) != (None, None)
     assert tone("حرف لعل") is None  # only a job the mother names: no such role, no colour
 

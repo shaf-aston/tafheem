@@ -20,7 +20,7 @@ from backend.services.nahw.syntax.facts import (
 )
 from backend.services.nahw.syntax.condition import subject_id
 from backend.services.nahw.syntax.followers import FOLLOWERS
-from backend.services.nahw.syntax.naming import NAMED
+from backend.services.nahw.roles import NAMED
 from backend.services.nahw.syntax.picture.hang import definite, hangs_under
 from backend.services.nahw.syntax.picture.names import FRAMES
 from backend.services.text.arabic_text import has_al, strip_diacritics

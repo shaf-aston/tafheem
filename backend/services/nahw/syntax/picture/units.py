@@ -2,7 +2,7 @@
 from __future__ import annotations
 
 from backend.services.nahw.syntax.facts import is_preposition, is_verb, noun_tagged, reading
-from backend.services.nahw.syntax.naming import NAMED
+from backend.services.nahw.roles import NAMED
 from backend.services.nahw.syntax.picture.hang import is_inside
 from backend.services.nahw.syntax.picture.names import FRAMES
 from backend.services.nahw.syntax.picture.state import Picture

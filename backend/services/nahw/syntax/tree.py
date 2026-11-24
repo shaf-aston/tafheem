@@ -13,7 +13,7 @@ its word, and a word no rule could name is left as a gap rather than guessed.
 """
 from __future__ import annotations
 
-from backend.services.nahw.syntax.naming import base_tokens
+from backend.services.nahw.syntax.facts import base_tokens
 from backend.services.nahw.syntax.picture.condition import draw_conditions
 from backend.services.nahw.syntax.picture.jobs import give_jobs, give_names, name_sisters
 from backend.services.nahw.syntax.picture.layout import lay_out

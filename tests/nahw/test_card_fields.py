@@ -21,7 +21,7 @@ REASON_SENTENCES = ["مَتَى سَافَرَ الرَّجُلُ", "كُتِب�
 
 def test_every_role_has_a_reason():
     from backend.services.nahw.book import teacher_rules
-    from backend.services.nahw.syntax.naming import ROLES
+    from backend.services.nahw.roles import ROLES
     assert [role for role in ROLES if role not in teacher_rules()["reasons"]] == []
 
 

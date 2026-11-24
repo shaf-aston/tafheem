@@ -4,7 +4,7 @@ from __future__ import annotations
 from backend.services.nahw.book import is_one
 from backend.services.nahw.syntax.facts import is_prefix, is_verb
 from backend.services.nahw.syntax.followers import chain_first
-from backend.services.nahw.syntax.naming import NAMED
+from backend.services.nahw.roles import NAMED
 from backend.services.nahw.syntax.picture.names import ATF, FRAMES
 from backend.services.nahw.syntax.picture.state import Picture
 

@@ -7,7 +7,7 @@ from backend.services.nahw.book import (book_spelling, condition_of, extra_ba_on
                                         kaffa_sister, only_adverb, six_noun_case)
 from backend.services.nahw.syntax import condition
 from backend.services.nahw.syntax.facts import is_preposition, is_verb, reading
-from backend.services.nahw.syntax.naming import NAMED
+from backend.services.nahw.roles import NAMED
 
 MADDAH = "ٓ"  # kept by the parser's own cleaning (dediac_ar), a mark to the book
 

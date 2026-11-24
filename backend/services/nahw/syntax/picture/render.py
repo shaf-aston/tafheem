@@ -4,7 +4,7 @@ from __future__ import annotations
 from backend.services.nahw.book import is_one, tarkeeb_rules
 from backend.services.nahw.syntax.doer import DOER, doer as _doer, person_key as _person, persons as _persons
 from backend.services.nahw.syntax.facts import is_particle, is_preposition, is_verb, listed
-from backend.services.nahw.syntax.naming import NAMED, tone
+from backend.services.nahw.roles import NAMED, tone
 from backend.services.nahw.syntax.picture.hang import is_inside, quieted, unbracket
 from backend.services.nahw.syntax.picture.names import (
     ATF,

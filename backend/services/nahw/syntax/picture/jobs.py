@@ -5,7 +5,7 @@ from backend.services.nahw.book import book_spelling, case_of, condition_of, is_
 from backend.services.nahw.syntax.doer import written_on
 from backend.services.nahw.syntax import ma
 from backend.services.nahw.syntax.facts import is_participle, is_passive, is_preposition, is_verb, listed
-from backend.services.nahw.syntax.naming import NAMED
+from backend.services.nahw.roles import NAMED
 from backend.services.nahw.syntax.picture.names import FRAMES, SISTERS, command_name, finer_name
 from backend.services.nahw.syntax.picture.state import Picture
 

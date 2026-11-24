@@ -10,7 +10,7 @@ from backend.services.text.arabic_text import strip_diacritics
 from backend.services.text.harakat import five_verb_nun
 from backend.services.nahw.book import frames, verb_aspect
 from backend.services.nahw.syntax.facts import five_emphasised, is_passive
-from backend.services.nahw.syntax.naming import tone
+from backend.services.nahw.roles import tone
 
 DOER = frames()["doer"]
 

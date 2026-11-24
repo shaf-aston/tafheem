@@ -4,7 +4,7 @@ import re
 from backend.scripts.nahw.score_iraab import (
     EXACT, KEY, SETS, book_sentences, disagreements, family, fresh_sentences, held_out, routed,
     sign_matches)
-from backend.services.nahw.syntax.naming import ROLES
+from backend.services.nahw.roles import ROLES
 from backend.services.text.arabic_text import bare_letters, words
 from tests.nahw_helpers import needs_parser
 
@@ -111,7 +111,7 @@ def test_every_book_word_has_a_role():
 
 def test_cards_and_picture_speak_one_vocabulary():
     """Each fresh sentence through the route: every card role is a name from
-    naming.ROLES (or the tense form of a verb, or the dash for none), carries no
+    roles.ROLES (or the tense form of a verb, or the dash for none), carries no
     Latin letter and no bracketed note, and agrees with the tree leaf of its word."""
     known = set(ROLES) | {"–"}
     for ex in fresh_sentences():

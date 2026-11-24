@@ -1,6 +1,7 @@
 """naming.finish: what only the picture works out goes on the cards and comes off the drawing."""
 from backend.services.nahw.book import frames
-from backend.services.nahw.syntax.naming import CARD_FACTS, NAMED, finish
+from backend.services.nahw.syntax.naming import CARD_FACTS, finish
+from backend.services.nahw.roles import NAMED
 
 
 def test_a_masdar_ma_is_named_on_its_card_and_loses_its_gap():

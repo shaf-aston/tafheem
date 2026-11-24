@@ -2,7 +2,7 @@
 from __future__ import annotations
 
 from backend.services.nahw.card_wording.reason import Reason
-from backend.services.nahw.syntax.facts import reading
+from backend.services.nahw.syntax import reading
 from backend.services.nahw.book import attention_off, attention_said, case_of, extra_ba_letter, extra_ba_named, extra_ba_said, family_cards, kaffa_card, teacher_rules
 
 

@@ -1,6 +1,7 @@
 """The naming layer reads links plus typed vowels, so both are tested without a model."""
 import pytest
 
+from backend.services.nahw.roles import ROLES
 from backend.services.nahw.syntax import facts, followers, naming, repair
 from backend.services.nahw.syntax.repair import correct, untangle
 from backend.services.text.harakat import typed_case, typed_passive
@@ -360,7 +361,7 @@ def test_a_definite_fatha_hung_on_a_verb_is_its_object(typed, stt, role):
 
 def test_every_role_the_code_names_is_declared_in_roles_json():
     from backend.services.nahw.book import clause_of, named_roles, role_units
-    declared = set(naming.ROLES)
+    declared = set(ROLES)
     used = set(vars(named_roles()).values())
     for unit in role_units():
         used |= {unit["child"], unit.get("head_as", unit["child"])}

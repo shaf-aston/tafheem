@@ -1,7 +1,7 @@
 """One column per written piece (a prefix, the word, its suffix), and the links the parser gave."""
 from __future__ import annotations
 
-from backend.services.nahw.syntax.naming import NAMED
+from backend.services.nahw.roles import NAMED
 from backend.services.text.harakat import letters, own_letters, written_sizes
 from backend.services.nahw.syntax.picture.state import Picture
 
