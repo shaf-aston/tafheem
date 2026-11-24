@@ -331,6 +331,8 @@ def verb_place(token: dict, s: Sentence) -> str:
                 # مَنْ قَتَلَ قَتِيلًا: فَعِيل off a verb that takes an object is the one done to (قتيل = مقتول), its object,
                 # not the doing (a فَعِيل doing is a sound's or a going's, off a verb that takes none: صَهَلَ صَهِيلًا)
                 return "object"
+            if strip_diacritics(token.get("lemma") or "") == "جميع":
+                return "state"  # جَمَعْنَاهُمْ جَمِيعًا: bare جميع is all of them together, a حال, even off the verb's own root
             if is_participle(token) and same_root(token, head) and not on_doing_measure(token):
                 return "absolute"  # فَرِحَ فَرَحًا، ضَحِكَتْ ضَحِكًا: its own root off a doer's measure is the doing again
             # أَهْدَى أَخِي الصَّغِيرَ خَمْسَةً مِنْهَا: a number counts, it describes no state (a حال is مشتق), whatever CAMeL tags it
