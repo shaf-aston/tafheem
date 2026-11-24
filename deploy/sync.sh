@@ -21,10 +21,11 @@ cd /home/ubuntu/repo
 SYNC_PORTS="8001 8000"
 SYNC_BUILD_DATA=1
 SYNC_SITE=1
+SYNC_WAIT_TRIES=60  # x 3s. The Arm machine loaded in ~40s; the Micro, swapping, takes ~7 min (200)
 [ -f /home/ubuntu/.sync.env ] && . /home/ubuntu/.sync.env
 
 wait_healthy() {
-	local port=$1 tries=60  # health is 503 until the models load, ~40s on this machine
+	local port=$1 tries=$SYNC_WAIT_TRIES  # health is 503 until the models load
 	while [ "$tries" -gt 0 ]; do
 		curl -fsS "http://127.0.0.1:$port/api/health" >/dev/null 2>&1 && return 0
 		tries=$((tries - 1))
@@ -120,6 +121,15 @@ if [ "$SYNC_SITE" = 1 ]; then
 	cp -r frontend/dist /home/ubuntu/site.new
 	rm -rf /home/ubuntu/site
 	mv /home/ubuntu/site.new /home/ubuntu/site
+fi
+
+# What the backend reads; a push that changes none of it (most are frontend-only, which
+# Vercel serves) needs no restart. On one copy a restart is minutes of "Backend offline".
+RUNTIME="backend requirements.txt requirements-torch.txt requirements-nodeps.txt frontend/public/words frontend/public/jazariyya frontend/src/config/speak.json"
+if [ -n "$OLD" ] && git cat-file -e "$OLD^{commit}" 2>/dev/null && git diff --quiet "$OLD" "$NEW" -- $RUNTIME; then
+	echo "$NEW" > /home/ubuntu/.deployed-sha
+	echo "deployed $NEW (nothing the backend reads changed, so no restart)"
+	exit 0
 fi
 
 # One copy at a time; the first that fails to come back stops the rest, so with two

@@ -82,6 +82,7 @@ backend copy, builds no databases and leaves the site to Vercel:
 printf 'SYNC_PORTS=8000
 SYNC_BUILD_DATA=0
 SYNC_SITE=0
+SYNC_WAIT_TRIES=200
 ' > ~/.sync.env
 ```
 
