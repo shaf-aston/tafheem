@@ -14,11 +14,10 @@ import { useState } from 'react'
 import { keepPreviousData, useQuery } from '@tanstack/react-query'
 
 import { daleelBooksQuery, findDaleel } from '../../api'
+import { useSavedState } from '../../lib/store/stored'
 import settings from '../../config/daleel.json'
-import { isArabic, mostlyArabic } from '../../lib/text/arabicText'
+import { isArabic } from '../../lib/text/arabicText'
 import { isAyah } from '../../lib/quran/surahRef'
-import { plainEntry } from '../../lib/dictionary/laneEntry'
-import { markedPieces, withMarks } from '../../lib/daleel/marked'
 import { sourcesFor, useSources } from '../../lib/api/useSources'
 import { useSearch } from '../../lib/hooks/useSearch'
 import { LANE, LANE_TIDY_LABEL, LANE_TIDY_TITLE, useLaneTidy } from '../../lib/dictionary/useLaneTidy'
@@ -28,10 +27,16 @@ import Chip from '../ui/inputs/Chip'
 import ChipRow from '../ui/inputs/ChipRow'
 import Disclosure from '../ui/overlays/Disclosure'
 import BookPicker from './BookPicker'
+import Closest from './Closest'
+import ContextSheet from './ContextSheet'
+import Passage from './Passage'
+import SavedPassages from './SavedPassages'
+import { SAVED_KEY, citeOf } from './cite'
+import CopyButton from '../ui/buttons/CopyButton'
+import SmallButton from '../ui/buttons/SmallButton'
 import EmptyState from '../ui/feedback/EmptyState'
 import IndexNotBuilt from '../ui/feedback/IndexNotBuilt'
 import LoadMore from '../ui/buttons/LoadMore'
-import Mark from '../ui/display/Mark'
 import FlagButton from '../ui/buttons/FlagButton'
 import MicButton from '../ui/buttons/MicButton'
 import PlaceLinks from '../ui/text/PlaceLinks'
@@ -63,6 +68,12 @@ const MATCH_NOTE = {
 export default function DaleelPanel({ accent, incoming, arrival, onGo, onVisit }) {
   const [laneTidy, setLaneTidy] = useLaneTidy()
   const [chosen, setChosen] = useState([])
+  // The passage open in its book's context, or null.
+  const [reading, setReading] = useState(null)
+  const [saved, setSaved] = useSavedState(SAVED_KEY, [])
+  const toggleSave = (hit) => setSaved((all) => (all.some((h) => h.id === hit.id)
+    ? all.filter((h) => h.id !== hit.id)
+    : [...all, hit]))
   // The shelf the answer is being looked through, for the question it was
   // picked on; a new question starts with every shelf again.
   const [looking, setLooking] = useState({ query: null, shelf: null })
@@ -116,7 +127,11 @@ export default function DaleelPanel({ accent, incoming, arrival, onGo, onVisit }
   // Stale results under a spinner is a state a reader has no way to name; the
   // skeleton fully replaces them instead of sitting on top, except through a
   // return (lib/hooks/useSearch).
-  const hits = inBookOrder(answer?.hits ?? [], sourcesFor(sources, 'daleel'))
+  // Only passages covering enough of the question are answers (match/answers);
+  // when none does, the closest few are named as just that, never as answers.
+  const answers = answer?.hits?.filter((hit) => hit.answers) ?? []
+  const closest = answer && !answers.length ? answer.hits.slice(0, settings.closest) : []
+  const hits = inBookOrder(answers, sourcesFor(sources, 'daleel'))
   // Each book's shelf (Qur'an, Tafsir, Dictionary…), as the catalogue files it.
   const shelfOf = new Map(catalogue.map((book) => [book.source, book.category]))
   const shelves = countShelves(hits, shelfOf)
@@ -133,7 +148,8 @@ export default function DaleelPanel({ accent, incoming, arrival, onGo, onVisit }
   const anyLane = hits.some((hit) => bookOf(hit) === LANE)
   const card = (hit) => (
     <li key={`${bookOf(hit)}-${hit.locator}`}>
-      <Quotation hit={hit} onGo={onGo} accent={accent} tidy={bookOf(hit) === LANE && laneTidy} />
+      <Quotation hit={hit} onGo={onGo} accent={accent} tidy={bookOf(hit) === LANE && laneTidy}
+        onRead={() => setReading(hit)} saved={saved.some((h) => h.id === hit.id)} onSave={() => toggleSave(hit)} />
     </li>
   )
 
@@ -199,16 +215,20 @@ export default function DaleelPanel({ accent, incoming, arrival, onGo, onVisit }
       {/* With a filter on, the sentence has to name the limit. "Nothing in the
           books" while nine books out of ten were excluded is a claim about the
           whole library that the search never made. */}
-      {data?.ready !== false && data && data.hits.length === 0 && (
+      {/* Where the books are silent it says so: Daleel only quotes, so a weak
+          match is never offered as the answer. */}
+      {data?.ready !== false && data && answers.length === 0 && (
         <EmptyState>
           {data.books?.length
             ? `Nothing in ${data.books.length === 1 ? 'that book' : 'those books'}`
-              + ` matches “${data.query}”.`
+              + ` answers “${data.query}”.`
               + ' The rest of the library has not been searched.'
-            : `Nothing in the books matches “${data.query}”.`}
-          {' '}{settings.tries}
+            : `No passage in ${catalogue.length ? `these ${catalogue.length}` : 'these'} books answers “${data.query}”.`}
+          {' '}{settings.noAnswer} {settings.tries}
         </EmptyState>
       )}
+
+      <Closest hits={closest} onOpen={setReading} />
 
       {/* The live region is this one sentence, not the whole results block: with
           the block itself announced, every passage in it got read aloud. */}
@@ -259,6 +279,10 @@ export default function DaleelPanel({ accent, incoming, arrival, onGo, onVisit }
           )}
         </div>
       )}
+
+      <SavedPassages onOpen={setReading} />
+
+      {reading && <ContextSheet hit={reading} accent={accent} onClose={() => setReading(null)} />}
     </div>
   )
 }
@@ -270,7 +294,7 @@ export default function DaleelPanel({ accent, incoming, arrival, onGo, onVisit }
  * The address sits quietly at the foot: a quotation with no address is a
  * rumour, but it is not what the eye should land on first.
  */
-function Quotation({ hit, onGo, accent, tidy }) {
+function Quotation({ hit, onGo, accent, tidy, onRead, saved, onSave }) {
   const note = MATCH_NOTE[hit.match]
   const ayah = ayahIn(hit.locator)
   const [open, setOpen] = useState(false)
@@ -323,44 +347,14 @@ function Quotation({ hit, onGo, accent, tidy }) {
           {hit.english && <Passage text={hit.english} marks={hit.english_marks} accent={accent} tidy={tidy} />}
         </div>
       </ShowRest>
+
+      {/* Read it in its book, cite it, keep it: the PBS's three acts on a quotation. */}
+      <footer className="flex items-center gap-2 flex-wrap">
+        <SmallButton onClick={onRead}>In context</SmallButton>
+        <CopyButton text={citeOf(hit)} label="Copy citation" small />
+        <SmallButton onClick={onSave} aria-pressed={saved}>{saved ? '✓ Saved' : 'Save'}</SmallButton>
+      </footer>
     </article>
-  )
-}
-
-/**
- * One side of a passage, cut to a few lines when it runs long.
- *
- * Ibn Kathir's entries are whole pages, and set beside an ayah of six words
- * they turned the results into one card and a wall. The cut is not a
- * shortening: the whole passage is a press away, and no card is allowed to
- * decide the height of the page on its own.
- *
- * Both sides fold, not only the English. Every Arabic text Daleel held was
- * short, so the wall could only ever come from a translation; the unabridged
- * Arabic commentaries average a printed page each and put the same wall in the
- * language the reader asked in.
- *
- * ui/ShowRest measures the overflow rather than counting characters, so a
- * passage that happens to fit grows no button. The character threshold this
- * used to keep called a 330-character line long on a phone and on a desktop
- * alike, where it is four lines and one.
- */
-function Passage({ text, marks, accent, tidy = false, arabic = false }) {
-  // A dictionary entry arrives with the marks its own dump wrote into it.
-  // Every other book passes through untouched, none of them carrying those
-  // marks in the first place. The server's marks for the matched words go in
-  // first, so they ride through that reshaping and still land on their words.
-  const pieces = markedPieces(plainEntry(withMarks(text, marks), { tidy }))
-  const said = pieces.map((piece, n) => piece.marked
-    ? <Mark key={n} accent={accent}>{piece.text}</Mark>
-    : piece.text)
-
-  return arabic && mostlyArabic(pieces.map((piece) => piece.text).join('')) ? (
-    <ArabicText size="lg" className="block leading-loose whitespace-pre-line">{said}</ArabicText>
-  ) : (
-    <p className="type-body text-[var(--text-dim)] leading-relaxed whitespace-pre-line max-w-prose">
-      {said}
-    </p>
   )
 }
 

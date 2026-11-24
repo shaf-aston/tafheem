@@ -15,10 +15,13 @@ from dataclasses import dataclass
 from typing import Callable
 
 from backend.config import get_settings
+from backend.services.core import provenance
 from backend.services.text import fts
 
+from backend.services.daleel.index.around import around as neighbours
 from backend.services.daleel.index.candidates import candidates
 from backend.services.daleel.index.connection import db
+from backend.services.daleel.match.answers import answered, share_of
 from backend.services.daleel.match.marks import Span, marks
 from backend.services.daleel.match.rank import Tier, page_of
 from backend.services.daleel.query.expand import Expansion, expand
@@ -44,6 +47,11 @@ class Hit:
     """Where in `arabic` and `english` the words that made it a match are, as
     [start, end) character offsets, so the screen can show why it came back
     without knowing anything about how Arabic is matched."""
+    id: int = 0
+    """Its place in the index, so `around` can show it among its neighbours."""
+    answers: bool = True
+    """Covers enough of the question to be offered as an answer (match/answers).
+    A search where none does is a "not in these books"."""
 
 
 def search(
@@ -77,13 +85,28 @@ def search(
     lap("rank")
 
     shown = (*expansion.phrase_terms, *expansion.typed, *expansion.related)
+    rows = [row for _, row in page]
+    passes = answered(
+        [share_of(row, expansion, settings.daleel_related_weight) for row in rows],
+        [provenance.category_of(row.source) for row in rows],
+        len(expansion.typed),
+        settings.daleel_answer_share,
+    )
     hits = [
         Hit(row.source, row.book, row.locator, row.arabic, row.english, Tier(rank[0]).label,
-            marks(row.arabic, shown), marks(row.english, shown))
-        for rank, row in page
+            marks(row.arabic, shown), marks(row.english, shown), row.id, ok)
+        for (rank, row), ok in zip(page, passes)
     ]
     lap("marks")
     return hits
+
+
+def around(passage_id: int) -> list[Hit]:
+    """A passage among its neighbours in the same book, for reading it in context."""
+    return [
+        Hit(row.source, row.book, row.locator, row.arabic, row.english, Tier.EXACT.label, id=row.id)
+        for row in neighbours(passage_id, get_settings().daleel_context_span)
+    ]
 
 
 def warm() -> None:

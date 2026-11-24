@@ -188,3 +188,38 @@ def test_the_command_line_runs_the_same_search(index, capsys):
     assert main(["النافلة", "--explain"]) == 0
     out = capsys.readouterr().out
     assert "candidates" in out and "[exact]" in out
+
+
+def test_context_stays_inside_its_own_book(index):
+    """Opening a passage in context shows its book's neighbours in order and
+    never the next book's text, which would read as part of the quotation."""
+    first = search.search("النافلة", 9, ("مختصر القدوري",))[0]
+    shown = search.around(first.id)
+    assert [hit.book for hit in shown] == ["مختصر القدوري"]
+    assert shown[0].id == first.id
+
+
+def test_unknown_passage_has_no_context(index):
+    assert search.around(999) == []
+
+
+def test_every_quote_is_the_book_word_for_word(index):
+    """The trust rule: what the screen quotes is exactly what the index holds."""
+    stored = {(r[1], r[2]): r[3] for r in _ROWS}
+    hits = search.search("النافلة", 9)
+    assert hits
+    for hit in hits:
+        assert hit.arabic == stored[(hit.book, hit.locator)]
+
+
+def test_a_question_the_books_do_not_cover_finds_nothing(index):
+    assert search.search("cryptocurrency mining", 9) == []
+
+
+def test_a_question_of_several_words_needs_a_book_not_only_a_dictionary(index, monkeypatch):
+    """Dictionaries hold nearly every word, so they alone never answer a
+    question of several words; a book holding the words does."""
+    monkeypatch.setattr(search.provenance, "category_of", lambda key: "Dictionary")
+    assert not any(hit.answers for hit in search.search("صلاة النافلة", 9))
+    monkeypatch.setattr(search.provenance, "category_of", lambda key: "Fiqh")
+    assert any(hit.answers for hit in search.search("صلاة النافلة", 9))

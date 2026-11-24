@@ -434,6 +434,14 @@ class Daleel(BaseSettings):
     # How far "Show more" may widen one page. Each passage asks the index for
     # daleel_candidate_factor rows, so 48 is the most one question reads in.
     daleel_result_limit_max: int = Field(default=48, gt=0)
+    # Passages shown either side of one opened "in context"; a page or so of the book.
+    daleel_context_span: int = Field(default=3, gt=0)
+    # Share of the typed words a passage must hold to count as an answer; below it the search says
+    # "not in these books". Measured 2026-11-24 on 16 questions: 0.6 keeps all 11 covered ones answered and
+    # stops all 5 uncovered ones; the PBS's 0.5 let one word of two pass ("stock market"), 0.75 dropped covered ones.
+    daleel_answer_share: float = Field(default=0.6, gt=0, le=1)
+    # What a related word (synonym, translation) counts for in place of a typed one.
+    daleel_related_weight: float = Field(default=0.6, gt=0, le=1)
     # A common word expands to its root family plus synonyms (hundreds for قول); capped to avoid a hundred-term search.
     daleel_root_expand_max: int = 6
     # Lower than the cap above because each translation also brings its root: six made a twelve-term search vs one to three for Arabic.

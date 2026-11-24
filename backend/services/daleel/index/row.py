@@ -16,6 +16,9 @@ class IndexedPassage(NamedTuple):
     english: str
     roots: str
     fold: str
+    id: int
+    """The row's own number. Neighbouring numbers in one book are its
+    neighbouring passages, because the build writes each book in order."""
 
     @property
     def key(self) -> tuple[str, str]:
@@ -23,5 +26,5 @@ class IndexedPassage(NamedTuple):
         return self.source, self.locator
 
 
-# The passage columns, read through the FTS table's alias `p`.
-COLUMNS = ", ".join(f"p.{name}" for name in IndexedPassage._fields)
+# The passage columns, read through the FTS table's alias `p`; `id` is FTS5's rowid.
+COLUMNS = ", ".join(f"p.{'rowid' if name == 'id' else name}" for name in IndexedPassage._fields)
