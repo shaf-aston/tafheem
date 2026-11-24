@@ -765,7 +765,7 @@ def _by_shape(w: _Word) -> dict | None:
     where none agrees, sarf's noun shapes and a feminine sound plural."""
     disagreeing = lambda: not _agreeing(w.evidence, w.ranked)  # noqa: E731, asked only as each step is reached
     return (_answer_command(w.tokens[:w.i], w.token, w.evidence, w.ranked)
-            or disagreeing() and _table_verb(w.token, w.evidence, w.ranked)
+            or not _agreeing(w.evidence, w.ranked, undoubled=True) and _table_verb(w.token, w.evidence, w.ranked)
             or (w.i == 0 or w.said_before) and _asked_reading(w.evidence, w.ranked, w.after, w.disambiguator)
             # تَبَسُّمُكَ، أَدْوَمُهَا: a masdar or an elative the dictionary lacks, by sarf's shapes, its pronoun split off;
             # one with a joining و or ف on it (وَإِقَامِ الصَّلَاةِ) is that noun with the particle put back
@@ -1180,7 +1180,8 @@ def _table_verb(typed: str, evidence: str, ranked: list[dict], bare: bool = Fals
     if (had := [r for r in ranked if NO_ANALYSIS not in r.get("atbtok", "")]) and all(r.get("bw", "").startswith("ال/DET+") for r in had):
         return None
     if (sarf := verb_reader.reading_of(typed, _seen_verb, roots.spelling if bare else None, has_verb)) and (sarf.get("asp") != "c" or "+" in sarf.get("atbtok", "")) \
-            and all(r.get("asp") != sarf.get("asp") for r in ranked if NO_ANALYSIS not in r.get("atbtok", "")):
+            and all(r.get("asp") != sarf.get("asp") or _other_bab(sarf, r, evidence)
+                    for r in ranked if NO_ANALYSIS not in r.get("atbtok", "")):
         return {"lex": base_of(evidence, sarf.get("atbtok")), **sarf, "diac": evidence}  # its past, else the verb's own letters
 
 
@@ -1590,12 +1591,40 @@ def _same(reading: dict, said: dict, keys: tuple[str, ...]) -> bool:
                if "-" not in (said.get(key, "-"), reading.get(key, "-")))
 
 
-def _agreeing(typed: str, ranked: list[dict]) -> bool:
+def _other_bab(sarf: dict, listed: dict, typed: str) -> bool:
+    """كَبُرَ against the dictionary's كَبَرَ: an active past the typed vowels contradict is another باب of the root, a
+    verb of its own (فَعَلَ، فَعِلَ، فَعُلَ: the middle vowel of the past is the verb's, Shadha al-Arf; page unchecked),
+    so it does not stand for the past the table reads. A shadda on a letter typed with a sukun (بَيَّنَا against بَيْنَا) is the
+    same verb with its shadda left off, not another باب."""
+    listed_diac = listed.get("diac", "")
+    if [bare_letters(c) for c, _ in letters(typed)] != [bare_letters(c) for c, _ in letters(listed_diac)]:
+        return False  # other letters (a hamza seat, a dropped letter): the vowels do not line up to compare
+    return sarf.get("asp") == listed.get("asp") == "p" and sarf.get("vox") == listed.get("vox") == "a" \
+        and not _adds_shadda(typed, listed_diac) and vowel_agreement(typed, listed_diac) is None
+
+
+def _agreeing(typed: str, ranked: list[dict], undoubled: bool = False) -> bool:
     """Some real reading (not the no-analysis guess), spelled with the typed letters (الحاقّة is no
-    إلحاقه), has no vowel against the typed ones."""
+    إلحاقه), has no vowel against the typed ones. `undoubled`: nor doubles a letter typed with a vowel and no
+    shadda, so كَبُرَ, which the dictionary has only as كَبَرَ, is not the كَ + بُرّ its letters also spell."""
     spelled = [bare_letters(c) for c, _ in letters(typed)]
-    return best_reading(typed, [r for r in ranked if NO_ANALYSIS not in r.get("atbtok", "")
-                                and [bare_letters(c) for c, _ in letters(r.get("diac", ""))] == spelled]) is not None
+    same = [r for r in ranked if NO_ANALYSIS not in r.get("atbtok", "")
+            and [bare_letters(c) for c, _ in letters(r.get("diac", ""))] == spelled]
+    if undoubled:
+        same = [r for r in same if not _doubles_a_voweled_letter(typed, r.get("diac", ""))]
+    return best_reading(typed, same) is not None
+
+
+def _adds_shadda(typed: str, reading: str) -> bool:
+    """The reading doubles a letter the reader typed bare or with a sukun: its shadda was just left off."""
+    return any(SHADDA in read and SHADDA not in said and not said & {"\u064e", "\u064f", "\u0650"}
+               for (_, said), (_, read) in zip(letters(typed), letters(reading)))
+
+def _doubles_a_voweled_letter(typed: str, reading: str) -> bool:
+    """The reading doubles a letter the reader typed with a vowel and no shadda: a vowel written shows the letter
+    was looked at, so its shadda was not just left off."""
+    return any(SHADDA in read and SHADDA not in said and said & {"\u064e", "\u064f", "\u0650"}
+               for (_, said), (_, read) in zip(letters(typed), letters(reading)))
 
 
 def _kind(reading: dict) -> str | None:
