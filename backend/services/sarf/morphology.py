@@ -1180,7 +1180,7 @@ def _table_verb(typed: str, evidence: str, ranked: list[dict], bare: bool = Fals
     if (had := [r for r in ranked if NO_ANALYSIS not in r.get("atbtok", "")]) and all(r.get("bw", "").startswith("ال/DET+") for r in had):
         return None
     if (sarf := verb_reader.reading_of(typed, _seen_verb, roots.spelling if bare else None, has_verb)) and (sarf.get("asp") != "c" or "+" in sarf.get("atbtok", "")) \
-            and all(r.get("asp") != sarf.get("asp") or _other_bab(sarf, r, evidence)
+            and all(r.get("asp") != sarf.get("asp") or _other_bab(sarf, r, evidence) or _voice_against(sarf, r, evidence)
                     for r in ranked if NO_ANALYSIS not in r.get("atbtok", "")):
         return {"lex": base_of(evidence, sarf.get("atbtok")), **sarf, "diac": evidence}  # its past, else the verb's own letters
 
@@ -1601,6 +1601,13 @@ def _other_bab(sarf: dict, listed: dict, typed: str) -> bool:
         return False  # other letters (a hamza seat, a dropped letter): the vowels do not line up to compare
     return sarf.get("asp") == listed.get("asp") == "p" and sarf.get("vox") == listed.get("vox") == "a" \
         and not _adds_shadda(typed, listed_diac) and vowel_agreement(typed, listed_diac) is None
+
+
+def _voice_against(sarf: dict, listed: dict, typed: str) -> bool:
+    """أَغَارُ against the dictionary's passive أُغَارُ: a passive the typed vowels are against is not the word typed, so it
+    does not stand for the active the table reads (غَارَ يَغَارُ، I am jealous). Only that way round: a passive typed
+    (خُلِقَ) keeps the dictionary's active, which the voice is read from later."""
+    return sarf.get("vox") == "a" and listed.get("vox") == "p" and vowel_agreement(typed, listed.get("diac", "")) is None
 
 
 def _agreeing(typed: str, ranked: list[dict], undoubled: bool = False) -> bool:

@@ -231,3 +231,13 @@ def test_the_overrides_and_passes_run_in_the_order_written():
     assert morphology.WORD_OVERRIDES[0] is morphology._name_adding_fewer
     assert morphology.WORD_OVERRIDES[-1] is morphology._by_shape
     assert morphology.SENTENCE_PASSES[-1] is morphology._rivals  # last: it reads every reading the others settled
+
+
+def test_a_reading_in_the_other_voice_the_typed_vowels_contradict_does_not_stand():
+    from backend.services.sarf.morphology import _voice_against
+    active = {"asp": "i", "vox": "a"}
+    passive = {"asp": "i", "vox": "p", "diac": "أُغار"}
+    assert _voice_against(active, passive, "أَغَارُ")  # fatha typed on the hamza: not the passive
+    assert not _voice_against(active, passive, "أُغَارُ")  # damma typed: it is the passive
+    assert not _voice_against(active, {**passive, "vox": "a"}, "أَغَارُ")  # same voice: another باب's matter
+    assert not _voice_against({"asp": "p", "vox": "p"}, {"asp": "p", "vox": "a", "diac": "خَلَقَ"}, "خُلِقَ")  # a passive typed keeps the active
