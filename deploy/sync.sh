@@ -14,6 +14,15 @@
 set -euo pipefail
 cd /home/ubuntu/repo
 
+# What this machine can carry, from /home/ubuntu/.sync.env (absent = the full set below).
+# A 1 GB machine runs one copy (SYNC_PORTS=8000), takes its databases from copy-data.sh
+# instead of building them (SYNC_BUILD_DATA=0), and leaves the site to Vercel (SYNC_SITE=0):
+# it has no Node, and npm, a second backend or a hadith index build would not fit in its memory.
+SYNC_PORTS="8001 8000"
+SYNC_BUILD_DATA=1
+SYNC_SITE=1
+[ -f /home/ubuntu/.sync.env ] && . /home/ubuntu/.sync.env
+
 wait_healthy() {
 	local port=$1 tries=60  # health is 503 until the models load, ~40s on this machine
 	while [ "$tries" -gt 0 ]; do
@@ -80,6 +89,7 @@ cp requirements-torch.txt requirements.txt requirements-nodeps.txt /home/ubuntu/
 /home/ubuntu/tafheem/venv/bin/pip install -q -r requirements-torch.txt
 /home/ubuntu/tafheem/venv/bin/pip install -q -r requirements.txt
 /home/ubuntu/tafheem/venv/bin/pip install -q --no-deps -r requirements-nodeps.txt
+if [ "$SYNC_BUILD_DATA" = 1 ]; then
 # The hadith collections are fetched here from the public CDN and indexed here,
 # never copied from anyone's machine. Each step reruns only when its input is
 # newer than its output, so a quiet sync costs nothing. The index also reads
@@ -103,20 +113,24 @@ fi
 if [ ! -f "$H/backend/data/disambig/model.onnx" ] || [ "$H/backend/scripts/nahw/build_disambig_onnx.py" -nt "$H/backend/data/disambig/model.onnx" ]; then
 	(cd "$H" && nice -n 19 venv/bin/python -m backend.scripts.nahw.build_disambig_onnx) || echo "disambig: ONNX build failed, the parser keeps CAMeL's torch copy"
 fi
-(cd frontend && npm ci --silent && npm run build)
-rm -rf /home/ubuntu/site.new
-cp -r frontend/dist /home/ubuntu/site.new
-rm -rf /home/ubuntu/site
-mv /home/ubuntu/site.new /home/ubuntu/site
-
-sudo systemctl restart tafheem@8001
-if wait_healthy 8001; then
-	sudo systemctl restart tafheem@8000
-	wait_healthy 8000 || echo "warning: tafheem@8000 did not come back healthy after restart" >&2
-else
-	echo "warning: tafheem@8001 did not come back healthy, left tafheem@8000 on the old code" >&2
-	exit 1
 fi
+if [ "$SYNC_SITE" = 1 ]; then
+	(cd frontend && npm ci --silent && npm run build)
+	rm -rf /home/ubuntu/site.new
+	cp -r frontend/dist /home/ubuntu/site.new
+	rm -rf /home/ubuntu/site
+	mv /home/ubuntu/site.new /home/ubuntu/site
+fi
+
+# One copy at a time; the first that fails to come back stops the rest, so with two
+# copies the other keeps answering on the old code. With one, the API pauses ~40s.
+for port in $SYNC_PORTS; do
+	sudo systemctl restart "tafheem@$port"
+	if ! wait_healthy "$port"; then
+		echo "warning: tafheem@$port did not come back healthy; stopped the restarts there" >&2
+		exit 1
+	fi
+done
 
 echo "$NEW" > /home/ubuntu/.deployed-sha
 echo "deployed $NEW"
