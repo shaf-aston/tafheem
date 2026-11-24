@@ -94,8 +94,8 @@ function Dashboard({ frame }) {
   const inn = ramp(frame, f0 - 6, f0 + 10)
   const pull = mix(frame, [f0, f0 + 80], [1.22, 1.0], easeOut)
   const closeUp = mix(frame, [P.typeFrom - 20, P.send + 4, P.logoFrom], [0, 1, 1.3])
-  const scale = pull + 0.12 * closeUp
-  const camX = 320 * closeUp * 0.35
+  const scale = pull + 0.08 * closeUp
+  const camX = 0
   const camY = 352 * closeUp * 0.5
   const title = enter(frame, f0 + 4)
   const bar = enter(frame, P.typeFrom - 30, 30)

@@ -73,7 +73,7 @@ function PaperSide({ frame }) {
         </div>
       </At>
       <At y={220}>
-        <div style={{ fontFamily: FONT.head, fontSize: 60, fontWeight: 500, color: C.paperText, whiteSpace: 'pre', letterSpacing: '-0.01em' }}>
+        <div style={{ fontFamily: FONT.head, fontSize: 52, fontWeight: 500, color: C.paperText, whiteSpace: 'pre', letterSpacing: '-0.01em' }}>
           {q}
           <span style={{ display: 'inline-block', width: 4, height: 58, marginLeft: 6, background: C.paperGold, verticalAlign: '-8px', opacity: caret ? 1 : 0 }} />
         </div>
