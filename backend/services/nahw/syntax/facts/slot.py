@@ -246,7 +246,10 @@ def verb_place(token: dict, s: Sentence) -> str:
             said = not is_passive(head) and any((subject_link(t) or t["rel"] == "---") and noun_tagged(t) and t["id"] < head["id"] for t in s.tokens)
             # زَيْدٌ قَالَ يَسْعَدُ مَنْ صَدَقَ: a verb that takes no object has no place for the relative but its doer's
             takes = not is_one(head["lemma"], "intransitive_verbs")
-            if not (holds_doer(head, siblings) or (takes and (said or (told and noun_tagged(told) and told["id"] < head["id"])))):
+            # يَفْعَلُ مَا آمُرُهُ: ما is what does not reason, never the doer of an act only one who reasons does; that doer
+            # is the pronoun hidden in the verb (closed_words reasoning_doer_verbs)
+            reasoned = not is_passive(head) and strip_diacritics(token["form"]) == "ما" and is_one(head["lemma"], "reasoning_doer_verbs")
+            if not (holds_doer(head, siblings) or reasoned or (takes and (said or (told and noun_tagged(told) and told["id"] < head["id"])))):
                 return "subject"
             if not any(t["rel"] == "OBJ" and t["id"] < token["id"] for t in siblings):
                 return "object"
