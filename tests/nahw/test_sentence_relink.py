@@ -40,12 +40,26 @@ def test_a_fa3ula_verb_hung_under_its_tamyeez_comes_back_to_the_top(monkeypatch)
     for name, ids in [("is_verb", {1}), ("on_fa3ula", {1}), ("noun_tagged", {2, 3}), ("is_built", {2}),
                       ("indefinite_nasb", {3})]:
         monkeypatch.setattr(sc, name, lambda t, ids=ids: t["id"] in ids)
+    monkeypatch.setattr(sc, "same_root", lambda a, b: False)
     word = {"pos": "NOM", "pos_camel": "noun", "lemma": "ك", "form": "ك"}
     tokens = [{**word, "id": i, "head": head, "rel": rel} for i, head, rel in
               [(1, 3, "SBJ"), (2, 1, "OBJ"), (3, 0, "---")]]
     s = Sentence(tokens)
     sc.fa3ula_specified(s)
     assert [(t["head"], t["rel"]) for t in tokens] == [(0, "---"), (1, "SBJ"), (1, "TMZ")]
+
+
+def test_a_fa3ula_verbs_own_masdar_is_not_hung_as_its_tamyeez(monkeypatch):
+    """كَبُرَ الْوَلَدُ كِبَرًا: the nasb noun of the verb's own root is its مفعول مطلق, so the repair leaves it."""
+    sc = importlib.import_module("backend.services.nahw.syntax.repair.subject_clash")
+    for name, ids in [("is_verb", {1}), ("on_fa3ula", {1}), ("noun_tagged", {2, 3}), ("is_built", {2}),
+                      ("indefinite_nasb", {3})]:
+        monkeypatch.setattr(sc, name, lambda t, ids=ids: t["id"] in ids)
+    word = {"pos": "NOM", "pos_camel": "noun", "lemma": "ك", "form": "ك"}
+    tokens = [{**word, "id": i, "head": head, "rel": rel} for i, head, rel in
+              [(1, 0, "---"), (2, 1, "SBJ"), (3, 1, "MOD")]]
+    sc.fa3ula_specified(Sentence(tokens))
+    assert tokens[2]["rel"] == "MOD"
 
 
 def _ma_after(monkeypatch, links, verbs=frozenset({1, 3}), relative=2):
@@ -114,3 +128,12 @@ def test_a_relative_after_a_verb_hung_on_a_later_word_is_still_its_doer(monkeypa
               [(1, 2, "MOD"), (2, 5, "---"), (3, 2, "MOD"), (4, 3, "MOD"), (5, 0, "---")]]
     sc.relative_doer_owed(Sentence(tokens))
     assert (tokens[2]["head"], tokens[2]["rel"]) == (2, "SBJ")
+
+
+def test_a_verb_the_dictionary_lacks_is_fa3ula_by_its_typed_vowels():
+    """كَبُرَ read off the table has no pattern: its typed فَعُلَ vowels say what it is."""
+    from backend.services.nahw.syntax.facts.slot import on_fa3ula
+    assert on_fa3ula({"asp": "p", "pattern": None, "typed": "كَبُرَ"})
+    assert not on_fa3ula({"asp": "p", "pattern": None, "typed": "كَبَرَ"})
+    assert not on_fa3ula({"asp": "p", "pattern": None, "typed": "كبر"})
+    assert not on_fa3ula({"asp": "i", "pattern": None, "typed": "كَبُرَ"})

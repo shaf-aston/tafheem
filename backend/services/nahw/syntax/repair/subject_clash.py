@@ -536,7 +536,8 @@ def fa3ula_specified(s: Sentence) -> None:
     for verb in s.tokens:
         doer, specifier = s.by_id.get(verb["id"] + 1), s.by_id.get(verb["id"] + 2)
         if not (is_verb(verb) and on_fa3ula(verb) and doer and specifier and noun_tagged(doer)
-                and (is_built(doer) or typed_case_of(doer) == "u") and noun_tagged(specifier) and indefinite_nasb(specifier)):
+                and (is_built(doer) or typed_case_of(doer) == "u") and noun_tagged(specifier) and indefinite_nasb(specifier)
+                and not same_root(specifier, verb)):  # كَبُرَ الْوَلَدُ كِبَرًا: its own masdar is its مفعول مطلق
             continue
         up = s.head(verb)  # a verb hung under its own doer or تمييز takes that word's place, else the links loop
         while up is doer or up is specifier:

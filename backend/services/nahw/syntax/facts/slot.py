@@ -2,6 +2,8 @@
 and the rest, under a verb (verb_place) or in a verbless sentence (nominal_place)."""
 from __future__ import annotations
 
+import re
+
 from backend.services.text.arabic_text import strip_diacritics
 from backend.services.nahw.book import book_map, book_words, condition_of, extra_ba_on, is_extra_ba, is_mabni, is_one, is_plain_noun, is_subject_pronoun, named_roles, stem_pattern, takes_object
 from backend.services.nahw.syntax.facts.word import manqus_tanween, may_be_nasb, purpose, shows_nasb_by_kasra, is_built, is_describing, shown_cases, case_unseen, is_elative, is_name, stands_for_its_noun, is_suffix, works_as_verb, listed, indefinite_nasb, is_deputy, is_masdar, names_what_is_made, hollow_or_doubled_first_form, is_object_pronoun, is_participle, names_a_thing, on_doing_measure, is_passive, is_preposition, is_state_word, is_verb, read_as, same_root, shows_jarr, state_or_specification, told_of_subject, typed_case_of, typed_or_parsed_case, typed_tanween, unlike, attached_pronoun, noun_tagged, subject_link, holds_doer, own_doer, NOUN_LINKS, SUBJECTS
@@ -13,8 +15,15 @@ NAMED = named_roles()
 
 def on_fa3ula(verb: dict) -> bool:
     """كَبُرَ، حَسُنَ، عَظُمَ: a past verb on فَعُلَ, which never takes an object (شذا العرف، أبواب الفعل الثلاثي; page unchecked)."""
-    shape = stem_pattern(verb.get("pattern") or "")  # the middle letter may be written, not 2 (لَؤُمَ: 1َؤُ3َ)
-    return verb.get("asp") == "p" and shape[:2] == "1\u064e" and shape[3:5] == "\u064f3"
+    if verb.get("asp") != "p":
+        return False
+    if not verb.get("pattern"):  # a verb the dictionary lacks (كَبُرَ, read off the table) has no pattern: its typed vowels
+        return bool(_FA3ULA_TYPED.match(verb.get("typed") or ""))
+    shape = stem_pattern(verb["pattern"])  # the middle letter may be written, not 2 (لَؤُمَ: 1َؤُ3َ)
+    return shape[:2] == "1\u064e" and shape[3:5] == "\u064f3"
+
+
+_FA3ULA_TYPED = re.compile("^[\u0621-\u064a]\u064e[\u0621-\u064a]\u064f[\u0621-\u064a]")  # كَبُرَ، كَبُرَتْ
 
 
 def takes_tamyeez(token: dict, s: Sentence) -> bool:
@@ -337,7 +346,7 @@ def verb_place(token: dict, s: Sentence) -> str:
                     t["rel"] in NOUN_LINKS or _doer_by_extra_ba(t, head)
                     or (t["id"] < token["id"] and verb_place(t, s) == "subject") for t in siblings)):
             # نِعْمَ شَرِيكًا، بِئْسَ نَاصِحًا: what follows a verb of praise or blame is always its تمييز, a describing word too
-            if is_one(head["lemma"], "tamyeez_verbs") and not is_participle(token) or is_one(head["lemma"], "praise_blame"):
+            if is_one(head["lemma"], "tamyeez_verbs") and not is_participle(token) and not same_root(token, head) or is_one(head["lemma"], "praise_blame"):
                 return "specification"
             if is_participle(token) and stands_for_its_noun(token) and wants_object(head, siblings):
                 return "object"  # أكرم محمد خالدا، مَنْ عَمِلَ صَالِحًا: the describing word stands for its noun

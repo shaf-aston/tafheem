@@ -108,6 +108,9 @@ CARDS = [
     ("كَرُمَ زَيْدٌ أَصْلًا", 2, "role", "تمييز"),
     ("كَبُرَتْ كَلِمَةً تَخْرُجُ مِنْ أَفْوَاهِهِمْ", 1, "role", "تمييز"),  # فَعُلَ takes no object
     ("شَرُفَ الْمَكَانُ مَوْقِعًا", 2, "role", "تمييز"),
+    ("كَبُرَ مَقْتًا", 1, "role", "تمييز"),  # كَبُرَ, missing from the dictionary: its typed فَعُلَ vowels tell it
+    ("يَكْبُرُ زَيْدٌ أَخَاهُ سِنًّا", 3, "role", "تمييز"),  # كَبَرَ in tamyeez_verbs
+    ("كَبُرَ الْوَلَدُ كِبَرًا", 2, "role", "مفعول مطلق"),  # its own masdar is no تمييز
     ("حَسُنَ زَيْدٌ رَاكِبًا", 2, "role", "حال"),  # a doer's measure stays a state
     # a built noun after a فَعُلَ verb is its doer and the indefinite nasb after it the تمييز (4:69)
     ("حَسُنَ أُولَئِكَ رَفِيقًا", 1, "role", "فاعل"),
