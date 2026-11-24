@@ -1,116 +1,53 @@
 {
-  "_comment": "Every scene boundary and sound cue, in frames at 60 fps. The video (src/) and the soundtrack (scripts/soundtrack.py) both read this file, so moving a beat here moves picture and sound together.",
+  "_comment": "Every cut and sound cue, in frames at 60 fps. The video (src/) and the soundtrack (scripts/soundtrack.py) both read this file, so moving a beat here moves picture and sound together. 16 shots, cut on the same rhythm as the reference launch video.",
   "fps": 60,
-  "total": 1800,
-  "scenes": {
-    "hook": [
-      0,
-      330
-    ],
-    "problem": [
-      330,
-      630
-    ],
-    "demo": [
-      630,
-      1230
-    ],
-    "payoff": [
-      1230,
-      1800
-    ]
+  "total": 1440,
+  "shots": [
+    ["tunnel", 0, 120],
+    ["meet", 120, 200],
+    ["hello", 200, 245],
+    ["chat", 245, 360],
+    ["prompt", 360, 510],
+    ["stream", 510, 600],
+    ["connect", 600, 675],
+    ["web", 675, 750],
+    ["cards", 750, 820],
+    ["icons", 820, 870],
+    ["page", 870, 930],
+    ["dots", 930, 1000],
+    ["folio", 1000, 1060],
+    ["dash", 1060, 1230],
+    ["final", 1230, 1350],
+    ["logo", 1350, 1440]
+  ],
+  "cue": {
+    "tunnelType": [10, 92],
+    "helloType": [210, 232],
+    "botType": [258, 300],
+    "userIn": 300,
+    "userType": [304, 344],
+    "promptType": [366, 420],
+    "drag": [420, 470],
+    "drop": 470,
+    "sendClick": 494,
+    "toggleClick": 642,
+    "cardsIn": 754,
+    "toggleOn": 784,
+    "iconsIn": 824,
+    "countFrom": 1010,
+    "countTo": 1050,
+    "dashIn": 1066,
+    "finalType": [1240, 1300],
+    "finalClick": 1336,
+    "logoMorph": 1368
   },
-  "hook": {
-    "ayahIn": 12,
-    "typeFrom": 92,
-    "typeTo": 172,
-    "iris": 222,
-    "meet": 236
-  },
-  "problem": {
-    "pileFrom": 340,
-    "headline": 372,
-    "suck": 462,
-    "bar": 478,
-    "typeFrom": 500,
-    "typeTo": 572,
-    "cursorFrom": 548,
-    "click": 604
-  },
-  "demo": {
-    "cards": 640,
-    "brackets": 712,
-    "governor": 790,
-    "rootFrom": 850,
-    "rootWords": 880,
-    "books": 960,
-    "reciteFrom": 1040,
-    "toggleClick": 1084,
-    "micFrom": 1108,
-    "checkFrom": 1120,
-    "micClick": 1108
-  },
-  "payoff": {
-    "countFrom": 1252,
-    "countTo": 1312,
-    "dashFrom": 1400,
-    "typeFrom": 1556,
-    "typeTo": 1606,
-    "send": 1624,
-    "logoFrom": 1646
-  },
+  "music": { "beatFrom": 120, "drop": 1350 },
   "sfx": {
-    "click": [
-      604,
-      1084,
-      1108,
-      1624
-    ],
-    "pop": [
-      640,
-      646,
-      652,
-      658,
-      664,
-      670,
-      676,
-      682,
-      880,
-      886,
-      892,
-      898,
-      904,
-      910,
-      960,
-      966,
-      972,
-      978,
-      1410,
-      1416,
-      1422,
-      1428,
-      1434,
-      1440,
-      1446,
-      1452
-    ],
-    "tick": [
-      1120,
-      1136,
-      1152,
-      1168,
-      1184
-    ],
-    "whoosh": [
-      222,
-      462,
-      850,
-      1040,
-      1400
-    ],
-    "impact": [
-      236,
-      1646
-    ]
+    "click": [494, 642, 1336],
+    "pop": [258, 300, 470, 754, 760, 766, 824, 830, 836, 842, 848, 854, 860, 866, 1066, 1076, 1086, 1096, 1106, 1116],
+    "tick": [784, 790, 796],
+    "whoosh": [118, 198, 508, 673, 868, 998, 1228],
+    "impact": [120, 1350],
+    "type": [[10, 92], [210, 232], [258, 300], [304, 344], [366, 420], [1240, 1300]]
   }
 }

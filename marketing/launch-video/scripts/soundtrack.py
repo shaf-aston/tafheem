@@ -19,7 +19,7 @@ DUR = T["total"] / FPS
 N = int(SR * DUR)
 rng = np.random.default_rng(7)
 
-BPM = 96
+BPM = 120
 BEAT = 60 / BPM
 BAR = 4 * BEAT
 
@@ -90,7 +90,7 @@ for b in range(int(DUR / BAR) + 1):
     root = CHORDS[b % 4][0] - 12
     n = int(BAR * SR)
     tt = t_(n)
-    place(music, np.sin(2 * np.pi * hz(root) * tt) * env(n, 0.02, 0.4), b * BAR, 0.32 if b * BAR > sec(330) else 0.12)
+    place(music, np.sin(2 * np.pi * hz(root) * tt) * env(n, 0.02, 0.4), b * BAR, 0.32 if b * BAR > sec(T["music"]["beatFrom"]) else 0.12)
 
 
 def pluck(f, dur=0.5):
@@ -107,11 +107,11 @@ t0 = 0.0
 while t0 < DUR - 0.5:
     chord = CHORDS[int(t0 / BAR) % 4]
     note = chord[[1, 2, 3, 4, 3, 2][k % 6]] + 12
-    if t0 < sec(T["hook"]["iris"]):
+    if t0 < sec(T["music"]["beatFrom"]):
         if k % 4 == 0:
             place(music, pluck(hz(note), 0.9), t0, 0.12)
-    elif t0 < sec(T["payoff"]["logoFrom"]):
-        place(music, pluck(hz(note)), t0, 0.10 if t0 < sec(330) else 0.13)
+    elif t0 < sec(T["music"]["drop"]):
+        place(music, pluck(hz(note)), t0, 0.10 if t0 < sec(T["music"]["beatFrom"]) else 0.13)
     k += 1
     t0 += step
 
@@ -128,24 +128,24 @@ def hat():
     return hp(rng.standard_normal(n), 7000) * np.exp(-t_(n) * 70)
 
 
-# Beat from "Meet Tafheem" to the logo, a breath (no kick) in the recite beat's last bar.
-beat_from = sec(T["hook"]["meet"])
-beat_to = sec(T["payoff"]["logoFrom"]) - 0.05
+# Beat from "Meet Tafheem" to the logo; hats join once the analysis starts streaming.
+beat_from = sec(T["music"]["beatFrom"])
+beat_to = sec(T["music"]["drop"]) - 0.05
 b = 0
 t0 = beat_from
 while t0 < beat_to:
     if b % 2 == 0:
         place(music, kick(), t0, 0.5)
-    if t0 > sec(T["scenes"]["demo"][0]):
+    if t0 > sec(T["shots"][5][1]):
         place(music, hat(), t0 + BEAT / 2, 0.08)
     b += 1
     t0 += BEAT
 
 # Ending: a held Dm chord after the logo lands, fading out.
-end_n = int((DUR - sec(T["payoff"]["logoFrom"])) * SR)
+end_n = int((DUR - sec(T["music"]["drop"])) * SR)
 tt = t_(end_n)
 chord = sum(np.sin(2 * np.pi * hz(m + 12) * tt) for m in CHORDS[0][1:])
-place(music, lp(chord, 2500) * np.exp(-tt * 0.6) * np.minimum(1, tt / 0.05), sec(T["payoff"]["logoFrom"]), 0.08)
+place(music, lp(chord, 2500) * np.exp(-tt * 0.6) * np.minimum(1, tt / 0.05), sec(T["music"]["drop"]), 0.08)
 
 sfx = np.zeros(N)
 
@@ -212,7 +212,7 @@ for f in T["sfx"]["impact"]:
     place(sfx, riser(1.2), sec(f) - 1.2, 0.12)
 
 # Typing: a soft key tick every 3 frames while text types on.
-for a, z in [(T["hook"]["typeFrom"], T["hook"]["typeTo"]), (T["problem"]["typeFrom"], T["problem"]["typeTo"]), (T["payoff"]["typeFrom"], T["payoff"]["typeTo"])]:
+for a, z in T["sfx"]["type"]:
     for f in range(a, z, 3):
         n = int(0.025 * SR)
         k_ = bp(rng.standard_normal(n), 3000, 9000) * np.exp(-t_(n) * 200)

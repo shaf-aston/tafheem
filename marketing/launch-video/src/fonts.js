@@ -2,13 +2,11 @@
 import { continueRender, delayRender, staticFile } from 'remotion'
 
 const FACES = [
-  ['Fraunces', 'fraunces.woff2', '100 900', 'normal'],
-  ['Fraunces', 'fraunces-italic.woff2', '100 900', 'italic'],
-  ['Syne', 'syne-700.woff2', '700', 'normal'],
   ['Inter', 'inter.woff2', '100 900', 'normal'],
   ['Noto Naskh Arabic', 'noto-naskh-arabic-arabic-400-normal.woff2', '400', 'normal'],
   ['Noto Naskh Arabic', 'noto-naskh-arabic-arabic-700-normal.woff2', '700', 'normal'],
   ['QPC Hafs', 'qpc-hafs.woff2', '400', 'normal'],
+  ['Code Mono', 'dejavu-sans-mono.ttf', '400', 'normal'],
 ]
 
 const handle = delayRender('Loading brand fonts')
