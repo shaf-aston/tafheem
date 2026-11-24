@@ -113,6 +113,12 @@ def kaffa_card(word: str, sister: str) -> tuple[str, str]:
     return kaffa["named"], kaffa["said"].format(word=word, bare=sister)
 
 
+def conditional_extra_ma(word: str) -> str | None:
+    """أَيًّا مَا: the name of a ما made extra after the declined conditional opener, for a bare ما; none otherwise."""
+    extra = next(own["conditional_extra_ma"] for own in _closed()["families"].values() if "conditional_extra_ma" in own)
+    return extra["named"] if book_spelling(word) == extra["ma"] else None
+
+
 def kaffa_chart() -> tuple[str, str]:
     """The chart's names for an إن sister stopped by ما, cut in two: the sister's, then the ما's (ما الكافة)."""
     chart = _closed()["families"]["inna"]["kaffa"]["chart"]
@@ -420,6 +426,9 @@ def condition_of(word: str) -> dict | None:
     letters too (مَنْ، ما، متى), so only an answer shows it opens a condition (إذا has none)."""
     frame, word = frames()["condition"], book_spelling(word)
     words = _closed()["families"]
+    # أَيًّا: the one declined opener keeps its tanween's alif in the spelling (أيا is أي)
+    if word.endswith("ا") and any(word[:-1] in own.get("conditional_inflected", ()) for own in words.values()):
+        word = word[:-1]
     # a member whose condition differs from its family's lays its own over it (لولا: before a noun)
     return next(({**frame, **own, **own.get("by_word", {}).get(word, {}), "family": family, "noun": part == "conditional_nouns",
                   "adverb": word in words[family].get("conditional_adverbs", ()),

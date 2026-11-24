@@ -519,6 +519,8 @@
    "conditional_nouns": ["من", "ما", "مهما", "متى", "أيان", "أين", "أنى", "حيثما", "كيفما", "أي", "أينما"],
    "conditional_adverbs": ["متى", "أيان", "أين", "أنى", "حيثما", "أينما"],
    "conditional_inflected": ["أي"],
+   "_conditional_extra_ma": "أَيًّا مَا تَدْعُوا: a ما written after the declined opener is زائدة, for emphasis, and works nothing; the opener keeps its own place (Ibn Aqil, الجوازم; page unchecked). Read by syntax/naming.py _conditioned",
+   "conditional_extra_ma": {"ma": "ما", "named": "ما الزائدة"},
    "_condition_verb": "the verb of a condition conjugates (متصرف): never one that does not (ليس، عسى، نعم، بئس، حبذا), nor one behind قد or a negating ما, which the answer takes with its ف instead (Awdah al-Masalik, الجوازم, page unchecked). A past verb, or a present one turned to the past by لم or لما (before_a_present_verb). Read by particles._explains",
    "frozen_verbs": ["ليس", "عسى", "نعم", "بئس", "حبذا"],
    "not_before_its_verb": ["قد", "ما"],

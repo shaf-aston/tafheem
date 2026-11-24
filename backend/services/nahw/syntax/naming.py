@@ -12,7 +12,7 @@ from typing import NamedTuple, TypedDict
 
 from backend.services.text.arabic_text import strip_diacritics
 from backend.services.nahw.book import (
-    book_spelling, extra_ba_named, extra_ba_on, extra_min_letter, is_extra_ba,
+    book_spelling, conditional_extra_ma, extra_ba_named, extra_ba_on, extra_min_letter, is_extra_ba,
     book_map, book_merges, takes_object, frames, family_mother, book_path, case_of, teacher_rules, family_cards, in_family, is_mabni, is_one, needs_praised, doer_written_in, named_roles, role_table, unseen_case)
 from backend.services.nahw.syntax import condition, facts, ma, particles, walker
 from backend.services.nahw.syntax.followers import FOLLOWERS, followed, take_their_ending
@@ -353,6 +353,15 @@ def _conditioned(found: list[dict], c: dict, bases: list[dict], s: facts.Sentenc
         opener.update(role=_noun_place(frame, c["verb"], found, bases[c["verb"]], s, bases[c["opener"]]), book=None)
     if frame["built"]:
         opener["case"] = "mabni"  # أينما: built, whatever vowel it ends on
+    elif frame["noun"] and (typed := facts.typed_case_of(bases[c["opener"]])) in ("u", "a"):
+        # أَيُّ رَجُلٍ يَأْتِنِي، أَيًّا تَدْعُوا: أيّ, the one declined opener, shows its place by its own ending: raf' the
+        # مبتدأ, nasb the fronted object (Tasheel, الجوازم; page unchecked)
+        places = frame["places"]
+        opener.update(role=places["filled"] if typed == "u" else places["object"], case=CASE_NAME[typed], book=None)
+        after = c["opener"] + 1
+        if after < len(bases) and (named := conditional_extra_ma(bases[after]["lemma"])):
+            bases[after]["reading"] = {"family": "ghair_amila_other", "named": named, "kind": "harf", "book": None}
+            found[after].update(role=NAMED.harf, case="mabni", family="ghair_amila_other", named=named, governor=None)
     opener["condition"] = {"part": "opener", "verb": c["verb"], "answer": c["answer"], "tie_at": c["tie_at"], "sworn": c["sworn"],
                            "kind": frame["opener"] if frame["noun"] else None, "masdar": c["masdar"]}
     # لولا زيدٌ: the noun after it is the مبتدأ, its khabar left out; the answer still answers. A pronoun written
@@ -655,7 +664,8 @@ def finish(found: list[FoundEntry], drawn: dict) -> None:
         if doer and word["role"]:
             word["doer"] = doer
     for word, card in zip(found, ma_of):
-        if card:
+        # أَيًّا مَا: a ما naming already found extra (_conditioned) keeps that name, whatever the picture reads it as
+        if card and word.get("family") != "ghair_amila_other":
             job, case = card
             word.update(role=job or NAMED.harf, case=CASE_NAME[case] if case else None, built=bool(job))
             if not job:

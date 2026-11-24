@@ -58,6 +58,11 @@ def find(bases: list[dict], named: list[str | None], cases: list[str | None],
         if after[i] and (condition_of(bases[i]["form"]) or {}).get("before") == "noun":
             return i
         k = i + 1
+        # أَيَّ كِتَابٍ تَقْرَأْ، أَيًّا مَا تَدْعُوا: أيّ, declined, takes the noun it is added to or the ما made extra after it
+        # before its verb (Ibn Aqil, الجوازم; page unchecked)
+        if k + 1 < len(bases) and not (condition_of(spelled(bases[i])) or {"built": True})["built"] \
+                and (bases[k]["head"] == bases[i]["id"] and bases[k]["pos"] in ("NOM", "PROP") or strip_diacritics(bases[k]["form"]) == "ما"):
+            k += 1
         if k + 1 < len(bases) and bases[k]["pos"] == "PRT" and bases[k]["head"] == bases[k + 1]["id"]:
             return k + 1
         return k

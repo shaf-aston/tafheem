@@ -101,6 +101,17 @@ def test_a_particle_before_the_verb_keeps_the_sentence_verbal(sentence: str, ver
 
 # One card field each, found by typing the sentence in (backend/scripts/nahw/analyze.py).
 CARDS = [
+    # أيّ, the one declined conditional opener: its own ending tells its place, and a ما after it is زائدة
+    ("أَيَّ كِتَابٍ تَقْرَأْ أَقْرَأْ", 0, "role", "مفعول به"),
+    ("أَيَّ كِتَابٍ تَقْرَأْ أَقْرَأْ", 0, "case", "nasb"),
+    ("أَيَّ كِتَابٍ تَقْرَأْ أَقْرَأْ", 2, "name", "فعل الشرط"),
+    ("أَيُّ رَجُلٍ يَأْتِنِي أُكْرِمْهُ", 0, "role", "مبتدأ"),
+    ("أَيُّ رَجُلٍ يَأْتِنِي أُكْرِمْهُ", 0, "case", "raf'"),
+    ("أَيًّا مَا تَدْعُوا فَلَهُ الْأَسْمَاءُ الْحُسْنَى", 0, "case", "nasb"),
+    ("أَيًّا مَا تَدْعُوا فَلَهُ الْأَسْمَاءُ الْحُسْنَى", 1, "named", "ما الزائدة"),
+    ("أَيًّا مَا تَدْعُوا فَلَهُ الْأَسْمَاءُ الْحُسْنَى", 1, "role", "حرف"),
+    ("أَيًّا مَا تَدْعُوا فَلَهُ الْأَسْمَاءُ الْحُسْنَى", 2, "name", "فعل الشرط"),
+    ("مَا تَفْعَلْ مِنْ خَيْرٍ يَعْلَمْهُ اللَّهُ", 0, "case", "mabni"),  # nearest case: a built opener stays built
     ("تَعَلَّمَهُ زَيْدٌ", 0, "case", "mabni"),  # the damma is the pronoun's, the verb stays past
     ("تَنَزَّلُ الْمَلَائِكَةُ وَالرُّوحُ فِيهَا", 0, "case", "raf'"),  # تَتَنَزَّلُ with one ت gone
     ("تَنَزَّلَ الْمَلَكُ", 0, "case", "mabni"),
