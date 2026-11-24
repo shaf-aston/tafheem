@@ -566,6 +566,9 @@ CARDS = [
     # لو after a verb of wishing is the masdar particle the verb takes (2:109): it opens no condition
     ("وَدَّ كَثِيرٌ مِنْ أَهْلِ الْكِتَابِ لَوْ يَرُدُّونَكُمْ", 6, "name", "الشرط"),
     ("أُحِبُّ لَوْ تَزُورُنِي", 2, "name", "الشرط"),
+    # ما المصدرية الظرفية is a particle: the picture's ma card must not make it an object (naming.finish keeps its family)
+    ("لَا أَكْتُبُ مَا دُمْتُ مَرِيضًا", 2, "role", "مفعول به"),
+    ("سَأَبْقَى مَا لَمْ تَأْذَنْ لِي", 1, "role", "مفعول به"),
     # a condition opens on a verb: إنْ before a negation with no verb after it opens none
     ("إِنْ لَا رَيْبَ فِيهِ", 0, "name", "شرط"),
     # written with no hamza, الا before a verb that lost its nun may be أَلَّا (أن + لا): no condition is sure
