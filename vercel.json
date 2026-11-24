@@ -7,7 +7,7 @@
   "routes": [
     {
       "src": "/api/(.*)",
-      "dest": "https://optimization-broken-pick-walks.trycloudflare.com/api/$1",
+      "dest": "https://79-72-72-134.sslip.io/api/$1",
       "transforms": [
         {
           "type": "request.headers",
@@ -15,9 +15,9 @@
           "target": {
             "key": "x-origin-secret"
           },
-          "args": "$ORIGIN_SECRET",
+          "args": "$ORIGIN_SECRET_MICRO",
           "env": [
-            "ORIGIN_SECRET"
+            "ORIGIN_SECRET_MICRO"
           ]
         }
       ]
