@@ -101,6 +101,11 @@ def test_a_particle_before_the_verb_keeps_the_sentence_verbal(sentence: str, ver
 
 # One card field each, found by typing the sentence in (backend/scripts/nahw/analyze.py).
 CARDS = [
+    ("لَؤُمَ الرَّجُلُ طَبْعًا", 2, "role", "تمييز"),  # the middle letter written in the pattern
+    ("كَرُمَ زَيْدٌ أَصْلًا", 2, "role", "تمييز"),
+    ("كَبُرَتْ كَلِمَةً تَخْرُجُ مِنْ أَفْوَاهِهِمْ", 1, "role", "تمييز"),  # فَعُلَ takes no object
+    ("شَرُفَ الْمَكَانُ مَوْقِعًا", 2, "role", "تمييز"),
+    ("حَسُنَ زَيْدٌ رَاكِبًا", 2, "role", "حال"),  # a doer's measure stays a state
     ("قَالَ أَتَقُولُونَ عَلَى اللَّهِ", 1, "role", "فعل"),  # a question hamza opens what is said
     ("قَالَ أَوَعَلَيْكَ أَغَارُ", 1, "role", "حرف جر"),
     ("أَفَلَا تَعْقِلُونَ", 0, "role", "حرف"),  # أَ + فَ + لا, not the verb أَفَلَا
