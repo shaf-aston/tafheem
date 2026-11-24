@@ -1264,7 +1264,7 @@ def test_a_past_passive_behind_a_joined_particle_is_a_verb(sentence, at, role):
 
 @pytest.mark.parametrize("sentence, at, case, sign", [
     # on ت ي ن the shape of أُقِيمَ is the present of أَفْعَلَ (harakat.past_passive_shape), and with one doer a last ن is the root's,
-    # its vowel the case (naming._mood), no nun of the five verbs: joined by ف to a verb in nasb it takes the nasb
+    # its vowel the case (ending.mood), no nun of the five verbs: joined by ف to a verb in nasb it takes the nasb
     ("أَرْجُو أَنْ تَأْتِيَ فَتُعِينَ أَخَاكَ", 3, "nasb", "فتحة"),
     ("أُرِيدُ أَنْ تَقُومَ فَتَكُونَ مَعَنَا", 3, "nasb", "فتحة"),
     ("لَمْ يَأْتِ فَيُعِينَ أَخَاهُ", 2, "nasb", "فتحة"),

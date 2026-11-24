@@ -87,7 +87,7 @@ def test_held_out_signs(sentence):
 # ── Rules a mutation showed no test guarded: one sentence each way, the answer checked by hand ──
 
 # the mood a لام written onto a present verb gives it: لام الأمر jazm, لام التعليل nasb (naming._lam_mood)
-# and a present verb joined by و to a verb in jazm or nasb is in that mood too (naming._followers_take_their_ending)
+# and a present verb joined by و to a verb in jazm or nasb is in that mood too (followers.take_their_ending)
 EXPECTED_CASE = {
     "لِيَكْتُبْ زَيْدٌ الدَّرْسَ": {0: "jazm"},
     "جِئْتُ لِأَتَعَلَّمَ": {1: "nasb"},

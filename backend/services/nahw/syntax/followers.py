@@ -123,7 +123,7 @@ def take_their_ending(named: list, cases: list, bases: list[dict], tokens: list[
             # from the joining word, which the parser may take for a noun (ثم), to the verb it joins this one to
             head = followed(joiner, bases, tokens) if joiner and is_one(joiner["lemma"], "atf", "joins_mood") else None
             # لَنْ أَذْهَبَ وَمَا أَدْرِي: a negation that leaves the verb showing nothing governs no present verb (ما، إنْ) and opens a
-            # clause of its own, so the verb is in raf' and joins no mood (a لا that stresses لن's negation hands it لن: naming._governor)
+            # clause of its own, so the verb is in raf' and joins no mood (a لا that stresses لن's negation hands it لن: ending._governor)
             own = i and is_one(bases[i - 1]["base"], "negation")
             joined = head is not None and not own and named[head] == NAMED.fil and cases[head] in ("nasb", "jazm")
             doubled = doubled_last(token["typed"], token.get("stuck_on", 0), fatha=True) and not facts.five_emphasised(token["typed"], token)
