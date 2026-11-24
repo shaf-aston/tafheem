@@ -25,6 +25,11 @@ class DaleelHit(BaseModel):
     book: str = ""
     """Which book of that source. Fourteen classical works share one badge, so
     the badge alone no longer says where a quotation is from."""
+    id: int = 0
+    """The passage's place in the index; /api/daleel/around/{id} shows its neighbours."""
+    answers: bool = True
+    """Covers enough of the question to be offered as an answer. When no hit
+    does, the panel says the books do not cover it and names the closest two."""
     arabic_marks: list[tuple[int, int]] = []
     english_marks: list[tuple[int, int]] = []
     """The words that made it a match, as [start, end) offsets in code points

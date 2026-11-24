@@ -16,6 +16,13 @@ export const findDaleel = ({ q, books = [], limit }) =>
     })
     .then((r) => r.data)
 
+// A passage with its neighbours in the same book, in book order.
+export const daleelAroundQuery = (id) => ({
+  queryKey: ['daleel-around', id],
+  queryFn: () => api.get(`/daleel/around/${id}`).then((r) => r.data),
+  staleTime: Infinity,
+})
+
 // Which books the search can be narrowed to. Read from the built index, so a
 // book is only offered if searching it would actually find something.
 export const daleelBooksQuery = {

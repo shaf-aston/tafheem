@@ -66,7 +66,7 @@ def rank_of(row: IndexedPassage, expansion: Expansion) -> Rank:
     speak of, so it counts how many of the query's roots the passage carries; a
     loose match counts how far the passage is from the misspelt word.
     """
-    _, _, _, _, english, roots, fold = row
+    english, roots, fold = row[4:7]
 
     # Both halves of the passage count as places a term can be found. Some
     # books here are English only, Ibn Kathir among them, and a rule that read

@@ -154,7 +154,7 @@ def _my_ya(entry: dict, found: dict, after: dict) -> bool:
 
 
 def _named(entry: dict, found: dict, annexed: bool) -> None:
-    """One card takes the tree's name; the case is naming's (syntax.naming._ending)."""
+    """One card takes the tree's name; the case is syntax.ending.resolve."""
     renamed = found["role"] != entry.get("role")
     # a recorded ayah names its words vowelled (فِعْلٌ، بَدَلٌ): the rules read the bare name
     plain = strip_diacritics(found["role"])

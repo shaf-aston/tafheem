@@ -6,7 +6,7 @@ from typing import Annotated
 
 import time
 
-from fastapi import APIRouter, Query, Response
+from fastapi import APIRouter, Path, Query, Response
 from pydantic import StringConstraints
 
 from backend.config import get_settings
@@ -90,17 +90,26 @@ async def find(
         books=list(chosen),
         # A full page may have more behind it; a short one was all there was.
         more=len(hits) >= limit and limit < settings.daleel_result_limit_max,
-        hits=[
-            DaleelHit(
-                locator=hit.locator,
-                arabic=hit.arabic,
-                english=hit.english,
-                match=hit.match,
-                arabic_marks=list(hit.arabic_marks),
-                english_marks=list(hit.english_marks),
-                book=hit.book,
-                source=provenance.of(hit.source),
-            )
-            for hit in hits
-        ],
+        hits=[_reply(hit) for hit in hits],
+    )
+
+
+@router.get("/around/{passage_id}", response_model=list[DaleelHit])
+async def around(passage_id: int = Path(gt=0)) -> list[DaleelHit]:
+    """A passage with its neighbours in the same book, so it is read where it stands."""
+    return [_reply(hit) for hit in await asyncio.to_thread(search.around, passage_id)]
+
+
+def _reply(hit: search.Hit) -> DaleelHit:
+    return DaleelHit(
+        id=hit.id,
+        answers=hit.answers,
+        locator=hit.locator,
+        arabic=hit.arabic,
+        english=hit.english,
+        match=hit.match,
+        arabic_marks=list(hit.arabic_marks),
+        english_marks=list(hit.english_marks),
+        book=hit.book,
+        source=provenance.of(hit.source),
     )

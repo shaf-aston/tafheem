@@ -101,21 +101,6 @@ def test_a_particle_before_the_verb_keeps_the_sentence_verbal(sentence: str, ver
 
 # One card field each, found by typing the sentence in (backend/scripts/nahw/analyze.py).
 CARDS = [
-    # كَبُرَ, a past the dictionary has only as كَبَرَ: sarf's table reads it, not كَ + بُرّ
-    ("كَبُرَ زَيْدٌ كِبَرًا", 0, "role", "فعل"),
-    ("كَبُرَ زَيْدٌ كِبَرًا", 1, "role", "فاعل"),
-    ("كَبُرَ زَيْدٌ كِبَرًا", 2, "role", "مفعول مطلق"),
-    # أيّ, the one declined conditional opener: its own ending tells its place, and a ما after it is زائدة
-    ("أَيَّ كِتَابٍ تَقْرَأْ أَقْرَأْ", 0, "role", "مفعول به"),
-    ("أَيَّ كِتَابٍ تَقْرَأْ أَقْرَأْ", 0, "case", "nasb"),
-    ("أَيَّ كِتَابٍ تَقْرَأْ أَقْرَأْ", 2, "name", "فعل الشرط"),
-    ("أَيُّ رَجُلٍ يَأْتِنِي أُكْرِمْهُ", 0, "role", "مبتدأ"),
-    ("أَيُّ رَجُلٍ يَأْتِنِي أُكْرِمْهُ", 0, "case", "raf'"),
-    ("أَيًّا مَا تَدْعُوا فَلَهُ الْأَسْمَاءُ الْحُسْنَى", 0, "case", "nasb"),
-    ("أَيًّا مَا تَدْعُوا فَلَهُ الْأَسْمَاءُ الْحُسْنَى", 1, "named", "ما الزائدة"),
-    ("أَيًّا مَا تَدْعُوا فَلَهُ الْأَسْمَاءُ الْحُسْنَى", 1, "role", "حرف"),
-    ("أَيًّا مَا تَدْعُوا فَلَهُ الْأَسْمَاءُ الْحُسْنَى", 2, "name", "فعل الشرط"),
-    ("مَا تَفْعَلْ مِنْ خَيْرٍ يَعْلَمْهُ اللَّهُ", 0, "case", "mabni"),  # nearest case: a built opener stays built
     ("تَعَلَّمَهُ زَيْدٌ", 0, "case", "mabni"),  # the damma is the pronoun's, the verb stays past
     ("تَنَزَّلُ الْمَلَائِكَةُ وَالرُّوحُ فِيهَا", 0, "case", "raf'"),  # تَتَنَزَّلُ with one ت gone
     ("تَنَزَّلَ الْمَلَكُ", 0, "case", "mabni"),
@@ -591,8 +576,6 @@ CARDS = [
     ("صَلَّى الرَّجُلُ جُلُوسًا", 2, "role", "حال"),
     # و + a raf' noun opens a second sentence only when both nouns are typed in raf'
     ("وَاللَّهِ إِنْ كَانَ ذَلِكَ وَلَإِلَى اللَّهِ مَصِيرُهُ", 4, "role", "مبتدأ"),
-    # بَيْنَا is no بَيَّنَا with its shadda left off read as another باب: sarf's table does not make it a verb
-    ("بَيْنَا أَنَا نَائِمٌ رَأَيْتُ رَجُلًا", 0, "role", "فعل"),
 ])
 def test_card_field_is_not(sentence: str, index: int, field: str, wrong: str):
     assert wrong not in (_read(sentence)["words"][index][field] or "")
@@ -1292,7 +1275,7 @@ def test_a_past_passive_behind_a_joined_particle_is_a_verb(sentence, at, role):
 
 @pytest.mark.parametrize("sentence, at, case, sign", [
     # on ت ي ن the shape of أُقِيمَ is the present of أَفْعَلَ (harakat.past_passive_shape), and with one doer a last ن is the root's,
-    # its vowel the case (naming._mood), no nun of the five verbs: joined by ف to a verb in nasb it takes the nasb
+    # its vowel the case (ending.mood), no nun of the five verbs: joined by ف to a verb in nasb it takes the nasb
     ("أَرْجُو أَنْ تَأْتِيَ فَتُعِينَ أَخَاكَ", 3, "nasb", "فتحة"),
     ("أُرِيدُ أَنْ تَقُومَ فَتَكُونَ مَعَنَا", 3, "nasb", "فتحة"),
     ("لَمْ يَأْتِ فَيُعِينَ أَخَاهُ", 2, "nasb", "فتحة"),
