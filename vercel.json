@@ -7,7 +7,7 @@
   "routes": [
     {
       "src": "/api/(.*)",
-      "dest": "https://deals-would-paintball-retro.trycloudflare.com/api/$1",
+      "dest": "https://optimization-broken-pick-walks.trycloudflare.com/api/$1",
       "transforms": [
         {
           "type": "request.headers",
