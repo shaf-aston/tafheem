@@ -6,6 +6,7 @@ from backend.services.nahw.syntax.mask import above
 from backend.services.nahw.syntax.facts import (
     Sentence, is_suffix, verb_tagged, stays_adverb, is_built, is_name, khabar_behind_ba, has_added, indefinite_nasb, typed_tanween, is_describing, is_state_word, is_verb, is_preposition, is_zarf, typed_bare, listed, same_root, shows_jarr, shows_nasb_by_kasra, typed_case_of, typed_or_parsed_case, attached_pronoun, noun_tagged, subject_link, holds_doer, own_doer, is_passive, works_as_verb, previous_noun, shown_cases, place_time, next_word)
 from backend.services.nahw.syntax.facts.word import takes_two_objects
+from backend.services.nahw.syntax.facts.slot import on_fa3ula
 
 
 def excepted_after_doer(s: Sentence) -> None:
@@ -513,3 +514,20 @@ def praise_specified(s: Sentence) -> None:
         praised = s.by_id.get(specifier["id"] + 1)
         if praised and noun_tagged(praised):
             s.relink(praised, verb["id"], "SBJ")
+
+
+def fa3ula_specified(s: Sentence) -> None:
+    """حَسُنَ أُولَئِكَ رَفِيقًا: a فَعُلَ verb takes no object (شذا العرف; page unchecked), so the raf' or built noun
+    straight after it is its doer and the indefinite nasb noun after that its تمييز. The parser, reading letters
+    only, may hang them elsewhere; both go back on the verb."""
+    for verb in s.tokens:
+        doer, specifier = s.by_id.get(verb["id"] + 1), s.by_id.get(verb["id"] + 2)
+        if not (is_verb(verb) and on_fa3ula(verb) and doer and specifier and noun_tagged(doer)
+                and (is_built(doer) or typed_case_of(doer) == "u") and noun_tagged(specifier) and indefinite_nasb(specifier)):
+            continue
+        up = s.head(verb)  # a verb hung under its own doer or تمييز takes that word's place, else the links loop
+        while up is doer or up is specifier:
+            s.relink(verb, up["head"], up["rel"])
+            up = s.head(verb)
+        s.relink(doer, verb["id"], "SBJ")
+        s.relink(specifier, verb["id"], "TMZ")

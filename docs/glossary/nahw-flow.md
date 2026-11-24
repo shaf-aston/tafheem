@@ -62,6 +62,7 @@ Before labels are chosen, the book's masks rule labels out (`backend/services/na
 - inna_second_khabar: a noun hung as a second subject after إنّ's or لا's khabar, or ending a pair with no khabar → a khabar (`backend/services/nahw/syntax/repair/subject_clash.py`)
 - zanna_pair: under ظن, a nasb noun kept as subject of the nasb word after it → first object, that word the second (`backend/services/nahw/syntax/repair/subject_clash.py`)
 - praise_specified: after نعم/بئس, an indefinite nasb noun → its تمييز, the raf' noun after → the one praised (`backend/services/nahw/syntax/repair/subject_clash.py`)
+- fa3ula_specified: after a فَعُلَ verb, a raf' or built noun → its doer, the indefinite nasb noun after → its تمييز (`backend/services/nahw/syntax/repair/subject_clash.py`)
 - doer_first: a caseless name after a doer-less verb, then a second name → the first its doer, the second its object (`backend/services/nahw/syntax/repair/subject_clash.py`)
 - doer_after_object: a subject typed in nasb with a raf' word hung on it → the object, that word the doer (`backend/services/nahw/syntax/repair/subject_clash.py`)
 - late_doer: a raf' noun hung as a نعت or مضاف إليه under a doer-less verb → that verb's doer, which may come last (`backend/services/nahw/syntax/repair/subject_clash.py`)
