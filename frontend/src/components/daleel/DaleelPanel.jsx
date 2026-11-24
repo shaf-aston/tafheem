@@ -31,7 +31,7 @@ import Closest from './Closest'
 import ContextSheet from './ContextSheet'
 import Passage from './Passage'
 import SavedPassages from './SavedPassages'
-import { SAVED_KEY, citeOf } from './cite'
+import { SAVED_ID, SAVED_KEY, citeOf } from './cite'
 import CopyButton from '../ui/buttons/CopyButton'
 import SmallButton from '../ui/buttons/SmallButton'
 import EmptyState from '../ui/feedback/EmptyState'
@@ -218,13 +218,12 @@ export default function DaleelPanel({ accent, incoming, arrival, onGo, onVisit }
       {/* Where the books are silent it says so: Daleel only quotes, so a weak
           match is never offered as the answer. */}
       {data?.ready !== false && data && answers.length === 0 && (
-        <EmptyState>
+        <EmptyState detail={`${settings.noAnswer} ${settings.tries}`}>
           {data.books?.length
             ? `Nothing in ${data.books.length === 1 ? 'that book' : 'those books'}`
               + ` answers “${data.query}”.`
               + ' The rest of the library has not been searched.'
             : `No passage in ${catalogue.length ? `these ${catalogue.length}` : 'these'} books answers “${data.query}”.`}
-          {' '}{settings.noAnswer} {settings.tries}
         </EmptyState>
       )}
 
@@ -246,6 +245,12 @@ export default function DaleelPanel({ accent, incoming, arrival, onGo, onVisit }
             <p className="type-small text-[var(--text-faint)]">
               {passageCount} {passageCount === 1 ? 'passage' : 'passages'} · {bookCount} {bookCount === 1 ? 'book' : 'books'}
             </p>
+            {/* Saving adds to a list at the foot of the page; this says it landed and goes there. */}
+            {saved.length > 0 && (
+              <SmallButton onClick={() => document.getElementById(SAVED_ID)?.scrollIntoView({ behavior: 'smooth' })}>
+                Saved · {saved.length}
+              </SmallButton>
+            )}
             {/* Only Lane carries the scholar's marks, so the switch shows only with him. */}
             {anyLane && (
               <div className="ms-auto">
@@ -344,6 +349,8 @@ function Quotation({ hit, onGo, accent, tidy, onRead, saved, onSave }) {
         )}>
         <div className="space-y-3">
           {hit.arabic && <Passage text={hit.arabic} marks={hit.arabic_marks} accent={accent} tidy={tidy} arabic />}
+          {hit.english && settings.glossed.includes(bookOf(hit))
+            && <p className="type-small text-[var(--text-faint)]">{settings.glossNote}</p>}
           {hit.english && <Passage text={hit.english} marks={hit.english_marks} accent={accent} tidy={tidy} />}
         </div>
       </ShowRest>

@@ -10,17 +10,15 @@ import { mostlyArabic } from '../../lib/text/arabicText'
 import { useSavedState } from '../../lib/store/stored'
 import ArabicText from '../ui/text/ArabicText'
 import SmallButton from '../ui/buttons/SmallButton'
-import { SAVED_KEY, citeOf } from './cite'
+import { SAVED_ID, SAVED_KEY, citeOf, openingOf } from './cite'
 
-const OPENING_CHARS = 70
-const opening = (text) => (text.length > OPENING_CHARS ? `${text.slice(0, OPENING_CHARS)}…` : text)
 
 export default function SavedPassages({ onOpen }) {
   const [saved, setSaved] = useSavedState(SAVED_KEY, [])
   if (!saved.length) return null
 
   return (
-    <section className="space-y-2" aria-label="Saved passages">
+    <section id={SAVED_ID} className="space-y-2 scroll-mt-24" aria-label="Saved passages">
       <h3 className="eyebrow">Saved passages · {saved.length}</h3>
       <ul className="space-y-2">
         {saved.map((hit) => {
@@ -30,8 +28,8 @@ export default function SavedPassages({ onOpen }) {
               <button type="button" onClick={() => onOpen(hit)} className="press tap flex-1 min-w-0 text-start space-y-1">
                 <span className="block type-small text-[var(--text-faint)]">{citeOf(hit)}</span>
                 {mostlyArabic(text)
-                  ? <ArabicText size="tiny" className="block truncate text-[var(--text-dim)]">{opening(text)}</ArabicText>
-                  : <span className="block truncate type-small text-[var(--text-dim)]">{opening(text)}</span>}
+                  ? <ArabicText size="tiny" className="block truncate text-[var(--text-dim)]">{openingOf(hit)}</ArabicText>
+                  : <span className="block truncate type-small text-[var(--text-dim)]">{openingOf(hit)}</span>}
               </button>
               <SmallButton aria-label={`Remove ${citeOf(hit)}`}
                 onClick={() => setSaved((all) => all.filter((h) => h.id !== hit.id))}>

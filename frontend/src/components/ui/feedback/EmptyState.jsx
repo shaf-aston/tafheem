@@ -21,7 +21,8 @@ const DOTS = [
   [16, 13, 8, 10], [12, 16, -10, 8], [12, 20, 6, 9], [12, 27, -4, 4],
 ]
 
-export default function EmptyState({ children }) {
+// `detail`: what to do next, on a quieter line of its own so the headline reads at a glance.
+export default function EmptyState({ children, detail }) {
   return (
     <div className="dots-gather text-center py-8 space-y-2">
       <svg viewBox="0 0 24 32" width="24" height="32" aria-hidden="true" className="mx-auto text-[var(--text-faint)]">
@@ -30,6 +31,7 @@ export default function EmptyState({ children }) {
         ))}
       </svg>
       <p className="type-ui text-[var(--text-dim)]">{children}</p>
+      {detail && <p className="type-small text-[var(--text-faint)] max-w-prose mx-auto">{detail}</p>}
     </div>
   )
 }
