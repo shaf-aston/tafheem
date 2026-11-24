@@ -102,6 +102,9 @@ def test_a_particle_before_the_verb_keeps_the_sentence_verbal(sentence: str, ver
 # One card field each, found by typing the sentence in (backend/scripts/nahw/analyze.py).
 CARDS = [
     ("جَمَعْنَاهُمْ جَمِيعًا", 1, "role", "حال"),  # bare جميع is a حال even off the verb's own root
+    ("يَفْعَلُ مَا آمُرُهُ", 1, "role", "مفعول به"),
+    ("أَكَلَ مَا طَبَخَهُ", 1, "role", "مفعول به"),
+    ("يُعْجِبُنِي مَا صَنَعْتَ", 1, "role", "فاعل"),
     ("شَرِبْتُ كُلَّ الشَّرَابِ", 1, "role", "مفعول به"),  # a three-letter verb's فَعَال names the drink
     ("جَاءَ عُثْمَتَّانِ", 1, "sign", "ضمة"),  # an unread word with a doubled ت: one word, no dual
     ("جَاءَ كُرْبْتَانِ", 1, "sign", "ضمة"),  # an unread word with sukun before the ت: one word, no dual

@@ -198,6 +198,11 @@
    "_cleanliness": "توضأ، تطهر، اغتسل: a verb of cleanliness takes no object (Alfiyya, Ibn Aqil, bab ta'addi al-fi'l wa luzumih: وما اقتضى نظافة أو دنسا أو عرضا)",
    "words": ["قام", "جلس", "نام", "نجح", "حضر", "فرح", "ضحك", "مات", "سافر", "غضب", "قعد", "ذهب", "خرج", "رجع", "صبر", "بكى", "مشى", "عاش", "سكت", "بقي", "جاء", "نجا", "سقط", "هرب", "طار", "ظهر", "غاب", "مرض", "فاز", "حدث", "نما", "طال", "سعد", "توضأ", "تطهر", "اغتسل", "قر"]
   },
+  "reasoning_doer_verbs": {
+   "ar": "أفعال لا يفعلها إلا عاقل",
+   "_comment": "Acts only a reasoning being does: doing, eating, saying, writing, knowing, asking. ما stands for what does not reason (ما لما لا يعقل: شرح ابن عقيل، الموصول; page unchecked), so a relative ما after one of these is never its doer: the doer is the pronoun hidden in the verb and ما is what it does (يَفْعَلُ مَا آمُرُهُ، أَكَلَ مَا طَبَخَهُ). Read by facts.slot.verb_place. Verbs a thing can do (نفع، ضر، سر، أعجب، and أمر، نهى: نَهَاهُ مَا قَرَأَ) stay off this list: يَنْفَعُ مَا تَعَلَّمْتَ.",
+   "words": ["فعل", "عمل", "صنع", "أكل", "شرب", "قال", "كتب", "قرأ", "فهم", "عرف", "سأل", "طبخ", "اشترى", "باع", "حفظ", "تعلم", "درس", "لبس"]
+  },
   "noun_describers": {
    "ar": "الصفة الغالبة",
    "_comment": "Describing words used as nouns for the one they describe: مؤمن is a believer, صالح a good deed. Only such a word may stand for its noun left out (Ibn Aqil V3 p205, on the Alfiyya: وما من المنعوت والنعت عُقِل يجوز حذفه), so after a verb that wants an object and has none it is that object (مَنْ عَمِلَ صَالِحًا، وَمَنْ يَقْتُلْ مُؤْمِنًا). Any other describing word there is a حال (دَخَلَ الضَّيْفُ مُبْتَسِمًا). Kept: the participles the Quranic Treebank makes a verb's object at least twice and at least twice as often as its حال, by their lemma, and طيب, which the Qur'an puts for the thing it describes (قُلْ لَا يَسْتَوِي الْخَبِيثُ وَالطَّيِّبُ 5:100، حَتَّى يَمِيزَ الْخَبِيثَ مِنَ الطَّيِّبِ 3:179) and the hadith for the object (لَا يَقْبَلُ إِلَّا طَيِّبًا). Read by facts.stands_for_its_noun.",
