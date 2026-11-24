@@ -8,9 +8,9 @@ import { enter, mix, ramp, cursorAt, easeOut, easeInOut } from '../motion'
 
 // Shot 6. The reference scrolls code; Tafheem's "code" is its word-by-word i'rab.
 export function Stream({ frame }) {
-  const f = frame - 510
+  const f = frame - 530
   const zoom = mix(f, [0, 24], [0.78, 1], easeOut)
-  const scroll = mix(f, [0, 90], [260, -1500], (t) => t * t * (3 - 2 * t) * 0.6 + t * 0.4)
+  const scroll = mix(f, [0, 70], [260, -1500], (t) => t * t * (3 - 2 * t) * 0.6 + t * 0.4)
   const lines = [...STREAM, ...STREAM]
   return (
     <>
@@ -18,7 +18,7 @@ export function Stream({ frame }) {
         <WarmBg frame={frame} seed={3} light={1.2} />
       </Bleed>
       <Stage>
-        <Camera scale={zoom}>
+        <Camera scale={zoom * useFit(1460)}>
           <div
             style={{
               position: 'absolute',
@@ -130,7 +130,7 @@ const LINKS = [
 export function Web({ frame }) {
   const { width: W, height: H } = useVideoConfig()
   const u = Math.min(W / SAFE, H / 1080)
-  const f = frame - 675
+  const f = frame - 658
   const zoom = 1 + f * 0.0028
   const place = (t) => {
     const k = zoom ** t.depth
@@ -147,7 +147,7 @@ export function Web({ frame }) {
             const p = place(TILES[a])
             const q = place(TILES[b])
             const len = Math.hypot(q.cx - p.cx, q.cy - p.cy)
-            const draw = ramp(frame, 684 + i * 3, 704 + i * 3, easeOut)
+            const draw = ramp(frame, 667 + i * 3, 687 + i * 3, easeOut)
             return (
               <line
                 key={i}
@@ -166,7 +166,7 @@ export function Web({ frame }) {
         {TILES.map((t, i) => {
           const { cx, cy, s } = place(t)
           const dist = Math.hypot(t.x - 0.5, t.y - 0.5)
-          const pop = enter(frame, 675 + dist * 30, 22)
+          const pop = enter(frame, 658 + dist * 30, 22)
           const blur = Math.max(0, Math.abs(t.depth - 1.05) - 0.18) * 14
           return (
             <div
@@ -203,7 +203,7 @@ export function Web({ frame }) {
       </Bleed>
       <Stage>
         <At>
-          <div style={{ transform: `scale(${0.85 + 0.15 * enter(frame, 680, 24)})` }}>
+          <div style={{ transform: `scale(${0.85 + 0.15 * enter(frame, 663, 24)})` }}>
             <Pill frame={frame} text={COPY.connecting} />
           </div>
         </At>

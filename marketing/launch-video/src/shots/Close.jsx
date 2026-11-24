@@ -2,7 +2,7 @@
 import { AbsoluteFill } from 'remotion'
 import { C, COPY, FONT } from '../config'
 import T from '../timeline.json'
-import { Stage, Bleed, At, Camera } from '../ui/Stage'
+import { Stage, Bleed, At, Camera, useFit } from '../ui/Stage'
 import { WarmBg } from '../ui/Kit'
 import { starPath } from './Open'
 import { enter, mix, ramp, typed, press, easeOut, easeIn, easeInOut } from '../motion'
@@ -20,10 +20,11 @@ export function Final({ frame }) {
   const f = frame - 1230
   const [a, b] = T.cue.finalType
   const click = T.cue.finalClick
-  const lean = ramp(frame, 1290, 1326, easeInOut)
+  const lean = ramp(frame, 1286, 1302, easeOut)
   const scale = 1 + f * 0.0006 + lean * 1.05
   const x = lean * 420
   const W = 1180
+  const fit = useFit(1240)
   const btn = press(frame, click) ** 3
   return (
     <>
@@ -31,7 +32,7 @@ export function Final({ frame }) {
         <WarmBg frame={frame} seed={8} />
       </Bleed>
       <Stage>
-        <Camera scale={scale} x={x} y={lean * 10}>
+        <Camera scale={scale * fit} x={x} y={lean * 10}>
           <At>
             <div
               style={{
@@ -67,7 +68,7 @@ export function Final({ frame }) {
                     </svg>
                   </div>
                 </div>
-                <div style={{ display: 'flex', gap: 0, borderTop: '1px solid #ece8e6', fontSize: 16, color: '#9a938f', padding: '12px 30px 14px' }}>
+                <div style={{ display: 'flex', gap: 0, borderTop: '1px solid #ece8e6', fontSize: 22, color: '#9a938f', padding: '12px 30px 14px' }}>
                   {COPY.finalHint.map((h, i) => (
                     <span key={h} style={{ paddingRight: 22, marginRight: 22, borderRight: i < COPY.finalHint.length - 1 ? '1px solid #e2ddda' : 'none' }}>
                       {h}

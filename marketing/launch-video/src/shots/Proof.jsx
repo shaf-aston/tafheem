@@ -2,7 +2,7 @@
 import { AbsoluteFill, Img, staticFile, useVideoConfig } from 'remotion'
 import { C, CARDS, COPY, COUNT_TO, DASH, FONT, LESSONS } from '../config'
 import T from '../timeline.json'
-import { Stage, Bleed, At, Camera, SAFE } from '../ui/Stage'
+import { Stage, Bleed, At, Camera, SAFE, useFit } from '../ui/Stage'
 import { WarmBg, Pill, ToolCard, Badge } from '../ui/Kit'
 import { enter, mix, ramp, easeOut, easeInOut } from '../motion'
 
@@ -146,7 +146,7 @@ export function Dash({ frame }) {
         <WarmBg frame={frame} seed={7} />
       </Bleed>
       <Stage>
-        <Camera scale={mix(f, [0, 170], [0.95, 1.05], easeInOut)} x={mix(f, [0, 170], [-30, 20], easeInOut)}>
+        <Camera scale={mix(f, [0, 170], [0.95, 1.05], easeInOut) * useFit(1340)} x={mix(f, [0, 170], [-30, 20], easeInOut)}>
           <div style={{ position: 'absolute', left: L, top: TOP - 110, fontFamily: FONT.ui, fontSize: 66, letterSpacing: -2.4, fontWeight: 500, color: C.text, ...show(at, 20) }}>
             {COPY.dash}
           </div>
@@ -179,7 +179,7 @@ export function Dash({ frame }) {
                 }}
               >
                 <Check />
-                <span style={{ fontSize: 21, flex: 1 }}>{text}</span>
+                <span style={{ fontSize: 23, flex: 1 }}>{text}</span>
                 <span style={{ fontSize: 15, color: C.faint }}>{when}</span>
               </div>
             ))}

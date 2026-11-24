@@ -5,9 +5,15 @@ import { AbsoluteFill, useVideoConfig } from 'remotion'
 // same shots render as 16:9, 9:16 and 1:1 without a second layout.
 export const SAFE = 1440
 
+// Portrait frames show a narrower 1180 px slice so the content fills more of the phone screen;
+// wide rows shrink back to fit through useFit.
+function stageScale(width, height) {
+  return Math.min(width / (height > width * 1.2 ? 1180 : SAFE), height / 1080)
+}
+
 export function Stage({ children, style }) {
   const { width, height } = useVideoConfig()
-  const s = Math.min(width / SAFE, height / 1080)
+  const s = stageScale(width, height)
   return (
     <AbsoluteFill style={{ overflow: 'hidden', ...style }}>
       <div
@@ -54,6 +60,6 @@ export function Camera({ scale = 1, x = 0, y = 0, children, style }) {
 /** Scale that keeps a row `w` design-px wide inside the frame on narrow (9:16, 1:1) outputs; 1 on 16:9. */
 export function useFit(w, margin = 60) {
   const { width, height } = useVideoConfig()
-  const s = Math.min(width / SAFE, height / 1080)
+  const s = stageScale(width, height)
   return Math.min(1, (width / s - 2 * margin) / w)
 }

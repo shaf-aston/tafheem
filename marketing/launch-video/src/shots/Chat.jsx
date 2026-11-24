@@ -1,7 +1,7 @@
 // Shots 4-5: the first exchange, then the prompt with the ayah pictures dragged in.
 import { C, COPY, FONT, STREAM } from '../config'
 import T from '../timeline.json'
-import { Stage, Bleed, At, Camera } from '../ui/Stage'
+import { Stage, Bleed, At, Camera, useFit } from '../ui/Stage'
 import { WarmBg, Orb, GlassBubble, LightBubble, Cursor, Pic } from '../ui/Kit'
 import { enter, mix, ramp, typed, cursorAt, easeOut, easeInOut } from '../motion'
 
@@ -21,7 +21,7 @@ export function Chat({ frame }) {
         <WarmBg frame={frame} seed={2} />
       </Bleed>
       <Stage>
-        <Camera scale={1.02 + f * 0.0006} x={-40 - f * 0.25} y={-70 + f * 0.15}>
+        <Camera scale={(1.02 + f * 0.0006) * useFit(1340)} x={-40 - f * 0.25} y={-70 + f * 0.15}>
           <At x={-590} y={-196}>
             <Orb frame={frame} size={70} />
           </At>
@@ -74,7 +74,7 @@ export function Prompt({ frame }) {
   const send = T.cue.sendClick
   const barIn = enter(frame, 360, 24)
   const tray = ramp(frame, db - 18, drop + 4, easeOut)
-  const lift = mix(frame, [send + 4, 510], [0, -200], easeInOut)
+  const lift = mix(frame, [send + 4, 530], [0, -200], easeInOut)
   const BAR_Y = 150
   const W = 1160
   // Held stack: rides with the hand from off-frame left to above the tray.
@@ -95,7 +95,7 @@ export function Prompt({ frame }) {
         <WarmBg frame={frame} seed={2.6} />
       </Bleed>
       <Stage>
-        <Camera scale={1.02 + f * 0.0004} y={-lift * 0.15}>
+        <Camera scale={(1.02 + f * 0.0004) * useFit(1240)} y={-lift * 0.15}>
           <div style={{ position: 'absolute', inset: 0, transform: `translateY(${lift}px)` }}>
             {/* attachment tray */}
             <div
@@ -179,7 +179,7 @@ export function Prompt({ frame }) {
                 position: 'absolute',
                 left: 960 - W / 2 + 10,
                 top: 540 + BAR_Y + 110,
-                opacity: ramp(frame, send + 4, 510),
+                opacity: ramp(frame, send + 4, 530),
                 fontFamily: FONT.mono,
                 fontSize: 26,
                 lineHeight: 1.5,

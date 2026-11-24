@@ -1,4 +1,5 @@
 // Shots 9-11: three tool cards, the eight tools, the page they build.
+import { useVideoConfig } from 'remotion'
 import { C, CARDS, FONT, TOOLS } from '../config'
 import T from '../timeline.json'
 import { Stage, Bleed, At, Camera, useFit } from '../ui/Stage'
@@ -9,7 +10,9 @@ import { enter, mix, ramp, typed, easeOut, easeInOut } from '../motion'
 export function Cards({ frame }) {
   const f = frame - 750
   const at = T.cue.cardsIn
-  const fit = useFit(1500)
+  const { width, height } = useVideoConfig()
+  const tall = height > width * 1.2
+  const fit = tall ? 1 : useFit(1500)
   return (
     <>
       <Bleed>
@@ -21,9 +24,9 @@ export function Cards({ frame }) {
             const t = enter(frame, at + i * 6, 28)
             const on = ramp(frame, T.cue.toggleOn + i * 6, T.cue.toggleOn + i * 6 + 9, easeOut)
             return (
-              <At key={i} x={(i - 1) * 492} y={[-6, -12, 4][i] + (1 - t) * 70}>
+              <At key={i} x={tall ? 0 : (i - 1) * 492} y={(tall ? (i - 1) * 420 : [-6, -12, 4][i]) + (1 - t) * 70}>
                 <div style={{ opacity: Math.min(1, t * 1.6) }}>
-                  <ToolCard card={card} on={on} w={440} k={1.06} />
+                  <ToolCard card={card} on={on} w={440} k={tall ? 1.4 : 1.06} />
                 </div>
               </At>
             )
@@ -75,7 +78,7 @@ export function Page({ frame }) {
         <WarmBg frame={frame} seed={6} />
       </Bleed>
       <Stage>
-        <Camera scale={(0.9 + 0.1 * pop) * (1 + f * 0.0006)}>
+        <Camera scale={(0.9 + 0.1 * pop) * (1 + f * 0.0006) * useFit(1220)}>
           <At y={(1 - pop) * 40}>
             <div
               style={{
