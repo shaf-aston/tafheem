@@ -26,7 +26,7 @@ if ! sudo test -f /etc/caddy/origin-secret.caddy; then
   bash deploy/origin-secret.sh < ~/origin.secret
   echo "New origin secret in ~/origin.secret: set it as ORIGIN_SECRET on Vercel, then delete the file."
 fi
-sed "s/tafheem.duckdns.org/$HOST/" deploy/Caddyfile | sudo tee /etc/caddy/Caddyfile >/dev/null
+sed -E "s/^[0-9]+-[0-9]+-[0-9]+-[0-9]+.sslip.io|^tafheem.duckdns.org/$HOST/" deploy/Caddyfile | sudo tee /etc/caddy/Caddyfile >/dev/null
 sudo systemctl restart caddy
 
 # Oracle's Ubuntu image blocks every port but SSH in its own firewall.
