@@ -11,12 +11,18 @@ from backend.services.nahw.syntax.facts.follows import verb_joined_by_waw
 NAMED = named_roles()
 
 
+def on_fa3ula(verb: dict) -> bool:
+    """كَبُرَ، حَسُنَ، عَظُمَ: a past verb on فَعُلَ, which never takes an object (شذا العرف، أبواب الفعل الثلاثي; page unchecked)."""
+    shape = stem_pattern(verb.get("pattern") or "")  # the middle letter may be written, not 2 (لَؤُمَ: 1َؤُ3َ)
+    return verb.get("asp") == "p" and shape[:2] == "1\u064e" and shape[3:5] == "\u064f3"
+
+
 def takes_tamyeez(token: dict, s: Sentence) -> bool:
     """A tamyeez stands after a number or a measure, or after a verb of tamyeez al-nisba or an
     elative, which tells in what way one thing passes another (أَثْقَلُ وَزْنًا), or after a verb of
-    praise or blame, whose hidden doer it explains (نِعْمَ رَجُلًا زَيْدٌ)."""
+    praise or blame, whose hidden doer it explains (نِعْمَ رَجُلًا زَيْدٌ), or after a فَعُلَ verb (كَبُرَتْ كَلِمَةً)."""
     head = s.head(token)
-    if head and (is_one(head["lemma"], "tamyeez_verbs") or is_one(head["lemma"], "praise_blame") or is_elative(head)):
+    if head and (is_one(head["lemma"], "tamyeez_verbs") or on_fa3ula(head) or is_one(head["lemma"], "praise_blame") or is_elative(head)):
         return True
     return any(listed(t, "tamyeez_head") for t in s.tokens if t["id"] < token["id"])
 
@@ -201,6 +207,12 @@ def verb_place(token: dict, s: Sentence) -> str:
     typed = None if is_built(token) else typed_case_of(token)  # كَانَ ذَلِكَ حَقًّا: a built word's last vowel is its build, no case
     if masdar_object(token, s):
         return "object"
+    # كَبُرَتْ كَلِمَةً، عَظُمَ قَدْرًا: فَعُلَ never takes an object, so an indefinite noun in nasb after it, not off its own
+    # root and no describing word, explains it: its تمييز (the parser may hang a typed fatha as its doer)
+    if (head and on_fa3ula(head) and token["id"] > head["id"] and token.get("stt") == "i" and may_be_nasb(token)
+            and (rel in ("OBJ", "MOD", "TMZ") or rel in ("SBJ", "---") and typed == "a")
+            and not same_root(token, head) and not (is_participle(token) and on_doing_measure(token))):
+        return "specification"
     # زيدٌ ضاربٌ بكرًا: a word like the verb (شبه الفعل) takes its object as the verb does
     # (notes, المفعول به p0: a فعل or a شبه الفعل governs it)
     if head and not is_verb(head) and at_work(head, s):
