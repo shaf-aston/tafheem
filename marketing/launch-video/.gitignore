@@ -1,0 +1,4 @@
+node_modules/
+out/
+# Built by scripts/soundtrack.py from src/timeline.json
+public/audio/

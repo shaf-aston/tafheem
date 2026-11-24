@@ -1,0 +1,17 @@
+{
+  "name": "tafheem-launch-video",
+  "private": true,
+  "scripts": {
+    "studio": "remotion studio",
+    "render": "remotion render Launch out/tafheem-launch.mp4",
+    "still": "remotion still Launch"
+  },
+  "dependencies": {
+    "@remotion/bundler": "^4.0.546",
+    "@remotion/cli": "^4.0.546",
+    "@remotion/renderer": "^4.0.546",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "remotion": "^4.0.546"
+  }
+}
