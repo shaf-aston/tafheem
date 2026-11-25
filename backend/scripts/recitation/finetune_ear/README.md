@@ -131,6 +131,8 @@ The gap between the two tests is the finding. Spliced slips are cut and joined b
 
 **Rejoin control (2026-11-19): v34's letter gain is real.** `spliced.py controls` cuts each spliced clip's word out and joins it back unchanged (`rejoined`), or joins in the same word from another spot of the same recording (`same sound`). Scored on the first 519 of 7,932 (`spliced score --set control`; the scorer resumes, the rest was not needed): red at the cut, champion / v34, rejoined 0.6% / 0.0% (n 310), same sound 1.0% / 0.0% (n 209), against untouched words 2.0% / 0.0% and real slips 3-8% / 11-49%. Noticed (under half as sure): rejoined 0.3% / 0.0%, same sound 1.9% / 1.0%. v34 does not hear the join; it hears the letter. What keeps it unserved is IqraEval's recall at the app's cut, so the next step is choosing v34's own cut on IqraEval, not new training data.
 
+**v34 at its own cut (2026-11-25): a tie, the champion stays.** Each ear judged at the cut giving the same right words red on IqraEval (worst piece, 4,674 words, 955 slips; the saved pieces files, no new scoring), slips caught, champion / v34: 3% red 71.0% / 67.6%, 5% 76.8% / 77.9%, 7.2% (the app's) 81.4% / 82.3%, 10% 83.2% / 84.4%, 15% 86.3% / 86.8%. At 7.2% red, v34 minus champion over 1,000 paired resamples of clips: -1.0 to +3.1 points. Its AUC gain does not reach a cut the app could use, and its spliced-slip gain does not carry to real learners. Not served at any cut. The next gain must come from what the ear has never heard (real learner slips, the sound-only checker in Next levers), not from moving the cut.
+
 ## Next levers (research 2026-11-05)
 
 **Read first (ear_bench on IqraEval, 2026-11-06).** `ear_bench` now decides on IqraEval (`ear_bench/iqra.py`: 955
