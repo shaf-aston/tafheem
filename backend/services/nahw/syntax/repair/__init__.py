@@ -8,7 +8,7 @@ from __future__ import annotations
 from backend.services.nahw.syntax import particles
 from backend.services.nahw.syntax.mask import book_links
 from backend.services.nahw.syntax.facts import Sentence, base_tokens
-from backend.services.nahw.syntax.repair.answer import untied_command
+from backend.services.nahw.syntax.repair.answer import clause_on_its_fa, untied_command
 from backend.services.nahw.syntax.repair.asked import asked_anna, asked_before_verb, counted_by_min, asked_of_kana, asked_man, man_before_verb
 from backend.services.nahw.syntax.repair.called import called, called_annexes
 from backend.services.nahw.syntax.repair.clause import amma_clause, doer_then_khabar, negated_conjunct, oath_clause, said_again
@@ -105,6 +105,7 @@ PASSES = (
     elative_describes,
     nasab,
     untied_command,
+    clause_on_its_fa,
     particles.stamp,
     particles.emphasis_lam_frees_its_word,
     particles.hasr_frees_its_words,
