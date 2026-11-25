@@ -276,6 +276,8 @@ def command(word: str, governed: bool = False, root: str = "", vouched: bool = F
     # قِفَا: the dictionary's قفو holds وقف's letters, out of order, so it still vouches for it
     # قفي too: a dictionary spells a weak root's last letter و or ي, so the two are one letter here
     closest = [c for c in closest if _letters_of(c.root) == _letters_of(root)] or closest if root else closest
+    # ائْتُوا: the hamzah typed on its ي seat reads a root ئتي too, one with the dictionary's أتي: its own spelling is kept
+    closest = [c for c in closest if c.root == root] or closest
     # اِقْضِيَا, which the dictionary only guessed a name (`vouched`): one root among the closest is sure of itself too
     sure = (bool(root) or vouched) and all(_letters_of(c.root) == _letters_of(root or closest[0].root) for c in closest)
     people = {(c.person, "" if c.number == "d" and sure else c.gender, c.number) for c in closest}
@@ -360,11 +362,15 @@ def reading_of(word: str, known: Callable[[str], bool] | None = None, rooted: Ca
         # the active's (the passive is the marked form); cells that differ in tense are still no reading
         if len({tuple((k, v) for k, v in _config()["camel"][c.column].items() if k != "vox") for c in closest}) != 1:
             continue
-        cells = [{**_config()["camel"][c.column], "per": c.person, "gen": c.gender, "num": c.number, "root": c.root,
-                  "lex": past(c), "weak_last": c.root[-1:] in "وي"} for c in closest]
-        return {"pos": "verb", "vox": "a", **{key: value for key, value in cells[0].items() if all(c[key] == value for c in cells)},
-                **(pieces(front, rest) if front else {})}
+        return {**_as_reading(closest), **(pieces(front, rest) if front else {})}
     return _with_object(word, known, said)
+
+
+def _as_reading(closest: list[Cell]) -> dict:
+    """The table's cells in the dictionary's own features (reading.json `camel`), only what they all agree on."""
+    cells = [{**_config()["camel"][c.column], "per": c.person, "gen": c.gender, "num": c.number, "root": c.root,
+              "lex": past(c), "weak_last": c.root[-1:] in "وي"} for c in closest]
+    return {"pos": "verb", "vox": "a", **{key: value for key, value in cells[0].items() if all(c[key] == value for c in cells)}}
 
 
 # a long letter and the vowel before it that makes it long (اُكْتُبِي، اُكْتُبُوا، اُكْتُبَا)
@@ -382,7 +388,11 @@ def _with_object(word: str, known: Callable[[str], bool] | None = None, said: Ca
         # اُكْتُبِيهِ، اُكْتُبُوهُ: a doer written as a long letter ends the verb on the vowel before it, and
         # the plural's alef, written only at the word's end, comes back (plural_alef)
         voweled = verb[-1][1] or _LENGTHENS.get(verb[-1][0]) in verb[-2][1]
-        if not voweled or not (found := reading_of(plural_alef(_spell(verb)), known, said=said)):
+        alone = plural_alef(_spell(verb))
+        # آتِنَا: آتِ is also "(that) I come", أَتَى's jussive, tied with آتَى's command; a jussive stands only after the
+        # particle that puts it there, none of which is written on, so the tie is the command's (command drops it too)
+        if not voweled or not (found := reading_of(alone, known, said=said)
+                               or ((cell := command(alone, said=said)) and _as_reading([cell]))):
             continue
         person = _ENCLITIC.get("".join(c for c, _ in pronoun)) or _ENCLITIC["كِ" if "ِ" in pronoun[-1][1] else "كَ"]
         joined = found.get("catib6", "").count("PRT")  # فَاهْدِنَا: the فَ the table read the verb behind

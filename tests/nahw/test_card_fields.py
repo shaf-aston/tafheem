@@ -41,6 +41,8 @@ VERB_CARDS = [
     # a doubled or hollow root's command to many, spelled as its past passive: opening the sentence or after فَ
     ("يَا أَيُّهَا النَّاسُ قَدْ فُرِضَ عَلَيْكُمُ الْحَجُّ فَحُجُّوا", 7, "mabni", "فعل أمر"),
     ("سِيرُوا هَذَا جُمْدَانُ", 0, "mabni", "فعل أمر"),
+    ("ائْتُوا رَوْضَةَ خَاخٍ", 0, "mabni", "فعل أمر"),  # أَتَى's command: its hamzah after the wasl sits on a ي
+    ("ائْتِ الْمَسْجِدَ", 0, "mabni", "فعل أمر"),
     ("مُدُّوهُ مِنَ الْمَاءِ", 0, "mabni", "فعل أمر"),
     ("ثُمَّ رُدُّوا إِلَى اللَّهِ", 1, "mabni", "مبني للمجهول"),  # told on after ثُمَّ: still passive
     ("قُتِلُوا فِي سَبِيلِ اللَّهِ", 0, "mabni", "مبني للمجهول"),  # a sound root: its command is spelled اُقْتُلُوا, no tie
@@ -164,6 +166,7 @@ CARDS = [
     ("مَهْمَا تَأْتِنَا بِهِ", 0, "role", "مبتدأ"),  # built مهما keeps its ما
     ("أَيُّمَا امْرَأَةٍ نَكَحَتْ فَنِكَاحُهَا بَاطِلٌ", 4, "role", "خبر"),  # the answer's khabar, no فاعل across the ف
     ("أَيُّمَا امْرَأَةٍ جَاءَتْ فَبَيْتُهَا بَاطِلٌ", 4, "role", "خبر"),
+    ("ائْتُوا رَوْضَةَ خَاخٍ", 1, "role", "مفعول به"),  # after أَتَى's command, not a خبر's noun
     ("مَنْ قَالَهُنَّ ثُمَّ مَاتَ تَحْتَ لَيْلَتِهِ مَاتَ عَلَى الْفِطْرَةِ", 6, "name", "جواب الشرط"),
     # a damma on the last letter before a stuck pronoun is no past verb's: سَلَبُهُ is the noun, so the مَنْ before it is a relative
     ("مَنْ قَطَعَ مِنْهُ شَيْئًا فَلِمَنْ أَخَذَهُ سَلَبُهُ", 6, "name", "مبتدأ مؤخر"),
