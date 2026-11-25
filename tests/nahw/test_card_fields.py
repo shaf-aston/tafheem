@@ -162,6 +162,8 @@ CARDS = [
     ("أَيَّامًا مَعْدُودَاتٍ", 0, "role", "مفعول به"),  # 2:184 days: a word ending ما is no أيّ+ما
     ("وَأَيَّامًا مَعْدُودَاتٍ", 1, "role", "صفة"),  # and not when joined to و either
     ("مَهْمَا تَأْتِنَا بِهِ", 0, "role", "مبتدأ"),  # built مهما keeps its ما
+    ("أَيُّمَا امْرَأَةٍ نَكَحَتْ فَنِكَاحُهَا بَاطِلٌ", 4, "role", "خبر"),  # the answer's khabar, no فاعل across the ف
+    ("أَيُّمَا امْرَأَةٍ جَاءَتْ فَبَيْتُهَا بَاطِلٌ", 4, "role", "خبر"),
     ("مَنْ قَالَهُنَّ ثُمَّ مَاتَ تَحْتَ لَيْلَتِهِ مَاتَ عَلَى الْفِطْرَةِ", 6, "name", "جواب الشرط"),
     # a damma on the last letter before a stuck pronoun is no past verb's: سَلَبُهُ is the noun, so the مَنْ before it is a relative
     ("مَنْ قَطَعَ مِنْهُ شَيْئًا فَلِمَنْ أَخَذَهُ سَلَبُهُ", 6, "name", "مبتدأ مؤخر"),

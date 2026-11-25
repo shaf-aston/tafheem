@@ -18,3 +18,16 @@ def untied_command(s: Sentence) -> None:
         tied = any(is_prefix(t) and t["id"] == answer["id"] - 1 for t in tokens)
         if is_verb(answer) and answer.get("asp") == "c" and not tied:
             answer["asp"] = "i"
+
+
+def clause_on_its_fa(s: Sentence) -> None:
+    """أَيُّمَا امْرَأَةٍ نَكَحَتْ فَنِكَاحُهَا بَاطِلٌ: what a فاء brings is its own clause, hung on the فاء (as جواب
+    الشرط or as what it joins), so a فاعل never reaches back over it to a verb before it. The word heading the words
+    after a ف, hung past it on the ف's own head (a word before the ف) while the ف holds nothing, hangs on the ف."""
+    for fa in s.tokens:
+        if fa["form"] != "ف+" or any(k["rel"] == "OBJ" for k in s.kids(fa)):
+            continue
+        after = next((t for t in s.tokens if t["id"] == fa["id"] + 1), None)
+        top = after and s.climb(after, lambda t: t["head"] == fa["head"])
+        if top and top["head"] == fa["head"] and top["id"] > fa["id"] and 0 < fa["head"] < fa["id"]:
+            s.relink(top, fa["id"], "OBJ")

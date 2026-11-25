@@ -113,6 +113,7 @@ Before labels are chosen, the book's masks rule labels out (`backend/services/na
 - elative_describes: an elative right after an indefinite nasb or jarr noun → that noun's نعت (`backend/services/nahw/syntax/repair/hal.py`)
 - nasab: name + ابن/بن + noun → صفة and مضاف chain; next noun = خبر in a verbless sentence (`backend/services/nahw/syntax/repair/nasab.py`)
 - untied_command: a command read as a jazm condition's answer (إن تضربْ أضربْ) with no فاء on it → jussive present, جواب الشرط (`backend/services/nahw/syntax/repair/answer.py`)
+- clause_on_its_fa: the head of the words after a ف, hung past it on the ف's own head → hangs on the ف; no فاعل across it (`backend/services/nahw/syntax/repair/answer.py`)
 - stamp: particle families from the particle decision tree, one reading per small word (`backend/services/nahw/syntax/particles.py`)
 - emphasis_lam_frees_its_word: a لام of emphasis governs nothing → the place the parser gave it is its word's, and it hangs on that word (`backend/services/nahw/syntax/particles.py`)
 - hasr_frees_its_words: a word hung on the restricting إلا → the verb above's; in raf' with no doer yet, its doer; كان's اسم or خبر (`backend/services/nahw/syntax/particles.py`)
