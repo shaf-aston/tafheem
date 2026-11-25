@@ -148,3 +148,11 @@ def test_a_search_hands_back_synonyms_in_the_new_shape():
     # Without this the test passes on a search that returned no synonyms at all,
     # which is exactly the failure it exists to catch.
     assert seen, "no synonyms came back, so the shape was never checked"
+
+
+def test_a_meaning_leads_not_a_form_label():
+    """رحمة opened on "instance noun of رَحِمَ": the learner saw a grammar label, not "mercy"."""
+    from backend.services.dictionary import service
+
+    first = service.meanings_of("رحمة")[0]
+    assert "mercy" in first, first
