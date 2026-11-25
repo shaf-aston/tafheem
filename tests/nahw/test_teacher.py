@@ -6,7 +6,8 @@ last tests follow a gap all the way to the card and the picture.
 from backend.services.nahw import iraab
 from backend.services.sarf import morphology
 from backend.services.nahw.book import teacher_rules as config
-from backend.services.nahw.syntax import naming, teacher, tree
+from backend.services.nahw.roles import ROLES
+from backend.services.nahw.syntax import teacher, tree
 from tests.nahw.test_naming import named, token
 
 VERB = dict(vox="a", asp="p")
@@ -140,4 +141,4 @@ def test_a_head_the_teacher_dashed_stays_a_dash_in_its_unit():
 
 def test_every_role_the_teacher_names_is_a_role_naming_can_give():
     cases = config()["case_of_role"]
-    assert {role for key, roles in cases.items() if not key.startswith("_") for role in roles} <= set(naming.ROLES)
+    assert {role for key, roles in cases.items() if not key.startswith("_") for role in roles} <= set(ROLES)

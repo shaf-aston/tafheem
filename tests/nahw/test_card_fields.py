@@ -21,7 +21,7 @@ REASON_SENTENCES = ["مَتَى سَافَرَ الرَّجُلُ", "كُتِب�
 
 def test_every_role_has_a_reason():
     from backend.services.nahw.book import teacher_rules
-    from backend.services.nahw.syntax.naming import ROLES
+    from backend.services.nahw.roles import ROLES
     assert [role for role in ROLES if role not in teacher_rules()["reasons"]] == []
 
 
@@ -566,6 +566,9 @@ CARDS = [
     # لو after a verb of wishing is the masdar particle the verb takes (2:109): it opens no condition
     ("وَدَّ كَثِيرٌ مِنْ أَهْلِ الْكِتَابِ لَوْ يَرُدُّونَكُمْ", 6, "name", "الشرط"),
     ("أُحِبُّ لَوْ تَزُورُنِي", 2, "name", "الشرط"),
+    # ما المصدرية الظرفية is a particle: the picture's ma card must not make it an object (naming.finish keeps its family)
+    ("لَا أَكْتُبُ مَا دُمْتُ مَرِيضًا", 2, "role", "مفعول به"),
+    ("سَأَبْقَى مَا لَمْ تَأْذَنْ لِي", 1, "role", "مفعول به"),
     # a condition opens on a verb: إنْ before a negation with no verb after it opens none
     ("إِنْ لَا رَيْبَ فِيهِ", 0, "name", "شرط"),
     # written with no hamza, الا before a verb that lost its nun may be أَلَّا (أن + لا): no condition is sure

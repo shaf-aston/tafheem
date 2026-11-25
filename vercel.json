@@ -15,9 +15,9 @@
           "target": {
             "key": "x-origin-secret"
           },
-          "args": "$ORIGIN_SECRET_MICRO",
+          "args": "$ORIGIN_SECRET",
           "env": [
-            "ORIGIN_SECRET_MICRO"
+            "ORIGIN_SECRET"
           ]
         }
       ]

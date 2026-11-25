@@ -50,6 +50,7 @@ onnx>=1.17
 # The model downloads once on first use. Also brings tokenizers and
 # huggingface_hub, which hadith search by meaning uses.
 faster-whisper>=1.2.0
+av>=11,<19              # faster-whisper 1.2.1 opens audio with metadata_errors=, which av 19 removed: every recording read "could not be read" (2026-11-24)
 groq>=0.9.0              # hosted recitation check and AI answers; unused without GROQ_API_KEY
 edge-tts>=7.0.0          # each Colloquial dialect read aloud by a neural voice
 # The server voice (tts_arabic, requirements-nodeps.txt) imports these.

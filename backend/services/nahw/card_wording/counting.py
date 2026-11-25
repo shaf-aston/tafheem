@@ -2,8 +2,8 @@
 from __future__ import annotations
 
 from backend.services.nahw.book import case_of, counted_name, teacher_rules
-from backend.services.nahw.syntax.followers import chain_first
-from backend.services.nahw.syntax.naming import NAMED
+from backend.services.nahw.syntax import chain_first
+from backend.services.nahw.roles import NAMED
 from backend.services.text.harakat import CASE_LETTER
 
 

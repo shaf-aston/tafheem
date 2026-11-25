@@ -13,7 +13,8 @@ from backend.services.nahw.book import (
 )
 from backend.services.nahw.syntax.facts import is_nasab, is_particle, is_prefix, reading
 from backend.services.nahw.syntax.followers import FOLLOWERS
-from backend.services.nahw.syntax.naming import NAMED, opens_with_verb, tone
+from backend.services.nahw.syntax.naming import opens_with_verb
+from backend.services.nahw.roles import NAMED, tone
 from backend.services.text.arabic_text import strip_diacritics
 
 # What a unit is called, by the join that makes it. Spelled once, in

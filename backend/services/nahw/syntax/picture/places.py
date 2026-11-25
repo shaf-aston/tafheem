@@ -13,7 +13,7 @@ from backend.services.nahw.syntax.facts import (
     reading,
     typed_or_parsed_case,
 )
-from backend.services.nahw.syntax.naming import NAMED
+from backend.services.nahw.roles import NAMED
 from backend.services.nahw.syntax.picture.hang import definite
 from backend.services.nahw.syntax.picture.names import CARDS, FRAMES
 from backend.services.text.arabic_text import strip_diacritics

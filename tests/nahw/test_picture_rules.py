@@ -68,7 +68,7 @@ def test_the_glossary_explains_every_term_the_page_prints():
     from pathlib import Path
     from backend.services.text.arabic_text import strip_diacritics
     from backend.services.nahw.book import role_table
-    from backend.services.nahw.syntax.naming import ROLES
+    from backend.services.nahw.roles import ROLES
     root = Path(__file__).parent.parent.parent
     grammar = json.loads((root / "frontend/src/config/grammar.json").read_text(encoding="utf-8"))
     tarkeeb = json.loads((root / "backend/data/nahw_rules/tarkeeb.json").read_text(encoding="utf-8"))["terms"]

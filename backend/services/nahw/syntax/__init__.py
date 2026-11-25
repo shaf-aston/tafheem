@@ -22,6 +22,15 @@ from backend.services.text.arabic_text import words as split_words
 from backend.services.nahw.syntax import teacher, tree
 from backend.services.nahw.syntax.repair import correct
 from backend.services.nahw.syntax.naming import finish, roles as name_roles
+# What the card wording and iraab read of a finished reading. Through here, never the parser's
+# own modules, so the parser behind this seam can change without them.
+from backend.services.nahw.syntax.facts import reading
+from backend.services.nahw.syntax.facts.word import is_built
+from backend.services.nahw.syntax.followers import chain_first
+from backend.services.nahw.syntax.picture.names import names_a_sentence
+
+__all__ = ["read", "status", "bert_runtime", "warm", "disambiguator",
+           "reading", "is_built", "chain_first", "names_a_sentence"]
 
 logger = logging.getLogger(__name__)
 

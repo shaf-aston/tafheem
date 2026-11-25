@@ -23,7 +23,7 @@ import Mark from '../ui/display/Mark'
  * used to keep called a 330-character line long on a phone and on a desktop
  * alike, where it is four lines and one.
  */
-export default function Passage({ text, marks, accent, tidy = false, arabic = false }) {
+export default function Passage({ text, marks, accent, tidy = false, arabic = false, size = 'lg' }) {
   // A dictionary entry arrives with the marks its own dump wrote into it.
   // Every other book passes through untouched, none of them carrying those
   // marks in the first place. The server's marks for the matched words go in
@@ -34,7 +34,7 @@ export default function Passage({ text, marks, accent, tidy = false, arabic = fa
     : piece.text)
 
   return arabic && mostlyArabic(pieces.map((piece) => piece.text).join('')) ? (
-    <ArabicText size="lg" className="block leading-loose whitespace-pre-line">{said}</ArabicText>
+    <ArabicText size={size} className="block leading-loose whitespace-pre-line">{said}</ArabicText>
   ) : (
     <p className="type-body text-[var(--text-dim)] leading-relaxed whitespace-pre-line max-w-prose">
       {said}

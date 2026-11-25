@@ -76,10 +76,26 @@ def load_dictionary() -> None:
     for entry in _dictionary:
         if root := entry.get("root"):
             entry["root"] = normalize_root(root)
+        _meanings_first(entry)
 
     _arabic_index, _english_index = _build_indices(_dictionary)
     _loaded = True
     logger.info("Loaded %d dictionary entries", len(_dictionary))
+
+
+# "instance noun of رَحِمَ": a form label pointing at another word, not a meaning.
+_FORM_LABEL = re.compile(r"^[A-Za-z -]+ of [؀-ۿ]")
+
+
+def _meanings_first(entry: dict) -> None:
+    """Move form labels behind the real meanings (رحمة opened on "instance noun of رَحِمَ"); synonyms move with them."""
+    defs = entry.get("definitions") or []
+    order = sorted(range(len(defs)), key=lambda i: bool(_FORM_LABEL.match(defs[i])))
+    if order == list(range(len(defs))):
+        return
+    entry["definitions"] = [defs[i] for i in order]
+    if len(syn := entry.get("synonyms") or []) == len(defs):
+        entry["synonyms"] = [syn[i] for i in order]
 
 
 def search_arabic(query: str, limit: int = 10) -> list[dict]:

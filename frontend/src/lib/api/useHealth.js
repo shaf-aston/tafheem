@@ -5,7 +5,8 @@
  * dictionary and the Quran panel all read the same answer instead of each
  * asking the backend the same question.
  */
-import { useQuery } from '@tanstack/react-query'
+import { useEffect } from 'react'
+import { useQuery, useQueryClient } from '@tanstack/react-query'
 
 import { healthCheck } from '../../api'
 import { MISSING } from '../dictionary/loadStatus'
@@ -22,6 +23,19 @@ export function useHealth() {
     retryOnMount: false,
     refetchOnReconnect: false,
   })
+
+  // Any other answer from the server proves it is up, so a failed check is asked
+  // again then: one slow first check kept "Backend offline" over working results.
+  const client = useQueryClient()
+  useEffect(() => {
+    if (!isError) return undefined
+    const answered = (event) => event.type === 'updated' && event.action?.type === 'success'
+      && event.query?.queryKey?.[0] !== 'health'
+    const queries = client.getQueryCache().subscribe((event) => answered(event) && refetch())
+    const mutations = client.getMutationCache().subscribe((event) => event.type === 'updated'
+      && event.action?.type === 'success' && refetch())
+    return () => { queries(); mutations() }
+  }, [client, isError, refetch])
 
   return {
     status: isError ? 'error' : isPending ? 'checking' : 'ok',

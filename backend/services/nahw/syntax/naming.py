@@ -12,43 +12,18 @@ from typing import NamedTuple, TypedDict
 from backend.services.text.arabic_text import strip_diacritics
 from backend.services.nahw.book import (
     book_spelling, conditional_extra_ma, extra_ba_named, extra_ba_on, extra_min_letter, is_extra_ba,
-    book_map, takes_object, frames, family_mother, book_path, teacher_rules, family_cards, in_family, is_one, needs_praised, doer_written_in, named_roles, role_table)
+    book_map, takes_object, frames, book_path, teacher_rules, family_cards, in_family, is_one, needs_praised, doer_written_in)
 from backend.services.nahw.syntax import ending, facts, ma, particles, walker
+from backend.services.nahw.syntax.facts import base_tokens
 from backend.services.nahw.syntax.followers import FOLLOWERS, followed
-from backend.services.nahw.syntax.facts import base_tokens  # re-exported: teacher and tree read it from here
+from backend.services.nahw.roles import NAMED
 from backend.services.text.harakat import (
     CASE_NAME, written_sizes)
 
 # Every role this module can name, with its card colour key and bracket tone
 # (data/nahw_rules/roles.json); a role missing there is left uncoloured.
-ROLES = role_table()
-NAMED = named_roles()
-SISTER_FAMILIES = ("inna", "kana", "kaada")  # the families whose members lend their name to what they govern
-
-
-def _entry(role: str | None) -> tuple:
-    # a recorded role is fully vowelled (نَائِبُ فَاعِلٍ); it is the same role
-    plain = strip_diacritics(role or "")
-    if plain in ROLES:
-        return ROLES[plain]
-    # اسم كأن، خبر ليس: named for the sister that governs it, coloured as its mother's (اسم إن، خبر كان)
-    job, _, sister = plain.rpartition(" ")
-    mother = next((family_mother(family) for family in SISTER_FAMILIES if job and in_family(sister, family)), None)
-    return ROLES.get(f"{job} {mother}", (None, None))
-
-
-def role_key(role: str | None) -> str | None:
-    """The stable name the word grid colours a card by."""
-    return _entry(role)[0]
-
-
 # the governor kinds (facts.AXES) whose families frame a clause as their khabar or object
 VERB_FRAMERS = ("inna", "kana", "kaada", "zanna")
-
-
-def tone(role: str | None) -> str | None:
-    """The colour the bracket diagram draws this role in."""
-    return _entry(role)[1]
 
 
 class Piece(TypedDict, total=False):

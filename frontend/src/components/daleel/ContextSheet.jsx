@@ -18,6 +18,7 @@ import StatusNote from '../ui/feedback/StatusNote'
 import { AnalyzerSkeleton } from '../ui/feedback/Skeleton'
 import Passage from './Passage'
 import { citeOf } from './cite'
+import settings from '../../config/daleel.json'
 
 // A saved passage keeps its number; after a rebuild that number can belong to another passage.
 const same = (a, b) => a.id === b.id && a.locator === b.locator && a.book === b.book
@@ -38,6 +39,10 @@ export default function ContextSheet({ hit, accent, onClose }) {
 
       <div className="overflow-y-auto px-5 pb-4 space-y-4">
         {isPending && <AnalyzerSkeleton />}
+        {/* One book per sheet, so its English is labelled once, not on every passage. */}
+        {found && settings.glossed.includes(hit.source?.key) && (
+          <p className="type-small text-[var(--text-faint)]">{settings.glossNote}</p>
+        )}
         {isError && <ErrorAlert title="Could not open the book here" error={error} onRetry={refetch} />}
         {passages && !found && (
           <StatusNote>This book has changed since the passage was saved. Search for it again to read it in context.</StatusNote>
@@ -56,9 +61,10 @@ export default function ContextSheet({ hit, accent, onClose }) {
                 ? 'rounded-[var(--radius-md)] border border-[var(--c)] p-4 space-y-2'
                 : 'px-4 space-y-2 opacity-60'}
             >
-              {shown.arabic && <Passage text={shown.arabic} marks={shown.arabic_marks} accent={accent} arabic />}
-              {shown.english && <Passage text={shown.english} marks={shown.english_marks} accent={accent} />}
               <p className="type-small text-[var(--text-faint)] font-mono">{p.locator}</p>
+              {/* Base, not the cards' large size: a page of the book is read here, and at large one ayah filled a phone. */}
+              {shown.arabic && <Passage text={shown.arabic} marks={shown.arabic_marks} accent={accent} arabic size="base" />}
+              {shown.english && <Passage text={shown.english} marks={shown.english_marks} accent={accent} />}
             </article>
           )
         })}

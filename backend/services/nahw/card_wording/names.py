@@ -4,7 +4,7 @@ from __future__ import annotations
 from backend.services.nahw.card_wording.reason import Reason
 from backend.services.nahw.book import family_cards, reason
 from backend.services.nahw.syntax import teacher
-from backend.services.nahw.syntax.naming import NAMED
+from backend.services.nahw.roles import NAMED
 
 
 def pair(cards: list[dict], roles: list[dict]) -> None:

@@ -16,7 +16,8 @@ from backend.services.nahw.book import book_words, case_of, frames, is_one, is_s
 from backend.services.nahw.syntax.facts import (
     Sentence, is_built, is_built_zarf, is_called_noun, is_object_pronoun, is_zarf, is_passive, is_verb, shows_nasb_by_kasra, takes_tamyeez, typed_case_of, noun_tagged)
 from backend.services.nahw.syntax.followers import FOLLOWERS
-from backend.services.nahw.syntax.naming import NAMED, base_tokens
+from backend.services.nahw.syntax.facts import base_tokens
+from backend.services.nahw.roles import NAMED
 from backend.services.text.harakat import CASE_NAME
 
 # the role groups are the card's colour keys (data/nahw_rules/roles.json), so a new role joins its group there

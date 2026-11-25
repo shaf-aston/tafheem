@@ -64,6 +64,28 @@ Check it answers:
 curl https://<your name>.duckdns.org/api/health
 ```
 
+## 5b. Keep it up to date
+
+On the machine, once: copy the code GitHub serves, and turn on the five-minute check that
+makes the server match `master` once CI passes (`deploy/sync.sh`):
+
+```bash
+git clone -q https://github.com/shaf-aston/tafheem.git ~/repo
+sudo cp ~/repo/deploy/tafheem-sync.{service,timer} /etc/systemd/system/
+sudo systemctl daemon-reload && sudo systemctl enable --now tafheem-sync.timer
+```
+
+On a 1 GB machine (Oracle's free AMD Micro), first write `~/.sync.env`, so the sync runs one
+backend copy, builds no databases and leaves the site to Vercel:
+
+```bash
+printf 'SYNC_PORTS=8000
+SYNC_BUILD_DATA=0
+SYNC_SITE=0
+SYNC_WAIT_TRIES=200
+' > ~/.sync.env
+```
+
 ## 6. Point the site at it
 
 In `vercel.json` (repo root), the `routes` entry for `/api/(.*)` names the machine: put your own name in its
