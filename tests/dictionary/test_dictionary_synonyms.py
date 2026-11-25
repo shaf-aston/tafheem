@@ -154,5 +154,8 @@ def test_a_meaning_leads_not_a_form_label():
     """رحمة opened on "instance noun of رَحِمَ": the learner saw a grammar label, not "mercy"."""
     from backend.services.dictionary import service
 
-    first = service.meanings_of("رحمة")[0]
-    assert "mercy" in first, first
+    entry = {"definitions": ["instance noun of رَحِمَ (raḥima)", "mercy, compassion", "pardon"],
+             "synonyms": [["x"], ["رأفة"], []]}
+    service._meanings_first(entry)
+    assert entry["definitions"][0] == "mercy, compassion"
+    assert entry["synonyms"][0] == ["رأفة"]  # synonyms stay with their meaning
