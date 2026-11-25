@@ -153,6 +153,15 @@ CARDS = [
     ("لَا قَطْعَ ثَمَرٍ وَلَا كَثَرٍ", 2, "role", "مضاف إليه"),  # a bare noun under it is no khabar
     # a pronoun on a verb of saying is what it says: the verb after ثُمَّ ... is the condition's answer, nothing said
     ("مَنْ قَالَهُنَّ ثُمَّ مَاتَ تَحْتَ لَيْلَتِهِ مَاتَ عَلَى الْفِطْرَةِ", 1, "name", "فعل الشرط"),
+    # أَيُّمَا: أيّ with ما الزائدة written onto it, the ما leaving أيّ and its مضاف إليه joined
+    ("أَيُّمَا امْرَأَةٍ نَكَحَتْ فَنِكَاحُهَا بَاطِلٌ", 1, "role", "مضاف إليه"),
+    ("أَيُّمَا امْرَأَةٍ نَكَحَتْ فَنِكَاحُهَا بَاطِلٌ", 2, "name", "فعل الشرط"),
+    ("أَيُّمَا رَجُلٍ قَالَ لِأَخِيهِ يَا كَافِرُ فَقَدْ بَاءَ بِهَا أَحَدُهُمَا", 7, "name", "جواب الشرط"),
+    ("فَأَيُّمَا امْرَأَةٍ نَكَحَتْ فَنِكَاحُهَا بَاطِلٌ", 1, "role", "مضاف إليه"),  # a joined ف still splits the ما off
+    ("أَيَّمَا الْأَجَلَيْنِ قَضَيْتُ فَلَا عُدْوَانَ عَلَيَّ", 0, "role", "مفعول به"),  # 28:28, the condition's object first
+    ("أَيَّامًا مَعْدُودَاتٍ", 0, "role", "مفعول به"),  # 2:184 days: a word ending ما is no أيّ+ما
+    ("وَأَيَّامًا مَعْدُودَاتٍ", 1, "role", "صفة"),  # and not when joined to و either
+    ("مَهْمَا تَأْتِنَا بِهِ", 0, "role", "مبتدأ"),  # built مهما keeps its ما
     ("مَنْ قَالَهُنَّ ثُمَّ مَاتَ تَحْتَ لَيْلَتِهِ مَاتَ عَلَى الْفِطْرَةِ", 6, "name", "جواب الشرط"),
     # a damma on the last letter before a stuck pronoun is no past verb's: سَلَبُهُ is the noun, so the مَنْ before it is a relative
     ("مَنْ قَطَعَ مِنْهُ شَيْئًا فَلِمَنْ أَخَذَهُ سَلَبُهُ", 6, "name", "مبتدأ مؤخر"),

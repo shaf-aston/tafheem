@@ -11,6 +11,7 @@
   "topic_carries_its_verb": true,
   "inner_sentence": true,
   "ma_cancels_inna": true,
+  "ma_after_condition": true,
   "exception_word_by_case": true
  },
  "families": {

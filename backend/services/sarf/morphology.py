@@ -23,7 +23,7 @@ from backend.services.text.arabic_text import HAS_PYARABIC, bare_letters, hamzah
 from backend.services.sarf import engine, expects, noun_reader
 from backend.services.sarf import verb_reader
 from backend.services.quran import corpus as quran_corpus
-from backend.services.nahw.book import book_map, book_words, condition_of, elative_shape, is_built_word, is_mabni, is_one, kaffa_sister, participle_shape, sakt_off, six_noun_case
+from backend.services.nahw.book import book_map, book_words, condition_of, elative_shape, is_built_word, is_mabni, is_one, kaffa_sister, declined_with_ma, participle_shape, sakt_off, six_noun_case
 from backend.services.text.harakat import CAMEL_CASE, CASE_NAME, NO_ANALYSIS, SHADDA, SUKUN, TANWEEN, base_of, best_reading, build_nun, has_tanween, nearest_reading, own_letters, past_passive_shape, weak_last, moved_for_wasl, no_vowels_typed, paused, stuck_letters, typed_case, unread, vowel_agreement, letters
 
 logger = logging.getLogger(__name__)
@@ -749,6 +749,11 @@ def _ma_kaffa(w: _Word) -> dict | None:
     return _kaffa_ma(w.evidence, w.ranked)
 
 
+def _ayy_ma(w: _Word) -> dict | None:
+    """أيّ with ما الزائدة written onto it: أَيَّمَا (_declined_ma)."""
+    return _declined_ma(w.evidence)
+
+
 def _a_particle(w: _Word) -> dict | None:
     """إنّ's sister with "me" shortened, a particle that only comes before a noun, or a particle with a twin."""
     return _inna_short_me(w.evidence) or _noun_only_particle(w.evidence) or _twin_particle(w.evidence, w.i == 0)
@@ -775,7 +780,7 @@ def _by_shape(w: _Word) -> dict | None:
             or None)
 
 
-WORD_OVERRIDES = (_name_adding_fewer, _named_in_the_quran, _emphasis, _oath, _ma_in_jarr, _ma_kaffa, _a_particle,
+WORD_OVERRIDES = (_name_adding_fewer, _named_in_the_quran, _emphasis, _oath, _ma_in_jarr, _ma_kaffa, _ayy_ma, _a_particle,
                   _hamza_seat, _by_shape)
 
 
@@ -1414,6 +1419,24 @@ def _kaffa_ma(typed: str, ranked: list[dict]) -> dict | None:
     reading = {**found, "diac": found["diac"] + "ما", "lex": found["diac"] + "ما", "pos": "verb_pseudo", "atbtok": f"{found['diac']}_+ما",
                "bw": f"{found['diac']}/PSEUDO_VERB+ما/REL_PRON", "catib6": "PRT+NOM", "ud": "CCONJ+PRON", "enc0": "mA_rel",
                "prc0": "na", "prc1": "0", "prc2": "0"}
+    return _joined_onto(said, reading, "CONJ", prc2=f"{joined[1]}_conj") if joined else reading
+
+
+def _declined_ma(typed: str) -> dict | None:
+    """أَيَّمَا: أيّ, the condition word that is declined (closed_words `conditional_inflected`), with ما الزائدة written
+    onto it. The dictionary keeps أَيُّمَا whole as an adverb, so أيّ's own reading as a relative-and-condition noun gets
+    the ما put after it, split off as إِنَّمَا's is; typed vowels must fit أيّ."""
+    joined = next(((split, name) for letter, name in _JOINING if (split := _one_letter_off(typed, letter))
+                   and declined_with_ma(strip_diacritics(split[1]))), None)
+    said, rest = joined[0] if joined else ("", typed)
+    if not (stem := declined_with_ma(strip_diacritics(rest))):
+        return None
+    cut = rest.rindex("م")  # the ما's own letters, its fatha with them
+    found = next((r for r in _analyses(stem) if r.get("pos") == "pron_rel" and vowel_agreement(rest[:cut], r["diac"]) is not None), None)
+    if not found:
+        return None
+    reading = {**found, "diac": found["diac"] + "ما", "atbtok": f"{found['diac']}_+ما", "bw": f"{found['diac']}/REL_PRON+ما/PART",
+               "catib6": "NOM+PRT", "ud": "PRON+PART", "enc0": "mA_rel"}
     return _joined_onto(said, reading, "CONJ", prc2=f"{joined[1]}_conj") if joined else reading
 
 
