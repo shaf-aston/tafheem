@@ -129,6 +129,7 @@ Book links, in order (switches in `backend/data/nahw_rules/closed_words.json` �
 - relative_by_list: بالذي نجح → الذي، التي … (mawsul `only`, not من/ما/أي) are relatives whatever the tagger said
 - pointer_heads_its_noun: هذا الكتابُ → the pointer takes the pair's place
 - ma_cancels_inna: إنّما → ما stops إنّ working (asks syntax/ma.py, as every step does about a ما)
+- ma_after_condition: أَيُّمَا امْرَأَةٍ → the ما cut off أيّ hangs on it; the next noun is أيّ's مضاف إليه
 - listed_preposition_takes_majrur: رُبَّ رجلٍ → listed word becomes حرف جر
 - particle_over_its_noun: أليس اللهُ بكافٍ، إلا الذين آمنوا → a حرف جر or إلا the parser hung under its noun heads it
 - excepting_noun_adds: حضر الضيوف سوى بكر → غير/سوى take the noun after as their مضاف إليه

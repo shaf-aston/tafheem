@@ -29,6 +29,11 @@ def cut_off(token: dict) -> bool:
     return strip_diacritics(token.get("form", "")) == "+" + MA
 
 
+def extra_after_condition(token: dict, before: dict) -> bool:
+    """أَيَّمَا: the ما is ما الزائدة cut off أيّ, the one declined condition word (closed_words jazm `conditional_inflected`)."""
+    return cut_off(token) and is_one(before["lemma"], "jazm", "conditional_inflected")
+
+
 def kaffa_sister(lemma: str) -> str | None:
     """إنما → إن: the إن sister a typed word is, with ما الكافة written onto it; none for any other word."""
     return _kaffa_sister(lemma)

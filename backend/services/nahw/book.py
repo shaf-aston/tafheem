@@ -107,6 +107,13 @@ def kaffa_sister(word: str) -> str | None:
     return word[:-len(ma)] if word.endswith(ma) and word[:-len(ma)] in family["words"] else None
 
 
+def declined_with_ma(word: str) -> str | None:
+    """أيما → أي: the one declined condition word with ما الزائدة written onto it (أَيَّمَا امْرَأَةٍ نَكَحَتْ); the stem as written, so أَيَّامًا (days) is no أيّ."""
+    ma, spelled = _closed()["families"]["jazm"]["conditional_extra_ma"]["ma"], book_spelling(word)
+    stem = spelled[:-len(ma)]
+    return stem if spelled.endswith(ma) and stem in book_words("jazm", "conditional_inflected") else None
+
+
 def kaffa_card(word: str, sister: str) -> tuple[str, str]:
     """The name and the reason of an إن sister stopped by ما."""
     kaffa = _closed()["families"]["inna"]["kaffa"]

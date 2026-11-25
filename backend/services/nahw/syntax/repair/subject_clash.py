@@ -316,7 +316,7 @@ def relative_owed(s: Sentence) -> None:
     for token in tokens:
         doer = s.head(token)
         verb = s.head(doer) if doer else None
-        if (token["rel"] == "MOD" and token["pos"] != "PRT" and listed(token, "mawsul") and doer["id"] == token["id"] - 1
+        if (token["rel"] == "MOD" and token["pos"] != "PRT" and listed(token, "mawsul") and doer and doer["id"] == token["id"] - 1
                 and subject_link(doer) and verb and is_verb(verb) and not is_passive(verb)
                 and not is_one(verb["lemma"], "intransitive_verbs")
                 and not any(k["rel"] == "OBJ" for k in s.kids(verb))):

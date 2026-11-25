@@ -226,6 +226,20 @@ def _ma_cancels_inna(toks, heads, rels) -> None:
                 rels[n - 1] = "SBJ"
 
 
+def _ma_after_condition(toks, heads, rels) -> None:
+    """أَيَّمَا امْرَأَةٍ نَكَحَتْ: ما after أيّ is ما الزائدة, which leaves أيّ and its مضاف إليه joined (Mughni, ما
+    الزائدة, page unchecked). The parser, given the ما between them, hangs the noun anywhere; so the ما is hung on
+    أيّ as a plain modifier and the noun after it is أيّ's مضاف إليه, as with أيّ alone."""
+    for m, tok in enumerate(toks, 1):
+        ayy = m - 1
+        if not (ayy and ma.extra_after_condition(tok, toks[ayy - 1])):
+            continue
+        heads[m - 1], rels[m - 1] = ayy, "MOD"
+        tok.update(pos="PRT", pos_camel="part")
+        if m < len(toks) and noun_tagged(toks[m]):
+            heads[m], rels[m] = ayy, "IDF"
+
+
 def _exception_word_by_case(toks, heads, rels) -> None:
     """جاء القومُ خلا زيدًا، خلا زيدٍ، خلا البيتُ: خلا، عدا، حاشا with a noun straight after read
     by that noun's typed vowel (Tasheel 3.8.7). Nasb: a past verb (its doer hidden) and the noun
@@ -249,6 +263,7 @@ def _exception_word_by_case(toks, heads, rels) -> None:
 _LINKS = {"relative_by_list": _relative_by_list,
           "pointer_heads_its_noun": _pointer_heads_its_noun,
           "ma_cancels_inna": _ma_cancels_inna,
+          "ma_after_condition": _ma_after_condition,
           "listed_preposition_takes_majrur": _listed_preposition_takes_majrur,
           "particle_over_its_noun": _particle_over_its_noun,
           "excepting_noun_adds": _excepting_noun_adds,
