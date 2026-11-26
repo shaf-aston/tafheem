@@ -73,6 +73,13 @@ def test_verb_card_case_and_reason_agree(sentence: str, index: int, case: str, s
     assert (word["case"], said in word["reason"]) == (case, True), word
 
 
+@pytest.mark.parametrize("sentence", ["فَأْتِيَا فِرْعَوْنَ", "وَأْتُوا الْبُيُوتَ", "فَأْتُوا بِسُورَةٍ", "فَأْذَنُوا بِحَرْبٍ"])
+def test_a_command_after_a_joined_fa_or_waw_is_named_one_on_its_card(sentence: str):
+    # فَأْتِيَا: no dictionary reading has أَتَى's bare past, yet the card names the verb as its reason does
+    word = iraab.analyze(sentence)["words"][0]
+    assert (word.get("name"), word["case"]) == ("فعل أمر", "mabni"), word
+
+
 @pytest.mark.parametrize("sentence, sign, said", [
     ("قُومِي", "مبني على حذف النون", "و«ي» ضمير متصل مبني في محل رفع فاعل"),  # the ي is its doer, said once
     ("ارْفَعِي صَوْتَكِ", "مبني على حذف النون", "و«ي» ضمير متصل مبني في محل رفع فاعل"),

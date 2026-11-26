@@ -786,7 +786,14 @@ def _command_after_joining(w: _Word) -> dict | None:
     # the command is Form I's (اِيذَنُوا), so the reading whose lemma is the root's own past (أَذِنَ), not آذَنَ
     # (أَذِنَ, not آذَنَ or أَذَّنَ: the lemma is the root's bare letters, its hamza unseated and no shaddah)
     plain = lambda r, read: "\u0651" not in (r.get("lex") or "") and strip_diacritics(r.get("lex") or "") == (read.get("root") or "").replace(".", "")  # noqa: E731
-    return next((r for r, read in commands if plain(r, read)), commands[0][0] if commands else None)
+    if found := next((r for r, read in commands if plain(r, read)), None):
+        return found
+    # فَأْتِيَا، وَأْتُوا: no reading has the bare past (أَتَى is no root's letters, آتِي a noun), so sarf's table's,
+    # tagged a verb with the ف or و split off, as the cards and the parser both read it
+    table = verb_reader.reading_of(w.evidence, _seen_verb, None, has_verb) if commands else None
+    if table and table.get("asp") == "c" and strip_diacritics(table.get("atbtok") or "").startswith(marked[0][0] + "+_"):
+        return {"lex": base_of(w.evidence, table.get("atbtok")), **table, "diac": w.evidence}
+    return commands[0][0] if commands else None
 
 
 def _by_shape(w: _Word) -> dict | None:
