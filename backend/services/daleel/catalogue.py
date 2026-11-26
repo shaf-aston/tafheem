@@ -64,6 +64,8 @@ def known_books(asked: list[str]) -> tuple[str, ...]:
     Unknown names are dropped, not refused: a bookmark naming a removed book
     searches the rest of the library instead of reading as "no book says this".
     """
+    if not asked:
+        return ()
     known = {name for name, _ in books()}
     most = get_settings().daleel_max_books
     return tuple(dict.fromkeys(b for b in asked[:most] if b in known))
