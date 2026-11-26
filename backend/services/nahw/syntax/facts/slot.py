@@ -348,7 +348,8 @@ def verb_place(token: dict, s: Sentence) -> str:
             # نِعْمَ شَرِيكًا، بِئْسَ نَاصِحًا: what follows a verb of praise or blame is always its تمييز, a describing word too
             if is_one(head["lemma"], "tamyeez_verbs") and not is_participle(token) and not same_root(token, head) or is_one(head["lemma"], "praise_blame"):
                 return "specification"
-            if is_participle(token) and stands_for_its_noun(token) and wants_object(head, siblings):
+            if is_participle(token) and stands_for_its_noun(token) and wants_object(head, siblings) \
+                    and not is_one(head["lemma"], "place_object_verbs"):  # دخل زيد مؤمنًا: دخل's object is only a place
                 return "object"  # أكرم محمد خالدا، مَنْ عَمِلَ صَالِحًا: the describing word stands for its noun
             if (is_participle(token) and same_root(token, head) and wants_object(head, siblings)
                     and stem_pattern(token.get("pattern") or "").startswith("1\u064e2\u0650\u064a3")):

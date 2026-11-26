@@ -337,6 +337,8 @@ def measure(pattern: str) -> str:
     (قَارِئ 1ا2ِئ → 1ا2ِ3، مَقْرُوء مَ1ْ2ُوء → مَ1ْ2ُو3), a weak last radical before the ة of a single act keeps its seat
     too (خَطْوَة 1َ2ْوَة → 1َ2ْ3َة)."""
     pattern = stem_pattern(pattern)
+    if pattern.startswith("2") and "1" not in pattern:
+        pattern = "م" + pattern[1:]  # مُؤْمِن 2ُؤْمِ3: a root whose middle letter is م has its مُ prefix numbered as the 2
     if "3" not in pattern and "2" in pattern:
         pattern = re.sub(r"(?<=2)([\u064b-\u0652]*[اوي]?)[ءأإئؤ]", r"\g<1>3", pattern, count=1)
     if "3" not in pattern and "2" in pattern:

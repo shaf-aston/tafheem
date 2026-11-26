@@ -199,6 +199,11 @@
    "_cleanliness": "توضأ، تطهر، اغتسل: a verb of cleanliness takes no object (Alfiyya, Ibn Aqil, bab ta'addi al-fi'l wa luzumih: وما اقتضى نظافة أو دنسا أو عرضا)",
    "words": ["قام", "جلس", "نام", "نجح", "حضر", "فرح", "ضحك", "مات", "سافر", "غضب", "قعد", "ذهب", "خرج", "رجع", "صبر", "بكى", "مشى", "عاش", "سكت", "بقي", "جاء", "نجا", "سقط", "هرب", "طار", "ظهر", "غاب", "مرض", "فاز", "حدث", "نما", "طال", "سعد", "توضأ", "تطهر", "اغتسل", "قر"]
   },
+  "place_object_verbs": {
+   "ar": "أفعال مفعولها مكان",
+   "_comment": "Verbs whose only object is the place gone into or dwelt in (دخلت البيت، سكنت الدار: Ibn Aqil, bab ta'addi al-fi'l, page unchecked). A describing word in nasb after one never stands for its object, so it stays a حال (دخل زيد مؤمنًا). Read by facts.slot.verb_place.",
+   "words": ["دخل", "سكن"]
+  },
   "reasoning_doer_verbs": {
    "ar": "أفعال لا يفعلها إلا عاقل",
    "_comment": "Acts only a reasoning being does: doing, eating, saying, writing, knowing, asking. ما stands for what does not reason (ما لما لا يعقل: شرح ابن عقيل، الموصول; page unchecked), so a relative ما after one of these is never its doer: the doer is the pronoun hidden in the verb and ما is what it does (يَفْعَلُ مَا آمُرُهُ، أَكَلَ مَا طَبَخَهُ). Read by facts.slot.verb_place. Verbs a thing can do (نفع، ضر، سر، أعجب، and أمر، نهى: نَهَاهُ مَا قَرَأَ) stay off this list: يَنْفَعُ مَا تَعَلَّمْتَ.",

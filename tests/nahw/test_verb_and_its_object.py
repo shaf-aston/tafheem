@@ -42,6 +42,8 @@ def roles(sentence: str) -> list[str]:
     ("حضر زيد مسرعا", ["فعل", "فاعل", "حال"]),  # the book lists حضر as taking none, whatever the Qur'an's use
     # a verb that wants an object does not make a state its object: only a word that can stand for its noun is
     ("دَخَلَ الضَّيْفُ مُبْتَسِمًا", ["فعل", "فاعل", "حال"]),
+    ("دَخَلَ زَيْدٌ مُؤْمِنًا", ["فعل", "فاعل", "حال"]),  # مُؤْمِن: CAMeL numbers its مُ as the root's م; دخل takes a place only
+    ("سَكَنَ زَيْدٌ الدَّارَ", ["فعل", "فاعل", "مفعول به"]),
     ("دخل الضيف مبتسما", ["فعل", "فاعل", "حال"]),  # no vowels typed: the same reading
     ("دَخَلَ الطِّفْلُ ضَاحِكًا", ["فعل", "فاعل", "حال"]),
     ("قَرَأَ الطَّالِبُ وَاقِفًا", ["فعل", "فاعل", "حال"]),
