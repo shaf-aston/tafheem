@@ -40,10 +40,12 @@ def _word(token: dict, s: facts.Sentence) -> str:
 
 def _jarred_noun(token: dict, s: facts.Sentence) -> bool:
     """بِإِذْنِ اللَّهِ: a preposition written onto it and a kasra typed on its end is a noun in
-    jarr, never the particle it is spelled like (إِذَنْ); بِأَنَّ، لِكَيْ end on no kasra."""
+    jarr, never the particle it is spelled like (إِذَنْ); بِأَنَّ، لِكَيْ end on no kasra. So is one the
+    dictionary read as a noun (بِغَيْرِ إِذْنِ وَلِيِّهَا, an مضاف إليه): أَنِ اعْبُدُوا's moved kasra is a particle's."""
+    if facts.typed_case_of(token) != "i":
+        return False
     before = s.by_id.get(token["id"] - 1)
-    return bool(before and facts.is_prefix(before) and before.get("pos_camel") == "prep"
-                and facts.typed_case_of(token) == "i")
+    return bool(before and facts.is_prefix(before) and before.get("pos_camel") == "prep" or token.get("pos_camel") == "noun")
 
 
 def _what_follows(token: dict, s: facts.Sentence) -> str:

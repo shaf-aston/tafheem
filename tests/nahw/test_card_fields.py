@@ -737,7 +737,10 @@ def test_the_nun_of_the_five_verbs_kept_after_la_is_raf_not_jazm():
     ("خَرَجْتُ فَإِذَا الأَسَدُ", 1, "حرف مفاجأة", "mabni"),  # nearest case: إذا without a tanween stays the sudden one
     # after the sentence it answers, فَإِذًا still opens its own clause (4:53)
     ("قَالَ زَيْدٌ فَإِذًا لَا يُؤْتُونَ النَّاسَ نَقِيرًا", 2, "حرف جواب وجزاء", "mabni"),
-    ("زَيْدٌ إِذَنْ يَنْجَحُ", 1, "حرف جواب وجزاء", "mabni")])  # inside its clause it never works
+    ("زَيْدٌ إِذَنْ يَنْجَحُ", 1, "حرف جواب وجزاء", "mabni"),  # inside its clause it never works
+    # إِذْنِ with its kasra after a noun it is added to is that noun (permission), an مضاف إليه, never the particle
+    ("جَاءَ بِغَيْرِ إِذْنِ أَبِيهِ", 2, None, "jarr"),
+    ("أَيُّمَا امْرَأَةٍ نَكَحَتْ بِغَيْرِ إِذْنِ وَلِيِّهَا فَنِكَاحُهَا بَاطِلٌ", 4, None, "jarr")])
 def test_idhan_is_told_from_idha_by_its_spelling_and_works_only_before_a_verb_in_nasb(
         sentence: str, index: int, named: str | None, case: str):
     word = _read(sentence)["words"][index]
