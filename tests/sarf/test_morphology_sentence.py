@@ -229,7 +229,8 @@ def test_a_word_the_letters_leave_open_carries_its_rival_reading():
 def test_the_overrides_and_passes_run_in_the_order_written():
     # pick reads each word through WORD_OVERRIDES, then the sentence through SENTENCE_PASSES, each in its list's order
     assert morphology.WORD_OVERRIDES[0] is morphology._name_adding_fewer
-    assert morphology.WORD_OVERRIDES[-1] is morphology._by_shape
+    # last: a command after a joined ف or و (فَأْذَنُوا) stands over the shape a past verb's letters also fit
+    assert morphology.WORD_OVERRIDES[-1] is morphology._command_after_joining
     assert morphology.SENTENCE_PASSES[-1] is morphology._rivals  # last: it reads every reading the others settled
 
 
@@ -241,3 +242,11 @@ def test_a_reading_in_the_other_voice_the_typed_vowels_contradict_does_not_stand
     assert not _voice_against(active, passive, "أُغَارُ")  # damma typed: it is the passive
     assert not _voice_against(active, {**passive, "vox": "a"}, "أَغَارُ")  # same voice: another باب's matter
     assert not _voice_against({"asp": "p", "vox": "p"}, {"asp": "p", "vox": "a", "diac": "خَلَقَ"}, "خُلِقَ")  # a passive typed keeps the active
+
+
+def test_a_command_after_a_joined_fa_or_waw_keeps_its_own_lemma():
+    # فَأْذَنُوا: the override's reading (أَذِنَ) is not read again off the whole list as a made-up فَأْذَنَ
+    word = morphology.analyze_sentence("فَأْذَنُوا بِحَرْبٍ")[0]
+    assert (word["aspect"], word["lemma"], word["root"]) == ("c", "أذن", "أذن")
+    word = morphology.analyze_sentence("وَأْمُرْ أَهْلَكَ بِالصَّلَاةِ")[0]
+    assert (word["aspect"], word["lemma"], word["root"]) == ("c", "أمر", "أمر")

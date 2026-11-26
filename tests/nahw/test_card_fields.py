@@ -43,6 +43,10 @@ VERB_CARDS = [
     ("سِيرُوا هَذَا جُمْدَانُ", 0, "mabni", "فعل أمر"),
     ("ائْتُوا رَوْضَةَ خَاخٍ", 0, "mabni", "فعل أمر"),  # أَتَى's command: its hamzah after the wasl sits on a ي
     ("ائْتِ الْمَسْجِدَ", 0, "mabni", "فعل أمر"),
+    # after a joined ف or و the wasl drops and the first-letter hamzah takes a sukun: the command, not a past
+    ("فَأْتُوا بِسُورَةٍ مِثْلِهِ", 0, "mabni", "فعل أمر"),
+    ("فَأْذَنُوا بِحَرْبٍ", 0, "mabni", "فعل أمر"),
+    ("وَأْمُرْ أَهْلَكَ بِالصَّلَاةِ", 0, "mabni", "فعل أمر"),
     ("مُدُّوهُ مِنَ الْمَاءِ", 0, "mabni", "فعل أمر"),
     ("ثُمَّ رُدُّوا إِلَى اللَّهِ", 1, "mabni", "مبني للمجهول"),  # told on after ثُمَّ: still passive
     ("قُتِلُوا فِي سَبِيلِ اللَّهِ", 0, "mabni", "مبني للمجهول"),  # a sound root: its command is spelled اُقْتُلُوا, no tie
@@ -167,6 +171,8 @@ CARDS = [
     ("أَيُّمَا امْرَأَةٍ نَكَحَتْ فَنِكَاحُهَا بَاطِلٌ", 4, "role", "خبر"),  # the answer's khabar, no فاعل across the ف
     ("أَيُّمَا امْرَأَةٍ جَاءَتْ فَبَيْتُهَا بَاطِلٌ", 4, "role", "خبر"),
     ("ائْتُوا رَوْضَةَ خَاخٍ", 1, "role", "مفعول به"),  # after أَتَى's command, not a خبر's noun
+    ("وَأْدُ الْبَنَاتِ حَرَامٌ", 0, "role", "مبتدأ"),  # و + أْ with a case damma: the noun وَأْد, no command
+    ("وَأْدُ الْبَنَاتِ حَرَامٌ", 2, "role", "خبر"),
     ("مَنْ قَالَهُنَّ ثُمَّ مَاتَ تَحْتَ لَيْلَتِهِ مَاتَ عَلَى الْفِطْرَةِ", 6, "name", "جواب الشرط"),
     # a damma on the last letter before a stuck pronoun is no past verb's: سَلَبُهُ is the noun, so the مَنْ before it is a relative
     ("مَنْ قَطَعَ مِنْهُ شَيْئًا فَلِمَنْ أَخَذَهُ سَلَبُهُ", 6, "name", "مبتدأ مؤخر"),

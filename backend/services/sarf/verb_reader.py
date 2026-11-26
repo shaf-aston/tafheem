@@ -231,6 +231,13 @@ def _said(cells: list[Cell], said: Callable[[str, str], bool] | None) -> list[Ce
     return [c for c in cells if c.column != "amr" or c in commands]
 
 
+@lru_cache(maxsize=1)
+def _kept_hamzah() -> frozenset[str]:
+    """The roots whose command drops its first-letter hamzah alone but keeps it after a joined و or ف (ilal.json)."""
+    rules = json.loads((_READING.parent / "ilal.json").read_text(encoding="utf-8"))
+    return frozenset(rules["rules"]["hamzah-amr"]["drop-first"])
+
+
 def command(word: str, governed: bool = False, root: str = "", vouched: bool = False, answers: bool = False,
             said: Callable[[str, str], bool] | None = None, command_place: bool = False) -> Cell | None:
     """The command this typed word is (اِجْلِسِي، ارْحَمُوا، قُمْ), or None.
@@ -259,6 +266,10 @@ def command(word: str, governed: bool = False, root: str = "", vouched: bool = F
         # letter's alone is no help either, it is the case or a sukun of pausing (اللهِ)
         return None
     scored = dict(_scored(word))
+    # وَأْمُرْ أَهْلَكَ: inside a sentence خُذْ، كُلْ، مُرْ keep the first-letter hamzah their table drops (p.159), so the
+    # letters after it are read as the table's cell, for those three roots only
+    if (opening := letters(word)[:1]) and opening[0] == ("أ", {SUKUN}):
+        scored.update((c, score) for c, score in _scored(word[2:]) if c.root in _kept_hamzah())
     rooted = [c for c in scored if hamzah_folded(c.root) == hamzah_folded(root)]
     found = {c: scored[c] for c in _said(rooted or list(scored), said)}
     if answers and found and any(c.column == "jussive" and score == min(found.values()) for c, score in found.items()):
@@ -278,6 +289,10 @@ def command(word: str, governed: bool = False, root: str = "", vouched: bool = F
     closest = [c for c in closest if _letters_of(c.root) == _letters_of(root)] or closest if root else closest
     # ائْتُوا: the hamzah typed on its ي seat reads a root ئتي too, one with the dictionary's أتي: its own spelling is kept
     closest = [c for c in closest if c.root == root] or closest
+    # فَأْذَنُوا، وَأْمُرْ: a hamzah typed with a sukun opening the word is the root's own first letter (أذن، أمر), never
+    # the و of a root (وذن، ومر) whose table the letters also fit
+    if (opening := letters(word)[:1]) and opening[0] == ("أ", {SUKUN}):
+        closest = [c for c in closest if hamzah_folded(c.root[:1]) == hamzah_folded("أ")] or closest
     # اِقْضِيَا, which the dictionary only guessed a name (`vouched`): one root among the closest is sure of itself too
     sure = (bool(root) or vouched) and all(_letters_of(c.root) == _letters_of(root or closest[0].root) for c in closest)
     people = {(c.person, "" if c.number == "d" and sure else c.gender, c.number) for c in closest}

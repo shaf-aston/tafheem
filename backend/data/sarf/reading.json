@@ -96,6 +96,21 @@
       "becomes": "ائْ"
     },
     {
+      "columns": ["amr"],
+      "opens": "اِيْ",
+      "becomes": "أْ"
+    },
+    {
+      "columns": ["amr"],
+      "opens": "اُوْ",
+      "becomes": "اؤْ"
+    },
+    {
+      "columns": ["amr"],
+      "opens": "اُوْ",
+      "becomes": "أْ"
+    },
+    {
       "columns": ["mudari", "mudari-passive"],
       "ends": "ُ",
       "becomes": "َ"
