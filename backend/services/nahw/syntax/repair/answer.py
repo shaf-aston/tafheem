@@ -28,6 +28,10 @@ def clause_on_its_fa(s: Sentence) -> None:
         if fa["form"] != "ف+" or any(k["rel"] == "OBJ" for k in s.kids(fa)):
             continue
         after = next((t for t in s.tokens if t["id"] == fa["id"] + 1), None)
+        if ((held := s.by_id.get(fa["head"])) and held["id"] > fa["id"] and 0 < held["head"] < fa["id"]
+                and fa["rel"] == held["rel"] == "MOD" and any(k["rel"] == "SBJ" and fa["id"] < k["id"] < held["id"] for k in s.kids(held))):
+            # بِغَيْرِ إِذْنِ وَلِيِّهَا فَنِكَاحُهَا بَاطِلٌ: the ف hung on its own clause's top, and that top back over it
+            s.relink(fa, held["head"], fa["rel"])
         top = after and s.climb(after, lambda t: t["head"] == fa["head"])
         if top and top["head"] == fa["head"] and top["id"] > fa["id"] and 0 < fa["head"] < fa["id"]:
             s.relink(top, fa["id"], "OBJ")
