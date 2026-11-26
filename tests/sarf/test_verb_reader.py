@@ -127,6 +127,15 @@ def test_a_command_of_a_hamzah_first_weak_last_root_is_read_as_the_quran_spells_
     assert verb_reader.command("ائْذَنْ", root="أذن")
 
 
+def test_a_hamzah_with_a_sukun_opening_the_command_is_the_roots_first_letter():
+    # فَأْذَنُوا with its ف split off: أذن, never the و of وذن whose table the letters also fit
+    cell = verb_reader.command("أْذَنُوا")
+    assert cell and cell.root == "أذن" and (cell.column, cell.number) == ("amr", "p")
+    # مُرْ alone drops its hamzah, but inside a sentence it is kept (وَأْمُرْ أَهْلَكَ, p.159)
+    cell = verb_reader.command("أْمُرْ")
+    assert cell and cell.root == "أمر" and cell.column == "amr"
+
+
 def test_a_madda_carries_a_vowel_so_its_command_is_read_typed():
     # آتِ is أَ + ا: the fatha is written into the letter, so the word is typed, not bare letters
     cell = verb_reader.command("آتِ")

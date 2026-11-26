@@ -15,7 +15,7 @@ from __future__ import annotations
 
 import logging
 import re
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import Any, NamedTuple
 
 from backend.config import get_settings
@@ -24,7 +24,7 @@ from backend.services.sarf import engine, expects, noun_reader
 from backend.services.sarf import verb_reader
 from backend.services.quran import corpus as quran_corpus
 from backend.services.nahw.book import book_map, book_words, condition_of, elative_shape, is_built_word, is_mabni, is_one, kaffa_sister, declined_with_ma, participle_shape, sakt_off, six_noun_case
-from backend.services.text.harakat import CAMEL_CASE, CASE_NAME, NO_ANALYSIS, SHADDA, SUKUN, TANWEEN, base_of, best_reading, build_nun, has_tanween, nearest_reading, own_letters, past_passive_shape, weak_last, moved_for_wasl, no_vowels_typed, paused, stuck_letters, typed_case, unread, vowel_agreement, letters
+from backend.services.text.harakat import CAMEL_CASE, CASE_NAME, DAMMA, FATHA, NO_ANALYSIS, SHADDA, SUKUN, TANWEEN, base_of, best_reading, build_nun, has_tanween, nearest_reading, own_letters, past_passive_shape, weak_last, moved_for_wasl, no_vowels_typed, paused, stuck_letters, typed_case, unread, vowel_agreement, letters
 
 logger = logging.getLogger(__name__)
 
@@ -659,6 +659,7 @@ def pick(tokens: list[str], disambiguator=None) -> list[dict[str, Any]]:
         return [{} for _ in tokens]
 
     steps = []  # each word's vowels as evidence, and its ranked readings
+    settled = set()  # the words read as a command after a joined ف or و
     paused = {}  # a هاء السكت's word: the word as said joined (مَالِيَهْ → مَالِيَ)
     for i, (token, ranked, after) in enumerate(zip(tokens, all_ranked, [*tokens[1:], ""], strict=True)):
         # a kasra that may be a moved sukun is no evidence for the reading
@@ -674,8 +675,10 @@ def pick(tokens: list[str], disambiguator=None) -> list[dict[str, Any]]:
         for override in WORD_OVERRIDES:
             if found := override(word):
                 word.ranked = [found]
+                if override is _command_after_joining:
+                    settled.add(i)
         steps.append((evidence, word.ranked))
-    picked = _Picked(tokens, steps, [_reading(*step) for step in steps], paused, disambiguator)
+    picked = _Picked(tokens, steps, [_reading(*step) for step in steps], paused, disambiguator, settled)
     for sentence_pass in SENTENCE_PASSES:
         sentence_pass(picked)
     return picked.out
@@ -707,6 +710,7 @@ class _Picked:
     out: list[dict]
     paused: dict[int, str]
     disambiguator: Any
+    settled: set[int] = field(default_factory=set)  # the words read as a command after a joined ف or و, which no pass reads as a past again
 
 
 # ── Word overrides: each returns the one reading the word is, or None to leave it. In order; a later one ──
@@ -765,6 +769,26 @@ def _hamza_seat(w: _Word) -> dict | None:
                                                     or _hamza_stem_seat(w.evidence, w.disambiguator)) or None
 
 
+def _command_after_joining(w: _Word) -> dict | None:
+    """فَأْتُوا، فَأْذَنُوا، وَأْمُرْ: after a joined ف or و the command's hamzat al-wasl drops and its first-letter hamza
+    is said with a sukun, which no past or present of the word carries; the reading with the ف or و split off is the
+    command (_as_command reads it off sarf's table), never فاتُوا, another root's past spelled with the same letters."""
+    marked = letters(w.evidence)
+    if len(marked) < 3 or marked[0][0] not in "فو" or marked[1][0] != "أ" or marked[1][1] != {SUKUN}:
+        return None
+    # وَأْدُ الْبَنَاتِ: a damma or tanween on the last letter is a noun's case, and a fatha a past verb's, which no command
+    # ends on (its ending is a sukun, a dropped letter, or ـوا ـي ـا ـنَ)
+    last, marks = marked[-1]
+    if has_tanween(w.evidence) or DAMMA in marks or FATHA in marks and last != "ن":
+        return None
+    joined = [r for r in w.ranked if strip_diacritics(r.get("atbtok") or "").startswith(marked[0][0] + "+_")]
+    commands = [(r, read) for r in joined if (read := _as_command(w.evidence, r, "", w.after)).get("asp") == "c"]
+    # the command is Form I's (اِيذَنُوا), so the reading whose lemma is the root's own past (أَذِنَ), not آذَنَ
+    # (أَذِنَ, not آذَنَ or أَذَّنَ: the lemma is the root's bare letters, its hamza unseated and no shaddah)
+    plain = lambda r, read: "\u0651" not in (r.get("lex") or "") and strip_diacritics(r.get("lex") or "") == (read.get("root") or "").replace(".", "")  # noqa: E731
+    return next((r for r, read in commands if plain(r, read)), commands[0][0] if commands else None)
+
+
 def _by_shape(w: _Word) -> dict | None:
     """The first of: a command's answer; where no reading agrees, sarf's verb table; the first word asked;
     where none agrees, sarf's noun shapes and a feminine sound plural."""
@@ -781,7 +805,7 @@ def _by_shape(w: _Word) -> dict | None:
 
 
 WORD_OVERRIDES = (_name_adding_fewer, _named_in_the_quran, _emphasis, _oath, _ma_in_jarr, _ma_kaffa, _ayy_ma, _a_particle,
-                  _hamza_seat, _by_shape)
+                  _hamza_seat, _by_shape, _command_after_joining)
 
 
 # ── Sentence passes: each reads the readings the words chose and changes the ones the sentence says ──
@@ -809,7 +833,7 @@ def _past_verb_doer(p: _Picked) -> None:
     # or not at all (it lacks most passives), is not the word: the one of that doer is, or the doer is the table's.
     # One the typed vowels contradict is no evidence for the verb either (كُسِيتُ is كَسَا's passive, not كَسِيَ)
     for i, (evidence, ranked) in enumerate(steps):
-        if out[i].get("pos") == "verb" and out[i].get("asp") == "p" and (said := verb_reader.reading_of(evidence, _seen_verb)) \
+        if i not in p.settled and out[i].get("pos") == "verb" and out[i].get("asp") == "p" and (said := verb_reader.reading_of(evidence, _seen_verb)) \
                 and said.get("asp") == "p":
             keys = (*DOER, "lex") if vowel_agreement(evidence, out[i].get("diac", "")) is None else DOER
             if not _same(out[i], said, keys):
