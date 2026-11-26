@@ -49,8 +49,13 @@ def _config() -> dict:
 
 def mended(analysis: dict) -> dict:
     """A verb reading with the lemma and root it is (reading.json `camel_lex`): CAMeL's رأى present under راوند."""
-    fix = _config()["camel_lex"].get(strip_diacritics(analysis.get("lex") or ""))
-    return {**analysis, **fix} if fix and analysis.get("pos") == "verb" else analysis
+    if analysis.get("pos") != "verb":
+        return analysis
+    fix = _config()["camel_lex"].get(strip_diacritics(analysis.get("lex") or ""), {})
+    if "\u064e\u064f" in (diac := analysis.get("diac") or ""):
+        # يَرَُوهُ: CAMeL keeps the damma its رأى plural lost (يَرْأَيُوا) beside the fatha said, one letter two vowels
+        fix = {**fix, "diac": diac.replace("\u064e\u064f", "\u064e")}
+    return {**analysis, **fix} if fix else analysis
 
 
 def _fold(word: str) -> str:

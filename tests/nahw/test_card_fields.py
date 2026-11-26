@@ -1362,9 +1362,11 @@ def test_an_urging_particle_is_named_so_and_one_with_a_tanween_is_the_noun_its_l
 @pytest.mark.parametrize("sentence, index, case, sign", [
     # CAMeL files رأى's present under راوند (rhubarb); mended, its dropped hamza leaves a weak last letter
     ("لَمْ يَرَهُ أَحَدٌ", 1, "jazm", "حذف حرف العلة"),
+    ("الرِّجَالُ لَمْ يَرَوْهُ", 2, "jazm", "حذف النون"),  # رأى's plural: CAMeL's يَرَُوهُ, a fatha and a damma on one letter
     ("لَمْ يَرَ زَيْدٌ عَمْرًا", 1, "jazm", "حذف حرف العلة"),
     ("أَلَمْ تَرَ كَيْفَ فَعَلَ رَبُّكَ", 1, "jazm", "حذف حرف العلة"),
     ("زَيْدٌ يَرَى الْهِلَالَ", 1, "raf'", "ضمة مقدرة على الألف للتعذر"),
+    ("هُمْ يَرَوْنَهُ", 1, "raf'", "ثبوت النون"),
     ("رَأَيْتُ زَيْدًا", 0, "mabni", "مبني على السكون"),  # nearest case: the past keeps its hamza
 ])
 def test_the_present_of_raa_has_a_weak_last_letter(sentence: str, index: int, case: str, sign: str):
