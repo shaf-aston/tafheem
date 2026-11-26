@@ -120,6 +120,13 @@ def test_the_same_shape_with_a_root_letter_in_place_of_the_ta_marbuta_is_still_a
     assert any(c.root == "دحرج" for c in verb_reader.read("دَحْرَجَ"))
 
 
+def test_a_command_of_a_hamzah_first_weak_last_root_is_read_as_the_quran_spells_it():
+    # ائْتُوا (اِيْتُوا as said): Form I of أتي is conjugated, and its hamzah after the wasl sits on a ي seat
+    cell = verb_reader.command("ائْتُوا", root="أتي")
+    assert cell and cell.root == "أتي" and (cell.column, cell.person, cell.number) == ("amr", "2", "p")
+    assert verb_reader.command("ائْذَنْ", root="أذن")
+
+
 def test_a_madda_carries_a_vowel_so_its_command_is_read_typed():
     # آتِ is أَ + ا: the fatha is written into the letter, so the word is typed, not bare letters
     cell = verb_reader.command("آتِ")

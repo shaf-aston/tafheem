@@ -91,6 +91,11 @@
       "becomes": "ءُو"
     },
     {
+      "columns": ["amr"],
+      "opens": "اِيْ",
+      "becomes": "ائْ"
+    },
+    {
       "columns": ["mudari", "mudari-passive"],
       "ends": "ُ",
       "becomes": "َ"
