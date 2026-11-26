@@ -302,3 +302,10 @@ def test_the_root_letters_are_found_however_the_root_was_written() -> None:
 )
 def test_the_root_is_named_the_way_the_book_names_it(radicals: str, expected: str) -> None:
     assert conjugation.root_type(radicals).startswith(expected)
+
+
+@pytest.mark.parametrize("form, past, present", [("II", "ضَرَّرَ", "يُضَرِّرُ"), ("V", "تَضَرَّرَ", "يَتَضَرَّرُ"), ("I-nasara", "ضَرَّ", "يَضُرُّ")])
+def test_a_doubled_middle_letter_keeps_the_pair_apart(form: str, past: str, present: str) -> None:
+    # ضَرَّرَ: Forms II and V double the middle letter itself, so the last two never merge
+    cells = dict(conjugation.row_cells("ضرر", form, 0))
+    assert (cells["madi"], cells["mudari"]) == (past, present)

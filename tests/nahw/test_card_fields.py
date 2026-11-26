@@ -114,6 +114,7 @@ def test_a_particle_before_the_verb_keeps_the_sentence_verbal(sentence: str, ver
 
 # One card field each, found by typing the sentence in (backend/scripts/nahw/analyze.py).
 CARDS = [
+    ("عَضِّي عَلَيْهَا", 0, "role", "فعل"),  # عَضَّ يَعَضُّ: the fatha is its own command
     ("تَعَلَّمَهُ زَيْدٌ", 0, "case", "mabni"),  # the damma is the pronoun's, the verb stays past
     ("تَنَزَّلُ الْمَلَائِكَةُ وَالرُّوحُ فِيهَا", 0, "case", "raf'"),  # تَتَنَزَّلُ with one ت gone
     ("تَنَزَّلَ الْمَلَكُ", 0, "case", "mabni"),

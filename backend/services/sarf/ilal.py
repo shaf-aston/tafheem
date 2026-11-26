@@ -387,6 +387,9 @@ def doubled_letters_merge(letters: list[W.Letter], rule: dict, context: Context)
     first = second - 1
     if letters[first].letter != letters[second].letter or letters[first].radical != 2:
         return letters, None
+    if letters[first].doubled:
+        # ضَرَّرَ، تَضَرَّرَ: Forms II and V double the middle letter itself, so the pair is three letters and never merges
+        return letters, None
 
     note = None
     pausing = W.SUKUN in letters[second].marks
