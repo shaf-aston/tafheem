@@ -98,7 +98,8 @@ def pronoun_cut_off(a: dict) -> dict:
     from camel_tools.utils.dediac import dediac_ar
 
     atbtok, enc = a.get("atbtok") or "", str(a.get("enc0", ""))
-    if "_" in atbtok or not enc.endswith(("_poss", "_dobj", "_pron")):
+    # فَتُحَدِّثَنَا: a joined فَ split off the front leaves the pronoun at the end still unsplit
+    if atbtok.split("_")[-1].startswith("+") or not enc.endswith(("_poss", "_dobj", "_pron")):
         return a
     letters = dediac_ar(atbtok)
     starts = [i for i, ch in enumerate(atbtok) if dediac_ar(ch)]  # where each letter, not a mark, stands
@@ -152,6 +153,9 @@ def split_word(word: str, a: dict) -> list[dict]:
         # يَفُوتُنا: tagged as one verb, the verb keeps its tags and the pronoun is a noun
         coarse = a.get("catib6") or _POS_TO_CATIB6.get(a.get("pos", ""), "NOM")
         a = {**cut, "catib6": f"{coarse}+NOM", "ud": f"{a.get('ud', coarse) if a.get('catib6') else coarse}+PRON"}
+    elif (cut := pronoun_cut_off(a)) is not a and len(a["catib6"].split("+")) == len(a["atbtok"].split("_")):
+        # فَتُحَدِّثَنَا: its joined فَ tagged and split, the pronoun at the end left in the verb; it takes a noun's tags too
+        a = {**cut, "catib6": a["catib6"] + "+NOM", "ud": a.get("ud", "") + "+PRON"}
     if not a.get("catib6") or "atbtok" not in a:
         # The analyzer found nothing for this word; its pick's own tag is all
         # there is, so it is reported as a single unsplit token.
