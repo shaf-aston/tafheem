@@ -45,7 +45,7 @@ import SourceBadge from '../ui/feedback/SourceBadge'
 
 /** How the three kinds of nothing are told apart. Never one sentence for all. */
 const NOTHING = {
-  [MISSING]: 'The dictionaries are not built on this machine yet. Run backend/scripts/dictionary/build_lexicons.py.',
+  [MISSING]: 'This dictionary is not available right now.',
   [BROKEN]: 'The dictionaries are here but could not be read. The rest of the page is unaffected.',
   [READY]: 'None of these books has an entry under these letters.',
 }
@@ -145,7 +145,7 @@ function BookEntry({ entry, root, accent }) {
 
         {entry.book_root && (
           <p className="type-small text-[var(--text-faint)]">
-            Nothing under {root}; this is the entry the book files under{' '}
+            Nothing under <ArabicText size="tiny">{root}</ArabicText>; this is the entry the book files under{' '}
             <ArabicText size="tiny">{entry.book_root}</ArabicText>.
           </p>
         )}

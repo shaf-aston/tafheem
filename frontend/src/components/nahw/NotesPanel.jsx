@@ -126,6 +126,7 @@ export default function NotesPanel({ accent, topic: asked, onTamreen }) {
       {mode !== 'read' && (
         <div className="flex flex-wrap items-center gap-1.5" role="group" aria-label={mode === 'cards' ? 'What to ask' : 'What to hide'}>
           <span className="type-small text-[var(--text-faint)] me-1">{mode === 'cards' ? 'Ask me' : 'Hide'}</span>
+          {offered.length === 0 && <span className="type-small text-[var(--text-faint)]">This note marks no parts to hide.</span>}
           {offered.map((role) => (
             <Chip key={role.key} accent={accent} selected={hidden.has(role.key)} title={`${role.en}: ${role.hint}`} onClick={() => toggle(role.key)}>
               {role.en}

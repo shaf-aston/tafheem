@@ -143,7 +143,7 @@ function Body({
 
   // Asked and got no answer at all. Say so, rather than showing a loading bar
   // that never ends because nothing is still on its way.
-  if (healthFailed) {
+  if (healthFailed && !data?.meaning) {
     return (
       <ErrorAlert title="Couldn't reach the backend" onRetry={onRetryHealth}>
         Nothing can be said about <Letters value={asked} /> until the backend answers.
@@ -158,8 +158,7 @@ function Body({
     return (
       <Note>
         The Maqayees al-Lugha entries aren't on this machine yet, so there is nothing to show
-        here. This is not a statement about <Letters value={asked} />. Put the extracted file
-        in place, restart the backend, then reload this page.
+        here. This is not a statement about <Letters value={asked} />.
       </Note>
     )
   }

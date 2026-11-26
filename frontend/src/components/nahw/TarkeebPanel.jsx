@@ -14,6 +14,7 @@ import { useInView } from '../../lib/motion/useInView'
 import { useRemembered } from '../../lib/store/useRemembered'
 import { useTarkeebView } from '../../lib/nahw/useTarkeebView'
 
+import EmptyState from '../ui/feedback/EmptyState'
 import ArabicText from '../ui/text/ArabicText'
 import Chip from '../ui/inputs/Chip'
 import CopyButton from '../ui/buttons/CopyButton'
@@ -68,6 +69,7 @@ export default function TarkeebPanel({ accent, onWordByWord }) {
       )}
       {isPending && <Skeleton className="h-40" />}
 
+      {!isPending && !isError && books.length === 0 && <EmptyState>No book examples are filed yet.</EmptyState>}
       {books.length > 0 && (
         <>
           <div className="flex items-center justify-between gap-3 flex-wrap">
