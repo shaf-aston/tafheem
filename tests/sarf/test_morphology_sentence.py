@@ -244,6 +244,7 @@ def test_a_reading_in_the_other_voice_the_typed_vowels_contradict_does_not_stand
     assert not _voice_against({"asp": "p", "vox": "p"}, {"asp": "p", "vox": "a", "diac": "خَلَقَ"}, "خُلِقَ")  # a passive typed keeps the active
 
 
+@needs_camel
 def test_a_command_after_a_joined_fa_or_waw_keeps_its_own_lemma():
     # فَأْذَنُوا: the override's reading (أَذِنَ) is not read again off the whole list as a made-up فَأْذَنَ
     word = morphology.analyze_sentence("فَأْذَنُوا بِحَرْبٍ")[0]
