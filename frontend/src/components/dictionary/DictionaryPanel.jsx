@@ -214,14 +214,14 @@ export default function DictionaryPanel({ accent, incoming, arrival, onGo, onVis
       )}
 
       {!pageOpen && (
-        <>
+        <div aria-busy={mutation.isPending} className={`transition-opacity ${mutation.isPending && shown ? 'opacity-60' : ''}`}>
           {mutation.isPending && !shown && <AnalyzerSkeleton />}
 
           <AnswerFacts shown={shown} accent={accent} />
 
           {shown?.words && <SentenceMeaning data={shown} accent={accent} onGo={onGo} onLookup={submit} />}
           {shown?.results && <WordEntry data={shown} accent={accent} onGo={onGo} onLookup={submit} />}
-        </>
+        </div>
       )}
 
       {/* Under the word results, not above them: the meaning searched for is the
