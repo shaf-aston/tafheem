@@ -843,6 +843,7 @@ def test_a_merged_nun_shows_the_five_verbs_raf_only_when_the_root_has_no_nun(num
     ("إِنْ تَجْتَهِدُوا فَتَنْجَحُونَ", 2, "raf'", "ثبوت النون"),  # the nun kept: the ف ties the answer, a noun clause (V4, page unchecked)
     ("لَا تَكْذِبْ فَتَكُونَ مِنَ الْخَاسِرِينَ", 2, "nasb", "فتحة"),  # nearest case: one doer, the ن كَانَ's own
     ("وَلَا تَقْرَبَا هَذِهِ الشَّجَرَةَ فَتَكُونَا مِنَ الظَّالِمِينَ", 4, "nasb", "حذف النون"),  # 2:35, the pair's nun gone
+    ("لَنْ تَبْلُغُوا نَفْعِي فَتَنْفَعُونِي", 3, "nasb", "حذف النون"),  # its object stuck on: CAMeL's تَنْفَعُوا+نِي, no alef written
 ])
 def test_a_present_verb_whose_nun_went_after_a_fa_is_in_nasb(sentence: str, at: int, case: str, sign: str):
     word = _read(sentence)["words"][at]
