@@ -210,7 +210,7 @@ export default function DictionaryPanel({ accent, incoming, arrival, onGo, onVis
       )}
 
       {!pageOpen && mutation.isError && (
-        <ErrorAlert title="Search failed" error={mutation.error} fallback="The dictionary file may not be installed yet." onRetry={() => submit()} />
+        <ErrorAlert title="Search failed" error={mutation.error} fallback="Search is unavailable right now. Try again in a moment." onRetry={() => submit()} />
       )}
 
       {!pageOpen && (
