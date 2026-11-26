@@ -180,6 +180,8 @@ def base_of(word: str, atbtok: str | None) -> str:
     joined = "".join(p[:-1] for p in pieces if p.endswith("+"))
     pronoun = "".join(p[1:] for p in pieces if p.startswith("+"))
     stem = next((p for p in pieces if "+" not in p), "")
+    if joined and pronoun and stem.endswith("وا"):
+        stem = stem[:-1]  # تَنْفَعُونِي: the plural's alef is not written before a pronoun (فَ+_تَنْفَعُوا_+نِي)
     middle = bare[len(joined):len(bare) - len(pronoun)]
     # the split is used only where its joined letters are the reader's own and the rest
     # opens with CAMeL's stem (أَخ for أخي); a letter written once (لِ+ال as لل, عَلَى+يَ
