@@ -194,7 +194,7 @@ def _follows(token: dict, s: Sentence) -> str:
     # (رَجُلٌ حَسَنُ الْوَجْهِ: its صفة still), and the dictionary tags some describing words plain nouns (حَسَن), so only a
     # word added to what no describing word is added to in that way tells: a name, a pronoun, or أنْ with its sentence
     if head.get("stt") == "i" and head["pos"] != "PROP" and token.get("pos_camel") == "noun" and not is_describing(token) \
-            and same_case(token, head) and any(k["rel"] == "IDF" and (k["pos"] in ("PROP", "PRT") or "pron" in k.get("pos_camel", ""))
+            and not listed(token, "vague_nouns") and same_case(token, head) and any(k["rel"] == "IDF" and (k["pos"] in ("PROP", "PRT") or "pron" in k.get("pos_camel", ""))
                                                for k in s.kids(token)):
         return "badal"
     # مررت بزيدٍ هذا، فعله كبيرُهم هذا: a pointer stands for a describing word (المشار إليه), so it is
