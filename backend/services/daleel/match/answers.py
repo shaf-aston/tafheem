@@ -7,9 +7,8 @@ the books do not cover is told so instead of handed weak matches.
 """
 from __future__ import annotations
 
-import re
-
 from backend.services.daleel.index.row import IndexedPassage
+from backend.services.daleel.match.words import first_use
 from backend.services.daleel.query.expand import Expansion
 
 # The sources.json shelf whose entries define words rather than answer questions.
@@ -21,8 +20,8 @@ def share_of(row: IndexedPassage, expansion: Expansion, related_weight: float) -
 
     Each typed word found counts 1; a related word (a synonym, a translation)
     stands in for a missing one at `related_weight`. An English word must start
-    where a word starts: "mining" is not in "undermining". Arabic words may sit
-    anywhere, its prefixes being written joined on (بالصبر). A question of
+    where a word starts: "mining" is not in "undermining". What counts as a use
+    is `words.first_use`, the rule ranking and marking share. A question of
     several words needs at least one of them in the passage itself, or one
     word's loose translations pile up into a pass ("quantum physics").
     """
@@ -30,9 +29,7 @@ def share_of(row: IndexedPassage, expansion: Expansion, related_weight: float) -
     text = f"{fold} {english.lower()}"
 
     def found(term: str) -> bool:
-        if term.isascii():
-            return re.search(rf"(?<![a-z']){re.escape(term)}", text) is not None
-        return term in text
+        return first_use(term, text) >= 0
 
     typed = expansion.typed
     if not typed:

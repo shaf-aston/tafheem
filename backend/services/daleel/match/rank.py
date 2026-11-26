@@ -73,12 +73,13 @@ def rank_of(row: IndexedPassage, expansion: Expansion) -> Rank:
     # the Arabic alone would rank every one of their passages as a bad match.
     fold = f"{fold} {english.lower()}"
 
-    present = [term for term in expansion.typed if first_use(term, fold) >= 0]
-    also = [term for term in expansion.related if first_use(term, fold) >= 0]
+    first_at = {term: first_use(term, fold) for term in (*expansion.typed, *expansion.related)}
+    present = [term for term in expansion.typed if first_at[term] >= 0]
+    also = [term for term in expansion.related if first_at[term] >= 0]
 
-    if expansion.phrase and first_use(expansion.phrase, fold) >= 0:
+    if expansion.phrase and (phrase_at := first_use(expansion.phrase, fold)) >= 0:
         # The words as typed, in order, beat the same words anywhere.
-        return (Tier.EXACT, -PHRASE, first_use(expansion.phrase, fold), len(fold))
+        return (Tier.EXACT, -PHRASE, phrase_at, len(fold))
     if expansion.typed and len(present) == len(expansion.typed):
         tier = Tier.EXACT
     elif present:
@@ -103,7 +104,7 @@ def rank_of(row: IndexedPassage, expansion: Expansion) -> Rank:
     matched = present or also
     whole = sum(next(uses(term, fold, whole=True), None) is not None for term in matched)
 
-    first = min((first_use(term, fold) for term in matched), default=len(fold))
+    first = min((first_at[term] for term in matched), default=len(fold))
     return (tier, -whole, first, len(fold))
 
 
