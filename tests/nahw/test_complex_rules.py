@@ -197,6 +197,18 @@ def test_an_object_written_on_a_whole_verb(sentence, has_object):
     assert ("مفعول به" in _parts(sentence, 2)) == has_object
 
 
+# فَتُحَدِّثَنَا، فَيَفُوتُنَا: a joined فَ split off the front still leaves the pronoun on the end to cut off, so the fatha
+# before نا is the verb's nasb (فاء السببية) or nothing, never the fatha of a passive, and a raf' verb keeps its raf'.
+@needs_parser
+@pytest.mark.parametrize("sentence, index, role, case", [
+    ("مَا تَأْتِينَا فَتُحَدِّثَنَا", 2, "فعل", "nasb"),
+    ("فَيَفُوتُنَا", 0, "فعل", "raf'"),
+])
+def test_a_pronoun_after_a_joined_fa_is_cut_off(sentence, index, role, case):
+    word = analyze(sentence)["words"][index]
+    assert (word["role"], word["case"]) == (role, case)
+
+
 # No verb puts the word after it in jarr, only a preposition or a مضاف does (Ibn Aqil V1 p15: بالجر), so قَاضِي before
 # a noun in jarr is the noun, never the command to a woman its letters also spell; before an object in nasb it is that
 # command, and a feminine plural's kasra is its nasb.
