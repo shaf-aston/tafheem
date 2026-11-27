@@ -44,6 +44,11 @@ export default function IraabAnalyzer({ accent, onGo, onVisit, analyse = null, m
   })
   const shown = analyze.data && !analyze.isPending
   const analysis = useMemo(() => analyze.data && fromAnalyzeResponse(analyze.data), [analyze.data])
+  // Edit or New: the box comes back with the cursor in it
+  const [focusBox, setFocusBox] = useState(false)
+  useEffect(() => {
+    if (focusBox && editing) { document.getElementById('iraab-input')?.focus(); setFocusBox(false) }
+  }, [focusBox, editing])
   // a new answer brings its sentence bar to the top of the screen, the chart right under it
   const bar = useRef(null)
   useEffect(() => {
@@ -71,8 +76,8 @@ export default function IraabAnalyzer({ accent, onGo, onVisit, analyse = null, m
   return (
     <div className="search-flow space-y-6">
       {shown && !editing ? (
-        <div ref={bar} className="scroll-mt-2"><SentenceBar sentence={analyze.data.sentence} onEdit={() => setEditing(true)}
-          onNew={() => { setSentence(''); analyze.reset(); practice.reset(); setEditing(true) }} /></div>
+        <div ref={bar} className="scroll-mt-2"><SentenceBar sentence={analyze.data.sentence} onEdit={() => { setEditing(true); setFocusBox(true) }}
+          onNew={() => { setSentence(''); analyze.reset(); practice.reset(); setEditing(true); setFocusBox(true) }} /></div>
       ) : (
       <QuestionForm>
         {/* The same field as Dictionary and Daleel, grown to a textarea: see

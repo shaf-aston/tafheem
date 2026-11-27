@@ -9,7 +9,7 @@ import { Fragment, useMemo } from 'react'
 
 import { isQuranic, joinedOn, joinsOn, seatSmallAlef } from '../../../lib/text/arabicText'
 import { roleVar } from '../../../lib/nahw/roleColors'
-import { GAP, kids, measure, pieces } from '../../../lib/nahw/tarkeebLayout'
+import { GAP, flat, kids, measure, pieces } from '../../../lib/nahw/tarkeebLayout'
 import { compact } from '../../../lib/nahw/tarkeebCompact'
 
 export default function TarkeebOutline({ tarkeeb, picked, onWord, detail }) {
@@ -28,7 +28,9 @@ export default function TarkeebOutline({ tarkeeb, picked, onWord, detail }) {
     const piece = tarkeeb.words[node.word]
     const cut = span.to > span.from
     const last = node.word === span.to
-    const names = (pieces(node) ?? [node]).filter((p) => p.role || p.gap)
+    // a word whose pieces make up another job (خبر = حرف جر + مجرور): that job first, then its pieces
+    const own = pieces(node) && !flat(node) && (node.role || node.label) ? [{ role: node.role || node.label, tone: node.tone }] : []
+    const names = [...own, ...(pieces(node) ?? [node]).filter((p) => p.role || p.gap)]
     const open = (e) => onWord?.(span.text, span.nth, e.currentTarget)
     const on = !span.hidden && picked === span.nth
     return (

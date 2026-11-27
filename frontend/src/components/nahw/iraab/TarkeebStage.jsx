@@ -7,7 +7,7 @@
  * answer opening under its own line; "Chart" shows the drawing too. "Full screen" fills
  * the screen with the chart and turns a phone sideways where the browser lets it.
  */
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 
 import { align, layout } from '../../../lib/nahw/tarkeebLayout'
@@ -63,11 +63,25 @@ export default function TarkeebStage({ data, kind, glosses, onMore, onLookup, fo
     document.addEventListener('fullscreenchange', left)
     return () => document.removeEventListener('fullscreenchange', left)
   }, [])
+  // full screen is modal: focus moves in, and back to its button on leaving (the page is not made inert: a word's full card opens there, on top)
+  const opener = useRef(null)
+  const closer = useRef(null)
   useEffect(() => {
     if (!full) return undefined
-    const esc = (e) => { if (e.key === 'Escape') leaveFull() }
+    const back = document.activeElement
+    closer.current?.focus()
+    // a word's own card opened on top takes its Esc for itself
+    const esc = (e) => {
+      if (e.key === 'Escape' && !e.defaultPrevented && !document.querySelector('dialog[open]')) leaveFull()
+    }
     addEventListener('keydown', esc)
-    return () => removeEventListener('keydown', esc)
+    return () => {
+      removeEventListener('keydown', esc)
+      ;(opener.current ?? back)?.focus?.()
+      // left by navigating away too: give the browser's full screen and the turned screen back
+      if (document.fullscreenElement) document.exitFullscreen().catch(() => {})
+      screen.orientation?.unlock?.()
+    }
   }, [full])
 
   const detail = word && (
@@ -75,7 +89,7 @@ export default function TarkeebStage({ data, kind, glosses, onMore, onLookup, fo
       onMore={() => onMore(word)} onLookup={() => onLookup?.(pick.text)} />
   )
   const fullButton = (
-    <button type="button" onClick={enterFull}
+    <button type="button" ref={opener} onClick={enterFull}
       className="press tap shrink-0 inline-flex items-center gap-1.5 px-3 py-2 type-label rounded-[var(--radius-md)] border border-[var(--border)] text-[var(--text-dim)]">
       <span aria-hidden="true">⤢</span> Full screen
     </button>
@@ -117,7 +131,7 @@ export default function TarkeebStage({ data, kind, glosses, onMore, onLookup, fo
 
       {/* on the page's body: inside the card, its rise-in transform would pin it to the card, not the screen */}
       {full && createPortal(
-        <div className="tks-full" role="dialog" aria-label="Tarkeeb, full screen">
+        <div className="tks-full" role="dialog" aria-modal="true" aria-label="Tarkeeb, full screen">
           <div className="tks-full-bar">
             <span className="type-label text-[var(--text-faint)] tks-turn min-w-0 truncate">⟳ Turn sideways</span>
             <div role="group" aria-label="Zoom" className="ms-auto shrink-0 flex items-center gap-1">
@@ -128,7 +142,7 @@ export default function TarkeebStage({ data, kind, glosses, onMore, onLookup, fo
               <button type="button" className="press tap tks-zoom" aria-label="Zoom in" disabled={zoom === ZOOMS.length - 1}
                 onClick={() => setZoom((z) => Math.min(ZOOMS.length - 1, z + 1))}>+</button>
             </div>
-            <button type="button" onClick={leaveFull} aria-label="Close full screen"
+            <button type="button" ref={closer} onClick={leaveFull} aria-label="Close full screen"
               className="press tap shrink-0 whitespace-nowrap px-3 py-2 type-label rounded-[var(--radius-md)] border border-[var(--border)] text-[var(--text)]">
               Close ✕
             </button>

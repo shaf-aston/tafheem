@@ -67,6 +67,25 @@ describe('TarkeebStage', () => {
     expect(within(document.querySelector('aside[aria-live]')).getByText(/القاعدة: المبتدأ مرفوع/)).toBeTruthy()
   })
 
+  it('lets a card opened on top take Esc, leaving full screen open', () => {
+    media({ wide: true })
+    render(stage())
+    fireEvent.click(screen.getByRole('button', { name: /Full screen/ }))
+    const sheet = document.createElement('dialog'); sheet.setAttribute('open', ''); document.body.append(sheet)
+    fireEvent.keyDown(window, { key: 'Escape' })
+    expect(screen.getByRole('dialog', { name: 'Tarkeeb, full screen' })).toBeTruthy()
+    sheet.remove()
+  })
+
+  it('names a word\'s own job in the list when its pieces make up another', () => {
+    media({ upright: true })
+    const tree = { words: ['زَيْدٌ', 'فِيهِ'], tree: { label: 'جُمْلَةٌ اِسْمِيَّةٌ', children: [leaf('مبتدأ', 0),
+      { role: 'خبر', word: 1, children: [], parts: [{ role: 'حرف جر' }, { role: 'مجرور' }] }], parts: [] } }
+    render(stage({ words: [word('زَيْدٌ', 'مبتدأ'), word('فِيهِ', 'خبر')], tree }))
+    const row = screen.getAllByRole('button', { expanded: false })[1]
+    expect(row.textContent).toMatch(/خبر.*حرف جر.*مجرور/)
+  })
+
   it('forgets the tapped word when a new sentence comes', () => {
     media({ wide: true })
     const { rerender } = render(stage())
@@ -104,8 +123,10 @@ describe('TarkeebStage', () => {
     fireEvent.click(fit)
     expect(full.querySelector('.tkc-zoomed')).toBeNull()
 
+    expect(document.activeElement).toBe(within(full).getByRole('button', { name: 'Close full screen' }))
     fireEvent.keyDown(window, { key: 'Escape' })
     expect(screen.queryByRole('dialog')).toBeNull()
+    expect(document.activeElement).toBe(screen.getByRole('button', { name: /Full screen/ }))
   })
 
   it('opens full screen at the fitted size again after a zoom', () => {

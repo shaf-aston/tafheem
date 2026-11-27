@@ -58,4 +58,13 @@ describe('Nahw answer', () => {
     expect(await screen.findByText('1. What is the khabar?')).toBeTruthy()
     expect(screen.getByRole('button', { name: 'New questions' })).toBeTruthy()
   })
+
+  it('puts the cursor back in the box, sentence kept, on Edit', async () => {
+    renderScreen(<IraabAnalyzer analyse={SENTENCE} />, { routes })
+    await screen.findByText('A useful book, this')
+    fireEvent.click(screen.getByRole('button', { name: 'Edit' }))
+    const box = document.getElementById('iraab-input')
+    expect(document.activeElement).toBe(box)
+    expect(box.value).toBe(SENTENCE)
+  })
 })
