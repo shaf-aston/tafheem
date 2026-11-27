@@ -9,6 +9,7 @@ import Gardaan from './Gardaan'
 import InfoCard from './InfoCard'
 import MeaningCard from './MeaningCard'
 import TableNote from './TableNote'
+import { isOneArabicWord } from '../../lib/text/arabicText'
 
 /** Everything the word's answer holds: the facts, the meaning and the gardaan. */
 export default function SarfResult({ data, loading, meaningPending, meaningFailed, onRetryMeaning, swapPending, swapError, onRetrySwap, accent, onForm, onGo }) {
@@ -50,6 +51,7 @@ export default function SarfResult({ data, loading, meaningPending, meaningFaile
             meaning={data.meaning}
             pending={meaningPending}
             failed={meaningFailed}
+            asked={Boolean(data.meaning) || isOneArabicWord(data.word)}
             onRetry={onRetryMeaning}
             root={data.root}
             onGo={onGo}

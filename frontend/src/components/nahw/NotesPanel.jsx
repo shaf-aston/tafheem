@@ -41,7 +41,9 @@ export default function NotesPanel({ accent, topic: asked, onTamreen }) {
 
   const [savedMode, rememberMode] = useRemembered('notes-mode', MODE_IDS)
   const [mode, setModeNow] = useState(() => readViewParam('notes-mode', MODE_IDS) ?? savedMode)
-  const setMode = (id) => { setModeNow(id); rememberMode(id) }
+  // Set when a card sent the reader into the notes, so a way back sits beside them.
+  const [fromCards, setFromCards] = useState(false)
+  const setMode = (id) => { setModeNow(id); rememberMode(id); setFromCards(false) }
 
   const [savedTopic, rememberTopic] = useRemembered('notes-topic')
   const [topicId, setTopicNow] = useState(() => asked ?? readViewParam('note') ?? savedTopic)
@@ -99,6 +101,7 @@ export default function NotesPanel({ accent, topic: asked, onTamreen }) {
   const reveal = (key) => setShownNow({ scope, keys: new Set(NOTES.revealStays ? [...revealed, key] : [key]) })
   const goToPage = (page) => {
     setMode('read')
+    setFromCards(true)
     requestAnimationFrame(() => scrollToEl(document.getElementById(`note-page-${page}`), 'top'))
   }
 
@@ -126,7 +129,7 @@ export default function NotesPanel({ accent, topic: asked, onTamreen }) {
       {mode !== 'read' && (
         <div className="flex flex-wrap items-center gap-1.5" role="group" aria-label={mode === 'cards' ? 'What to ask' : 'What to hide'}>
           <span className="type-small text-[var(--text-faint)] me-1">{mode === 'cards' ? 'Ask me' : 'Hide'}</span>
-          {offered.length === 0 && <span className="type-small text-[var(--text-faint)]">This note marks no parts to hide.</span>}
+          {offered.length === 0 && <span className="type-small text-[var(--text-faint)]">{mode === 'cards' ? 'This note marks no parts to ask about.' : 'This note marks no parts to hide.'}</span>}
           {offered.map((role) => (
             <Chip key={role.key} accent={accent} selected={hidden.has(role.key)} title={`${role.en}: ${role.hint}`} onClick={() => toggle(role.key)}>
               {role.en}
@@ -172,6 +175,11 @@ export default function NotesPanel({ accent, topic: asked, onTamreen }) {
               </div>
             )
           })}
+        </div>
+      )}
+      {fromCards && mode === 'read' && (
+        <div className="sticky bottom-4 flex justify-end">
+          <SmallButton onClick={() => setMode('cards')}>Back to the cards</SmallButton>
         </div>
       )}
       <TopicSteps topics={topics} current={topic.id} onPick={setTopic} />
