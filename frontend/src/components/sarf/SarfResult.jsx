@@ -64,7 +64,9 @@ export default function SarfResult({ data, loading, meaningPending, swapPending,
         </div>
       )}
 
-      {!data.table && data.table_note && <TableNote accent={accent}>{data.table_note}</TableNote>}
+      {!data.table && !loading && (data.table_note || !Object.keys(data.form_options ?? {}).length) && (
+        <TableNote accent={accent}>{data.table_note || 'No conjugation recorded for this word.'}</TableNote>
+      )}
       {/* Gardaan draws the form picker with no grid when table is null, so a
           word with no recorded باب still lets the reader pick one. */}
       {(data.table || Object.keys(data.form_options ?? {}).length > 0) && (

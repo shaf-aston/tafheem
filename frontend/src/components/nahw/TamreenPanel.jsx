@@ -38,7 +38,7 @@ export default function TamreenPanel({ accent, onProgress, onNotes }) {
   if (isPending) {
     return (
       <div className="space-y-3">
-        <Segmented value={mode} onChange={setMode} accent={accent} options={MODES} className="w-fit" />
+        <Segmented label="How to use Tamreen" value={mode} onChange={setMode} accent={accent} options={MODES} className="w-fit" />
         <AnalyzerSkeleton />
       </div>
     )
@@ -54,7 +54,7 @@ export default function TamreenPanel({ accent, onProgress, onNotes }) {
 
   return (
     <div className="space-y-3">
-      <Segmented value={mode} onChange={setMode} accent={accent} options={MODES} className="w-fit" />
+      <Segmented label="How to use Tamreen" value={mode} onChange={setMode} accent={accent} options={MODES} className="w-fit" />
       {mode === 'practise'
         ? <TamreenPractise exercises={data.exercises} tags={data.tags} accent={accent} onProgress={onProgress} onNotes={onNotes} />
         : <TamreenBrowse exercises={data.exercises} tags={data.tags} coverage={data.coverage} accent={accent} />}

@@ -62,12 +62,11 @@ export default function SenseBands({ definitions, synonyms, accent, onLookup }) 
             style={{ borderColor: b.words.length ? accent : 'transparent' }}
             className="flex flex-col justify-center gap-1.5 ps-3 border-s-2 leading-snug"
           >
-            {b.words.map(({ word, meaning }) => (
-              <button
+            {b.words.map(({ word, meaning }) => { const Word = meaning ? 'button' : 'span'; return (
+              /* A word with no entry would only search into "No entries", so it is plain text. */
+              <Word
                 key={word}
-                type="button"
-                onClick={() => onLookup(word)}
-                title={meaning || 'No entry for this word; press to search for it'}
+                {...(meaning ? { type: 'button', onClick: () => onLookup(word), title: meaning } : {})}
                 /* No underline: a dotted line under every word made the column
                    a wall of stitching. The pointer and the brightening on
                    hover say it is pressable, like the chips do. */
@@ -80,8 +79,8 @@ export default function SenseBands({ definitions, synonyms, accent, onLookup }) 
                 <span className={`type-body text-[var(--text-faint)] group-hover:text-[var(--text-dim)] group-focus-visible:text-[var(--text-dim)] transition-colors ${meaning ? '' : 'italic'}`}>
                   {plainPronunciation(synonymGloss(meaning)) || 'not in the dictionary'}
                 </span>
-              </button>
-            ))}
+              </Word>
+            )})}
           </div>
         </Fragment>
       ))}
