@@ -16,7 +16,7 @@ import { Skeleton } from '../ui/feedback/Skeleton'
  * who wants the rest of that entry, so the card is the short answer and the
  * button is the long one.
  */
-export default function MeaningCard({ meaning, pending, failed, onRetry, root, onGo, accent, i }) {
+export default function MeaningCard({ meaning, pending, failed, onRetry, asked = true, root, onGo, accent, i }) {
   return (
     <div
       dir="ltr"
@@ -38,7 +38,10 @@ export default function MeaningCard({ meaning, pending, failed, onRetry, root, o
       {!meaning && !pending && failed && (
         <div className="flex items-center gap-1.5 type-small text-[var(--danger)]">Couldn't load the meaning just now.<RetryButton onClick={onRetry} /></div>
       )}
-      {!meaning && !pending && !failed && (
+      {!meaning && !pending && !failed && !asked && (
+        <div className="type-small text-[var(--text-faint)]">Meanings are looked up one word at a time.</div>
+      )}
+      {!meaning && !pending && !failed && asked && (
         <div className="type-small text-[var(--text-faint)]">No dictionary entry for this word.</div>
       )}
 
