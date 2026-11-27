@@ -1,0 +1,9 @@
+{
+  "_comment": "The Reader tab's knobs (components/reader).",
+  "_page_margin_comment": "Space left under a page shown whole, in px. The page fills the screen between the book's controls (brought up under the app's header when a book opens) and the phone's tab bar, less this.",
+  "page-margin-px": 16,
+  "_swipe_comment": "How far a finger must slide sideways across the page, in px, to turn it on a touch screen.",
+  "swipe-px": 50,
+  "_remove_comment": "How long a book's Remove button waits for its second press, in ms, before going back to plain Remove.",
+  "remove-confirm-ms": 3000
+}

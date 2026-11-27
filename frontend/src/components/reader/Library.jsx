@@ -2,9 +2,20 @@
  * The books on this device, last opened first, each reopened at its page.
  * Says plainly where they live: clearing the browser's data clears them too.
  */
+import { useEffect, useState } from 'react'
+
+import knobs from '../../config/reader.json'
+
 import SmallButton from '../ui/buttons/SmallButton'
 
 export default function Library({ books, onOpen, onRemove }) {
+  // Removing deletes the stored file, so it takes a second press; the first only asks.
+  const [asking, setAsking] = useState(null)
+  useEffect(() => {
+    if (!asking) return
+    const wait = setTimeout(() => setAsking(null), knobs['remove-confirm-ms'])
+    return () => clearTimeout(wait)
+  }, [asking])
   return (
     <section className="space-y-3" aria-label="Your books">
       <ul className="divide-y divide-[var(--border)] border-y border-[var(--border)]">
@@ -14,7 +25,12 @@ export default function Library({ books, onOpen, onRemove }) {
               <span className="block type-body text-[var(--text)] truncate">{book.name}</span>
               <span className="block type-small text-[var(--text-faint)]">Page {book.page}</span>
             </button>
-            <SmallButton onClick={() => onRemove(book)} aria-label={`Remove ${book.name}`}>Remove</SmallButton>
+            <SmallButton
+              onClick={() => (asking === book.id ? onRemove(book) : setAsking(book.id))}
+              aria-label={asking === book.id ? `Press again to remove ${book.name}` : `Remove ${book.name}`}
+            >
+              {asking === book.id ? 'Remove it?' : 'Remove'}
+            </SmallButton>
           </li>
         ))}
       </ul>
