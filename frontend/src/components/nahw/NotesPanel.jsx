@@ -105,7 +105,7 @@ export default function NotesPanel({ accent, topic: asked, onTamreen }) {
     requestAnimationFrame(() => {
       const deck = document.getElementById('note-deck')
       scrollToEl(deck, 'top')
-      deck?.querySelector('[data-main] button, [data-main]')?.focus({ preventScroll: true })
+      (deck?.querySelector('[data-main] button') ?? deck?.querySelector('[data-main]'))?.focus({ preventScroll: true })
     })
   }
   const goToPage = (page) => {
