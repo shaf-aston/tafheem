@@ -362,6 +362,15 @@ def test_idha_past_a_jussive_particle_still_opens_a_condition():
     assert words[0]["role"] == "مفعول فيه"
 
 
+@pytest.mark.parametrize("sentence, nasbed", [
+    ("أَلَّا تَنَازَعُوا", True),    # أنْ merged into لا: the present after it in nasb
+    ("أَلَا تَنَازَعُوا", False),    # أَلَا that opens speech leaves it marfu
+])
+def test_alla_puts_the_present_in_nasb(sentence: str, nasbed: bool):
+    verb = iraab.analyze(sentence, recorded=False)["words"][-1]
+    assert ("حذف النون" in str(verb)) is nasbed
+
+
 @pytest.mark.parametrize("sentence, want", [
     # a command and its object pronoun the dictionary has no reading of: اِهْدِنَا is هَدَى + نا
     ("اِهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ", ["فعل", "مفعول به", "صفة"]),

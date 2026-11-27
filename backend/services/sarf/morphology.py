@@ -1036,7 +1036,7 @@ def _present_after_its_particle(p: _Picked) -> None:
         if i and (wants := _wants_present(before, out[i])) and (present := _present_reading(tokens[i], steps[i][1])) \
                 and (wants == "nasb" or reading_root(present) == reading_root(out[i])):
             out[i] = present
-        elif _one_taa_written(before, out[i], tokens[i], i > 0 and expects.verb_after(tokens, out, i) == "nasb") \
+        elif _one_taa_written(before, out[i], tokens[i], i > 0 and (expects.verb_after(tokens, out, i) == "nasb" or _merged_nasb(tokens[i - 1]))) \
                 and not _la_before_a_past(out, i) and (present := _both_taas(out[i], tokens[i], disambiguator)):
             out[i] = present
 
@@ -1111,6 +1111,12 @@ def _one_taa_written(before: dict, reading: dict, token: str, nasbed: bool = Fal
     return reading.get("pos") == "verb" and reading.get("asp") == "p" \
         and (raised or (lam or nasbed or lemma in book_words("jazm") - takes_a_past) and ending) \
         and str(reading.get("pattern") or "")[len("لَ") if lam else 0:].startswith("تَ")
+
+
+def _merged_nasb(token: str) -> bool:
+    """أَلَّا تَنَازَعُوا: أنْ with its nun merged into لا (data: nasb_mudari `merges`), the shadda on its lam telling it
+    from أَلَا that opens speech, puts the present after it in nasb as لَنْ does."""
+    return SHADDA in token and strip_diacritics(token) in book_map("nasb_mudari", "merges")
 
 
 def _la_before_a_past(out: list[dict], i: int) -> bool:
