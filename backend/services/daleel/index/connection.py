@@ -31,11 +31,12 @@ def is_built() -> bool:
     run a command about a table they have never heard of.
     """
     conn = db()
-    if conn is None:
-        return False
+    return conn is not None and db.per_build(conn, _has_meta)
+
+
+def _has_meta(conn: sqlite3.Connection) -> bool:
     if has_table(conn, "passage_meta"):
         return True
-
     log.warning("this index has no passage_meta table, so no search can run; "
                 "run: python backend/scripts/daleel/build_daleel_index.py --meta")
     return False
