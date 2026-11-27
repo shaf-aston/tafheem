@@ -8,8 +8,8 @@ import { useEffect, useRef, useState } from 'react'
 
 import Stepper from '../ui/inputs/Stepper'
 
-export default function BookView({ book, name }) {
-  const [page, setPage] = useState(1)
+export default function BookView({ book, name, start = 1, onPage }) {
+  const [page, setPage] = useState(Math.min(start, book.pages))
   const [failed, setFailed] = useState(false)
   const [width, setWidth] = useState(0)
   const frame = useRef(null)
@@ -27,6 +27,8 @@ export default function BookView({ book, name }) {
   useEffect(() => {
     if (width) book.draw(page, canvas.current, width).then(() => setFailed(false), () => setFailed(true))
   }, [book, page, width])
+
+  useEffect(() => { onPage?.(page) }, [onPage, page])
 
   useEffect(() => {
     const key = (event) => {
