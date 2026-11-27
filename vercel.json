@@ -74,7 +74,7 @@
       "claude/*": false
     }
   },
-  "ignoreCommand": "git diff --quiet ${VERCEL_GIT_PREVIOUS_SHA:-HEAD^} HEAD -- frontend vercel.json backend/data/hadith/chain.json",
+  "ignoreCommand": "git cat-file -e ${VERCEL_GIT_PREVIOUS_SHA:-HEAD^} 2>/dev/null || exit 1; git diff --quiet ${VERCEL_GIT_PREVIOUS_SHA:-HEAD^} HEAD -- frontend vercel.json backend/data/hadith/chain.json",
   "redirects": [
     {
       "source": "/app/:path+",
