@@ -16,7 +16,7 @@ import EmptyState from '../ui/feedback/EmptyState'
 import BookView from './BookView'
 
 export default function ReaderPanel() {
-  const [open, setOpen] = useState(null) // { book, name }
+  const [open, setOpen] = useState(null) // { book, name, id }
   const [error, setError] = useState('')
   const [opening, setOpening] = useState(false)
   const input = useRef(null)
@@ -27,7 +27,7 @@ export default function ReaderPanel() {
     setOpening(true)
     setError('')
     try {
-      setOpen({ book: await openPdf(file), name: file.name })
+      setOpen({ book: await openPdf(file), name: file.name, id: Date.now() })
     } catch {
       setError(`${file.name} could not be opened as a PDF.`)
     } finally {
@@ -56,7 +56,7 @@ export default function ReaderPanel() {
       </div>
       {error && <p role="alert" className="type-body text-[var(--text-dim)]">{error}</p>}
       {open
-        ? <BookView key={open.name} book={open.book} name={open.name} />
+        ? <BookView key={open.id} book={open.book} name={open.name} />
         : <EmptyState detail="It opens on this device and is never uploaded.">Open a PDF to read it here.</EmptyState>}
     </div>
   )

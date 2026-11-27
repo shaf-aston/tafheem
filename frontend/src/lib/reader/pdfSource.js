@@ -12,7 +12,8 @@ GlobalWorkerOptions.workerSrc = worker
 
 /** Open a PDF File. Resolves { pages, draw(n, canvas, width), close() }; rejects on a file that is no PDF. */
 export async function openPdf(file) {
-  const doc = await getDocument({ data: new Uint8Array(await file.arrayBuffer()) }).promise
+  const task = getDocument({ data: new Uint8Array(await file.arrayBuffer()) })
+  const doc = await task.promise
   let drawing = null
   return {
     pages: doc.numPages,
@@ -31,6 +32,6 @@ export async function openPdf(file) {
         if (error?.name !== 'RenderingCancelledException') throw error // a newer page took its place
       }
     },
-    close: () => doc.destroy(),
+    close: () => task.destroy(), // the loading task owns the worker; the document has no destroy of its own
   }
 }
