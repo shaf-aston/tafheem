@@ -11,28 +11,32 @@ import Stepper from '../ui/inputs/Stepper'
 export default function BookView({ book, name }) {
   const [page, setPage] = useState(1)
   const [failed, setFailed] = useState(false)
+  const [width, setWidth] = useState(0)
   const frame = useRef(null)
   const canvas = useRef(null)
   const back = page > 1 ? () => setPage(page - 1) : null
   const on = page < book.pages ? () => setPage(page + 1) : null
 
+  // Redrawn when the column's width changes, not its height: drawing a page sets the height.
   useEffect(() => {
-    const draw = () => book.draw(page, canvas.current, frame.current.clientWidth).then(() => setFailed(false), () => setFailed(true))
-    draw()
-    const resized = new ResizeObserver(draw)
+    const resized = new ResizeObserver(([entry]) => setWidth(Math.round(entry.contentRect.width)))
     resized.observe(frame.current)
     return () => resized.disconnect()
-  }, [book, page])
+  }, [])
+
+  useEffect(() => {
+    if (width) book.draw(page, canvas.current, width).then(() => setFailed(false), () => setFailed(true))
+  }, [book, page, width])
 
   useEffect(() => {
     const key = (event) => {
       if (event.target.closest('input, textarea, [contenteditable]')) return
-      if (event.key === 'ArrowLeft' && back) back()
-      if (event.key === 'ArrowRight' && on) on()
+      const step = { ArrowLeft: -1, ArrowRight: 1 }[event.key]
+      if (step) setPage((n) => Math.min(Math.max(n + step, 1), book.pages))
     }
     addEventListener('keydown', key)
     return () => removeEventListener('keydown', key)
-  })
+  }, [book])
 
   return (
     <div className="space-y-3">
