@@ -14,7 +14,6 @@ import { useInView } from '../../lib/motion/useInView'
 import { useRemembered } from '../../lib/store/useRemembered'
 import { useTarkeebView } from '../../lib/nahw/useTarkeebView'
 
-import EmptyState from '../ui/feedback/EmptyState'
 import ArabicText from '../ui/text/ArabicText'
 import Chip from '../ui/inputs/Chip'
 import CopyButton from '../ui/buttons/CopyButton'
