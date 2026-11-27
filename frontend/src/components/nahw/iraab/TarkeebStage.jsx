@@ -68,7 +68,7 @@ export default function TarkeebStage({ data, kind, glosses, onMore, onLookup, fo
   const closer = useRef(null)
   useEffect(() => {
     if (!full) return undefined
-    const back = document.activeElement
+    const back = opener.current ?? document.activeElement
     closer.current?.focus()
     // a word's own card opened on top takes its Esc for itself
     const esc = (e) => {
@@ -77,7 +77,7 @@ export default function TarkeebStage({ data, kind, glosses, onMore, onLookup, fo
     addEventListener('keydown', esc)
     return () => {
       removeEventListener('keydown', esc)
-      ;(opener.current ?? back)?.focus?.()
+      ;back?.focus?.()
       // left by navigating away too: give the browser's full screen and the turned screen back
       if (document.fullscreenElement) document.exitFullscreen().catch(() => {})
       screen.orientation?.unlock?.()
