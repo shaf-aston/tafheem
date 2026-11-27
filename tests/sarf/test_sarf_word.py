@@ -65,3 +65,9 @@ def test_a_template_asking_for_a_letter_the_root_does_not_have_is_loud() -> None
 def test_a_mark_with_nothing_to_sit_on_is_loud() -> None:
     with pytest.raises(ValueError, match="no letter"):
         W.build([("َ", W.PATTERN)], "كرم")
+
+
+def test_unknown_input_is_not_its_own_meaning():
+    """Two words the reader cannot gloss came back as the meaning, Arabic and all."""
+    from backend.services.sarf.answer import analyze
+    assert analyze("كتب الولد", None).meaning is None
