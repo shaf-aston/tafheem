@@ -27,12 +27,12 @@ describe('Nahw answer', () => {
   it('puts the English and the tools in the foot of the tree card', async () => {
     renderScreen(<IraabAnalyzer analyse={SENTENCE} />, { routes })
     const english = await screen.findByText('A useful book, this')
-    // The nearest box holding both the English and the tree: the tree's card, not the page.
-    let card = english
-    while (!card.querySelector('.tk-frame')) card = card.parentElement
+    // The tree's own card holds the English and the tools, not the page around it.
+    const card = english.closest('section[aria-label="Tarkeeb"]')
+    expect(card.querySelector('.tkc, .tko')).not.toBeNull()
     expect(card.querySelector('.word')).toBeNull()
     expect(card.contains(screen.getByRole('button', { name: 'Copy' }))).toBe(true)
-    expect(card.contains(screen.getByRole('button', { name: 'Show larger' }))).toBe(true)
+    expect(card.contains(screen.getByRole('button', { name: /Full screen/ }))).toBe(true)
   })
 
   it('does not write the whole sentence out again under the tree', async () => {
@@ -57,5 +57,14 @@ describe('Nahw answer', () => {
     fireEvent(row, new Event('toggle'))
     expect(await screen.findByText('1. What is the khabar?')).toBeTruthy()
     expect(screen.getByRole('button', { name: 'New questions' })).toBeTruthy()
+  })
+
+  it('puts the cursor back in the box, sentence kept, on Edit', async () => {
+    renderScreen(<IraabAnalyzer analyse={SENTENCE} />, { routes })
+    await screen.findByText('A useful book, this')
+    fireEvent.click(screen.getByRole('button', { name: 'Edit' }))
+    const box = document.getElementById('iraab-input')
+    expect(document.activeElement).toBe(box)
+    expect(box.value).toBe(SENTENCE)
   })
 })
