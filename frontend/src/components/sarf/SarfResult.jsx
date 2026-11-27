@@ -11,7 +11,7 @@ import MeaningCard from './MeaningCard'
 import TableNote from './TableNote'
 
 /** Everything the word's answer holds: the facts, the meaning and the gardaan. */
-export default function SarfResult({ data, loading, meaningPending, swapPending, swapError, onRetrySwap, accent, onForm, onGo }) {
+export default function SarfResult({ data, loading, meaningPending, meaningFailed, onRetryMeaning, swapPending, swapError, onRetrySwap, accent, onForm, onGo }) {
   // A card with nothing in it is just white space, so only the facts we have
   // get a card at all. Meaning is fetched separately and can still be on its
   // way even once the rest of this list is settled, so it gets a slot of its
@@ -41,7 +41,7 @@ export default function SarfResult({ data, loading, meaningPending, swapPending,
       </div>
 
       {/* Root first means root on the right, the way the rest of this tab reads. */}
-      {(facts.length > 0 || data.meaning || meaningPending) && (
+      {(facts.length > 0 || data.meaning || meaningPending || meaningFailed) && (
         <div dir="rtl" className="grid gap-3 grid-cols-[repeat(auto-fit,minmax(11rem,1fr))]">
           {facts.map((f, i) => (
             <InfoCard key={f.label} {...f} accent={accent} i={i} />
@@ -49,6 +49,8 @@ export default function SarfResult({ data, loading, meaningPending, swapPending,
           <MeaningCard
             meaning={data.meaning}
             pending={meaningPending}
+            failed={meaningFailed}
+            onRetry={onRetryMeaning}
             root={data.root}
             onGo={onGo}
             accent={accent}

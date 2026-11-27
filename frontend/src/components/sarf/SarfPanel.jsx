@@ -65,6 +65,8 @@ export default function SarfPanel({ accent, incoming, arrival, onGo, onVisit }) 
           data={data}
           loading={waiting}
           meaningPending={meaning.isPending}
+          meaningFailed={meaning.isError}
+          onRetryMeaning={() => meaning.refetch()}
           swapPending={swap.isPending}
           swapError={swap.isError ? errorMessage(swap.error) : null}
           onRetrySwap={retrySwap}

@@ -39,7 +39,8 @@ export default function NoteCards({ cards, accent, onPage }) {
   // The main button moves (Show, then Knew it, then the next Show); focus goes
   // with it so a keyboard reader can drill with Enter alone.
   const main = useRef(null)
-  useEffect(() => { main.current?.querySelector('button')?.focus() }, [at, turned])
+  const done = useRef(null)
+  useEffect(() => { (main.current?.querySelector('button') ?? done.current)?.focus() }, [at, turned])
 
   if (!cards.length) {
     return <EmptyState>Nothing on this topic is marked for the switches that are on. Turn another one on above.</EmptyState>
@@ -56,15 +57,18 @@ export default function NoteCards({ cards, accent, onPage }) {
     const again = () => { setDeck(missed); setMissed([]); setAt(0) }
     const after = from + NOTES.cardsPerRun
     const coming = runOf(cards, after)
+    const restart = () => { setFrom(0); setDeck(runOf(cards)); setMissed([]); setAt(0) }
     const next = () => { setFrom(after); setDeck(coming); setMissed([]); setAt(0) }
     return (
-      <div className="rounded-[var(--radius-md)] border border-[var(--border)] p-5 space-y-3 text-center">
+      // Takes focus: the Knew it button that had it is gone.
+      <div ref={done} tabIndex={-1} className="rounded-[var(--radius-md)] border border-[var(--border)] p-5 space-y-3 text-center outline-none">
         <p className="font-medium">
           {missed.length ? `${deck.length - missed.length} of ${deck.length} known` : `All ${deck.length} known`}
         </p>
         <div className="flex flex-wrap justify-center gap-2">
           {missed.length > 0 && <SmallButton onClick={again}>Again with the {missed.length} I missed</SmallButton>}
           {coming.length > 0 && <SmallButton onClick={next}>Next {coming.length} cards</SmallButton>}
+          {!missed.length && !coming.length && <SmallButton onClick={restart}>Start over</SmallButton>}
         </div>
       </div>
     )

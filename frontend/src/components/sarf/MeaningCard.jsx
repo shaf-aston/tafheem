@@ -1,5 +1,6 @@
 import RootActions from '../ui/buttons/RootActions'
 import ShowRest from '../ui/buttons/ShowRest'
+import RetryButton from '../ui/buttons/RetryButton'
 import { Skeleton } from '../ui/feedback/Skeleton'
 
 /**
@@ -15,7 +16,7 @@ import { Skeleton } from '../ui/feedback/Skeleton'
  * who wants the rest of that entry, so the card is the short answer and the
  * button is the long one.
  */
-export default function MeaningCard({ meaning, pending, root, onGo, accent, i }) {
+export default function MeaningCard({ meaning, pending, failed, onRetry, root, onGo, accent, i }) {
   return (
     <div
       dir="ltr"
@@ -34,7 +35,10 @@ export default function MeaningCard({ meaning, pending, root, onGo, accent, i })
       {!meaning && pending && <Skeleton className="h-4 w-2/3" />}
       {/* A gap stays a gap. The dictionary has no entry for plenty of real
           words, and Define is exactly the button for that case. */}
-      {!meaning && !pending && (
+      {!meaning && !pending && failed && (
+        <div className="flex items-center gap-1.5 type-small text-[var(--danger)]">Couldn't load the meaning just now.<RetryButton onClick={onRetry} /></div>
+      )}
+      {!meaning && !pending && !failed && (
         <div className="type-small text-[var(--text-faint)]">No dictionary entry for this word.</div>
       )}
 
