@@ -101,6 +101,15 @@ def place_clauses(c: Picture) -> None:
             job_of[token["id"]], place_of[token["id"]] = after_waw["job"], in_place(after_waw["case"])
             name_of[waw["id"]] = after_waw["waw"]
             framed.add(token["id"])
+    # جَاءَ زَيْدٌ أَخُوهُ يَرْكُضُ: a nominal sentence after the verb's known doer, with no و (repair.hal), hangs its
+    # مبتدأ on the verb beside that doer; it tells the doer's state, a حال as the sentence after و is
+    for token in drawn:
+        verb = by_id.get(token["head"])
+        if token["id"] in nominal and token["id"] not in place_of and token["rel"] == "SBJ" and verb and is_verb(verb) \
+                and (doer := next((t for t in drawn if t["head"] == verb["id"] and t["rel"] == "SBJ" and t["id"] < token["id"]), None)) \
+                and definite(doer):
+            job_of[token["id"]], place_of[token["id"]] = after_waw["job"], in_place(after_waw["case"])
+            framed.add(token["id"])
     # فَلْيَتَّقِ after الدِّينِ: a conjunction written onto the verb joins its sentence to the one before
     # (عطف جملة), it does not describe the noun beside it
     # (فَمِنَ النَّاسِ مَنْ يَقُولُ: on the sentence's first written word, when the khabar heading it is one no one writes)

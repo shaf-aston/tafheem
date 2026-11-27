@@ -382,6 +382,18 @@ def test_a_name_with_al_made_dual_or_plural(sentence: str, role: str, sign: str)
     assert (name["role"], name["sign"]) == (role, sign)
 
 
+@pytest.mark.parametrize("sentence", ["جَاءَ زَيْدٌ أَخُوهُ يَرْكُضُ", "قَامَ الْوَلَدُ أَبُوهُ يَضْحَكُ"])
+def test_a_nominal_sentence_with_no_waw_is_the_doers_hal(sentence: str):
+    r = iraab.analyze(sentence, recorded=False)
+    assert r["words"][2]["role"] == "مبتدأ"
+    clause = r["tree"]["tree"]["children"][2]
+    assert (clause["role"], clause["detail"]) == ("حال", "في محل نصب")
+
+
+def test_a_noun_with_its_pronoun_and_no_verb_after_stays_a_badal():
+    assert iraab.analyze("جَاءَ زَيْدٌ أَخُوهُ", recorded=False)["words"][2]["role"] == "بدل"
+
+
 @pytest.mark.parametrize("sentence, want", [
     # a command and its object pronoun the dictionary has no reading of: اِهْدِنَا is هَدَى + نا
     ("اِهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ", ["فعل", "مفعول به", "صفة"]),
