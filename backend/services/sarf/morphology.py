@@ -761,7 +761,7 @@ def _name_made_dual_or_plural(w: _Word) -> dict | None:
     marked, first = letters(w.token), w.first
     if len(marked) < 6 or bare_letters(w.token)[:2] != "ال" or first.get("pos") != "noun_prop" or first.get("num") in ("d", "p"):
         return None
-    (one, one_marks), (nun, nun_marks), before = marked[-2], marked[-1], marked[-3][1]
+    (one, _one_marks), (nun, nun_marks), before = marked[-2], marked[-1], marked[-3][1]
     if nun != "ن":
         return None
     dual, plural = one == "ا" or one == "ي" and (FATHA in before or "\u0650" in nun_marks), \
@@ -839,7 +839,7 @@ def _by_shape(w: _Word) -> dict | None:
 
 
 WORD_OVERRIDES = (_name_adding_fewer, _named_in_the_quran, _emphasis, _oath, _ma_in_jarr, _ma_kaffa, _ayy_ma, _a_particle,
-                  _hamza_seat, _by_shape, _command_after_joining, _name_made_dual_or_plural)
+                  _hamza_seat, _by_shape, _name_made_dual_or_plural, _command_after_joining)
 
 
 # ── Sentence passes: each reads the readings the words chose and changes the ones the sentence says ──

@@ -394,6 +394,12 @@ def test_a_noun_with_its_pronoun_and_no_verb_after_stays_a_badal():
     assert iraab.analyze("جَاءَ زَيْدٌ أَخُوهُ", recorded=False)["words"][2]["role"] == "بدل"
 
 
+def test_a_said_nominal_sentence_with_no_pronoun_is_not_a_hal():
+    # قَالَ زَيْدٌ إِنْ أَحَدٌ جَاءَنِي: the sentence after قال is what he said, not his state
+    clause = iraab.analyze("قَالَ زَيْدٌ إِنْ أَحَدٌ جَاءَنِي", recorded=False)["tree"]["tree"]["children"][2]
+    assert clause.get("role") != "حال"
+
+
 @pytest.mark.parametrize("sentence, want", [
     # a command and its object pronoun the dictionary has no reading of: اِهْدِنَا is هَدَى + نا
     ("اِهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ", ["فعل", "مفعول به", "صفة"]),
