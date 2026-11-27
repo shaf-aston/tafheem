@@ -3,7 +3,7 @@ from __future__ import annotations
 
 from backend.services.text.arabic_text import strip_diacritics
 from backend.services.nahw.syntax.facts import Sentence, is_name, listed, typed_case_of, typed_tanween, noun_tagged, verb_tagged
-from backend.services.nahw.syntax.mask import above
+from backend.services.nahw.syntax.facts import above
 
 
 def _under(token: dict, ancestor: dict, tokens: list[dict]) -> bool:

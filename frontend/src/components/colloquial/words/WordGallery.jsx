@@ -4,10 +4,9 @@
 // ones with none follow as short word tiles, so no big tile is left empty.
 import { useState } from 'react'
 
-import { grouped } from '../../../lib/colloquial/wordGroups'
+import { grouped, splitMet } from '../../../lib/colloquial/wordGroups'
 import Mosaic from '../topic/Mosaic'
 import Sheet from '../topic/Sheet'
-import { splitMet } from '../../../lib/colloquial/metWords'
 import MetWords from './MetWords'
 
 // Each heading's words split into its pictured run and its plain run, in that order.

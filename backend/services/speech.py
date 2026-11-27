@@ -222,7 +222,7 @@ class EdgeVoice(Voice):
         async def spoken() -> bytes:
             # Its aiohttp ignores the usual proxy variables unless handed one.
             talk = edge_tts.Communicate(text, self.speaker, rate=edge_rate(PACE * speed),
-                                        proxy=os.environ.get("HTTPS_PROXY") or os.environ.get("https_proxy"))
+                                        proxy=get_settings().https_proxy or None)
             return b"".join([part["data"] async for part in talk.stream() if part["type"] == "audio"])
 
         audio = asyncio.run(spoken())

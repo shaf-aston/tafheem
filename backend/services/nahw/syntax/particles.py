@@ -20,7 +20,7 @@ from backend.services.sarf.morphology import has_comparative
 from backend.services.nahw.book import (
     book_file, book_map, book_spelling, book_words, condition_of, family_cards, in_family, is_mabni, is_one, is_subject_pronoun, says)
 from backend.services.nahw.syntax import facts, walker
-from backend.services.nahw.syntax.mask import above
+from backend.services.nahw.syntax.facts import above
 
 
 def _lemma(token: dict) -> str:
@@ -401,10 +401,9 @@ def _khabar_past_sifa(i: int, explained: int, noun: dict, clause: list[int], s: 
     whole (وَاللَّهِ إِنْ أَحَدٌ زَارَكَ لَزَيْدٌ خَيْرٌ مِنْهُ), unless the لام's word stands alone, all after it its own
     words: an oath's answer is a whole sentence, never one noun (وَاللَّهِ إِنْ رَجُلٌ صَدَقَ لَنَاجٍ)."""
     tokens = s.tokens
-    heads = [t["head"] for t in tokens]
     word = tokens[i + 1]
     return tokens[explained]["head"] == noun["id"] and (facts.sworn_by(s) is None or all(
-        above(heads, tokens[j]["id"], word["id"]) for j in clause if j > i + 1))
+        s.under(tokens[j]["id"], word["id"]) for j in clause if j > i + 1))
 
 
 def _has_answer(at: int, token: dict, s: facts.Sentence) -> bool:
@@ -461,9 +460,8 @@ def _answers_bare(word: dict) -> bool:
 def _put_after(fronted: dict, clause: list[int], s: facts.Sentence) -> dict | None:
     """The noun a خبر put first leaves after it: the first word of the clause that does not hang under that جار or ظرف
     (إِنْ فِي الدَّارِ رَجُلًا)."""
-    heads = [t["head"] for t in s.tokens]
     return next((s.tokens[i] for i in clause
-                 if not facts.is_prefix(s.tokens[i]) and not above(heads, s.tokens[i]["id"], fronted["id"])), None)
+                 if not facts.is_prefix(s.tokens[i]) and not s.under(s.tokens[i]["id"], fronted["id"])), None)
 
 
 def _explained_at(noun: dict, clause: list[int], s: facts.Sentence) -> int | None:
@@ -520,10 +518,9 @@ def _kana_dropped(kept: dict, clause: list[int], s: facts.Sentence) -> bool:
     حَسَنٌ). A جار or ظرف after a noun in raf' may be its خبر, which makes a noun sentence (إِنْ أَحَدٌ فِي الدَّارِ فَخَرَجَ);
     after one typed in nasb it is only that noun's (إِنْ خَيْرًا مِنْ ذَلِكَ فَخُذْهُ)."""
     tokens = s.tokens
-    heads = [t["head"] for t in tokens]
     end = clause[-1] + 1
     return end < len(tokens) and tokens[end]["form"] == "ف+" and all(
-        above(heads, tokens[i]["id"], kept["id"]) and not (_jar_or_zarf(tokens[i], s) and not _shows_nasb(kept))
+        s.under(tokens[i]["id"], kept["id"]) and not (_jar_or_zarf(tokens[i], s) and not _shows_nasb(kept))
         for i in clause[1:])
 
 
@@ -916,7 +913,7 @@ def negation_settles_its_words(s: facts.Sentence) -> None:
         if facts.reading(ma) != "negation":
             continue
         verb = next((k for k in s.kids(ma) if k["id"] > ma["id"] and facts.is_verb(k)), None)  # by whatever relation it hangs
-        if not verb or above([t["head"] for t in tokens], ma["head"], verb["id"]):
+        if not verb or s.under(ma["head"], verb["id"]):
             continue
         for kid in s.kids(ma):
             s.relink(kid, verb["id"], kid["rel"])
