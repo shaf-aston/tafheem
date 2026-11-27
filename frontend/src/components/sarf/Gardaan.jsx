@@ -96,7 +96,8 @@ export default function Gardaan({ table, accent, form, options, onForm, swapPend
               so the reader turns on only the ones being studied. */}
 <div role="group" aria-label="Columns to show" dir="rtl" className="flex flex-wrap items-center gap-2">
             {columns.map((c) => (
-              <Chip key={c.id} tinted accent={accent} selected={shown.includes(c.id)} onClick={() => toggle(c.id)}>
+              <Chip key={c.id} tinted accent={accent} selected={shown.includes(c.id)} onClick={() => toggle(c.id)}
+                disabled={shown.length === 1 && shown.includes(c.id)} title={shown.length === 1 && shown.includes(c.id) ? 'One column always stays on' : undefined}>
                 {c.label}
               </Chip>
             ))}

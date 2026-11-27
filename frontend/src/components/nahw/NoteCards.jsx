@@ -40,10 +40,15 @@ export default function NoteCards({ cards, accent, onPage }) {
   // with it so a keyboard reader can drill with Enter alone.
   const main = useRef(null)
   const done = useRef(null)
-  useEffect(() => { (main.current?.querySelector('button') ?? done.current)?.focus() }, [at, turned])
+  // Not on mount: a chip press above remounts the deck and must keep its focus.
+  const moved = useRef(false)
+  useEffect(() => {
+    if (moved.current) (main.current?.querySelector('button') ?? done.current)?.focus()
+    moved.current = true
+  }, [at, turned])
 
   if (!cards.length) {
-    return <EmptyState>Nothing on this topic is marked for the switches that are on. Turn another one on above.</EmptyState>
+    return <EmptyState>Nothing on this topic is marked to ask about.</EmptyState>
   }
 
   const card = deck[at]

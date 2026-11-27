@@ -115,6 +115,7 @@ export function useSarf({ incoming, arrival, onVisit }) {
   // A failed baab swap is answered right beside the picker that caused it, not
   // at the top of the page; the top alert is left for the word lookup only.
   const retrySwap = () => swap.mutate({ root: data.root, form })
+  const retryMeaning = () => fetchMeaning({ word: mutation.data.word })
 
   const pickPreset = (preset) => {
     // The old word's finished table would otherwise stay on screen underneath
@@ -139,6 +140,6 @@ export function useSarf({ incoming, arrival, onVisit }) {
 
   return {
     word, data, base, waiting, mutation, swap, meaning,
-    edit, submit, chooseForm, retrySwap, pickPreset, reset,
+    edit, submit, chooseForm, retrySwap, retryMeaning, pickPreset, reset,
   }
 }
