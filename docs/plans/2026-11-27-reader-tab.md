@@ -44,7 +44,7 @@ Each word lookup in a book reuses the Dictionary's word bar, like the page reade
 
 ## 4. Slices (each ships alone, live-checked)
 1. **Skeleton:** Reader tab, open a PDF, turn pages. Check 1. Done 2026-11-27: 300 pages, first page 0.3 s, turn 15 ms (preview build, laptop).
-2. **Library:** books remembered on the device; reopen at the last page.
+2. **Library:** books remembered on the device; reopen at the last page. Done 2026-11-27: kept in IndexedDB (lib/reader/library.js), reopens at its page in 0.3 s.
 3. **Notes:** highlight + side note; export/import. Check 2.
 4. **Move the page reader** into Reader; the Dictionary button opens it. Check 5.
 5. **Class relay** (server). It starts with a spike: one test route, deployed, and each of the three transports tried through tafheem-app.vercel.app from a phone, measuring delay and whether it stays connected for 10 minutes. The winner is kept, and the rest is deleted. Then rooms, codes and limits, with tests for joining, a late joiner, a full room and an oversized picture.
