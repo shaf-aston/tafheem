@@ -27,12 +27,12 @@ describe('Nahw answer', () => {
   it('puts the English and the tools in the foot of the tree card', async () => {
     renderScreen(<IraabAnalyzer analyse={SENTENCE} />, { routes })
     const english = await screen.findByText('A useful book, this')
-    // The nearest box holding both the English and the tree: the tree's card, not the page.
-    let card = english
-    while (!card.querySelector('.tk-frame')) card = card.parentElement
+    // The tree's own card holds the English and the tools, not the page around it.
+    const card = english.closest('section[aria-label="Tarkeeb"]')
+    expect(card.querySelector('.tkc, .tko')).not.toBeNull()
     expect(card.querySelector('.word')).toBeNull()
     expect(card.contains(screen.getByRole('button', { name: 'Copy' }))).toBe(true)
-    expect(card.contains(screen.getByRole('button', { name: 'Show larger' }))).toBe(true)
+    expect(card.contains(screen.getByRole('button', { name: /Full screen/ }))).toBe(true)
   })
 
   it('does not write the whole sentence out again under the tree', async () => {

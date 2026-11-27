@@ -1,15 +1,13 @@
 import { useRemembered } from '../../../lib/store/useRemembered'
 import { describeWord } from '../../../lib/nahw/describeWord'
 import { buildIraabExportText } from '../../../lib/nahw/iraabExport'
-import { useTarkeebView } from '../../../lib/nahw/useTarkeebView'
 import ArabicText from '../../ui/text/ArabicText'
 import CopyButton from '../../ui/buttons/CopyButton'
 import FlagButton from '../../ui/buttons/FlagButton'
 import SourceBadge from '../../ui/feedback/SourceBadge'
 import StatusNote from '../../ui/feedback/StatusNote'
-import TarkeebTools from '../../grammar/tarkeeb/TarkeebTools'
 import PracticePanel from '../PracticePanel'
-import ChartWithPeek from './ChartWithPeek'
+import TarkeebStage from './TarkeebStage'
 import FullIraabTable from './FullIraabTable'
 import { EnglishFoot, EnglishMeaning } from './SentenceEnglish'
 import { useSentenceMeaning } from '../../../lib/nahw/useSentenceMeaning'
@@ -23,14 +21,13 @@ export default function AnalysisResults({ data, accent, onGo, onWordClick, picke
   const [lens, setLens] = useRemembered('nahw.analyse-lens', LENSES)
   const linked = data.words.some((w) => describeWord(w, data.words).headIndex !== undefined)
   const governs = linked && lens === 'governs'
-  const view = useTarkeebView(data.tree)
   const meaning = useSentenceMeaning(data)
   const copy = <CopyButton text={buildIraabExportText(data)} label="Copy" />
   return (
     <div className="space-y-4">
       {/* With a tree, Copy sits in the tree card's foot, not on a row of its own. */}
       <div className="flex items-start justify-between gap-3 flex-wrap">
-        {data.summary && (
+        {data.summary && !data.tree && (
           <div
             className="rise-in flex items-center gap-2 type-ui px-3 py-2 rounded-[var(--radius-md)]
               bg-[var(--surface)] border border-[var(--border)]"
@@ -52,9 +49,9 @@ export default function AnalysisResults({ data, accent, onGo, onWordClick, picke
       {data.tree && (
         // An ayah drawn from its record carries the words the book supplies,
         // (هُوَ) or an elided khabar, and the mark it writes them with.
-        <ChartWithPeek data={data} view={view} glosses={meaning.data?.words}
+        <TarkeebStage data={data} kind={data.summary && <>{data.summary} <SourceBadge source={data.source} /></>} glosses={meaning.data?.words}
           onMore={onWordClick} onLookup={onGo && ((w) => onGo('dict', w))}
-          foot={<EnglishFoot meaning={meaning} accent={accent} onGo={onGo}><TarkeebTools view={view} />{copy}</EnglishFoot>} />
+          foot={<EnglishFoot meaning={meaning} accent={accent} onGo={onGo}>{copy}</EnglishFoot>} />
       )}
       {!data.tree && <EnglishMeaning meaning={meaning} accent={accent} onGo={onGo} />}
       <WordGrid words={data.words} onClick={onWordClick} governs={governs} picked={picked}

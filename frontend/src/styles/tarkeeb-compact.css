@@ -1,0 +1,180 @@
+/* ── The compact tarkeeb (TarkeebCompact) and its phone list (TarkeebOutline) ──
+   Row 1 the words, row 2 each word's own name right under it, then one brace per
+   join on the row of its depth. Shrinks to fit (--tkc-fit) instead of scrolling. */
+.tkc { direction: rtl; width: 100%; overflow-x: auto; overflow-y: hidden; padding-block: 0.25rem 0.5rem; scrollbar-width: thin; }
+.tkc.tkc-fill { height: 100%; display: grid; place-items: center; overflow: hidden; }
+.tkc-fill .tkc-grid { zoom: calc(var(--tkc-fit, 1) * var(--tkc-zoom, 1)); }
+/* zoomed past the fit: scroll both ways, starting where the sentence starts (the right) */
+.tkc.tkc-fill.tkc-zoomed { display: block; overflow: auto; overscroll-behavior: contain; }
+.tkc-zoomed .tkc-grid { margin-block: 0.5rem; }
+.tkc-grid {
+  direction: rtl;
+  display: grid;
+  width: max-content;
+  margin-inline: auto;
+  /* never below the floor: past it the chart scrolls sideways, and Full screen shows it whole */
+  zoom: max(0.75, var(--tkc-fit, 1));
+  column-gap: 0;
+  row-gap: 0.55rem;
+  font-family: var(--font-arabic);
+}
+.tkc-word {
+  grid-row: 1;
+  display: grid;
+  align-items: end;
+  padding: 0.1rem 0.15rem 0;
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  font-size: calc(var(--arabic-chart-rem) * 1rem);
+  line-height: 1.55;
+  cursor: pointer;
+  transition: background calc(var(--motion-base-ms) * 1ms) ease;
+}
+.tkc-word:hover { background: color-mix(in srgb, var(--primary) 7%, transparent); }
+.tkc-word:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
+.tkc-word.tkc-picked { background: color-mix(in srgb, var(--primary) 14%, transparent); }
+.tkc-word:disabled { cursor: default; }
+.tkc-cut {
+  text-align: center;
+  white-space: nowrap;
+  padding: 0 0.3rem 0.15rem;
+  border-bottom: 2px solid var(--tone, var(--border-hi));
+}
+.tkc-unwritten { color: var(--text-faint); font-size: calc(var(--arabic-small-rem) * 1rem); }
+.tkc-unwritten .tkc-cut { border-bottom-style: dashed; }
+
+.tkc-names {
+  grid-row: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.1rem;
+  padding-inline: 0.2rem;
+}
+.tkc-name {
+  color: var(--tone);
+  font-size: calc(var(--arabic-small-rem) * 1rem);
+  line-height: 1.35;
+  text-align: center;
+  max-width: 5.5em;
+  font-weight: 600;
+}
+.tkc-name.tkc-gap { color: var(--text-faint); }
+.tkc-says { display: block; font-weight: 400; color: var(--text-dim); font-size: 0.85em; }
+
+/* A join: a brace opening up towards its words, a stem, and the join's name under it. */
+.tkc-group {
+  align-self: start;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 0;
+  --tone-line: color-mix(in srgb, var(--tone, var(--text-dim)) 70%, var(--surface));
+}
+.tkc-brace {
+  position: relative;
+  width: calc(100% - 0.5rem);
+  height: 0.5rem;
+  border: 1.5px solid var(--tone-line);
+  border-top: none;
+  border-radius: 0 0 5px 5px;
+}
+.tkc-brace::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  width: 1.5px;
+  height: 0.3rem;
+  background: var(--tone-line);
+}
+.tkc-label {
+  margin-top: 0.3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1.3;
+  text-align: center;
+  font-size: calc(var(--arabic-small-rem) * 1rem);
+}
+.tkc-label b { color: var(--tone, var(--text)); font-weight: 600; }
+.tkc-label span { color: var(--text-dim); font-size: 0.9em; }
+
+/* ── The phone list ─────────────────────────────────────────────────────── */
+.tko, .tko ol { list-style: none; margin: 0; padding: 0; }
+.tko { font-family: var(--font-arabic); }
+.tko ol {
+  margin-inline-start: 0.4rem;
+  padding-inline-start: 0.7rem;
+  border-inline-start: 2px solid color-mix(in srgb, var(--tone, var(--border-hi)) 55%, var(--surface));
+}
+.tko-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.15rem 0.5rem;
+  padding: 0.45rem 0 0.2rem;
+  font-size: calc(var(--arabic-small-rem) * 1rem);
+  line-height: 1.4;
+}
+.tko-head b { color: var(--tone, var(--text)); font-weight: 700; }
+.tko-head span { color: var(--text-dim); }
+.tko-row {
+  width: 100%;
+  display: grid;
+  grid-template-columns: minmax(4.5rem, max-content) 1fr;
+  align-items: baseline;
+  gap: 0.75rem;
+  padding: 0.3rem 0.5rem;
+  margin-block: 0.1rem;
+  border-radius: var(--radius-sm);
+  text-align: start;
+  min-height: 2.75rem;
+}
+.tko-row:not(:disabled):hover, .tko-row.tko-picked { background: color-mix(in srgb, var(--primary) 10%, transparent); }
+.tko-row:focus-visible { outline: 2px solid var(--primary); outline-offset: 1px; }
+.tko-word {
+  font-size: calc(var(--arabic-chart-rem) * 0.95rem);
+  line-height: 1.5;
+  color: var(--text);
+  border-bottom: 2px solid var(--tone, var(--border-hi));
+  justify-self: start;
+  white-space: nowrap;
+}
+.tko-word.tko-unwritten { color: var(--text-faint); border-bottom-style: dashed; }
+.tko-of { margin-inline-start: 0.35rem; color: var(--text-faint); font-size: 0.55em; }
+.tko-names { display: flex; flex-wrap: wrap; gap: 0.1rem 0.6rem; }
+.tko-name { color: var(--tone); font-size: calc(var(--arabic-small-rem) * 1.05rem); font-weight: 600; line-height: 1.4; }
+.tko-name small { color: var(--text-dim); font-weight: 400; }
+
+/* ── Full screen: the chart fills the screen, the tapped word along the bottom ── */
+.tks-full {
+  position: fixed;
+  inset: 0;
+  z-index: var(--layer-tip);
+  background: var(--bg, var(--surface));
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  overflow: hidden;
+  padding: max(0.5rem, env(safe-area-inset-top)) max(0.75rem, env(safe-area-inset-right)) max(0.5rem, env(safe-area-inset-bottom)) max(0.75rem, env(safe-area-inset-left));
+}
+.tks-full-bar { display: flex; align-items: center; gap: 0.5rem; }
+.tks-zoom {
+  min-width: 2.75rem; min-height: 2.75rem; padding-inline: 0.5rem;
+  border: 1px solid var(--border); border-radius: var(--radius-md);
+  color: var(--text); font-size: var(--type-heading); line-height: 1;
+}
+.tks-zoom-fit { font-size: var(--type-label); }
+.tks-zoom[aria-pressed="true"] { background: var(--surface-hi); color: var(--text-dim); }
+.tks-zoom:disabled { opacity: 0.4; }
+.tks-full-chart { min-height: 0; min-width: 0; overflow: hidden; }
+.tks-full-chart > .tkc { width: 100%; height: 100%; }
+.tks-full-detail { max-height: 40vh; overflow-y: auto; padding-top: 0.5rem; }
+.tks-turn { display: none; }
+@media (orientation: portrait) and (max-width: 39.99rem) { .tks-turn { display: inline; } }
+@media (orientation: landscape) and (max-height: 30rem) {
+  .tks-full { grid-template-columns: minmax(0, 1fr) minmax(0, 17rem); grid-template-rows: auto minmax(0, 1fr); }
+  .tks-full-bar { grid-column: 1 / -1; }
+  .tks-full-detail { max-height: none; overflow-y: auto; padding: 0 0 0 0.5rem; }
+}
