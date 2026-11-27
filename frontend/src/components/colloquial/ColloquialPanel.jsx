@@ -72,7 +72,7 @@ export default function ColloquialPanel({ incoming, arrival, onVisit }) {
     setLost(false)
     setPlace(there)
     const where = placeOf(there, dialects)
-    if (typeof there?.at === 'number') markSeen(where)
+    markSeen(where)
     onVisit?.(where)
   }
   // An arrival names a place; followed during render so a reload paints on it, not the top first.
@@ -80,7 +80,7 @@ export default function ColloquialPanel({ incoming, arrival, onVisit }) {
     const found = parsePlace(incoming, dialects)
     setPlace(found)
     setLost(Boolean(incoming) && !found)
-    if (typeof found?.at === 'number') markSeen(placeOf(found, dialects))
+    markSeen(placeOf(found, dialects))
   }
 
   const steps = trailOf(place, dialects).map((step) => ({ label: step.label, go: () => go(step.place) }))
