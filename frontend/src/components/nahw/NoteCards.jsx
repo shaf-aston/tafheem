@@ -66,7 +66,7 @@ export default function NoteCards({ cards, canPick, accent, onPage }) {
     const next = () => { setFrom(after); setDeck(coming); setMissed([]); setAt(0) }
     return (
       // Takes focus: the Knew it button that had it is gone.
-      <div ref={done} tabIndex={-1} className="rounded-[var(--radius-md)] border border-[var(--border)] p-5 space-y-3 text-center outline-none">
+      <div ref={done} data-main tabIndex={-1} className="rounded-[var(--radius-md)] border border-[var(--border)] p-5 space-y-3 text-center outline-none">
         <p className="font-medium">
           {missed.length ? `${deck.length - missed.length} of ${deck.length} known` : `All ${deck.length} known`}
         </p>
@@ -98,10 +98,10 @@ export default function NoteCards({ cards, canPick, accent, onPage }) {
           {turned ? (
             <>
               <SmallButton onClick={() => answer(false)}>Didn&apos;t know</SmallButton>
-              <div ref={main} className="w-32"><PrimaryButton accent={accent} onClick={() => answer(true)}>Knew it</PrimaryButton></div>
+              <div ref={main} data-main className="w-32"><PrimaryButton accent={accent} onClick={() => answer(true)}>Knew it</PrimaryButton></div>
             </>
           ) : (
-            <div ref={main} className="w-32"><PrimaryButton accent={accent} onClick={() => setTurned(true)}>Show</PrimaryButton></div>
+            <div ref={main} data-main className="w-32"><PrimaryButton accent={accent} onClick={() => setTurned(true)}>Show</PrimaryButton></div>
           )}
         </div>
       </div>
