@@ -14,7 +14,7 @@ import { AnalyzerSkeleton } from '../ui/feedback/Skeleton'
 export default function SarfPanel({ accent, incoming, arrival, onGo, onVisit }) {
   const {
     word, data, base, waiting, mutation, swap, meaning,
-    edit, submit, chooseForm, retrySwap, pickPreset, reset,
+    edit, submit, chooseForm, retrySwap, retryMeaning, pickPreset, reset,
   } = useSarf({ incoming, arrival, onVisit })
 
   return (
@@ -66,7 +66,7 @@ export default function SarfPanel({ accent, incoming, arrival, onGo, onVisit }) 
           loading={waiting}
           meaningPending={meaning.isPending}
           meaningFailed={meaning.isError}
-          onRetryMeaning={() => meaning.refetch()}
+          onRetryMeaning={retryMeaning}
           swapPending={swap.isPending}
           swapError={swap.isError ? errorMessage(swap.error) : null}
           onRetrySwap={retrySwap}
