@@ -42,16 +42,10 @@ export async function addBook(file) {
   return book
 }
 
-/** Mark a book opened now. */
-export const touchBook = async (id) => {
+/** Change some of a saved book's fields: its `page`, when it was `opened`. */
+export async function updateBook(id, changes) {
   const book = await inStore('readonly', (s) => s.get(id))
-  if (book) await inStore('readwrite', (s) => s.put({ ...book, opened: Date.now() }))
-}
-
-/** Remember the page a book is on. */
-export async function keepPage(id, page) {
-  const book = await inStore('readonly', (s) => s.get(id))
-  if (book && book.page !== page) await inStore('readwrite', (s) => s.put({ ...book, page }))
+  if (book) await inStore('readwrite', (s) => s.put({ ...book, ...changes }))
 }
 
 export const removeBook = (id) => inStore('readwrite', (s) => s.delete(id))

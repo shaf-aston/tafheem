@@ -8,13 +8,15 @@
  */
 import { useRef } from 'react'
 
+import FilePick from '../inputs/FilePick'
+
 export default function PictureButton({ onPicked, title = 'Read a picture of a page', disabled = false }) {
-  const input = useRef(null)
+  const pick = useRef(null)
   return (
     <>
       <button
         type="button"
-        onClick={() => input.current?.click()}
+        onClick={() => pick.current?.()}
         disabled={disabled}
         aria-label={title}
         title={title}
@@ -27,17 +29,7 @@ export default function PictureButton({ onPicked, title = 'Read a picture of a p
           <circle cx="12" cy="13" r="3.5" />
         </svg>
       </button>
-      <input
-        ref={input}
-        type="file"
-        accept="image/*"
-        hidden
-        onChange={(event) => {
-          const file = event.target.files?.[0]
-          event.target.value = '' // the same picture chosen twice is still a choice
-          if (file) onPicked(file)
-        }}
-      />
+      <FilePick pick={pick} accept="image/*" onPicked={onPicked} />
     </>
   )
 }
