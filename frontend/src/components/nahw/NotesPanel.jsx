@@ -100,15 +100,17 @@ export default function NotesPanel({ accent, topic: asked, onTamreen }) {
   })
   const reveal = (key) => setShownNow({ scope, keys: new Set(NOTES.revealStays ? [...revealed, key] : [key]) })
   const backToCards = () => {
-    setMode('cards')
+    setModeNow('cards')
+    setFromCards(false)
     requestAnimationFrame(() => {
       const deck = document.getElementById('note-deck')
       scrollToEl(deck, 'top')
-      deck?.querySelector('button')?.focus({ preventScroll: true })
+      deck?.querySelector('[data-main] button, [data-main]')?.focus({ preventScroll: true })
     })
   }
   const goToPage = (page) => {
-    setMode('read')
+    // A look, not a choice: the saved mode stays the cards.
+    setModeNow('read')
     setFromCards(true)
     // Focus goes with the scroll: the button pressed is now hidden.
     requestAnimationFrame(() => {
