@@ -376,6 +376,8 @@ class Speech(BaseSettings):
 
     # Real reciters are played by the page, not listed here.
     speech_voices: str = "fastpitch"
+    # The machine's outgoing proxy (HTTPS_PROXY), handed to edge-tts, whose aiohttp ignores it otherwise; "" is none.
+    https_proxy: str = ""
     # FastPitch has four speakers; 3 was heard best by Whisper (21% letters wrong, speaker 0 41%).
     speech_fastpitch_speaker: int = Field(default=3, ge=0, le=3)
     # Silence before and after every FastPitch word. A phone wakes its speaker as a sound

@@ -8,7 +8,6 @@ from backend.services.sarf.morphology import is_listed_verb
 from backend.services.text.arabic_text import has_al, strip_diacritics
 from backend.services.text.harakat import DAMMA, FATHA, has_tanween, letters, merged_prefix, own_letters, paused, plural_alef, stuck_letters, typed_case, vowel_agreement
 from backend.services.nahw.book import book_words, condition_of, is_built_word, is_one, only_adverb
-from backend.services.nahw.syntax.mask import above
 from backend.services.nahw.syntax.facts import SUBJECTS, Sentence, has_added, is_built, is_describing, is_elative, is_emphasis_lam, is_known, is_name, is_preposition, listed, noun_tagged, puts_in_jarr, shown_cases, stays_adverb, typed_case_of, typed_or_parsed_case, typed_tanween, tenseless_noun, verb_tagged, works_as_verb
 
 
@@ -234,7 +233,7 @@ def nunless_mudaf(s: Sentence) -> None:
 def _add_to(s: Sentence, before: dict, word: dict) -> None:
     """`word` is the مضاف إليه of `before`. A مضاف the parser hung under that word takes the word's place first,
     so the link closes no loop."""
-    if above([t["head"] for t in s.tokens], before["id"], word["id"]):
+    if s.under(before["id"], word["id"]):
         s.relink(before, word["head"], word["rel"])
     s.relink(word, before["id"], "IDF")
     before["mudaf"] = True

@@ -2,7 +2,6 @@
 from __future__ import annotations
 
 from backend.services.nahw.book import extra_ba_on, is_extra_ba, is_mabni, is_one, is_subject_pronoun, says
-from backend.services.nahw.syntax.mask import above
 from backend.services.nahw.syntax.facts import (
     Sentence, is_suffix, verb_tagged, stays_adverb, is_built, is_name, khabar_behind_ba, has_added, indefinite_nasb, typed_tanween, is_describing, is_state_word, is_verb, is_preposition, is_zarf, typed_bare, listed, same_root, shows_jarr, shows_nasb_by_kasra, typed_case_of, typed_or_parsed_case, attached_pronoun, noun_tagged, subject_link, holds_doer, own_doer, is_passive, works_as_verb, previous_noun, shown_cases, place_time, next_word)
 from backend.services.nahw.syntax.facts.word import takes_two_objects
@@ -478,7 +477,7 @@ def inna_second_khabar(s: Sentence) -> None:
             told = next((t for t in tokens if t["id"] > subject["id"] and noun_tagged(t)
                          and (t["rel"] == "IDF" and (typed_case_of(t) == "u" or typed_case_of(t) is None and t is tokens[-1])
                               or t["rel"] == "MOD" and typed_case_of(t) == "u")
-                         and above([x["head"] for x in tokens], t["id"], subject["id"])), None)
+                         and s.under(t["id"], subject["id"])), None)
             # إِنَّ أَحْسَنَ مَا زُرْتُمُ اللَّهَ فِي قُبُورِكُمْ وَمَسَاجِدِكُمُ الْبَيَاضُ: a second subject on it, typed in raf' after the اسم and its صلة
             told = told or next((k for k in s.kids(governor) if k["id"] > subject["id"] and subject_link(k)
                                  and noun_tagged(k) and typed_case_of(k) == "u"), None)

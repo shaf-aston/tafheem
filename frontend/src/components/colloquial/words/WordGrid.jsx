@@ -4,8 +4,7 @@
 import SpeakButton from '../../ui/buttons/SpeakButton'
 import Face from '../parts/Face'
 import Spelling from '../parts/Spelling'
-import { grouped } from '../../../lib/colloquial/wordGroups'
-import { splitMet } from '../../../lib/colloquial/metWords'
+import { grouped, splitMet } from '../../../lib/colloquial/wordGroups'
 import MetWords from './MetWords'
 
 // The topic's new words as tiles; the ones an earlier topic taught, folded away under them.

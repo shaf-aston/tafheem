@@ -158,7 +158,7 @@ def test_after_a_relative_the_inner_sentence_is_its_sila():
 
 
 def test_links_that_already_loop_end_the_climb():
-    from backend.services.nahw.syntax.mask import above
+    from backend.services.nahw.syntax.facts import above
     assert above([2, 1, 0], 1, 3)  # 1 → 2 → 1 …: a loop, counted as one, never climbed forever
     assert not above([0, 1, 2], 1, 3)
 

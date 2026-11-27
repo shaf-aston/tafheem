@@ -16,7 +16,7 @@ from backend.services.text.arabic_text import strip_diacritics
 from backend.services.nahw.book import is_one, is_plain_noun, is_subject_pronoun, vetoes
 from backend.services.text.harakat import CAMEL_CASE
 from backend.services.nahw.syntax import ma
-from backend.services.nahw.syntax.facts import attached_pronoun, case_unseen, listed, noun_tagged, tenseless_noun, typed_case_of, typed_or_parsed_case, verb_tagged
+from backend.services.nahw.syntax.facts import above, attached_pronoun, case_unseen, listed, noun_tagged, tenseless_noun, typed_case_of, typed_or_parsed_case, verb_tagged
 from backend.services.nahw.syntax.facts.word import manqus_tanween
 
 
@@ -54,18 +54,6 @@ def book_mask(toks: list[dict], labels: list[str]) -> np.ndarray:
 def _switched_on(rules: dict) -> list:
     """The rules closed_words.json "vetoes" turns on, in the order of the table passed."""
     return [rule for name, rule in rules.items() if vetoes().get(name)]
-
-
-def above(heads: list[int], word: int, target: int) -> bool:
-    """`target` is `word` or one of the words it hangs under: a link from target down to
-    word would close a loop. Links that already loop count as a loop, never climbed forever."""
-    for _ in range(len(heads) + 1):
-        if not word:
-            return False
-        if word == target:
-            return True
-        word = heads[word - 1]
-    return True
 
 
 def _pointer_heads_its_noun(toks, heads, rels) -> None:

@@ -553,7 +553,7 @@ def test_a_mudaf_hung_under_its_own_mudaf_ilayh_takes_its_place():
     would close a loop that no walk up the sentence ever leaves, so أكرم takes رجال's place first."""
     from backend.services.nahw import syntax
     from backend.services.nahw.syntax import catib_onnx
-    from backend.services.nahw.syntax.mask import above
+    from backend.services.nahw.syntax.facts import above
     from backend.services.nahw.syntax.repair import correct
     from backend.services.sarf import morphology
     words = ["زَيْدٌ", "أَكْرَمُ", "رِجَالٍ"]

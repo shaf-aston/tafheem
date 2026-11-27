@@ -100,6 +100,18 @@ def extra_min_case(noun: dict, s: "Sentence") -> str | None:
     return ("a" if place == "mafool_bih" else "u") if place else None
 
 
+def above(heads: list[int], word: int, target: int) -> bool:
+    """`target` is `word` or one of the words it hangs under: a link from target down to
+    word would close a loop. Links that already loop count as a loop, never climbed forever."""
+    for _ in range(len(heads) + 1):
+        if not word:
+            return False
+        if word == target:
+            return True
+        word = heads[word - 1]
+    return True
+
+
 class Sentence:
     """One parsed sentence with its lookups built once; every axis asks it and none rebuilds them."""
 
@@ -184,6 +196,10 @@ class Sentence:
 
     def head(self, token: dict) -> dict | None:
         return self.by_id.get(token["head"])
+
+    def under(self, word: int, target: int) -> bool:
+        """`target` is `word` or one of the words it hangs under, by the links as they stand now."""
+        return above([t["head"] for t in self.tokens], word, target)
 
     def relink(self, token: dict, head: int, rel: str) -> None:
         """Hang the token on the word with id `head` as `rel`, and keep the lookups that follow the links in step.
