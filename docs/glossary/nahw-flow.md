@@ -102,6 +102,7 @@ Before labels are chosen, the book's masks rule labels out (`backend/services/na
 - hasr_khabar: a noun after إلا in a negated verbless clause → the khabar of the mubtada before it (`backend/services/nahw/syntax/repair/khabar.py`)
 - described_doer: a singular وصف after a negation or question word, then a raf' noun → the وصف heads the clause (مبتدأ), the noun its doer (`backend/services/nahw/syntax/repair/khabar.py`)
 - hal_clause: و + a raf' pronoun or noun + a verb or khabar → a hal clause, the noun its mubtada, the و hung on the verb (`backend/services/nahw/syntax/repair/hal.py`)
+- hal_clause_without_waw: a verb's doer + a noun with its own pronoun + a verb → a hal clause with no و, the noun its mubtada (`backend/services/nahw/syntax/repair/hal.py`)
 - joined_sentence: و + a raf' noun with a raf' noun as its object → a second مبتدأ and خبر (`backend/services/nahw/syntax/repair/hal.py`)
 - oath_clause: opening و + a relative or jarr noun, the clause answered by a lam, لا, ما, قد or إن → the oath (`backend/services/nahw/syntax/repair/clause.py`)
 - amma_clause: أما + one noun + a فاء answer → the noun is the mubtada, the answer its khabar, a verb it was doer of its صلة (`backend/services/nahw/syntax/repair/clause.py`)

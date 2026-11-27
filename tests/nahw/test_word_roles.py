@@ -362,6 +362,44 @@ def test_idha_past_a_jussive_particle_still_opens_a_condition():
     assert words[0]["role"] == "مفعول فيه"
 
 
+@pytest.mark.parametrize("sentence, nasbed", [
+    ("أَلَّا تَنَازَعُوا", True),    # أنْ merged into لا: the present after it in nasb
+    ("أَلَا تَنَازَعُوا", False),    # أَلَا that opens speech leaves it marfu
+])
+def test_alla_puts_the_present_in_nasb(sentence: str, nasbed: bool):
+    verb = iraab.analyze(sentence, recorded=False)["words"][-1]
+    assert ("حذف النون" in str(verb)) is nasbed
+
+
+@pytest.mark.parametrize("sentence, role, sign", [
+    ("أَقَائِمٌ الزَّيْدَانِ", "فاعل", "الألف، مثنى"),
+    ("أَقَائِمٌ الزَّيْدُونَ", "فاعل", "الواو، جمع مذكر سالم"),
+    ("رَأَيْتُ الزَّيْدَيْنِ", "مفعول به", "الياء، مثنى"),
+    ("رَأَيْتُ الزَّيْدِينَ", "مفعول به", "الياء، جمع مذكر سالم"),
+])
+def test_a_name_with_al_made_dual_or_plural(sentence: str, role: str, sign: str):
+    name = iraab.analyze(sentence, recorded=False)["words"][-1]
+    assert (name["role"], name["sign"]) == (role, sign)
+
+
+@pytest.mark.parametrize("sentence", ["جَاءَ زَيْدٌ أَخُوهُ يَرْكُضُ", "قَامَ الْوَلَدُ أَبُوهُ يَضْحَكُ"])
+def test_a_nominal_sentence_with_no_waw_is_the_doers_hal(sentence: str):
+    r = iraab.analyze(sentence, recorded=False)
+    assert r["words"][2]["role"] == "مبتدأ"
+    clause = r["tree"]["tree"]["children"][2]
+    assert (clause["role"], clause["detail"]) == ("حال", "في محل نصب")
+
+
+def test_a_noun_with_its_pronoun_and_no_verb_after_stays_a_badal():
+    assert iraab.analyze("جَاءَ زَيْدٌ أَخُوهُ", recorded=False)["words"][2]["role"] == "بدل"
+
+
+def test_a_said_nominal_sentence_with_no_pronoun_is_not_a_hal():
+    # قَالَ زَيْدٌ إِنْ أَحَدٌ جَاءَنِي: the sentence after قال is what he said, not his state
+    clause = iraab.analyze("قَالَ زَيْدٌ إِنْ أَحَدٌ جَاءَنِي", recorded=False)["tree"]["tree"]["children"][2]
+    assert clause.get("role") != "حال"
+
+
 @pytest.mark.parametrize("sentence, want", [
     # a command and its object pronoun the dictionary has no reading of: اِهْدِنَا is هَدَى + نا
     ("اِهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ", ["فعل", "مفعول به", "صفة"]),
