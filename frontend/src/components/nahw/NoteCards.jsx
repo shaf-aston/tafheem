@@ -28,7 +28,7 @@ function Face({ text }) {
     : <p className="type-body">{text}</p>
 }
 
-export default function NoteCards({ cards, accent, onPage }) {
+export default function NoteCards({ cards, canPick, accent, onPage }) {
   // Where the current run starts in the whole topic, so "next" carries on from it
   // even after a round of only the missed ones.
   const [from, setFrom] = useState(0)
@@ -48,7 +48,7 @@ export default function NoteCards({ cards, accent, onPage }) {
   }, [at, turned])
 
   if (!cards.length) {
-    return <EmptyState>Nothing on this topic is marked to ask about.</EmptyState>
+    return <EmptyState>{canPick ? 'Pick at least one part above.' : 'Nothing on this topic is marked to ask about.'}</EmptyState>
   }
 
   const card = deck[at]

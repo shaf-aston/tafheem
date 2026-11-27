@@ -99,10 +99,23 @@ export default function NotesPanel({ accent, topic: asked, onTamreen }) {
     return next
   })
   const reveal = (key) => setShownNow({ scope, keys: new Set(NOTES.revealStays ? [...revealed, key] : [key]) })
+  const backToCards = () => {
+    setMode('cards')
+    requestAnimationFrame(() => {
+      const deck = document.getElementById('note-deck')
+      scrollToEl(deck, 'top')
+      deck?.querySelector('button')?.focus({ preventScroll: true })
+    })
+  }
   const goToPage = (page) => {
     setMode('read')
     setFromCards(true)
-    requestAnimationFrame(() => scrollToEl(document.getElementById(`note-page-${page}`), 'top'))
+    // Focus goes with the scroll: the button pressed is now hidden.
+    requestAnimationFrame(() => {
+      const el = document.getElementById(`note-page-${page}`)
+      scrollToEl(el, 'top')
+      el?.focus({ preventScroll: true })
+    })
   }
 
   const offered = data.roles.filter((role) => used.has(role.key))
@@ -153,8 +166,8 @@ export default function NotesPanel({ accent, topic: asked, onTamreen }) {
       </header>
 
       {/* Kept mounted while reading, so "See it in the notes" and back keeps the deck's place. */}
-      <div hidden={mode !== 'cards'}>
-        <NoteCards key={`${topic.id}:${hiddenKey}`} cards={cards} accent={accent} onPage={goToPage} />
+      <div id="note-deck" hidden={mode !== 'cards'}>
+        <NoteCards key={`${topic.id}:${hiddenKey}`} cards={cards} canPick={offered.length > 0} accent={accent} onPage={goToPage} />
       </div>
       {mode !== 'cards' && (
         <div className="space-y-5">
@@ -162,7 +175,7 @@ export default function NotesPanel({ accent, topic: asked, onTamreen }) {
             const anchor = firstOfPage.has(block.page) ? undefined : `note-page-${block.page}`
             firstOfPage.add(block.page)
             return (
-              <div key={block.id} id={anchor} className="scroll-mt-24">
+              <div key={block.id} id={anchor} tabIndex={anchor ? -1 : undefined} className="scroll-mt-24 outline-none">
                 <NoteBlock
                   topicId={topic.id}
                   block={block}
@@ -179,7 +192,7 @@ export default function NotesPanel({ accent, topic: asked, onTamreen }) {
       )}
       {fromCards && mode === 'read' && (
         <div className="sticky bottom-4 flex justify-end">
-          <SmallButton onClick={() => setMode('cards')}>Back to the cards</SmallButton>
+          <SmallButton onClick={backToCards}>Back to the cards</SmallButton>
         </div>
       )}
       <TopicSteps topics={topics} current={topic.id} onPick={setTopic} />
