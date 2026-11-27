@@ -61,7 +61,7 @@ export default function ReaderPanel() {
         <FilePick pick={pick} accept="application/pdf,.pdf" onPicked={(file) => read(file)} />
       </div>
       {error && <p role="alert" className="type-body text-[var(--text-dim)]">{error}</p>}
-      {open && <BookView key={open.id + open.start} book={open.book} name={open.name} start={open.start} onPage={onPage} />}
+      {open && <BookView key={open.id + open.start} book={open.book} name={open.name} start={open.start} accent={accentOf('reader')} onPage={onPage} />}
       {!open && books?.length > 0 && (
         <Library books={books} onOpen={(book) => read(null, book)} onRemove={(book) => removeBook(book.id).then(reload)} />
       )}

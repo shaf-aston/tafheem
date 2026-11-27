@@ -10,21 +10,24 @@ import worker from 'pdfjs-dist/build/pdf.worker.min.mjs?url'
 
 GlobalWorkerOptions.workerSrc = worker
 
-/** Open a PDF File. Resolves { pages, draw(n, canvas, width), close() }; rejects on a file that is no PDF. */
+/** Open a PDF File. Resolves { pages, draw(n, canvas, width, height), close() }; rejects on a file that is no PDF. */
 export async function openPdf(file) {
   const task = getDocument({ data: new Uint8Array(await file.arrayBuffer()) })
   const doc = await task.promise
   let drawing = null
   return {
     pages: doc.numPages,
-    /** Draw page `n` (from 1) into `canvas`, `width` CSS pixels wide, sharp on a dense screen. */
-    async draw(n, canvas, width) {
+    /** Draw page `n` (from 1) into `canvas`, as large as fits `width` and, if given, `height` CSS
+     *  pixels, sharp on a dense screen. */
+    async draw(n, canvas, width, height = Infinity) {
       drawing?.cancel()
       const page = await doc.getPage(n)
-      const viewport = page.getViewport({ scale: (width / page.getViewport({ scale: 1 }).width) * devicePixelRatio })
+      const flat = page.getViewport({ scale: 1 })
+      const fit = Math.min(width / flat.width, height / flat.height)
+      const viewport = page.getViewport({ scale: fit * devicePixelRatio })
       canvas.width = viewport.width
       canvas.height = viewport.height
-      canvas.style.width = `${width}px`
+      canvas.style.width = `${Math.floor(flat.width * fit)}px`
       drawing = page.render({ canvas, viewport })
       try {
         await drawing.promise
