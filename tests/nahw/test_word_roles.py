@@ -371,6 +371,17 @@ def test_alla_puts_the_present_in_nasb(sentence: str, nasbed: bool):
     assert ("حذف النون" in str(verb)) is nasbed
 
 
+@pytest.mark.parametrize("sentence, role, sign", [
+    ("أَقَائِمٌ الزَّيْدَانِ", "فاعل", "الألف، مثنى"),
+    ("أَقَائِمٌ الزَّيْدُونَ", "فاعل", "الواو، جمع مذكر سالم"),
+    ("رَأَيْتُ الزَّيْدَيْنِ", "مفعول به", "الياء، مثنى"),
+    ("رَأَيْتُ الزَّيْدِينَ", "مفعول به", "الياء، جمع مذكر سالم"),
+])
+def test_a_name_with_al_made_dual_or_plural(sentence: str, role: str, sign: str):
+    name = iraab.analyze(sentence, recorded=False)["words"][-1]
+    assert (name["role"], name["sign"]) == (role, sign)
+
+
 @pytest.mark.parametrize("sentence, want", [
     # a command and its object pronoun the dictionary has no reading of: اِهْدِنَا is هَدَى + نا
     ("اِهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ", ["فعل", "مفعول به", "صفة"]),

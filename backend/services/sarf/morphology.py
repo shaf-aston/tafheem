@@ -753,6 +753,33 @@ def _ma_kaffa(w: _Word) -> dict | None:
     return _kaffa_ma(w.evidence, w.ranked)
 
 
+def _name_made_dual_or_plural(w: _Word) -> dict | None:
+    """أَقَائِمٌ الزَّيْدَانِ، جَاءَ الزَّيْدُونَ: a name with ال takes the dual and the sound plural as any noun does
+    (an ال on a name says it is counted, made common), but the dictionary files these letters as a name of
+    their own (زَيْدان) or not at all. Where the letters before the ending are a name it knows, the word is
+    that name made dual or plural, its case from the ending; يْنِ is told from ِينَ by the vowels typed."""
+    marked, first = letters(w.token), w.first
+    if len(marked) < 6 or bare_letters(w.token)[:2] != "ال" or first.get("pos") != "noun_prop" or first.get("num") in ("d", "p"):
+        return None
+    (one, one_marks), (nun, nun_marks), before = marked[-2], marked[-1], marked[-3][1]
+    if nun != "ن":
+        return None
+    dual, plural = one == "ا" or one == "ي" and (FATHA in before or "\u0650" in nun_marks), \
+        one == "و" or one == "ي" and ("\u0650" in before or FATHA in nun_marks)
+    if dual == plural:
+        return None
+    stem = "".join(letter + "".join(marks - {FATHA, "\u0650", DAMMA}) for letter, marks in marked[2:-2])
+    name = next((r for r in (_ranked([stem], w.disambiguator) or [[]])[0]
+                 if r.get("pos") == "noun_prop" and r.get("num") == "s" and r.get("gen") == "m"), None)
+    if not name:
+        return None
+    ending = {"ا": "َانِ", "و": "ُونَ"}.get(one) or ("َيْنِ" if dual else "ِينَ")
+    number, case = ("d" if dual else "p"), ("n" if one in "او" else "a")
+    spelled = "ال" + name["diac"] + ending
+    return {**name, "num": number, "form_num": number, "cas": case, "stt": "d", "prc0": "Al_det",
+            "diac": spelled, "atbtok": spelled}
+
+
 def _ayy_ma(w: _Word) -> dict | None:
     """أيّ with ما الزائدة written onto it: أَيَّمَا (_declined_ma)."""
     return _declined_ma(w.evidence)
@@ -812,7 +839,7 @@ def _by_shape(w: _Word) -> dict | None:
 
 
 WORD_OVERRIDES = (_name_adding_fewer, _named_in_the_quran, _emphasis, _oath, _ma_in_jarr, _ma_kaffa, _ayy_ma, _a_particle,
-                  _hamza_seat, _by_shape, _command_after_joining)
+                  _hamza_seat, _by_shape, _command_after_joining, _name_made_dual_or_plural)
 
 
 # ── Sentence passes: each reads the readings the words chose and changes the ones the sentence says ──
