@@ -29,7 +29,7 @@
       "destination": "/app.html"
     },
     {
-      "source": "/:tab(home|nahw|sarf|quran|daleel|hadith|dict|dictionary|mem|memorise|similar|grow|quiz|timelines|dawah|colloq|colloquial|map|kit|iraab|tarkeeb)/:place*",
+      "source": "/:tab(home|nahw|sarf|quran|daleel|hadith|dict|dictionary|mem|memorise|similar|reader|grow|quiz|timelines|dawah|colloq|colloquial|map|kit|iraab|tarkeeb)/:place*",
       "destination": "/app.html"
     }
   ],

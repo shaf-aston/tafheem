@@ -39,6 +39,7 @@ const DawahPanel = panel(() => import('../../components/dawah/DawahPanel'))
 const ColloquialPanel = panel(() => import('../../components/colloquial/ColloquialPanel'))
 const GrowPanel = panel(() => import('../../components/grow/GrowPanel'))
 const KitPanel = panel(() => import('../../components/kit/KitPanel'))
+const ReaderPanel = panel(() => import('../../components/reader/ReaderPanel'))
 const MapPanel = panel(() => import('../../components/map/MapPanel'))
 
 // `study`: read closely, so the text-size setting applies.
@@ -81,6 +82,7 @@ export const TABS = [
   // Daleel finds a passage, Dictionary a word: reached for together.
   { id: 'daleel', label: 'Daleel',     short: 'Daleel', arabic: 'دليل',   emblem: 'daleel', Component: DaleelPanel, open: load(daleelBooksQuery), study: true, search: true, blurb: "Find the passage that speaks to your question", group: 'read' },
   { id: 'hadith', label: 'Hadith',     short: 'Hadith', arabic: 'الحديث', emblem: 'hadith', Component: HadithPanel, open: hadithOpen, study: true, search: true, blurb: "Search hadith, with narrators and grading", group: 'read' },
+  { id: 'reader', label: 'Reader',     short: 'Reader', arabic: 'قراءة',  emblem: 'reader', Component: ReaderPanel, study: true, ownsHealth: true, blurb: "Open a PDF of your own and read it page by page", group: 'read' },
   { id: 'dict',   label: 'Dictionary', short: 'Dict',   arabic: 'قاموس',  emblem: 'dict', Component: DictionaryPanel, study: true, search: true, blurb: "Look up an Arabic word, root or meaning", group: 'arabic' },
   { id: 'mem',    label: 'Memorise',   short: 'Mem',    arabic: 'حفظ',    emblem: 'mem', Component: MemorisePanel, open: memoriseOpen, study: true, blurb: "Learn verses by heart and check your recital", group: 'practise' },
   // Similar verses, متشابهات: telling look-alike ayat apart, next to learning them by heart.

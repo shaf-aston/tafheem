@@ -189,6 +189,13 @@ const ART = {
       <path d="M33 37h22M33 42h14" {...ink} strokeWidth="2" opacity=".6" />
     </>
   ),
+  reader: (
+    <>
+      <path d="M14 6h28l10 10v42H14z" fill="currentColor" opacity=".18" />
+      <path d="M14 6h28l10 10v42H14zM42 6v10h10" {...ink} strokeWidth="2.4" />
+      <path className="em-draw" d="M21 28h24M21 36h24M21 44h16" {...ink} strokeWidth="2" opacity=".7" />
+    </>
+  ),
   home: (
     <>
       <path d="M14 58V32a18 18 0 0136 0v26z" fill="currentColor" opacity=".2" />
