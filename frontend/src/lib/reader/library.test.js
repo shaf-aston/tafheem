@@ -1,14 +1,14 @@
 import 'fake-indexeddb/auto'
 import { describe, expect, it } from 'vitest'
 
-import { addBook, keepPage, listBooks, removeBook } from './library'
+import { addBook, listBooks, removeBook, updateBook } from './library'
 
 const pdf = (name, bytes = 'x') => new File([bytes], name, { type: 'application/pdf' })
 
 describe('reader library', () => {
   it('keeps a book and the page it was left on, and the same file twice is one book', async () => {
     const book = await addBook(pdf('a.pdf'))
-    await keepPage(book.id, 42)
+    await updateBook(book.id, { page: 42 })
     const again = await addBook(pdf('a.pdf'))
     expect(again.page).toBe(42)
     const books = await listBooks()

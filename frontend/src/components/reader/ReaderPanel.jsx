@@ -9,11 +9,12 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 
 import { accentOf } from '../../lib/nav/tabs'
 import { openPdf } from '../../lib/reader/pdfSource'
-import { addBook, keepPage, listBooks, removeBook, touchBook } from '../../lib/reader/library'
+import { addBook, listBooks, removeBook, updateBook } from '../../lib/reader/library'
 
 import SectionHeader from '../ui/display/SectionHeader'
 import PrimaryButton from '../ui/buttons/PrimaryButton'
 import SmallButton from '../ui/buttons/SmallButton'
+import FilePick from '../ui/inputs/FilePick'
 import EmptyState from '../ui/feedback/EmptyState'
 import BookView from './BookView'
 import Library from './Library'
@@ -23,7 +24,7 @@ export default function ReaderPanel() {
   const [open, setOpen] = useState(null) // { book, name, id, start }
   const [error, setError] = useState('')
   const [opening, setOpening] = useState(false)
-  const input = useRef(null)
+  const pick = useRef(null)
 
   const reload = () => listBooks().then(setBooks, () => setBooks([]))
   useEffect(() => { reload() }, [])
@@ -35,7 +36,7 @@ export default function ReaderPanel() {
     setError('')
     try {
       const book = kept ?? await addBook(from)
-      if (kept) touchBook(kept.id)
+      if (kept) updateBook(kept.id, { opened: Date.now() })
       setOpen({ book: await openPdf(book.file), name: book.name, id: book.id, start: book.page })
     } catch {
       setError(`${(kept ?? from).name} could not be opened as a PDF.`)
@@ -45,29 +46,19 @@ export default function ReaderPanel() {
     }
   }
 
-  const onPage = useCallback((page) => open && keepPage(open.id, page), [open])
+  const onPage = useCallback((page) => open && updateBook(open.id, { page }), [open])
 
   return (
     <div className="panel space-y-5">
       <SectionHeader tab="reader" />
       <div className="flex flex-wrap items-center gap-3">
         <div className="w-full max-w-xs">
-          <PrimaryButton accent={accentOf('reader')} loading={opening} onClick={() => input.current?.click()}>
+          <PrimaryButton accent={accentOf('reader')} loading={opening} onClick={() => pick.current?.()}>
             Open a PDF
           </PrimaryButton>
         </div>
         {open && <SmallButton onClick={() => { setOpen(null); reload() }}>Your books</SmallButton>}
-        <input
-          ref={input}
-          type="file"
-          accept="application/pdf,.pdf"
-          hidden
-          onChange={(event) => {
-            const file = event.target.files?.[0]
-            event.target.value = ''
-            if (file) read(file)
-          }}
-        />
+        <FilePick pick={pick} accept="application/pdf,.pdf" onPicked={(file) => read(file)} />
       </div>
       {error && <p role="alert" className="type-body text-[var(--text-dim)]">{error}</p>}
       {open && <BookView key={open.id + open.start} book={open.book} name={open.name} start={open.start} onPage={onPage} />}
