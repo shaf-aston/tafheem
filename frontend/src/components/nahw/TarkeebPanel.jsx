@@ -68,6 +68,7 @@ export default function TarkeebPanel({ accent, onWordByWord }) {
       )}
       {isPending && <Skeleton className="h-40" />}
 
+      {!isPending && !isError && books.length === 0 && <EmptyState>No book examples are filed yet.</EmptyState>}
       {books.length > 0 && (
         <>
           <div className="flex items-center justify-between gap-3 flex-wrap">

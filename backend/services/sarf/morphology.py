@@ -1850,6 +1850,9 @@ def clean_gloss(text: str) -> str:
     tag in angle brackets and underscores where spaces belong. None of that is
     English, and all of it was going straight onto the screen.
     """
+    # An unknown word comes back as its own gloss, Arabic letters and all; that is no meaning.
+    if has_arabic(text):
+        return ""
     text = re.sub(r"<[^>]*>", " ", text).split("+")[0]
     senses = [s.replace("_", " ").strip() for s in text.split(";")]
     return ", ".join(dict.fromkeys(s for s in senses if s))

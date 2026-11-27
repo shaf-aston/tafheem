@@ -31,6 +31,9 @@ export default function Gardaan({ table, accent, form, options, onForm, swapPend
   // form until that swap resolves, which reads as the click having failed.
   const [picked, setPicked] = useState(form ?? '')
   const choose = (id) => { setPicked(id); onForm(id) }
+  // A new word, or a landed swap, brings its own form; the pick follows it.
+  const [seenForm, setSeenForm] = useState(form)
+  if (form !== seenForm) { setSeenForm(form); setPicked(form ?? '') }
 
   // A different baab can bring different columns, so the choice starts fresh
   // rather than pointing at columns that are no longer there. Reset while
@@ -69,7 +72,7 @@ export default function Gardaan({ table, accent, form, options, onForm, swapPend
               label="Verb form"
               placeholder="Choose a باب"
               options={Object.entries(options).map(([id, label]) => ({ id, label }))}
-              value={picked || form}
+              value={swapError ? form : (picked || form)}
               onChange={choose}
               disabled={swapPending}
               accent={accent}
@@ -93,7 +96,8 @@ export default function Gardaan({ table, accent, form, options, onForm, swapPend
               so the reader turns on only the ones being studied. */}
 <div role="group" aria-label="Columns to show" dir="rtl" className="flex flex-wrap items-center gap-2">
             {columns.map((c) => (
-              <Chip key={c.id} tinted accent={accent} selected={shown.includes(c.id)} onClick={() => toggle(c.id)}>
+              <Chip key={c.id} tinted accent={accent} selected={shown.includes(c.id)} onClick={() => toggle(c.id)}
+                disabled={shown.length === 1 && shown.includes(c.id)} title={shown.length === 1 && shown.includes(c.id) ? 'One column always stays on' : undefined}>
                 {c.label}
               </Chip>
             ))}
