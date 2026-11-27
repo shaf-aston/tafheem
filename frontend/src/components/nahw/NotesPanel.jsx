@@ -149,9 +149,11 @@ export default function NotesPanel({ accent, topic: asked, onTamreen }) {
         <p className="type-small text-[var(--text-faint)]">{topic.pages} {topic.pages === 1 ? 'page' : 'pages'} of the teacher&apos;s notes</p>
       </header>
 
-      {mode === 'cards' ? (
+      {/* Kept mounted while reading, so "See it in the notes" and back keeps the deck's place. */}
+      <div hidden={mode !== 'cards'}>
         <NoteCards key={`${topic.id}:${hiddenKey}`} cards={cards} accent={accent} onPage={goToPage} />
-      ) : (
+      </div>
+      {mode !== 'cards' && (
         <div className="space-y-5">
           {blocks.map((block) => {
             const anchor = firstOfPage.has(block.page) ? undefined : `note-page-${block.page}`
